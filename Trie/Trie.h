@@ -5,11 +5,16 @@
 #include <vector>
 struct TrieNode
 {
-    char data;
-    TrieNode* edges[68]{0};
-    bool isEndOfWord = false;
+    TrieNode* edges[68];
+    bool isEndOfWord;
+    std::string definition;
+
+    TrieNode()
+    {
+        for (int i = 0 ; i < 68 ; i++) edges[i] = nullptr;
+        isEndOfWord = false;
+    }
 };
-// 68 characters in converting table. No need for 256 -> Minimize memory use.
 int convertCharToNum(char c); 
 void addWordToTrie(std::string word, TrieNode*& root);
 bool findWordInTrie(std::string word, TrieNode* root);
