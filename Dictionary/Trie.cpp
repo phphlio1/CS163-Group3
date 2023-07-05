@@ -23,7 +23,14 @@ int convertCharToNum(char c)
 void build_Trie_EngEng(TrieNode*& root)
 {
 	std::ifstream fin;
-	fin.open("../data_set/English_English_original.txt");
+    fin.open("../data_set/English_English_modify.txt");
+    if(!fin.is_open())
+	    fin.open("../data_set/English_English_original.txt");
+    if(!fin.is_open()) 
+    {
+        std::cout << "File cannot open!\n";
+        return;
+    }
     while(fin)
     {
         std::string word;
@@ -45,41 +52,42 @@ void addWordAndDefiToTrie(std::string word, TrieNode*& root, std::ifstream& fin)
 		root = root->edges[index];
 	}
 	root->isEndOfWord = true;
-    getline(fin, root->definition, '\n');
+    std::string defi;
+    getline(fin, defi, '\n');
+    root->definition.push_back(defi);
 	root = tmp;
 }
 
-bool findWordInTrie(std::string word, TrieNode* root)
+void findWordInTrie(std::string word, TrieNode* root)
 {
 	for (int i = 0; i < word.size(); ++i)
 	{
         int index = convertCharToNum(word[i]);
 		if (!root->edges[index])
-			return false;
+        {
+			std::cout << word << " NOT FOUND!\n";
+            return;
+        }
 		root = root->edges[index];
 	}
 	if (root->isEndOfWord)
-		return true;
+	{
+        std::cout << word << " FOUND!\n";
+        for(int i = 0; i < root->definition.size(); ++i)
+            std::cout << i + 1 << ". " << root->definition[i] << '\n';
+    }
 	else
-		return false;
-}
-
-void print(std::string ans, TrieNode* root)
-{
-	if (!findWordInTrie(ans, root))
-		std::cout << ans << " NOT FOUND!\n";
-	else
-		std::cout << ans << " FOUND!\n";
+		std::cout << word << " NOT FOUND!\n";
 }
 
 int main()
 {
 	TrieNode* root = new TrieNode;
     build_Trie_EngEng(root);
-    print("'em", root);
-    print("'gainst", root);
-	print("apples", root);
-    print("mastax", root);
-	print("abc", root);
+    findWordInTrie("'em", root);
+    findWordInTrie("'gainst", root);
+	findWordInTrie("apples", root);
+    findWordInTrie("mastax", root);
+	findWordInTrie("abc", root);
 	return 0;
 }

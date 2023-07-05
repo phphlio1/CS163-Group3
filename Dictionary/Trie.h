@@ -8,7 +8,7 @@ struct TrieNode
 {
     TrieNode* edges[69];
     bool isEndOfWord;
-    std::string definition;
+    std::vector<std::string> definition;
 
     TrieNode()
     {
@@ -20,5 +20,5 @@ int convertCharToNum(char c);
 void build_Trie_EngEng(TrieNode*& root);
 
 void addWordAndDefiToTrie(std::string word, TrieNode*& root, std::ifstream& fin);
-bool findWordInTrie(std::string word, TrieNode* root);
+void findWordInTrie(std::string word, TrieNode* root);
 #endif
