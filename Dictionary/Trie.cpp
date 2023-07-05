@@ -75,19 +75,44 @@ void findWordInTrie(std::string word, TrieNode* root)
         std::cout << word << " FOUND!\n";
         for(int i = 0; i < root->definition.size(); ++i)
             std::cout << i + 1 << ". " << root->definition[i] << '\n';
+        std::cout << '\n';
     }
 	else
 		std::cout << word << " NOT FOUND!\n";
 }
 
+///////////////////////////////////////////////////
+// Question 7: Users can remove a word from the dictionary.
+void remove_Word_FromTrie_EngEng(std::string word, TrieNode* &root)
+{
+    std::ofstream fout;
+        fout.open("../data_set/English_English_modify.txt");
+    if(!fout.is_open())
+        return;
+    for(int i = 0; i < word.size(); ++i)
+    {
+        int index = convertCharToNum(word[i]);
+        if(!root->edges[index])
+            return;
+        root = root->edges[index];
+    }
+    if(root->isEndOfWord)
+        root->isEndOfWord = false;
+}
+
 int main()
 {
-	TrieNode* root = new TrieNode;
-    build_Trie_EngEng(root);
-    findWordInTrie("'em", root);
-    findWordInTrie("'gainst", root);
-	findWordInTrie("apples", root);
-    findWordInTrie("mastax", root);
-	findWordInTrie("abc", root);
+	TrieNode* rootEE = new TrieNode;
+    build_Trie_EngEng(rootEE);
+    findWordInTrie("'em", rootEE);
+    findWordInTrie("'gainst", rootEE);
+	findWordInTrie("apples", rootEE);
+    findWordInTrie("mastax", rootEE);
+	findWordInTrie("abc", rootEE);
+    findWordInTrie("appeal", rootEE);
+    
+    findWordInTrie("appealable", rootEE);
+    remove_Word_FromTrie_EngEng("appealable", rootEE);
+    findWordInTrie("appealable", rootEE);
 	return 0;
 }
