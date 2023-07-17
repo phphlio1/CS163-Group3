@@ -72,6 +72,67 @@ void print(std::string ans, TrieNode* root)
 		std::cout << ans << " FOUND!\n";
 }
 
+std::string serialize(TrieNode* root)
+{
+	if (!root) return "";
+	std::string s = "";
+	std::queue <TrieNode*> q;
+	q.push(root);
+	while (!q.empty())
+	{
+		TrieNode* tmp = q.front();
+		q.pop();
+		if (!tmp)
+			s.append("#,");
+		else
+		{
+			//s.append(to_string(tmp->val) + ',');
+			//q.push(tmp->pL);
+			//q.push(tmp->pR);
+		}
+	}
+	return s;
+}
+
+TrieNode* deserialize(std::string data)
+{
+	if (data.size() == 0) return nullptr;
+	std::stringstream s(data);
+	std::string str;
+	getline(s, str, ',');
+	TrieNode* root = new TrieNode;
+	// root->val = stoi(str);
+	std::queue<TrieNode*> q;
+	q.push(root);
+	while (!q.empty())
+	{
+		TrieNode* tmp = q.front();
+		q.pop();
+        /*
+		getline(s, str, ',');
+		if (str == "#")
+			tmp->pL = nullptr;
+		else
+		{
+			tmp->pL = new Node;
+			tmp->val = stoi(str);
+			q.push(tmp->pL);
+		}
+
+		getline(s, str, ',');
+		if (str == "#")
+			tmp->pR = nullptr;
+		else
+		{
+			tmp->pR = new Node;
+			tmp->val = stoi(str);
+			q.push(tmp->pR);
+		}
+        */
+	}
+	return root;
+}
+
 int main()
 {
 	TrieNode* root = new TrieNode;

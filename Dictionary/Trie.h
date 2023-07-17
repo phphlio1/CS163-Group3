@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <sstream>
+#include <queue>
 struct TrieNode
 {
     TrieNode* edges[69];
@@ -21,4 +23,7 @@ void build_Trie_EngEng(TrieNode*& root);
 
 void addWordAndDefiToTrie(std::string word, TrieNode*& root, std::ifstream& fin);
 bool findWordInTrie(std::string word, TrieNode* root);
+
+std::string serialize(TrieNode* root);
+TrieNode* deserialize(std::string data);
 #endif
