@@ -23,9 +23,7 @@ int convertCharToNum(char c)
 void build_Trie_EngEng(TrieNode*& root)
 {
 	std::ifstream fin;
-    fin.open("../data_set/English_English_modify.txt");
-    if(!fin.is_open())
-	    fin.open("../data_set/English_English_original.txt");
+	fin.open("../data_set/English_English_original.txt");
     if(!fin.is_open()) 
     {
         std::cout << "File cannot open!\n";
@@ -81,14 +79,64 @@ void findWordInTrie(std::string word, TrieNode* root)
 		std::cout << word << " NOT FOUND!\n";
 }
 
+std::string serialize(TrieNode* root)
+{
+	if (!root) return "";
+	std::string s = "";
+	std::queue <TrieNode*> q;
+	q.push(root);
+	while (!q.empty())
+	{
+		TrieNode* tmp = q.front();
+		q.pop();
+		if (!tmp)
+			s.append("#,");
+		else
+		{
+			//s.append(to_string(tmp->val) + ',');
+			//q.push(tmp->pL);
+			//q.push(tmp->pR);
+            s.append("node,");
+            for(int i = 0; i < 69; ++i)
+                q.push(tmp->edges[i]);
+		}
+	}
+	return s;
+}
+
+TrieNode* deserialize(std::string data)
+{
+	if (data.size() == 0) return nullptr;
+	std::stringstream s(data);
+	std::string str;
+	getline(s, str, ',');
+	TrieNode* root = new TrieNode;
+	std::queue<TrieNode*> q;
+	q.push(root);
+	while (!q.empty())
+	{
+		TrieNode* tmp = q.front();
+		q.pop();
+        for(int i = 0; i < 69; ++i)
+        {
+		    getline(s, str, ',');
+            if (str == "#")
+                tmp->edges[i] = nullptr;
+            else
+            {
+                tmp->edges[i] = new TrieNode;
+                q.push(tmp->edges[i]);
+            }
+        }
+	}
+	return root;
+}
+
+
 ///////////////////////////////////////////////////
 // Question 7: Users can remove a word from the dictionary.
 void remove_Word_FromTrie_EngEng(std::string word, TrieNode* &root)
 {
-    std::ofstream fout;
-        fout.open("../data_set/English_English_modify.txt");
-    if(!fout.is_open())
-        return;
     for(int i = 0; i < word.size(); ++i)
     {
         int index = convertCharToNum(word[i]);
