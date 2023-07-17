@@ -89,6 +89,9 @@ std::string serialize(TrieNode* root)
 			//s.append(to_string(tmp->val) + ',');
 			//q.push(tmp->pL);
 			//q.push(tmp->pR);
+            s.append("node,");
+            for(int i = 0; i < 69; ++i)
+                q.push(tmp->edges[i]);
 		}
 	}
 	return s;
@@ -101,34 +104,23 @@ TrieNode* deserialize(std::string data)
 	std::string str;
 	getline(s, str, ',');
 	TrieNode* root = new TrieNode;
-	// root->val = stoi(str);
 	std::queue<TrieNode*> q;
 	q.push(root);
 	while (!q.empty())
 	{
 		TrieNode* tmp = q.front();
 		q.pop();
-        /*
-		getline(s, str, ',');
-		if (str == "#")
-			tmp->pL = nullptr;
-		else
-		{
-			tmp->pL = new Node;
-			tmp->val = stoi(str);
-			q.push(tmp->pL);
-		}
-
-		getline(s, str, ',');
-		if (str == "#")
-			tmp->pR = nullptr;
-		else
-		{
-			tmp->pR = new Node;
-			tmp->val = stoi(str);
-			q.push(tmp->pR);
-		}
-        */
+        for(int i = 0; i < 69; ++i)
+        {
+		    getline(s, str, ',');
+            if (str == "#")
+                tmp->edges[i] = nullptr;
+            else
+            {
+                tmp->edges[i] = new TrieNode;
+                q.push(tmp->edges[i]);
+            }
+        }
 	}
 	return root;
 }
@@ -142,5 +134,6 @@ int main()
 	print("apples", root);
     print("mastax", root);
 	print("abc", root);
+    print("-ical", root);
 	return 0;
 }
