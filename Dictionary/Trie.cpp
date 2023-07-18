@@ -79,6 +79,7 @@ void findWordInTrie(std::string word, TrieNode* root)
 		std::cout << word << " NOT FOUND!\n";
 }
 
+/*
 std::string serialize(TrieNode* root)
 {
 	if (!root) return "";
@@ -93,12 +94,18 @@ std::string serialize(TrieNode* root)
 			s.append("#,");
 		else
 		{
-			//s.append(to_string(tmp->val) + ',');
-			//q.push(tmp->pL);
-			//q.push(tmp->pR);
             s.append("node,");
             for(int i = 0; i < 69; ++i)
                 q.push(tmp->edges[i]);
+            
+            if(tmp->isEndOfWord == false)
+                s.append("0,");
+            else
+            {
+                s.append("1,");
+                for(int i = 0; i < root->definition.size(); ++i)
+                    s.append(root->definition[i] + ',');
+            }
 		}
 	}
 	return s;
@@ -117,6 +124,13 @@ TrieNode* deserialize(std::string data)
 	{
 		TrieNode* tmp = q.front();
 		q.pop();
+   
+        getline(s,str, ',');
+        if(str == "0")
+            tmp->isEndOfWord = false;
+        else if(str == "1")
+            tmp->isEndOfWord = true;
+
         for(int i = 0; i < 69; ++i)
         {
 		    getline(s, str, ',');
@@ -131,11 +145,90 @@ TrieNode* deserialize(std::string data)
 	}
 	return root;
 }
+*/
 
+void serialization(TrieNode* root)
+{
+    std::ofstream fout;
+	fout.open("English_English_serialization.txt");
+    if(!fout.is_open()) 
+    {
+        std::cout << "File cannot open!\n";
+        return;
+    }
+
+	std::queue <TrieNode*> q;
+	q.push(root);
+	while (!q.empty())
+	{
+		TrieNode* tmp = q.front();
+		q.pop();
+		if (!tmp)
+            fout << "#,";
+		else
+		{
+            fout << "node,";
+            for(int i = 0; i < 69; ++i)
+                q.push(tmp->edges[i]);
+            
+            if(tmp->isEndOfWord == false)
+                fout << "0,";
+            else
+            {
+                fout << "1,";
+                for(int i = 0; i < tmp->definition.size(); ++i)
+                    fout << tmp->definition[i] << ",";
+            }
+		}
+	}
+    fout.close();
+    std::cout << "Serialization complete!\n";
+}
+
+void deserialization(TrieNode*& root)
+{
+    std::ifstream fin;
+	fin.open("English_English_serialization.txt");
+    if(!fin.is_open()) 
+    {
+        std::cout << "File cannot open!\n";
+        return;
+    }
+	std::string str;
+	getline(fin, str, ',');
+	root = new TrieNode;
+	std::queue<TrieNode*> q;
+	q.push(root);
+	while (!q.empty())
+	{
+		TrieNode* tmp = q.front();
+		q.pop();
+   
+        getline(fin, str, ',');
+        if(str == "0")
+            tmp->isEndOfWord = false;
+        else if(str == "1")
+            tmp->isEndOfWord = true;
+
+        for(int i = 0; i < 69; ++i)
+        {
+		    getline(fin, str, ',');
+            if (str == "#")
+                tmp->edges[i] = nullptr;
+            else
+            {
+                tmp->edges[i] = new TrieNode;
+                q.push(tmp->edges[i]);
+            }
+        }
+	}
+    fin.close();
+    std::cout << "Deserialization complete!\n";
+}
 
 ///////////////////////////////////////////////////
 // Question 7: Users can remove a word from the dictionary.
-void remove_Word_FromTrie_EngEng(std::string word, TrieNode* &root)
+void remove_Word_FromTrie_EngEng(std::string word, TrieNode* root)
 {
     for(int i = 0; i < word.size(); ++i)
     {
@@ -162,5 +255,9 @@ int main()
     findWordInTrie("appealable", rootEE);
     remove_Word_FromTrie_EngEng("appealable", rootEE);
     findWordInTrie("appealable", rootEE);
+
+   // serialization(rootEE);
+    rootEE = nullptr;
+    deserialization(rootEE);
 	return 0;
 }

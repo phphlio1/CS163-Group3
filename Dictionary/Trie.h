@@ -23,8 +23,10 @@ void build_Trie_EngEng(TrieNode*& root);
 
 std::string serialize(TrieNode* root);
 TrieNode* deserialize(std::string data);
+void serialization(TrieNode* root);
+void deserialization(TrieNode*& root);
 
-void remove_Word_FromTrie_EngEng(std::string word, TrieNode* &root);
+void remove_Word_FromTrie_EngEng(std::string word, TrieNode* root);
 void addWordAndDefiToTrie(std::string word, TrieNode*& root, std::ifstream& fin);
 void findWordInTrie(std::string word, TrieNode* root);
 #endif
