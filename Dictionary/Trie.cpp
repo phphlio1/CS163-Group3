@@ -20,27 +20,39 @@ int convertCharToNum(char c)
     return -1;
 }
 
+void delete_Whole_Trie(TrieNode*& root)
+{
+    if(!root) 
+        return;
+    for(int i = 0; i < 69; ++i)
+        delete_Whole_Trie(root->edges[i]);
+    delete root;
+}
+
 void build_Trie_EngEng(TrieNode*& root)
 {
 	std::ifstream fin;
-	fin.open("../data_set/English_English_original.txt");
+	fin.open("../data_set/English_English_original1.txt");
     if(!fin.is_open()) 
     {
         std::cout << "File cannot open!\n";
         return;
     }
+    root = new TrieNode;
     while(fin)
     {
-        std::string word;
+        std::string word, defi;
         getline(fin, word, (char)9); // (char)9 indicate 'TAB'
-        addWordAndDefiToTrie(word, root, fin);
+        getline(fin, defi, '\n');
+        if(word == "")              // Avoid reading lát empty line!
+            break;
+        addWordAndDefiToTrie(word, defi, root);
     }
     fin.close();
 }
 
-void addWordAndDefiToTrie(std::string word, TrieNode*& root, std::ifstream& fin)
+void addWordAndDefiToTrie(std::string word, std::string defi, TrieNode*& root)
 {
-    
 	TrieNode* tmp = root;
 	for (int i = 0; i < word.size(); ++i)
 	{
@@ -50,8 +62,6 @@ void addWordAndDefiToTrie(std::string word, TrieNode*& root, std::ifstream& fin)
 		root = root->edges[index];
 	}
 	root->isEndOfWord = true;
-    std::string defi;
-    getline(fin, defi, '\n');
     root->definition.push_back(defi);
 	root = tmp;
 }
@@ -147,10 +157,10 @@ TrieNode* deserialize(std::string data)
 }
 */
 
-void serialization(TrieNode* root)
+void serialization1(TrieNode* root)
 {
     std::ofstream fout;
-	fout.open("English_English_serialization.txt");
+	fout.open("English_English_serialization1.txt");
     if(!fout.is_open()) 
     {
         std::cout << "File cannot open!\n";
@@ -168,9 +178,6 @@ void serialization(TrieNode* root)
 		else
 		{
             fout << "node,";
-            for(int i = 0; i < 69; ++i)
-                q.push(tmp->edges[i]);
-            
             if(tmp->isEndOfWord == false)
                 fout << "0,";
             else
@@ -179,16 +186,18 @@ void serialization(TrieNode* root)
                 for(int i = 0; i < tmp->definition.size(); ++i)
                     fout << tmp->definition[i] << ",";
             }
-		}
+            for(int i = 0; i < 69; ++i)
+                q.push(tmp->edges[i]);
+        }
 	}
     fout.close();
     std::cout << "Serialization complete!\n";
 }
 
-void deserialization(TrieNode*& root)
+void deserialization1(TrieNode*& root)
 {
     std::ifstream fin;
-	fin.open("English_English_serialization.txt");
+	fin.open("English_English_serialization1.txt");
     if(!fin.is_open()) 
     {
         std::cout << "File cannot open!\n";
@@ -208,7 +217,12 @@ void deserialization(TrieNode*& root)
         if(str == "0")
             tmp->isEndOfWord = false;
         else if(str == "1")
+        {
             tmp->isEndOfWord = true;
+            getline(fin, str, ',');
+            //while()
+          //  tmp->definition.push_back(str);
+        }
 
         for(int i = 0; i < 69; ++i)
         {
@@ -238,13 +252,18 @@ void remove_Word_FromTrie_EngEng(std::string word, TrieNode* root)
         root = root->edges[index];
     }
     if(root->isEndOfWord)
+    {
         root->isEndOfWord = false;
+        root->definition.clear();
+    }
 }
 
 int main()
 {
-	TrieNode* rootEE = new TrieNode;
+	TrieNode* rootEE = nullptr;
     build_Trie_EngEng(rootEE);
+    //deserialization1(rootEE);
+    /*
     findWordInTrie("'em", rootEE);
     findWordInTrie("'gainst", rootEE);
 	findWordInTrie("apples", rootEE);
@@ -253,11 +272,20 @@ int main()
     findWordInTrie("appeal", rootEE);
     
     findWordInTrie("appealable", rootEE);
-    remove_Word_FromTrie_EngEng("appealable", rootEE);
+    //remove_Word_FromTrie_EngEng("appealable", rootEE);
     findWordInTrie("appealable", rootEE);
-
-   // serialization(rootEE);
-    rootEE = nullptr;
-    deserialization(rootEE);
+    */
+    
+    findWordInTrie("third", rootEE);
+    findWordInTrie("temse", rootEE);
+    findWordInTrie("discoloring", rootEE);
+    findWordInTrie("temulence", rootEE);
+    remove_Word_FromTrie_EngEng("discoloring", rootEE);
+    findWordInTrie("discoloring", rootEE);
+    //rootEE = nullptr;
+    serialization1(rootEE);
+   // deserialization(rootEE);
+    delete_Whole_Trie(rootEE);
+    std::cout << "------------------------------------------\n";
 	return 0;
 }
