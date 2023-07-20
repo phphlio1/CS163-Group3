@@ -20,6 +20,25 @@ int convertCharToNum(char c)
     return -1;
 }
 
+char convertNumToChar(int n)
+{
+    if(0 <= n && n <= 9)
+        return n + '0';
+    else if(10 <= n && n <= 24)
+        return n + '!' - 10;
+    else if(25 <= n && n <= 31)
+        return n + ':' - 25;
+    else if(32 <= n && n <= 37)
+        return n + '[' - 32;
+    else if(38 <= n && n <= 41)
+        return n + '{' - 38;
+    else if(n == 42) // Space character
+        return 32;
+    else if(43 <= n && n <= 68)
+        return n + 'a' - 43;
+    return 0;
+}
+
 void delete_Whole_Trie(TrieNode*& root)
 {
     if(!root) 
@@ -85,6 +104,24 @@ void findWordInTrie(std::string word, TrieNode* root)
     }
 	else
 		std::cout << word << " NOT FOUND!\n";
+}
+
+bool findWordExistedToGetDefi(std::string word, std::vector<std::string>& defi, TrieNode* root)
+{
+	for (int i = 0; i < word.size(); ++i)
+	{
+        int index = convertCharToNum(word[i]);
+		if (!root->edges[index])
+            return false;
+		root = root->edges[index];
+	}
+	if (root->isEndOfWord)
+    {
+        defi = root->definition;
+        return true;
+    }
+	else
+		return false;
 }
 
 void serialization(TrieNode* root)
@@ -183,7 +220,7 @@ void deserialization(TrieNode*& root)
 
 ///////////////////////////////////////////////////
 // Question 7: Users can remove a word from the dictionary.
-void remove_Word_FromTrie_EngEng(std::string word, TrieNode* root)
+void remove_Word_FromTrie(std::string word, TrieNode* root)
 {
     for(int i = 0; i < word.size(); ++i)
     {
@@ -199,26 +236,60 @@ void remove_Word_FromTrie_EngEng(std::string word, TrieNode* root)
     }
 }
 
+///////////////////////////////////////////////////
+// Question 9: Users can view a word and its definition
+void getRandomWordAndDefi(TrieNode* root)
+{
+    std::ifstream fin;
+    std::string word, tmp;
+    std::vector<std::string> defi;
+    srand(time(0));
+    fin.open("../data_set/English_English_original.txt");
+    int word_num = 100500, line; 
+    while(true)
+    {
+        line = rand() % word_num;
+        for(int i = 1; i < line; ++i)
+        {
+            getline(fin, word, (char)9); // (char)9 indicate 'TAB'
+            getline(fin, tmp, '\n');
+        }
+        if(findWordExistedToGetDefi(word, defi, root))
+            break;
+    }
+    fin.close();
+    std:: cout << "Random Word: " << word << '\n';
+    std::cout << "Definition: " << '\n';
+    for(int i = 0; i < defi.size(); ++i)
+        std::cout << i + 1 << ". " << defi[i] << '\n';
+    std::cout << '\n';
+}
+
 int main()
 {
+    // Question 1
 	TrieNode* rootEE = nullptr;
-
-    //build_Trie_EngEng(rootEE);
-    deserialization(rootEE);
-
+    build_Trie_EngEng(rootEE);
+    //deserialization(rootEE);
     findWordInTrie("'em", rootEE);
     findWordInTrie("'gainst", rootEE);
 	findWordInTrie("apples", rootEE);
     findWordInTrie("mastax", rootEE);
 	findWordInTrie("abc", rootEE);
     findWordInTrie("appeal", rootEE);
-    
-    findWordInTrie("appealable", rootEE);
-    remove_Word_FromTrie_EngEng("appealable", rootEE);
-    findWordInTrie("appealable", rootEE);
-    //serialization(rootEE);
-
-    delete_Whole_Trie(rootEE);
     std::cout << "------------------------------------------\n";
+
+    // Question 7
+    findWordInTrie("appealable", rootEE);
+    remove_Word_FromTrie("appealable", rootEE);
+    findWordInTrie("appealable", rootEE);
+    std::cout << "------------------------------------------\n";
+
+    // Question 9
+    getRandomWordAndDefi(rootEE);
+    std::cout << "------------------------------------------\n";
+
+    //serialization(rootEE);
+    delete_Whole_Trie(rootEE);
 	return 0;
 }
