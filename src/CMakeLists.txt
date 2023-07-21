@@ -1,2 +1,4 @@
 target_sources(${PROJECT_NAME} PRIVATE
-  main.cpp)
+  main.cpp
+  Application.h
+  Application.cpp)
