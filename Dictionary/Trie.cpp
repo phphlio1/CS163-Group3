@@ -241,19 +241,16 @@ void remove_Word_FromTrie(std::string word, TrieNode* root)
 void getRandomWordAndDefi(TrieNode* root)
 {
     std::ifstream fin;
-    std::string word, tmp;
+    std::string word;
     std::vector<std::string> defi;
-    srand(time(0));
     fin.open("../data_set/English_English_original.txt");
-    int word_num = 100500, line; 
+    int word_num = 160000, line; 
     while(true)
     {
-        line = rand() % word_num;
+        line = generator() % word_num;
         for(int i = 1; i < line; ++i)
-        {
-            getline(fin, word, (char)9); // (char)9 indicate 'TAB'
-            getline(fin, tmp, '\n');
-        }
+            fin.ignore(500,'\n');
+        getline(fin, word, (char)9);
         if(findWordExistedToGetDefi(word, defi, root))
             break;
     }
@@ -265,12 +262,123 @@ void getRandomWordAndDefi(TrieNode* root)
     std::cout << '\n';
 }
 
+///////////////////////////////////////////////////
+// Question 12: Random word - 4 defis - choose correct defi
+std::string getRandomWord(TrieNode* root)
+{
+    std::ifstream fin;
+    std::string word;
+    std::vector<std::string> defi;
+    fin.open("../data_set/English_English_original.txt");
+    int word_num = 160000, line; 
+    while(true)
+    {
+        line = generator() % word_num;
+        for(int i = 1; i < line; ++i)
+            fin.ignore(500,'\n');
+        getline(fin, word, (char)9);
+        if(findWordExistedToGetDefi(word, defi, root))
+            break;
+    }
+    fin.close();
+    return word;
+}
+
+std::string getRandomDefi_Of_Random_Word(TrieNode* root)
+{
+    std::ifstream fin;
+    std::string word;
+    std::vector<std::string> defi;
+    srand(time(0));
+    fin.open("../data_set/English_English_original.txt");
+    int word_num = 160000, line; 
+    while(true)
+    {
+        line = generator() % word_num;
+        for(int i = 1; i < line; ++i)
+            fin.ignore(500,'\n');
+        getline(fin, word, (char)9);
+        if(findWordExistedToGetDefi(word, defi, root))
+            break;
+    }
+    fin.close();
+    int bound = defi.size();
+    int index_defi = generator() % bound;
+    return defi[index_defi];
+}
+
+std::string getRandomDefi_Of_Its_Word(TrieNode* root, std::string word)
+{
+    std::string defi;
+    for (int i = 0; i < word.size(); ++i)
+	{
+        int index = convertCharToNum(word[i]);
+		root = root->edges[index];
+	}
+	if (root->isEndOfWord)
+    {
+        int bound = root->definition.size();
+        int index_defi = generator() % bound;
+        defi = root->definition[index_defi];
+    }
+    return defi;
+}
+
+void quiz_1Word4Defis(TrieNode* root)
+{
+    std::string word = getRandomWord(root);
+    std::string correct_defi = getRandomDefi_Of_Its_Word(root, word);
+    std::string wrong_defi1 = getRandomDefi_Of_Random_Word(root);
+    std::string wrong_defi2 = getRandomDefi_Of_Random_Word(root);
+    std::string wrong_defi3 = getRandomDefi_Of_Random_Word(root);
+
+    std::vector<std::string> defis = {correct_defi, wrong_defi1, wrong_defi2, wrong_defi3};
+    shuffle(defis.begin(), defis.end(), std::default_random_engine(generator()));
+
+    std::cout << "The given word is: " << word << '\n';
+    std::cout << "With 4 given definitions, choose the correct one!\n";
+    std::cout << "A. " << defis[0] << '\n';
+    std::cout << "B. " << defis[1] << '\n';
+    std::cout << "C. " << defis[2] << '\n';
+    std::cout << "D. " << defis[3] << '\n';
+
+    char ans;
+    int index_ans = -1;
+    while(index_ans == -1)
+    {
+        std::cout << "Your answer is: ";
+        std::cin >> ans;
+        if(ans == 'A' || ans == 'a') 
+            index_ans = 0;
+        else if(ans == 'B' || ans == 'b')
+            index_ans = 1;
+        else if(ans == 'C' || ans == 'c')
+            index_ans = 2;
+        else if(ans == 'D' || ans == 'd')
+            index_ans = 3;
+        else 
+            std::cout << "Answer Invalid! Please choose again!\n";
+    }
+    if(defis[index_ans] == correct_defi)
+        std::cout << "Correct Answer!\n";
+    else
+    {
+        std::cout << "Incorrect Answer!\n";
+        for(int i = 0; i < 4; ++i)
+            if(defis[i] == correct_defi)
+                index_ans = i;
+        char tmp = index_ans + 'A';
+        std::cout << "The correct answer is: " << tmp << ". " << correct_defi << '\n';
+    }
+}
+
 int main()
 {
     // Question 1
 	TrieNode* rootEE = nullptr;
     build_Trie_EngEng(rootEE);
     //deserialization(rootEE);
+    /*
     findWordInTrie("'em", rootEE);
     findWordInTrie("'gainst", rootEE);
 	findWordInTrie("apples", rootEE);
@@ -284,9 +392,14 @@ int main()
     remove_Word_FromTrie("appealable", rootEE);
     findWordInTrie("appealable", rootEE);
     std::cout << "------------------------------------------\n";
+    */
 
     // Question 9
     getRandomWordAndDefi(rootEE);
+    std::cout << "------------------------------------------\n";
+
+    // Question 12
+    quiz_1Word4Defis(rootEE);
     std::cout << "------------------------------------------\n";
 
     //serialization(rootEE);

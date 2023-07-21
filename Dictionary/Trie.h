@@ -7,6 +7,8 @@
 #include <sstream>
 #include <queue>
 #include <cstdlib>
+#include <algorithm>
+#include <random>
 struct TrieNode
 {
     TrieNode* edges[69];
@@ -33,5 +35,12 @@ void addWordAndDefiToTrie(std::string word, std::string defi, TrieNode*& root);
 void findWordInTrie(std::string word, TrieNode* root);
 bool findWordExistedToGetDefi(std::string word, std::vector<std::string>& defi, TrieNode* root);
 
+// Special Notice: Get the seed for random ONCE only! If not, same set of numbers every time
+std::mt19937 generator(time(0));
 void getRandomWordAndDefi(TrieNode* root);
+std::string getRandomWord(TrieNode* root);
+std::string getRandomDefi_Of_Its_Word(TrieNode* root, std::string word);
+std::string getRandomDefi_Of_Random_Word(TrieNode* root);
+
+void quiz_1Word4Defis(TrieNode* root);
 #endif
