@@ -43,4 +43,5 @@ std::string getRandomDefi_Of_Its_Word(TrieNode* root, std::string word);
 std::string getRandomDefi_Of_Random_Word(TrieNode* root);
 
 void quiz_1Word4Defis(TrieNode* root);
+void quiz_1Defi4Words(TrieNode* root);
 #endif

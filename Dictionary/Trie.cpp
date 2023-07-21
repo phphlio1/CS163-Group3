@@ -372,6 +372,54 @@ void quiz_1Word4Defis(TrieNode* root)
     }
 }
 
+void quiz_1Defi4Words(TrieNode* root)
+{
+    std::string correct_word = getRandomWord(root);
+    std::string defi = getRandomDefi_Of_Its_Word(root, correct_word);
+    std::string wrong_word1 = getRandomWord(root);
+    std::string wrong_word2 = getRandomWord(root);
+    std::string wrong_word3 = getRandomWord(root);
+
+    std::vector<std::string> words = {correct_word, wrong_word1, wrong_word2, wrong_word3};
+    shuffle(words.begin(), words.end(), std::default_random_engine(generator()));
+
+    std::cout << "The given definition is: " << defi << '\n';
+    std::cout << "With 4 given words, choose the correct one!\n";
+    std::cout << "A. " << words[0] << '\n';
+    std::cout << "B. " << words[1] << '\n';
+    std::cout << "C. " << words[2] << '\n';
+    std::cout << "D. " << words[3] << '\n';
+
+    char ans;
+    int index_ans = -1;
+    while(index_ans == -1)
+    {
+        std::cout << "Your answer is: ";
+        std::cin >> ans;
+        if(ans == 'A' || ans == 'a') 
+            index_ans = 0;
+        else if(ans == 'B' || ans == 'b')
+            index_ans = 1;
+        else if(ans == 'C' || ans == 'c')
+            index_ans = 2;
+        else if(ans == 'D' || ans == 'd')
+            index_ans = 3;
+        else 
+            std::cout << "Answer Invalid! Please choose again!\n";
+    }
+    if(words[index_ans] == correct_word)
+        std::cout << "Correct Answer!\n";
+    else
+    {
+        std::cout << "Incorrect Answer!\n";
+        for(int i = 0; i < 4; ++i)
+            if(words[i] == correct_word)
+                index_ans = i;
+        char tmp = index_ans + 'A';
+        std::cout << "The correct answer is: " << tmp << ". " << correct_word << '\n';
+    }
+}
+
 int main()
 {
     // Question 1
@@ -402,6 +450,9 @@ int main()
     quiz_1Word4Defis(rootEE);
     std::cout << "------------------------------------------\n";
 
+    // Question 13
+    quiz_1Defi4Words(rootEE);
+    std::cout << "------------------------------------------\n";
     //serialization(rootEE);
     delete_Whole_Trie(rootEE);
 	return 0;
