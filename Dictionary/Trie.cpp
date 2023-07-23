@@ -166,6 +166,46 @@ void serialization(TrieNode* root)
     std::cout << "Serialization complete!\n";
 }
 
+TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout)
+{
+    if(!root)
+    {
+        fout << "#_";
+        return root;
+    }
+    fout << "node_";
+    if(root->isEndOfWord == false)
+        fout << "0_";
+    else
+    {
+        fout << "1_";
+        for(int i = 0; i < root->definition.size(); ++i)
+        {
+            if(i == root->definition.size() - 1)
+                fout << root->definition[i] << '\n';
+            else
+                fout << root->definition[i] << "_";
+        }
+    }
+    for(int i = 0; i < 69; ++i)
+        root->edges[i] = Serialize_Traversal_DFS(root->edges[i], fout);
+    return root;
+}
+
+void Serialization_DFS(TrieNode* root)
+{
+    std::ofstream fout;
+	fout.open("English_English_serializationDFS.txt");
+    if(!fout.is_open()) 
+    {
+        std::cout << "File cannot open!\n";
+        return;
+    }
+    root = Serialize_Traversal_DFS(root, fout);
+    fout.close();
+    std::cout << "Serialization complete!\n";
+}
+
 void deserialization(TrieNode*& root)
 {
     std::ifstream fin;
@@ -214,6 +254,57 @@ void deserialization(TrieNode*& root)
             }
         }         
 	}
+    fin.close();
+    std::cout << "Deserialization complete!\n";
+}
+
+TrieNode* Deserialize_Traversal_DFS(TrieNode* root, std::ifstream& fin, int index)
+{
+    if(index >= 69)
+        return root;
+    std::string str;
+    getline(fin, str, '_');
+    if(str == "#")
+        root->edges[index] = nullptr;
+    else if(str == "node")
+    {
+        root->edges[index] = new TrieNode;
+        getline(fin, str, '_');
+        if(str == "0")
+            root->edges[index]->isEndOfWord = false;
+        else if(str == "1")
+        {
+            root->edges[index]->isEndOfWord = true;
+            getline(fin, str, '\n');
+            std::stringstream s;
+            s << str;
+            while(!s.eof())
+            {
+                getline(s, str, '_');
+                root->edges[index]->definition.push_back(str);
+            }
+        }
+        root->edges[index] = Deserialize_Traversal_DFS(root->edges[index], fin, 0);
+    }
+    root = Deserialize_Traversal_DFS(root, fin, index + 1);
+    return root;
+}
+
+void Deserialization_DFS(TrieNode*& root)
+{
+    std::ifstream fin;
+	fin.open("English_English_serializationDFS.txt");
+    if(!fin.is_open()) 
+    {
+        std::cout << "File cannot open!\n";
+        return;
+    }
+    std::string str1;
+	getline(fin, str1, '_');
+	root = new TrieNode;
+    getline(fin, str1, '_');
+    root->isEndOfWord = false;
+    root = Deserialize_Traversal_DFS(root, fin, 0);
     fin.close();
     std::cout << "Deserialization complete!\n";
 }
@@ -426,7 +517,8 @@ int main()
 	TrieNode* rootEE = nullptr;
     build_Trie_EngEng(rootEE);
     //deserialization(rootEE);
-    /*
+    
+    std::cout << "SET 1:\n";
     findWordInTrie("'em", rootEE);
     findWordInTrie("'gainst", rootEE);
 	findWordInTrie("apples", rootEE);
@@ -435,6 +527,7 @@ int main()
     findWordInTrie("appeal", rootEE);
     std::cout << "------------------------------------------\n";
 
+    /*
     // Question 7
     findWordInTrie("appealable", rootEE);
     remove_Word_FromTrie("appealable", rootEE);
@@ -442,6 +535,7 @@ int main()
     std::cout << "------------------------------------------\n";
     */
 
+    /*
     // Question 9
     getRandomWordAndDefi(rootEE);
     std::cout << "------------------------------------------\n";
@@ -453,7 +547,20 @@ int main()
     // Question 13
     quiz_1Defi4Words(rootEE);
     std::cout << "------------------------------------------\n";
+    */
     //serialization(rootEE);
+    Serialization_DFS(rootEE);
     delete_Whole_Trie(rootEE);
+
+    std::cout << "SET 2:\n";
+    rootEE = nullptr;
+    Deserialization_DFS(rootEE);
+    findWordInTrie("'em", rootEE);
+    findWordInTrie("'gainst", rootEE);
+	findWordInTrie("apples", rootEE);
+    findWordInTrie("mastax", rootEE);
+	findWordInTrie("abc", rootEE);
+    findWordInTrie("appeal", rootEE);
+    std::cout << "------------------------------------------\n";
 	return 0;
 }

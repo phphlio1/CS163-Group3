@@ -30,6 +30,11 @@ void delete_Whole_Trie(TrieNode*& root);
 void serialization(TrieNode* root);
 void deserialization(TrieNode*& root);
 
+TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout);
+void Serialization_DFS(TrieNode* root);
+TrieNode* Deserialize_Traversal_DFS(TrieNode* root, std::ifstream& fin, int index);
+void Deserialization_DFS(TrieNode*& root);
+
 void remove_Word_FromTrie(std::string word, TrieNode* root);
 void addWordAndDefiToTrie(std::string word, std::string defi, TrieNode*& root);
 void findWordInTrie(std::string word, TrieNode* root);
