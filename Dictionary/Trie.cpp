@@ -43,7 +43,7 @@ void delete_Whole_Trie(TrieNode*& root)
 {
     if(!root) 
         return;
-    for(int i = 0; i < 69; ++i)
+    for(int i = 0; i < TrieSize; ++i)
         delete_Whole_Trie(root->edges[i]);
     delete root;
 }
@@ -64,6 +64,7 @@ void build_Trie_EngEng(TrieNode*& root)
         getline(fin, word, (char)9); // (char)9 indicate 'TAB'
         getline(fin, defi, '\n');
         addWordAndDefiToTrie(word, defi, root);
+        ++num_line;
     }
     fin.close();
 }
@@ -124,56 +125,12 @@ bool findWordExistedToGetDefi(std::string word, std::vector<std::string>& defi, 
 		return false;
 }
 
-void serialization(TrieNode* root)
-{
-    std::ofstream fout;
-	fout.open("English_English_serialization.txt");
-    if(!fout.is_open()) 
-    {
-        std::cout << "File cannot open!\n";
-        return;
-    }
-
-	std::queue <TrieNode*> q;
-	q.push(root);
-	while (!q.empty())
-	{
-		TrieNode* tmp = q.front();
-		q.pop();
-		if (!tmp)       
-            fout << "#_";
-		else
-		{
-            fout << "node_";
-            if(tmp->isEndOfWord == false)
-                fout << "0_";
-            else
-            {
-                fout << "1_";
-                for(int i = 0; i < tmp->definition.size(); ++i)
-                {
-                    if(i == tmp->definition.size() - 1)
-                        fout << tmp->definition[i] << '\n';
-                    else
-                        fout << tmp->definition[i] << "_";
-                }
-            }
-            for(int i = 0; i < 69; ++i)
-                q.push(tmp->edges[i]);
-        }
-	}
-    fout.close();
-    std::cout << "Serialization complete!\n";
-}
-
-TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout)
+TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout, int index)
 {
     if(!root)
-    {
-        fout << "#_";
         return root;
-    }
     fout << "node_";
+    fout << index << "_";
     if(root->isEndOfWord == false)
         fout << "0_";
     else
@@ -187,8 +144,9 @@ TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout)
                 fout << root->definition[i] << "_";
         }
     }
-    for(int i = 0; i < 69; ++i)
-        root->edges[i] = Serialize_Traversal_DFS(root->edges[i], fout);
+    for(int i = 0; i < TrieSize; ++i)
+        root->edges[i] = Serialize_Traversal_DFS(root->edges[i], fout, i);
+    fout << "#_";
     return root;
 }
 
@@ -201,73 +159,21 @@ void Serialization_DFS(TrieNode* root)
         std::cout << "File cannot open!\n";
         return;
     }
-    root = Serialize_Traversal_DFS(root, fout);
+    root = Serialize_Traversal_DFS(root, fout, 0);
     fout.close();
     std::cout << "Serialization complete!\n";
 }
 
-void deserialization(TrieNode*& root)
-{
-    std::ifstream fin;
-	fin.open("English_English_serialization.txt");
-    if(!fin.is_open()) 
-    {
-        std::cout << "File cannot open!\n";
-        return;
-    }
-	std::string str;
-	getline(fin, str, '_');
-	root = new TrieNode;
-    getline(fin, str, '_');
-    root->isEndOfWord = false;
-	std::queue<TrieNode*> q;
-	q.push(root);
-	while (!q.empty())
-	{
-		TrieNode* tmp = q.front();
-		q.pop();
-
-        for(int i = 0; i < 69; ++i)
-        {
-		    getline(fin, str, '_');
-            if (str == "#")
-                tmp->edges[i] = nullptr;
-            else if(str == "node")
-            {
-                tmp->edges[i] = new TrieNode;
-                getline(fin, str, '_');
-                if(str == "0")
-                    tmp->edges[i]->isEndOfWord = false;
-                else if(str == "1")
-                {
-                    tmp->edges[i]->isEndOfWord = true;
-                    getline(fin, str, '\n');
-                    std::stringstream s;
-                    s << str;
-                    while(!s.eof())
-                    {
-                        getline(s, str, '_');
-                        tmp->edges[i]->definition.push_back(str);
-                    }
-                }
-                q.push(tmp->edges[i]);
-            }
-        }         
-	}
-    fin.close();
-    std::cout << "Deserialization complete!\n";
-}
-
 TrieNode* Deserialize_Traversal_DFS(TrieNode* root, std::ifstream& fin, int index)
 {
-    if(index >= 69)
-        return root;
     std::string str;
     getline(fin, str, '_');
     if(str == "#")
-        root->edges[index] = nullptr;
+        return root;
     else if(str == "node")
     {
+        fin >> index;
+        fin.ignore(10, '_'); 
         root->edges[index] = new TrieNode;
         getline(fin, str, '_');
         if(str == "0")
@@ -286,7 +192,7 @@ TrieNode* Deserialize_Traversal_DFS(TrieNode* root, std::ifstream& fin, int inde
         }
         root->edges[index] = Deserialize_Traversal_DFS(root->edges[index], fin, 0);
     }
-    root = Deserialize_Traversal_DFS(root, fin, index + 1);
+    root = Deserialize_Traversal_DFS(root, fin, index);
     return root;
 }
 
@@ -303,13 +209,14 @@ void Deserialization_DFS(TrieNode*& root)
 	getline(fin, str1, '_');
 	root = new TrieNode;
     getline(fin, str1, '_');
+    getline(fin, str1, '_');
     root->isEndOfWord = false;
     root = Deserialize_Traversal_DFS(root, fin, 0);
     fin.close();
     std::cout << "Deserialization complete!\n";
 }
 
-///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // Question 7: Users can remove a word from the dictionary.
 void remove_Word_FromTrie(std::string word, TrieNode* root)
 {
@@ -335,10 +242,9 @@ void getRandomWordAndDefi(TrieNode* root)
     std::string word;
     std::vector<std::string> defi;
     fin.open("../data_set/English_English_original.txt");
-    int word_num = 160000, line; 
     while(true)
     {
-        line = generator() % word_num;
+        int line = generator() % num_line;
         for(int i = 1; i < line; ++i)
             fin.ignore(500,'\n');
         getline(fin, word, (char)9);
@@ -361,10 +267,9 @@ std::string getRandomWord(TrieNode* root)
     std::string word;
     std::vector<std::string> defi;
     fin.open("../data_set/English_English_original.txt");
-    int word_num = 160000, line; 
     while(true)
     {
-        line = generator() % word_num;
+        int line = generator() % num_line;
         for(int i = 1; i < line; ++i)
             fin.ignore(500,'\n');
         getline(fin, word, (char)9);
@@ -382,10 +287,9 @@ std::string getRandomDefi_Of_Random_Word(TrieNode* root)
     std::vector<std::string> defi;
     srand(time(0));
     fin.open("../data_set/English_English_original.txt");
-    int word_num = 160000, line; 
     while(true)
     {
-        line = generator() % word_num;
+        int line = generator() % num_line;
         for(int i = 1; i < line; ++i)
             fin.ignore(500,'\n');
         getline(fin, word, (char)9);
@@ -516,7 +420,6 @@ int main()
     // Question 1
 	TrieNode* rootEE = nullptr;
     build_Trie_EngEng(rootEE);
-    //deserialization(rootEE);
     
     std::cout << "SET 1:\n";
     findWordInTrie("'em", rootEE);
@@ -525,17 +428,29 @@ int main()
     findWordInTrie("mastax", rootEE);
 	findWordInTrie("abc", rootEE);
     findWordInTrie("appeal", rootEE);
+    findWordInTrie("spondaic", rootEE);
+    Serialization_DFS(rootEE);
+    delete_Whole_Trie(rootEE);
     std::cout << "------------------------------------------\n";
 
-    /*
+    std::cout << "SET 2:\n";
+    rootEE = nullptr;
+    Deserialization_DFS(rootEE);
+    findWordInTrie("'em", rootEE);
+    findWordInTrie("'gainst", rootEE);
+	findWordInTrie("apples", rootEE);
+    findWordInTrie("mastax", rootEE);
+	findWordInTrie("abc", rootEE);
+    findWordInTrie("appeal", rootEE);
+    findWordInTrie("spondaic", rootEE);
+    std::cout << "------------------------------------------\n";
+    
     // Question 7
     findWordInTrie("appealable", rootEE);
     remove_Word_FromTrie("appealable", rootEE);
     findWordInTrie("appealable", rootEE);
     std::cout << "------------------------------------------\n";
-    */
 
-    /*
     // Question 9
     getRandomWordAndDefi(rootEE);
     std::cout << "------------------------------------------\n";
@@ -547,20 +462,7 @@ int main()
     // Question 13
     quiz_1Defi4Words(rootEE);
     std::cout << "------------------------------------------\n";
-    */
-    //serialization(rootEE);
-    Serialization_DFS(rootEE);
-    delete_Whole_Trie(rootEE);
 
-    std::cout << "SET 2:\n";
-    rootEE = nullptr;
-    Deserialization_DFS(rootEE);
-    findWordInTrie("'em", rootEE);
-    findWordInTrie("'gainst", rootEE);
-	findWordInTrie("apples", rootEE);
-    findWordInTrie("mastax", rootEE);
-	findWordInTrie("abc", rootEE);
-    findWordInTrie("appeal", rootEE);
-    std::cout << "------------------------------------------\n";
+    delete_Whole_Trie(rootEE);
 	return 0;
 }

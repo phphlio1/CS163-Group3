@@ -9,15 +9,17 @@
 #include <cstdlib>
 #include <algorithm>
 #include <random>
+constexpr int TrieSize = 69;
+int num_line = 0;
 struct TrieNode
 {
-    TrieNode* edges[69];
+    TrieNode* edges[TrieSize];
     bool isEndOfWord;
     std::vector<std::string> definition;
 
     TrieNode()
     {
-        for (int i = 0 ; i < 69; ++i) edges[i] = nullptr;
+        for (int i = 0 ; i < TrieSize; ++i) edges[i] = nullptr;
         isEndOfWord = false;
     }
 };
@@ -27,10 +29,7 @@ char convertNumToChar(int n);
 void build_Trie_EngEng(TrieNode*& root);
 void delete_Whole_Trie(TrieNode*& root);
 
-void serialization(TrieNode* root);
-void deserialization(TrieNode*& root);
-
-TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout);
+TrieNode* Serialize_Traversal_DFS(TrieNode* root, std::ofstream& fout, int index);
 void Serialization_DFS(TrieNode* root);
 TrieNode* Deserialize_Traversal_DFS(TrieNode* root, std::ifstream& fin, int index);
 void Deserialization_DFS(TrieNode*& root);
