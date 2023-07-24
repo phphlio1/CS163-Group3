@@ -25,13 +25,26 @@ void searchForAWord_withSuggestion(TrieNode* root, std::string subWord, std::vec
     allSuggestWord(cur, subWord, suggest);
 }
 
-// int main() {
-//     TrieNode* rootEE = nullptr;
-//     build_Trie_EngEng(rootEE);
+void search_and_addToFavoriteList(TrieNode* root, std::string subWord) {
+    std::vector<std::string> test;
+    searchForAWord_withSuggestion(root, subWord, test);
+    for (int i = 0 ; i < test.size() ; i++) std::cout << "[" << i + 1 << "] " << test[i] << "\n";
 
-//     std::vector<std::string> test;
-//     searchForAWord_withSuggestion(rootEE, "hell", test);
-//     for (int i = 0 ; i < test.size() ; i++) std::cout << test[i] << "\n";
+    int choice;
+    std::cout << "Your choice is : ";
+    std::cin >> choice;
 
-//     delete_Whole_Trie(rootEE);
-// }
+    std::ofstream fout("../data_set/favorite.txt", std::ios_base::app);
+    if (!fout.is_open()) std::cout << "File not found";
+    else fout << test[choice - 1] << "\n";
+    fout.close();
+}
+
+int main() {
+    TrieNode* rootEE = nullptr;
+    build_Trie_EngEng(rootEE);
+
+    search_and_addToFavoriteList(rootEE, "hell");
+
+    delete_Whole_Trie(rootEE);
+}

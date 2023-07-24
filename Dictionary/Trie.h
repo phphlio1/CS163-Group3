@@ -47,7 +47,7 @@ std::string getRandomDefi_Of_Random_Word(TrieNode* root);
 void quiz_1Word4Defis(TrieNode* root);
 void quiz_1Defi4Words(TrieNode* root);
 
-void searchForAWord_withSuggestion(TrieNode* root, std::string subWord, std::vector<std::string>& suggest);
+void search_and_addToFavoriteList(TrieNode* root, std::string subWord);
 #endif
 
 ////////////////////////////////////////////////////////////////
