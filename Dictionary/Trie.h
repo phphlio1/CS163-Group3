@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <random>
 constexpr int TrieSize = 69;
-int num_line = 0;
+
 struct TrieNode
 {
     TrieNode* edges[TrieSize];
@@ -39,8 +39,6 @@ void addWordAndDefiToTrie(std::string word, std::string defi, TrieNode*& root);
 void findWordInTrie(std::string word, TrieNode* root);
 bool findWordExistedToGetDefi(std::string word, std::vector<std::string>& defi, TrieNode* root);
 
-// Special Notice: Get the seed for random ONCE only! If not, same set of numbers every time
-std::mt19937 generator(time(0));
 void getRandomWordAndDefi(TrieNode* root);
 std::string getRandomWord(TrieNode* root);
 std::string getRandomDefi_Of_Its_Word(TrieNode* root, std::string word);
@@ -48,6 +46,8 @@ std::string getRandomDefi_Of_Random_Word(TrieNode* root);
 
 void quiz_1Word4Defis(TrieNode* root);
 void quiz_1Defi4Words(TrieNode* root);
+
+void searchForAWord_withSuggestion(TrieNode* root, std::string subWord, std::vector<std::string>& suggest);
 #endif
 
 ////////////////////////////////////////////////////////////////

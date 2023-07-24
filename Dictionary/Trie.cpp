@@ -1,4 +1,9 @@
 #include "Trie.h"
+
+int num_line = 0;
+// Special Notice: Get the seed for random ONCE only! If not, same set of numbers every time
+std::mt19937 generator(time(0));
+
 int convertCharToNum(char c)
 {
     if('0' <= c && c <= '9')
@@ -414,54 +419,54 @@ void quiz_1Defi4Words(TrieNode* root)
     }
 }
 
-int main()
-{
-    // Question 1
-	TrieNode* rootEE = nullptr;
-    build_Trie_EngEng(rootEE);
+// int main()
+// {
+//     // Question 1
+// 	TrieNode* rootEE = nullptr;
+//     build_Trie_EngEng(rootEE);
     
-    std::cout << "SET 1:\n";
-    findWordInTrie("'em", rootEE);
-    findWordInTrie("'gainst", rootEE);
-	findWordInTrie("apples", rootEE);
-    findWordInTrie("mastax", rootEE);
-	findWordInTrie("abc", rootEE);
-    findWordInTrie("appeal", rootEE);
-    findWordInTrie("spondaic", rootEE);
-    Serialization_DFS(rootEE);
-    delete_Whole_Trie(rootEE);
-    std::cout << "------------------------------------------\n";
+//     std::cout << "SET 1:\n";
+//     findWordInTrie("'em", rootEE);
+//     findWordInTrie("'gainst", rootEE);
+// 	findWordInTrie("apples", rootEE);
+//     findWordInTrie("mastax", rootEE);
+// 	findWordInTrie("abc", rootEE);
+//     findWordInTrie("appeal", rootEE);
+//     findWordInTrie("spondaic", rootEE);
+//     Serialization_DFS(rootEE);
+//     delete_Whole_Trie(rootEE);
+//     std::cout << "------------------------------------------\n";
 
-    std::cout << "SET 2:\n";
-    rootEE = nullptr;
-    Deserialization_DFS(rootEE);
-    findWordInTrie("'em", rootEE);
-    findWordInTrie("'gainst", rootEE);
-	findWordInTrie("apples", rootEE);
-    findWordInTrie("mastax", rootEE);
-	findWordInTrie("abc", rootEE);
-    findWordInTrie("appeal", rootEE);
-    findWordInTrie("spondaic", rootEE);
-    std::cout << "------------------------------------------\n";
+//     std::cout << "SET 2:\n";
+//     rootEE = nullptr;
+//     Deserialization_DFS(rootEE);
+//     findWordInTrie("'em", rootEE);
+//     findWordInTrie("'gainst", rootEE);
+// 	findWordInTrie("apples", rootEE);
+//     findWordInTrie("mastax", rootEE);
+// 	findWordInTrie("abc", rootEE);
+//     findWordInTrie("appeal", rootEE);
+//     findWordInTrie("spondaic", rootEE);
+//     std::cout << "------------------------------------------\n";
     
-    // Question 7
-    findWordInTrie("appealable", rootEE);
-    remove_Word_FromTrie("appealable", rootEE);
-    findWordInTrie("appealable", rootEE);
-    std::cout << "------------------------------------------\n";
+//     // Question 7
+//     findWordInTrie("appealable", rootEE);
+//     remove_Word_FromTrie("appealable", rootEE);
+//     findWordInTrie("appealable", rootEE);
+//     std::cout << "------------------------------------------\n";
 
-    // Question 9
-    getRandomWordAndDefi(rootEE);
-    std::cout << "------------------------------------------\n";
+//     // Question 9
+//     getRandomWordAndDefi(rootEE);
+//     std::cout << "------------------------------------------\n";
 
-    // Question 12
-    quiz_1Word4Defis(rootEE);
-    std::cout << "------------------------------------------\n";
+//     // Question 12
+//     quiz_1Word4Defis(rootEE);
+//     std::cout << "------------------------------------------\n";
 
-    // Question 13
-    quiz_1Defi4Words(rootEE);
-    std::cout << "------------------------------------------\n";
+//     // Question 13
+//     quiz_1Defi4Words(rootEE);
+//     std::cout << "------------------------------------------\n";
 
-    delete_Whole_Trie(rootEE);
-	return 0;
-}
+//     delete_Whole_Trie(rootEE);
+// 	return 0;
+// }
