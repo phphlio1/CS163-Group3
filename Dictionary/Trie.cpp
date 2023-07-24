@@ -75,13 +75,12 @@ void addWordAndDefiToTrie(std::string word, std::string defi, TrieNode*& root)
 	for (int i = 0; i < word.size(); ++i)
 	{
         int index = convertCharToNum(word[i]);
-		if (!root->edges[index])
-			root->edges[index] = new TrieNode;
-		root = root->edges[index];
+		if (!tmp->edges[index])
+			tmp->edges[index] = new TrieNode;
+		tmp = tmp->edges[index];
 	}
-	root->isEndOfWord = true;
-    root->definition.push_back(defi);
-	root = tmp;
+	tmp->isEndOfWord = true;
+    tmp->definition.push_back(defi);
 }
 
 void findWordInTrie(std::string word, TrieNode* root)
