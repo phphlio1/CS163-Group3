@@ -5,8 +5,6 @@
 #include "TrieNode.h"
 
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <queue>
 #include <cstdlib>
 #include <algorithm>
@@ -26,21 +24,16 @@ char convertNumToChar(int n);
 struct Trie{
 public:
 
-    Trie(Datasets::ID _type){
-        typeOfDict = _type;
-    }
-
-    ~Trie(){
-        delete root;
-    }
+    Trie(Datasets::ID _type);
+    ~Trie();
 
     void build_Trie_EngEng();
     void build_Trie_From_Origin();
     void delete_Whole_Trie();
     void resetToOriginal();
 
-    void serialization();
-    void deserialization();
+    void Serialization_DFS();
+    void Deserialization_DFS();
 
     void remove_Word_FromTrie(std::string word);
     void addWordAndDefiToTrie(std::string word, std::string defi);
@@ -59,6 +52,7 @@ public:
 private:
     TrieNode* root;
     Datasets::ID typeOfDict;
+    int num_line; 
 };
 
 #endif
