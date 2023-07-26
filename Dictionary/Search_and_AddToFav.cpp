@@ -40,11 +40,55 @@ void search_and_addToFavoriteList(TrieNode* root, std::string subWord) {
     fout.close();
 }
 
+// Question 10 : User can view their favorite list.
+void readData_FavoriteList(std::vector<std::string> &fav) {
+    std::ifstream fin;
+    fin.open("../data_set/favorite.txt");
+    if (!fin.is_open()) {
+        std::cout << "File not found\n";
+        return ; 
+    }
+    std::string word;
+    while (fin >> word) fav.push_back(word);
+    fin.close();
+}
+
+void viewFavoriteList() {
+    std::vector<std::string> fav;
+    readData_FavoriteList(fav);
+    for (int i = 0 ; i < fav.size() ; i++) std::cout << "[" << i + 1 << "] " << fav[i] << "\n";
+}
+
+// Question 11 : User can remove a word from their favorite list.
+void removeAWordFromFavoriteList() {
+    std::vector<std::string> fav;
+    readData_FavoriteList(fav);
+    for (int i = 0 ; i < fav.size() ; i++) std::cout << "[" << i + 1 << "] " << fav[i] << "\n";
+
+    std::cout << "Order of the word you want to remove : ";
+    int order;
+    std::cin >> order;
+
+    std::ofstream fout("../data_set/favorite.txt", std::ios_base::trunc);
+    if (!fout.is_open()) {
+        std::cout << "File not found !\n";
+        return ;
+    }
+
+    for (int i = 0 ; i < fav.size() ; i++) {
+        if (i != order - 1) {
+            fout << fav[i] << "\n";
+        }
+    }
+    fout.close();
+    std::cout << "Remove successfully !";
+}
+
 int main() {
     TrieNode* rootEE = nullptr;
     build_Trie_EngEng(rootEE);
 
-    search_and_addToFavoriteList(rootEE, "hell");
+    removeAWordFromFavoriteList();
 
     delete_Whole_Trie(rootEE);
 }
