@@ -1,6 +1,7 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
-#include "../UI/SFML/include/SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 enum TypesOfButton
 {
@@ -20,7 +21,6 @@ class Button : public sf::Drawable
 private:
     short unsigned buttonType;
     short unsigned buttonState;
-    sf::RectangleShape shape;
     sf::Text text;
     sf::Sprite sprite;
 
@@ -29,6 +29,7 @@ private:
     sf::Color activeColor;
 
 public:
+    sf::RectangleShape shape;
     // text-only buttons
     Button(float x, float y, float width, float height,
            sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,

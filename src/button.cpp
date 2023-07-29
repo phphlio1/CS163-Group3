@@ -67,6 +67,9 @@ void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 void Button::update(const sf::Vector2f mousePos)
 {
     this->buttonState = BTN_IDLE;
+
+    // bool mouseInButton = mousePos.x >= this->shape.getPosition().x - this->shape.getGlobalBounds().width / 2 && mousePos.x <= this->shape.getPosition().x + this->shape.getGlobalBounds().width / 2 && mousePos.y >= this->shape.getPosition().y - this->shape.getGlobalBounds().height / 2 && mousePos.y <= this->shape.getPosition().y + this->shape.getGlobalBounds().height / 2;
+
     if (this->shape.getGlobalBounds().contains(mousePos))
     {
         this->buttonState = BTN_HOVER;
