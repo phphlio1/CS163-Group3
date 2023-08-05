@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Application.h"
+#include "TextBox.h"
 
 Application::Application()
 {
@@ -9,21 +10,32 @@ Application::Application()
 
 void Application::run()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+	Frontend::TextBox text_box(500, 200);
+	text_box.setBackgroundColor(sf::Color::Blue);
+	text_box.setBackgroundString("background");
+	text_box.setForegroundString("foreground");
+	text_box.setFont("../resources/JetBrainsMonoNL-Regular.ttf");
 
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            switch (event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+
+			default:
+				text_box.processEvent(event);
+				break;
+			}
         }
 
-        window.clear();
-        window.draw(shape);
+        window.clear(sf::Color::White);
+		window.draw(text_box);
         window.display();
     }
 }

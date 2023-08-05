@@ -5,7 +5,10 @@ add_executable(${PROJECT_NAME})
 
 add_subdirectory(src)
 
-target_include_directories(${PROJECT_NAME} PRIVATE SFML/include)
+target_include_directories(${PROJECT_NAME} PRIVATE
+  SFML/include
+  src
+  src/frontend)
 target_link_directories(${PROJECT_NAME} PRIVATE SFML/lib)
 target_link_libraries(${PROJECT_NAME}
   sfml-graphics
