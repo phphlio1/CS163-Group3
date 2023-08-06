@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#include "Application.h"
-#include "TextBox.h"
+#include "Application.hpp"
+#include "TextBox.hpp"
 
 Application::Application()
 {

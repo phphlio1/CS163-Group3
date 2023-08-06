@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Component.h"
+#include "Component.hpp"
 
 namespace Frontend
 {
@@ -12,7 +12,7 @@ namespace Frontend
 	public:
 		TextBox(int n_width = 0, int n_height = 0, int n_margin = 10);
 		
-		virtual void processEvent(const sf::Event &event);
+		virtual void processEvent(const sf::Event &event) override;
 		
 		int getWidth() const;
 		int getHeight() const;
@@ -24,6 +24,8 @@ namespace Frontend
 		const sf::Color& getBackgroundColor() const;
 		const sf::Color& getBackgroundTextColor() const;
 		const sf::Color& getForegroundTextColor() const;
+		const sf::Color& getTypingOutlineColor() const;
+		const sf::Color& getUntypingOutlineColor() const;
 		bool isTyping() const;
 		
 		void setWidth(int n_width);
@@ -36,6 +38,8 @@ namespace Frontend
 		void setBackgroundColor(const sf::Color &color);
 		void setBackgroundTextColor(const sf::Color &color);
 		void setForegroundTextColor(const sf::Color &color);
+		void setTypingOutlineColor(const sf::Color &color);
+		void setUntypingOutlineColor(const sf::Color &color);
 		void setTypingEnabled(bool n_is_typing);
 
 	protected:
@@ -44,6 +48,8 @@ namespace Frontend
 		virtual void updateTexture() override;
 		
 	private:
+		static const int OUTLINE_THICKNESS = -2; // inward outline is negative
+		
 		void updateText(const sf::Event &event);
 		void centerText(sf::Text &text_display);
 		
@@ -52,7 +58,7 @@ namespace Frontend
 		
 		int width_, height_, margin_;
 		sf::Font font_;
-		sf::Color background_color_;
+		sf::Color background_color_, typing_outline_color_, untyping_outline_color_;
 		sf::Text background_text_, foreground_text_;
 		bool is_typing_;
 

@@ -1,4 +1,4 @@
-#include "TextBox.h"
+#include "TextBox.hpp"
 
 using namespace Frontend;
 
@@ -16,6 +16,10 @@ TextBox::TextBox(int n_width, int n_height, int n_margin)
 	setBackgroundTextColor(sf::Color(0, 0, 0, 180)); // grey
 	setForegroundTextColor(sf::Color::Black);
 	setCharacterSize(16);
+
+	setTypingOutlineColor(sf::Color::Green);
+	setUntypingOutlineColor(sf::Color::Black);
+	
 	updateTexture();
 }
 
@@ -94,6 +98,16 @@ const sf::Color& TextBox::getForegroundTextColor() const
 	return foreground_text_.getFillColor();
 }
 
+const sf::Color& TextBox::getTypingOutlineColor() const
+{
+	return typing_outline_color_;
+}
+
+const sf::Color& TextBox::getUntypingOutlineColor() const
+{
+	return untyping_outline_color_;
+}
+
 bool TextBox::isTyping() const
 {
 	return is_typing_;
@@ -160,6 +174,18 @@ void TextBox::setForegroundTextColor(const sf::Color &color)
 	updateTexture();
 }
 
+void TextBox::setTypingOutlineColor(const sf::Color &color)
+{
+	typing_outline_color_ = color;
+	updateTexture();
+}
+
+void TextBox::setUntypingOutlineColor(const sf::Color &color)
+{
+	untyping_outline_color_ = color;
+	updateTexture();
+}
+
 void TextBox::setTypingEnabled(bool n_is_typing)
 {
 	is_typing_ = n_is_typing;
@@ -179,10 +205,19 @@ void TextBox::createTexture(int width, int height)
 void TextBox::updateTexture()
 {
 	texture_.clear(background_color_);
-
+	
+	sf::RectangleShape outline(sf::Vector2f(texture_.getSize()));
+	outline.setFillColor(sf::Color::Transparent);
+	outline.setOutlineColor(isTyping() ?
+							getTypingOutlineColor() : getUntypingOutlineColor());
+	outline.setOutlineThickness(OUTLINE_THICKNESS);
+	
 	const sf::Text &text_display = (isTyping() || getForegroundString().getSize() ?
 									foreground_text_ : background_text_);
+	
+	texture_.draw(outline);
 	texture_.draw(text_display);
+	
 	texture_.display();
 }
 
