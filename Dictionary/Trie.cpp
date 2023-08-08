@@ -1,66 +1,26 @@
 #include "Trie.h"
+// Special Notice: Get the seed for random ONCE only! If not, same set of numbers every time
+// extern unsigned int seed;
+// unsigned int seed = time(0);
+std::mt19937 generator(0);
 
-////////////////////////////////////////////////// General function
-int convertCharToNum(char c)
-{
-    if('0' <= c && c <= '9')
-        return c - '0';
-    else if('!' <= c && c <= '/')
-        return c - '!' + 10;
-    else if(':' <= c && c <= '@')
-        return c - ':' + 25;
-    else if('[' <= c && c <= '`')
-        return c - '[' + 32;
-    else if('{' <= c && c <= '~')
-        return c - '{' + 38;
-    else if(c == 32) // Space character
-        return 42;
-    else if('a' <= c && c <= 'z')
-        return c - 'a' + 43;
-    else if('A' <= c && c <= 'Z')
-        return c - 'A' + 43;
-    return -1;
-}
+Trie::Trie(Datasets::ID _type) : root(nullptr), typeOfDict(_type), num_line(0) {}
 
-char convertNumToChar(int n)
-{
-    if(0 <= n && n <= 9)
-        return n + '0';
-    else if(10 <= n && n <= 24)
-        return n + '!' - 10;
-    else if(25 <= n && n <= 31)
-        return n + ':' - 25;
-    else if(32 <= n && n <= 37)
-        return n + '[' - 32;
-    else if(38 <= n && n <= 41)
-        return n + '{' - 38;
-    else if(n == 42) // Space character
-        return 32;
-    else if(43 <= n && n <= 68)
-        return n + 'a' - 43;
-    return 0;
-}
-
-//////////////////////////////////////////////////////////////////
-
-Trie::Trie(Datasets::ID _type):
-    root(nullptr), typeOfDict(_type), num_line(0){}
-
-Trie::~Trie(){ delete root;}
+Trie::~Trie() { delete root; }
 
 void Trie::delete_Whole_Trie() { delete root; }
 
 void Trie::build_Trie_EngEng()
 {
-	std::ifstream fin;
-	fin.open("../data_set/English_English_original.txt");
-    if(!fin.is_open()) 
+    std::ifstream fin;
+    fin.open("../data_set/English_English_original.txt");
+    if (!fin.is_open())
     {
         std::cout << "File cannot open!\n";
         return;
     }
     root = new TrieNode;
-    while(!fin.eof())
+    while (!fin.eof())
     {
         std::string word, defi;
         getline(fin, word, (char)9); // (char)9 indicate 'TAB'
@@ -75,13 +35,16 @@ void Trie::build_Trie_From_Origin()
 {
     std::ifstream fin;
     fin.open(preAdress + originFileName[typeOfDict]);
-    if(!fin.is_open())
-    {
-        std::cout << "File cannot open!\n";
-        return;
-    }
+
+    if (typeOfDict == Datasets::Eng_Viet)
+
+        if (!fin.is_open())
+        {
+            std::cout << "File cannot open!\n";
+            return;
+        }
     root = new TrieNode;
-    while(!fin.eof())
+    while (!fin.eof())
     {
         std::string word, defi;
         getline(fin, word, (char)9); // (char)9 indicate 'TAB'
@@ -94,66 +57,66 @@ void Trie::build_Trie_From_Origin()
 
 void Trie::addWordAndDefiToTrie(std::string word, std::string defi)
 {
-	TrieNode* cur = root;
-	for (int i = 0; i < word.size(); ++i)
-	{
+    TrieNode *cur = root;
+    for (int i = 0; i < word.size(); ++i)
+    {
         int index = convertCharToNum(word[i]);
-		if (!cur->edges[index])
-			cur->edges[index] = new TrieNode;
-		cur = cur->edges[index];
-	}
-	cur->isEndOfWord = true;
+        if (!cur->edges[index])
+            cur->edges[index] = new TrieNode;
+        cur = cur->edges[index];
+    }
+    cur->isEndOfWord = true;
     cur->definition.push_back(defi);
 }
 
 void Trie::findWordInTrie(std::string word)
 {
-    TrieNode* cur = root;
-	for (int i = 0; i < word.size(); ++i)
-	{
+    TrieNode *cur = root;
+    for (int i = 0; i < word.size(); ++i)
+    {
         int index = convertCharToNum(word[i]);
-		if (!cur->edges[index])
+        if (!cur->edges[index])
         {
-			std::cout << word << " NOT FOUND!\n";
+            std::cout << word << " NOT FOUND!\n";
             return;
         }
-		cur = cur->edges[index];
-	}
-	if (cur->isEndOfWord)
-	{
+        cur = cur->edges[index];
+    }
+    if (cur->isEndOfWord)
+    {
         std::cout << word << " FOUND!\n";
-        for(int i = 0; i < cur->definition.size(); ++i)
+        for (int i = 0; i < cur->definition.size(); ++i)
             std::cout << i + 1 << ". " << cur->definition[i] << '\n';
         std::cout << '\n';
     }
-	else
-		std::cout << word << " NOT FOUND!\n";
+    else
+        std::cout << word << " NOT FOUND!\n";
 }
 
-bool Trie::findWordExistedToGetDefi(std::string word, std::vector<std::string>& defi)
+bool Trie::findWordExistedToGetDefi(std::string word, std::vector<std::string> &defi)
 {
-    TrieNode* cur = root;
-	for (int i = 0; i < word.size(); ++i)
-	{
+    TrieNode *cur = root;
+    for (int i = 0; i < word.size(); ++i)
+    {
         int index = convertCharToNum(word[i]);
-		if (!cur->edges[index])
+        if (!cur->edges[index])
             return false;
-		cur = cur->edges[index];
-	}
-	if (cur->isEndOfWord)
+        cur = cur->edges[index];
+    }
+    if (cur->isEndOfWord)
     {
         defi = cur->definition;
         return true;
     }
-	else
-		return false;
+    else
+        return false;
 }
 
 void Trie::Serialization_DFS()
 {
     std::ofstream fout;
-	fout.open("English_English_serializationDFS.txt");
-    if(!fout.is_open()) 
+    fout.open("English_English_serializationDFS.txt");
+    if (!fout.is_open())
     {
         std::cout << "File cannot open!\n";
         return;
@@ -166,15 +129,15 @@ void Trie::Serialization_DFS()
 void Trie::Deserialization_DFS()
 {
     std::ifstream fin;
-	fin.open("English_English_serializationDFS.txt");
-    if(!fin.is_open()) 
+    fin.open("English_English_serializationDFS.txt");
+    if (!fin.is_open())
     {
         std::cout << "File cannot open!\n";
         return;
     }
     std::string str1;
-	getline(fin, str1, '_');
-	root = new TrieNode;
+    getline(fin, str1, '_');
+    root = new TrieNode;
     getline(fin, str1, '_');
     getline(fin, str1, '_');
     root->isEndOfWord = false;
@@ -184,33 +147,50 @@ void Trie::Deserialization_DFS()
 }
 
 ///////////////////////////////////////////////////
+// Question 3: Users can search for a definition.
+void Trie::findWordFromSubDefi(std::string subDefi){
+    std::vector<std::string> keywords;
+    root->checkSubString("", subDefi, keywords, checkerST);
+    int cnt = 0;
+    for(std::string tmp : keywords){ 
+        ++cnt;
+        std::cout << tmp << "\n";
+        if(cnt == 5)
+            return;
+    }
+}
+
+///////////////////////////////////////////////////
 // Question 5: Users can add a new word and its definition
 // ham addword
 
 ///////////////////////////////////////////////////
 // Question 6: Users can edit the defi of an existing word
-void Trie::editExistedWordDefi(std::string word, std::string newDefi){
+void Trie::editExistedWordDefi(std::string word, std::string newDefi)
+{
     // The std::cout << code below can be edit by frontend coders
-    
+
     ////////////////////////////////// find the word
-    TrieNode* cur = root;
-	for (int i = 0; i < word.size(); ++i)
-	{
+    TrieNode *cur = root;
+    for (int i = 0; i < word.size(); ++i)
+    {
         int index = convertCharToNum(word[i]);
-		if (!cur->edges[index]){
-            std::cout << "There is no " << word << " in the dictionary\n";    
+        if (!cur->edges[index])
+        {
+            std::cout << "There is no " << word << " in the dictionary\n";
             return;
         }
         cur = cur->edges[index];
-	}
-	if (!cur->isEndOfWord){
-        std::cout << "There is no " << word << " in the dictionary\n";    
+    }
+    if (!cur->isEndOfWord)
+    {
+        std::cout << "There is no " << word << " in the dictionary\n";
         return;
     }
     //////////////////////////////////////////////////
-    
+
     std::cout << "There are " << cur->definition.size() << " definition in the dictionary:\n";
-    for(int i = 0; i < cur->definition.size(); ++i)
+    for (int i = 0; i < cur->definition.size(); ++i)
         std::cout << i + 1 << ". " << cur->definition[i] << "\n";
     std::cout << "------------------------------------------\n";
     std::cout << "1. Adding new definition for this word.\n";
@@ -218,35 +198,40 @@ void Trie::editExistedWordDefi(std::string word, std::string newDefi){
     std::cout << "3. Replacing all definition by this new definition.\n";
     std::cout << "Please input what do you want (only by number 1, 2, 3):\n";
     int userInput;
-    while(std::cin >> userInput){
-        if(userInput < 1 || userInput > 3)
-            std::cout << "Please input what do you want (only by number 1, 2, 3):\n";
-        else 
-            break;
+    std::cin >> userInput;
+    while (userInput < 1 || userInput > 3)
+    {
+        std::cout << "Please input what do you want (only by number 1, 2, 3):\n";
+        std::cin >> userInput;
     }
 
     int typeOfAction = userInput;
 
-    if(typeOfAction == 1){
+    if (typeOfAction == 1)
+    {
         cur->definition.push_back(newDefi);
         std::cout << "Change successfully\n";
     }
-    
-    if(typeOfAction == 2){
+
+    if (typeOfAction == 2)
+    {
         std::cout << "Please input the number (from 1 to " << cur->definition.size() << ") to choose the editing definition\n";
-    
-        while(std::cin >> userInput){
-            if(userInput < 1 || userInput > cur->definition.size())
+
+        while (std::cin >> userInput)
+        {
+            if (userInput < 1 || userInput > cur->definition.size())
                 std::cout << "Please input the number (from 1 to " << cur->definition.size() << ") to choose the editing definition\n";
-            else {
+            else
+            {
                 cur->definition[userInput - 1] = newDefi;
                 std::cout << "Change successfully\n";
                 break;
-            }    
+            }
         }
     }
 
-    if(typeOfAction == 3){
+    if (typeOfAction == 3)
+    {
         cur->definition.clear();
         cur->definition.push_back(newDefi);
         std::cout << "Change successfully\n";
@@ -257,15 +242,15 @@ void Trie::editExistedWordDefi(std::string word, std::string newDefi){
 // Question 7: Users can remove a word from the dictionary.
 void Trie::remove_Word_FromTrie(std::string word)
 {
-    TrieNode* cur = root;
-    for(int i = 0; i < word.size(); ++i)
+    TrieNode *cur = root;
+    for (int i = 0; i < word.size(); ++i)
     {
         int index = convertCharToNum(word[i]);
-        if(!cur->edges[index])
+        if (!cur->edges[index])
             return;
         cur = cur->edges[index];
     }
-    if(cur->isEndOfWord)
+    if (cur->isEndOfWord)
     {
         cur->isEndOfWord = false;
         cur->definition.clear();
@@ -275,7 +260,8 @@ void Trie::remove_Word_FromTrie(std::string word)
 ///////////////////////////////////////////////////
 // Question 8: Users can reset the dictionary to its original state.
 
-void Trie::resetToOriginal(){
+void Trie::resetToOriginal()
+{
     delete_Whole_Trie();
     build_Trie_From_Origin();
 }
@@ -288,19 +274,19 @@ void Trie::getRandomWordAndDefi()
     std::string word;
     std::vector<std::string> defi;
     fin.open("../data_set/English_English_original.txt");
-    while(true)
+    while (true)
     {
         int line = generator() % num_line;
-        for(int i = 1; i < line; ++i)
-            fin.ignore(500,'\n');
+        for (int i = 1; i < line; ++i)
+            fin.ignore(500, '\n');
         getline(fin, word, (char)9);
-        if(findWordExistedToGetDefi(word, defi))
+        if (findWordExistedToGetDefi(word, defi))
             break;
     }
     fin.close();
     std::cout << "Random Word: " << word << '\n';
     std::cout << "Definition: " << '\n';
-    for(int i = 0; i < defi.size(); ++i)
+    for (int i = 0; i < defi.size(); ++i)
         std::cout << i + 1 << ". " << defi[i] << '\n';
     std::cout << '\n';
 }
@@ -313,13 +299,13 @@ std::string Trie::getRandomWord()
     std::string word;
     std::vector<std::string> defi;
     fin.open("../data_set/English_English_original.txt");
-    while(true)
+    while (true)
     {
         int line = generator() % num_line;
-        for(int i = 1; i < line; ++i)
-            fin.ignore(500,'\n');
+        for (int i = 1; i < line; ++i)
+            fin.ignore(500, '\n');
         getline(fin, word, (char)9);
-        if(findWordExistedToGetDefi(word, defi))
+        if (findWordExistedToGetDefi(word, defi))
             break;
     }
     fin.close();
@@ -331,15 +317,14 @@ std::string Trie::getRandomDefi_Of_Random_Word()
     std::ifstream fin;
     std::string word;
     std::vector<std::string> defi;
-    srand(time(0));
     fin.open("../data_set/English_English_original.txt");
-    while(true)
+    while (true)
     {
         int line = generator() % num_line;
-        for(int i = 1; i < line; ++i)
-            fin.ignore(500,'\n');
+        for (int i = 1; i < line; ++i)
+            fin.ignore(500, '\n');
         getline(fin, word, (char)9);
-        if(findWordExistedToGetDefi(word, defi))
+        if (findWordExistedToGetDefi(word, defi))
             break;
     }
     fin.close();
@@ -350,14 +335,14 @@ std::string Trie::getRandomDefi_Of_Random_Word()
 
 std::string Trie::getRandomDefi_Of_Its_Word(std::string word)
 {
-    TrieNode* cur = root;
+    TrieNode *cur = root;
     std::string defi;
     for (int i = 0; i < word.size(); ++i)
-	{
+    {
         int index = convertCharToNum(word[i]);
-		cur = cur->edges[index];
-	}
-	if (cur->isEndOfWord)
+        cur = cur->edges[index];
+    }
+    if (cur->isEndOfWord)
     {
         int bound = cur->definition.size();
         int index_defi = generator() % bound;
@@ -386,28 +371,28 @@ void Trie::quiz_1Word4Defis()
 
     char ans;
     int index_ans = -1;
-    while(index_ans == -1)
+    while (index_ans == -1)
     {
         std::cout << "Your answer is: ";
         std::cin >> ans;
-        if(ans == 'A' || ans == 'a') 
+        if (ans == 'A' || ans == 'a')
             index_ans = 0;
-        else if(ans == 'B' || ans == 'b')
+        else if (ans == 'B' || ans == 'b')
             index_ans = 1;
-        else if(ans == 'C' || ans == 'c')
+        else if (ans == 'C' || ans == 'c')
             index_ans = 2;
-        else if(ans == 'D' || ans == 'd')
+        else if (ans == 'D' || ans == 'd')
             index_ans = 3;
-        else 
+        else
             std::cout << "Answer Invalid! Please choose again!\n";
     }
-    if(defis[index_ans] == correct_defi)
+    if (defis[index_ans] == correct_defi)
         std::cout << "Correct Answer!\n";
     else
     {
         std::cout << "Incorrect Answer!\n";
-        for(int i = 0; i < 4; ++i)
-            if(defis[i] == correct_defi)
+        for (int i = 0; i < 4; ++i)
+            if (defis[i] == correct_defi)
                 index_ans = i;
         char tmp = index_ans + 'A';
         std::cout << "The correct answer is: " << tmp << ". " << correct_defi << '\n';
@@ -434,85 +419,123 @@ void Trie::quiz_1Defi4Words()
 
     char ans;
     int index_ans = -1;
-    while(index_ans == -1)
+    while (index_ans == -1)
     {
         std::cout << "Your answer is: ";
         std::cin >> ans;
-        if(ans == 'A' || ans == 'a') 
+        if (ans == 'A' || ans == 'a')
             index_ans = 0;
-        else if(ans == 'B' || ans == 'b')
+        else if (ans == 'B' || ans == 'b')
             index_ans = 1;
-        else if(ans == 'C' || ans == 'c')
+        else if (ans == 'C' || ans == 'c')
             index_ans = 2;
-        else if(ans == 'D' || ans == 'd')
+        else if (ans == 'D' || ans == 'd')
             index_ans = 3;
-        else 
+        else
             std::cout << "Answer Invalid! Please choose again!\n";
     }
-    if(words[index_ans] == correct_word)
+    if (words[index_ans] == correct_word)
         std::cout << "Correct Answer!\n";
     else
     {
         std::cout << "Incorrect Answer!\n";
-        for(int i = 0; i < 4; ++i)
-            if(words[i] == correct_word)
+        for (int i = 0; i < 4; ++i)
+            if (words[i] == correct_word)
                 index_ans = i;
         char tmp = index_ans + 'A';
         std::cout << "The correct answer is: " << tmp << ". " << correct_word << '\n';
     }
 }
 
-int main()
+// Favourite list
+
+// Question 2 : User can search for a keyword. Users can add the word to their favorite list.
+void Trie::searchForAWord_withSuggestion(std::string subWord, std::vector<std::string> &suggest)
 {
-    // Question 1
-    Trie* obj = new Trie(Datasets::Eng_Eng);
-    obj->build_Trie_EngEng();
+    TrieNode *cur = root;
+    for (int i = 0; i < subWord.length(); i++)
+    {
+        int index = convertCharToNum(subWord[i]);
+        if (cur->edges[index] == nullptr)
+            return;
+        cur = cur->edges[index];
+    }
 
-    std::cout << "SET 1:\n";
-    obj->findWordInTrie("'em");
-    obj->findWordInTrie("'gainst");
-	obj->findWordInTrie("apples");
-    obj->findWordInTrie("mastax");
-	obj->findWordInTrie("abc");
-    obj->findWordInTrie("appeal");
-    obj->findWordInTrie("spondaic");
-    obj->Serialization_DFS();
-    obj->delete_Whole_Trie();
-    std::cout << "------------------------------------------\n";
+    if (cur->isEndOfWord)
+        suggest.push_back(subWord);
 
-    std::cout << "SET 2:\n";
-    obj->Deserialization_DFS();
-    obj->findWordInTrie("'em");
-    obj->findWordInTrie("'gainst");
-	obj->findWordInTrie("apples");
-    obj->findWordInTrie("mastax");
-	obj->findWordInTrie("abc");
-    obj->findWordInTrie("appeal");
-    obj->findWordInTrie("spondaic");
-    std::cout << "------------------------------------------\n";
+    cur->allSuggestWord(subWord, suggest);
+}
 
-    // Question 6
-    obj->editExistedWordDefi("appeal", "doraemon");
-    obj->findWordInTrie("appeal");
-    
-    // Question 7
-    obj->findWordInTrie("appealable");
-    obj->remove_Word_FromTrie("appealable");
-    obj->findWordInTrie("appealable");
-    std::cout << "------------------------------------------\n";
+void Trie::search_and_addToFavoriteList(std::string subWord)
+{
+    std::vector<std::string> test;
+    searchForAWord_withSuggestion(subWord, test);
+    for (int i = 0; i < test.size(); i++)
+        std::cout << "[" << i + 1 << "] " << test[i] << "\n";
 
-    // Question 9
-    obj->getRandomWordAndDefi();
-    std::cout << "------------------------------------------\n";
+    int choice;
+    std::cout << "Your choice is : ";
+    std::cin >> choice;
 
-    // Question 12
-    obj->quiz_1Word4Defis();
-    std::cout << "------------------------------------------\n";
+    std::ofstream fout(preAdress + preFavoriteName + favoriteFileName[typeOfDict], std::ios_base::app);
+    if (!fout.is_open())
+        std::cout << "File not found";
+    else
+        fout << test[choice - 1] << "\n";
+    fout.close();
+}
 
-    // Question 13
-    obj->quiz_1Defi4Words();
-    std::cout << "------------------------------------------\n";
+// Question 10 : User can view their favorite list
+void Trie::readData_FavoriteList(std::vector<std::string> &fav)
+{
+    std::ifstream fin;
+    fin.open(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
+    if (!fin.is_open())
+    {
+        std::cout << "File not found\n";
+        return;
+    }
+    std::string word;
+    while (fin >> word)
+        fav.push_back(word);
+    fin.close();
+}
 
-    // Do not delete because we already have destructor
-	return 0;
+void Trie::viewFavoriteList()
+{
+    std::vector<std::string> fav;
+    readData_FavoriteList(fav);
+    for (int i = 0; i < fav.size(); i++)
+        std::cout << "[" << i + 1 << "] " << fav[i] << "\n";
+}
+
+// Question 11 : User can remove a word from their favorite list.
+void Trie::removeAWordFromFavoriteList()
+{
+    std::vector<std::string> fav;
+    readData_FavoriteList(fav);
+    for (int i = 0; i < fav.size(); i++)
+        std::cout << "[" << i + 1 << "] " << fav[i] << "\n";
+
+    std::cout << "Order of the word you want to remove : ";
+    int order;
+    std::cin >> order;
+
+    std::ofstream fout(preAdress + preFavoriteName + favoriteFileName[typeOfDict], std::ios_base::trunc);
+    if (!fout.is_open())
+    {
+        std::cout << "File not found !\n";
+        return;
+    }
+
+    for (int i = 0; i < fav.size(); i++)
+    {
+        if (i != order - 1)
+        {
+            fout << fav[i] << "\n";
+        }
+    }
+    fout.close();
+    std::cout << "Remove successfully !";
 }
