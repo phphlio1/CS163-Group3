@@ -2,6 +2,9 @@
 
 using namespace Frontend;
 
+const int TextBox::OUTLINE_THICKNESS = -2;
+const sf::Color TextBox::GREY = sf::Color(0, 0, 0, 100);
+
 TextBox::TextBox(int n_width, int n_height, int n_margin)
 	: width_(n_width), height_(n_height), margin_(n_margin),
 	  background_color_(sf::Color::White)
@@ -13,7 +16,7 @@ TextBox::TextBox(int n_width, int n_height, int n_margin)
 	centerText(foreground_text_);
 	background_text_.setFont(font_);
 	foreground_text_.setFont(font_);
-	setBackgroundTextColor(sf::Color(0, 0, 0, 180)); // grey
+	setBackgroundTextColor(GREY); // grey
 	setForegroundTextColor(sf::Color::Black);
 	setCharacterSize(16);
 

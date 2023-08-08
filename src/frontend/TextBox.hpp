@@ -48,7 +48,8 @@ namespace Frontend
 		virtual void updateTexture() override;
 		
 	private:
-		static const int OUTLINE_THICKNESS = -2; // inward outline is negative
+		static const int OUTLINE_THICKNESS; // inward outline is negative
+		static const sf::Color GREY;
 		
 		void updateText(const sf::Event &event);
 		void centerText(sf::Text &text_display);

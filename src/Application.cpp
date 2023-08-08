@@ -1,20 +1,20 @@
-#include <SFML/Graphics.hpp>
-
 #include "Application.hpp"
 #include "TextBox.hpp"
 
 Application::Application()
+	: window_width_(1280), window_height_(720),
+	  window_title_("CS163 Dictionary")
 {
 	run();
 }
 
 void Application::run()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
+							getWindowTitle());
+	
 	Frontend::TextBox text_box(500, 200);
-	text_box.setBackgroundColor(sf::Color::Blue);
 	text_box.setBackgroundString("background");
-	text_box.setForegroundString("foreground");
 	text_box.setFont("../resources/JetBrainsMonoNL-Regular.ttf");
 
     while (window.isOpen())
@@ -38,4 +38,19 @@ void Application::run()
 		window.draw(text_box);
         window.display();
     }
+}
+
+int Application::getWindowWidth() const
+{
+	return window_width_;
+}
+
+int Application::getWindowHeight() const
+{
+	return window_height_;
+}
+
+const sf::String& Application::getWindowTitle() const
+{
+	return window_title_;
 }
