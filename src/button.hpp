@@ -3,12 +3,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-enum TypesOfButton
-{
-    BTN_TEXT_ONLY,
-    BTN_BOTH
-};
-
 enum ButtonState
 {
     BTN_IDLE,
@@ -19,17 +13,19 @@ enum ButtonState
 class Button : public sf::Drawable
 {
 private:
-    short unsigned buttonType;
     short unsigned buttonState;
     sf::Text text;
     sf::Sprite sprite;
+    sf::RectangleShape shape;
 
     sf::Color idleColor;
     sf::Color hoverColor;
     sf::Color activeColor;
 
 public:
-    sf::RectangleShape shape;
+    const sf::Texture *getTexturePack() { return sprite.getTexture(); }
+    sf::Sprite getSprite() { return sprite; }
+    Button();
     // text-only buttons
     Button(float x, float y, float width, float height,
            sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
@@ -38,7 +34,7 @@ public:
     // text and sprite buttons
     Button(float x, float y, float width, float height,
            sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-           sf::Texture *texture,
+           sf::Texture &texture,
            sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
     ~Button();
@@ -48,7 +44,7 @@ public:
 
     // functions
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    void update(const sf::Vector2f mousePos);
+    void update(const sf::Vector2f mousePosRelativeToWindow);
 };
 
 #endif
