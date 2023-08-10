@@ -1,2 +1,6 @@
 target_sources(${PROJECT_NAME} PRIVATE
-  main.cpp)
+  main.cpp
+  Application.hpp
+  Application.cpp)
+
+add_subdirectory(frontend)
