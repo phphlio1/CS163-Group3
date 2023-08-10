@@ -63,7 +63,7 @@ int main()
     obj->findWordFromSubDefi("An");
     std::cout << "------------------------------------------\n";
 
-
     // Do not delete because we already have destructor
+    delete obj;
     return 0;
 }
