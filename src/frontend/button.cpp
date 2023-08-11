@@ -104,3 +104,9 @@ const bool Button::isPressed() const
 {
     return (buttonState == BTN_ACTIVE);
 }
+
+void Button::centerVertical()
+{
+    sf::FloatRect textRect = getText().getLocalBounds();
+    text.setPosition(textRect.left, sprite.getLocalBounds().top + (sprite.getLocalBounds().height - textRect.width) / 2)
+}

@@ -1,4 +1,4 @@
-#include "gameGUI.hpp"
+#include "frontend/gameMode.hpp"
 #include <iostream>
 
 int main()
@@ -19,7 +19,7 @@ int main()
     //                              &font, "Word to Defintion", 24, 264, 537, sf::Color::Black,
     //                              sf::Color::White, sf::Color(215, 215, 215), sf::Color(215, 215, 215));
 
-    Game game;
+    GameModeMenu game;
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
     // Game game;
 

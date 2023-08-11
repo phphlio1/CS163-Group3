@@ -1,3 +1,6 @@
+#ifndef GAME_MODE_HPP
+#define GAME_MODE_HPP
+
 #include "button.hpp"
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -14,33 +17,32 @@ enum class GameMenu
     IN_GAME
 };
 
-class Game : public sf::Drawable
+class GameModeMenu : public sf::Drawable
 {
 private:
     GameMode mode;
     GameMenu menu;
 
     sf::Font font;
-    std::vector<sf::Text *> texts;
+    sf::Texture wordToDefIcon;
+    sf::Texture defTOWordIcon;
+
+    std::vector<sf::RectangleShape *> rectShapes;
+    std::vector<sf::Text *> titles;
     std::vector<Button *> buttons;
-
-    // Button wordToDefBtn;
-    // Button defToWordBtn;
-
-    sf::Text ModeMenuTitle;
-    sf::Text ModeMenuSubTitle;
-    sf::Sprite WordToDefIcon;
-    sf::Sprite DefToWordIcon;
 
     void initFont();
     void initButtons();
-    void initSprites();
-    void initTexts();
+    void initTexture();
+    void initTitles();
+    void initShapes();
 
 public:
-    Game();
-    ~Game();
+    GameModeMenu();
+    ~GameModeMenu();
 
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     void Update(const sf::Vector2f mousePosRelativeToWindow);
 };
+
+#endif
