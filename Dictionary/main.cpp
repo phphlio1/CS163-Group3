@@ -44,11 +44,11 @@ int main()
     std::cout << "------------------------------------------\n";
 
     // Question 12
-    obj->quiz_1Word4Defis();
+    obj->choose_1Word4Defis();
     std::cout << "------------------------------------------\n";
 
     // Question 13
-    obj->quiz_1Defi4Words();
+    obj->choose_1Defi4Words();
     std::cout << "------------------------------------------\n";
 
     obj->search_and_addToFavoriteList("asteroid");
