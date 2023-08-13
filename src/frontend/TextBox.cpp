@@ -6,12 +6,10 @@ const int TextBox::OUTLINE_THICKNESS = -2;
 const sf::Color TextBox::GREY = sf::Color(0, 0, 0, 100);
 
 TextBox::TextBox(int n_width, int n_height, int n_margin)
-    : width_(n_width), height_(n_height), margin_(n_margin),
-      background_color_(sf::Color::White)
+    : Component(n_width, n_height),
+      margin_(n_margin),
+      background_color_(sf::Color(245, 245, 245)) // nearly white
 {
-    createTexture(getWidth(), getHeight());
-    sprite_.setTexture(getTexture().getTexture());
-
     centerText(background_text_);
     centerText(foreground_text_);
     background_text_.setFont(font_);
@@ -49,16 +47,6 @@ void TextBox::processEvent(const sf::Event &event)
     default:
         break;
     }
-}
-
-int TextBox::getWidth() const
-{
-    return width_;
-}
-
-int TextBox::getHeight() const
-{
-    return height_;
 }
 
 int TextBox::getMargin() const
@@ -114,18 +102,6 @@ const sf::Color &TextBox::getUntypingOutlineColor() const
 bool TextBox::isTyping() const
 {
     return is_typing_;
-}
-
-void TextBox::setWidth(int n_width)
-{
-    width_ = n_width;
-    updateTexture();
-}
-
-void TextBox::setHeight(int n_height)
-{
-    height_ = n_height;
-    updateTexture();
 }
 
 void TextBox::setMargin(int n_margin)
@@ -195,16 +171,6 @@ void TextBox::setTypingEnabled(bool n_is_typing)
     updateTexture();
 }
 
-void TextBox::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    target.draw(getSprite());
-}
-
-void TextBox::createTexture(int width, int height)
-{
-    texture_.create(getWidth(), getHeight());
-}
-
 void TextBox::updateTexture()
 {
     texture_.clear(background_color_);
@@ -225,16 +191,6 @@ void TextBox::updateTexture()
 void TextBox::centerText(sf::Text &text_display)
 {
     text_display.setPosition(sf::Vector2f(getMargin(), texture_.getSize().y / 2));
-}
-
-const sf::RenderTexture &TextBox::getTexture() const
-{
-    return texture_;
-}
-
-const sf::Sprite &TextBox::getSprite() const
-{
-    return sprite_;
 }
 
 void TextBox::updateText(const sf::Event &event)

@@ -61,7 +61,7 @@ void Header::setButtons()
     configBtn = new Button(1133, 21, 35, 35,
                            &fontAwesome, "", 0, 0, 0, sf::Color::Transparent,
                            config, 1133, 21,
-                           sf::Color(25, 69, 107), sf::Color(215, 215, 215), sf::Color(255, 255, 255, 75));
+                           sf::Color(254, 254, 254), sf::Color(215, 215, 215), sf::Color(254, 254, 254));
     resetBtn = new Button(1193, 0, 73, 70,
                           &fontAwesome, "", 0, 0, 0, sf::Color::Transparent,
                           reset, 1205, 12,
@@ -70,10 +70,10 @@ void Header::setButtons()
 
 void Header::setTextBox()
 {
-    searchBar = new Frontend::TextBox(701, 18);
-    searchBar->setFont("resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
+    searchBar = new Frontend::TextBox(475, 40, 50);
+    searchBar->setFont("../resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
     searchBar->setBackgroundString("Search word to definition");
-    searchBar.set
+    searchBar->setPosition(701, 18);
 }
 
 Header::Header()
@@ -102,6 +102,7 @@ Header::~Header()
 void Header::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     target.draw(background);
+    target.draw(*searchBar);
     target.draw(iconSeperate);
     target.draw(iconSprite);
     target.draw(searchSprite);
@@ -112,8 +113,6 @@ void Header::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(*gameBtn);
     target.draw(*configBtn);
     target.draw(*resetBtn);
-
-    target.draw(*searchBar);
 }
 
 void Header::update(const sf::Vector2f mousePosRelativeToWindow)
