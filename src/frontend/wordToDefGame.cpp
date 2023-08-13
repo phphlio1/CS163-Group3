@@ -1,5 +1,29 @@
 #include "wordToDefGame.hpp"
 
+sf::Font WordToDefGame::getFont()
+{
+    return font;
+}
+
+std::vector<sf::Text *> WordToDefGame::getKeywordsRef()
+{
+    return keywords;
+}
+std::vector<std::vector<Button *>> WordToDefGame::getDefinitionsRef()
+{
+    return definitions;
+}
+
+int WordToDefGame::getScore()
+{
+    return score;
+}
+
+int WordToDefGame::getCounter()
+{
+    return counter;
+}
+
 void WordToDefGame::setFont()
 {
     font.loadFromFile("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
@@ -17,7 +41,7 @@ void WordToDefGame::setUtilityTexts()
     counterText.setFont(font);
     counterText.setString(std::to_string(counter) + " of " + std::to_string(maxCounter));
     counterText.setFillColor(sf::Color::White);
-    coutnerText.setCharacterSize(23);
+    counterText.setCharacterSize(23);
     counterText.setPosition(1002, 73);
 
     scoreText.setFont(font);
@@ -30,7 +54,7 @@ void WordToDefGame::setUtilityTexts()
 void WordToDefGame::setButton()
 {
     quit = new Button(1205, 684, 51, 31,
-                      &font, "Quit", 1205, 684, sf::Color::White,
+                      &font, "Quit", 23, 1205, 684, sf::Color::White,
                       sf::Color::Transparent, sf::Color(0, 0, 0, 126), sf::Color::Transparent);
 }
 

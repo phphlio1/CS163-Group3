@@ -37,7 +37,7 @@ public:
     // text and sprite buttons
     Button(float x, float y, float width, float height,
            sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-           sf::Texture &texture,
+           sf::Texture &texture, float texture_x, float texture_y,
            sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 
     ~Button();

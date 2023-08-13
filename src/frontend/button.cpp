@@ -28,7 +28,7 @@ Button::Button(float x, float y, float width, float height,
 
 Button::Button(float x, float y, float width, float height,
                sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-               sf::Texture &texture,
+               sf::Texture &texture, float texture_x, float texture_y,
                sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
 {
     buttonState = BTN_IDLE;
@@ -43,8 +43,7 @@ Button::Button(float x, float y, float width, float height,
     this->text.setFillColor(textColor);
 
     this->sprite.setTexture(texture);
-    this->sprite.setPosition(x, y);
-    this->sprite.setTextureRect(sf::IntRect(0, 0, texture.getSize().x, texture.getSize().y));
+    this->sprite.setPosition(texture_x, texture_y);
 
     this->idleColor = idleColor;
     this->hoverColor = hoverColor;
@@ -69,7 +68,6 @@ void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
 void Button::update(const sf::Vector2f mousePosRelativeToWindow)
 {
     this->buttonState = BTN_IDLE;
-
     if (this->shape.getGlobalBounds().contains(mousePosRelativeToWindow))
     {
         this->buttonState = BTN_HOVER;
@@ -83,15 +81,15 @@ void Button::update(const sf::Vector2f mousePosRelativeToWindow)
     {
     case BTN_IDLE:
         this->shape.setFillColor(idleColor);
-        this->sprite.setColor(idleColor);
+        // this->sprite.setColor(idleColor);
         break;
     case BTN_HOVER:
         this->shape.setFillColor(hoverColor);
-        this->sprite.setColor(hoverColor);
+        // this->sprite.setColor(hoverColor);
         break;
     case BTN_ACTIVE:
         this->shape.setFillColor(activeColor);
-        this->sprite.setColor(activeColor);
+        // this->sprite.setColor(activeColor);
         break;
     default: // should never happen
         this->shape.setFillColor(sf::Color::Red);
@@ -108,5 +106,5 @@ const bool Button::isPressed() const
 void Button::centerVertical()
 {
     sf::FloatRect textRect = getText().getLocalBounds();
-    text.setPosition(textRect.left, sprite.getLocalBounds().top + (sprite.getLocalBounds().height - textRect.width) / 2)
+    text.setPosition(textRect.left, sprite.getLocalBounds().top + (sprite.getLocalBounds().height - textRect.width) / 2);
 }

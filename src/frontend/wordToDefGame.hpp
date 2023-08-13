@@ -1,5 +1,5 @@
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
+#ifndef WORD_TO_DEF_GAME_HPP
+#define WORD_TO_DEF_GAME_HPP
 
 #include "button.hpp"
 #include <SFML/Graphics.hpp>
@@ -7,7 +7,7 @@
 #include <cstring>
 #include <iostream>
 
-class WordToDefGame : public sf::drawable
+class WordToDefGame : public sf::Drawable
 {
 private:
     sf::Font font;
@@ -20,6 +20,19 @@ private:
     std::vector<sf::Text *> keywords;
     std::vector<std::vector<Button *>> definitions;
 
+public:
+    // constructors
+    WordToDefGame(std::vector<std::string> &keywordStr, std::vector<std::vector<std::string>> &definitionStr);
+    ~WordToDefGame();
+
+    // getters
+    sf::Font getFont();
+    std::vector<sf::Text *> getKeywordsRef();
+    std::vector<std::vector<Button *>> getDefinitionsRef();
+    int getScore();
+    int getCounter();
+
+    // setters
     void setFont();
     void setUtilityTexts(); // score and counter
     void setButton();
@@ -27,21 +40,9 @@ private:
     void setQuestion(std::vector<std::string> &keywordStr);
     void setAns(std::vector<std::vector<std::string>> &definitionsStr);
 
-public:
-    // constructors
-    WordToDefGame(std::vector<std::string> &keywordStr, std::vector<std::vector<std::string>> &definitionStr);
-    ~WordToDefGame();
-
-    // getters
-    sf::Font getFont() { return font; }
-    std::vector<sf::Text *> getKeywordsRef() { return keywords; }
-    std::vector<std::vector<sf::Text *>> getDefinitionsRef { return definitions; }
-    int getScore() { return score; }
-    int getCounter() { return counter; }
-
     void updateScores(int scoreChange);
     void updateCounter(int nextCount);
     void centerKeyword(sf::Text *keyword);
-}
+};
 
 #endif

@@ -31,15 +31,15 @@ private:
     std::vector<sf::Text *> titles;
     std::vector<Button *> buttons;
 
+public:
+    GameModeMenu();
+    ~GameModeMenu();
+
     void initFont();
     void initButtons();
     void initTexture();
     void initTitles();
     void initShapes();
-
-public:
-    GameModeMenu();
-    ~GameModeMenu();
 
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     void Update(const sf::Vector2f mousePosRelativeToWindow);

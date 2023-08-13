@@ -33,8 +33,8 @@ void GameModeMenu::initTexture()
 
 void GameModeMenu::initButtons()
 {
-    Button *wordToDefButton = new Button(240, 270, 270, 300, &this->font, "Word to Definition", 24, 264, 537, sf::Color::Black, wordToDefIcon, sf::Color::White, sf::Color(215, 215, 215), sf::Color::White);
-    Button *defToWordButton = new Button(780, 270, 270, 300, &this->font, "Definition to Word", 24, 804, 537, sf::Color::Black, defTOWordIcon, sf::Color::White, sf::Color(215, 215, 215), sf::Color::White);
+    Button *wordToDefButton = new Button(240, 270, 270, 300, &this->font, "Word to Definition", 24, 264, 537, sf::Color::Black, wordToDefIcon, 0, 0, sf::Color::White, sf::Color(215, 215, 215), sf::Color::White);
+    Button *defToWordButton = new Button(780, 270, 270, 300, &this->font, "Definition to Word", 24, 804, 537, sf::Color::Black, defTOWordIcon, 0, 0, sf::Color::White, sf::Color(215, 215, 215), sf::Color::White);
     this->buttons.push_back(wordToDefButton);
     this->buttons.push_back(defToWordButton);
 }
