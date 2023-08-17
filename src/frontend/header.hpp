@@ -21,12 +21,22 @@ enum LanguageOfChoice
     EMO_TO_ENG
 };
 
-extern const std::vector<std::string> LanguageOfChoicDisplay;
+enum Tab
+{
+    DICTIONARY,
+    DAILY,
+    FAVORITE,
+    GAME
+}
+
+extern const std::vector<std::string>
+    LanguageOfChoicDisplay;
 extern const std::vector<sf::Vector2f> LanguageTextPos;
 
 class Header : public sf::Drawable
 {
 private:
+    short unsigned currentTab;
     short unsigned searchOptions;
     short unsigned languageOfChoice;
     bool isWarning;
@@ -59,9 +69,12 @@ public:
     void updateTextBox(const sf::Event &event);
     void updateLangOfChoiceBtn();
     void updateSearchOptions();
+
     std::string getUserLookUp();
     std::string getCurrentLanguageOfChoice();
     std::string getSearchOption();
+    bool getIsReset();
+    short unsigned getCurrentTab();
 };
 
 #endif
