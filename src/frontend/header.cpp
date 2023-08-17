@@ -86,6 +86,7 @@ void Header::setTextBox()
 
 Header::Header()
 {
+    currentTab = DICTIONARY;
     isReset = false;
     isWarning = false;
     searchOptions = WORD_TO_DEFINITION;
@@ -172,6 +173,22 @@ void Header::update(const sf::Event &event, const sf::Vector2f mousePosRelativeT
         if (yesBtn->isPressed)
             isReset = true;
         isReset = false;
+    }
+    if (dictionaryBtn->isPressed())
+    {
+        currentTab = DICTIONARY;
+    }
+    else if (dailyBtn->isPressed())
+    {
+        currentTab = DAILY;
+    }
+    else if (favBtn->isPressed())
+    {
+        currentTab = FAVORITE;
+    }
+    else if (gameBtn->isPressed())
+    {
+        currentTab = GAME;
     }
 }
 
@@ -276,4 +293,14 @@ void Header::setWarningBox()
     noBtn = new Button(668, 398, 67, 67,
                        &sans, "No", 22, 688, 417, sf::Color::Black,
                        sf::Color(10, 153, 254), sf::Color(10, 153, 254, 75), sf::Color(10, 153, 254));
+}
+
+bool Header::getIsReset()
+{
+    return isReset;
+}
+
+short unsigned Header::getCurrentTab()
+{
+    return currentTab;
 }
