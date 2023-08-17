@@ -42,7 +42,7 @@ public:
     void initShapes();
 
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    void Update(const sf::Vector2f mousePosRelativeToWindow);
+    void Update(const sf::Event &event, sf::Vector2f mousePosRelativeToWindow);
 };
 
 #endif

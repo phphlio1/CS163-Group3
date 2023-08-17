@@ -97,11 +97,11 @@ void GameModeMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
 }
 
-void GameModeMenu::Update(const sf::Vector2f mousePosRelativeToWindow)
+void GameModeMenu::Update(const sf::Event &event, sf::Vector2f mousePosRelativeToWindow)
 {
     for (auto button : buttons)
     {
-        button->update(mousePosRelativeToWindow);
+        button->update(event, mousePosRelativeToWindow);
     }
     if (this->buttons[0]->isPressed())
     {

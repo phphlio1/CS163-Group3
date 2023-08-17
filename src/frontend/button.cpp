@@ -65,13 +65,13 @@ void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(this->text, states);
 }
 
-void Button::update(const sf::Vector2f mousePosRelativeToWindow)
+void Button::update(const sf::Event &event, sf::Vector2f mousePosRelativeToWindow)
 {
     this->buttonState = BTN_IDLE;
     if (this->shape.getGlobalBounds().contains(mousePosRelativeToWindow))
     {
         this->buttonState = BTN_HOVER;
-        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+        if (event.type == sf::Event::MouseButtonPressed)
         {
             this->buttonState = BTN_ACTIVE;
         }
@@ -105,6 +105,40 @@ const bool Button::isPressed() const
 
 void Button::centerVertical()
 {
-    sf::FloatRect textRect = getText().getLocalBounds();
-    text.setPosition(textRect.left, sprite.getLocalBounds().top + (sprite.getLocalBounds().height - textRect.width) / 2);
+    text.setPosition(text.getPosition().x, shape.getPosition().y + (shape.getSize().y - text.getLocalBounds().height) / 2);
+}
+
+sf::String Button::getString()
+{
+    return text.getString();
+}
+
+void Button::wrapTextVertical()
+{
+    float rightMarginX = (shape.getPosition().x + shape.getLocalBounds().width) - (text.getPosition().x - shape.getPosition().x);
+    if (text.getPosition().x + text.getLocalBounds().width <= rightMarginX)
+        return;
+    int closestSpaceIndex = 0;
+    for (int i = 0; i < getString().getSize(); ++i)
+    {
+        if (text.getString()[i] == ' ')
+            closestSpaceIndex = i;
+        if (text.findCharacterPos(i).x > rightMarginX)
+        {
+            sf::String str;
+            str += text.getString();
+            str.insert(closestSpaceIndex, "\n");
+            text.setString(str);
+        }
+    }
+}
+
+void Button::setText(std::string newText)
+{
+    text.setString(newText);
+}
+
+void Button::setTextPosition(const sf::Vector2f pos)
+{
+    text.setPosition(pos);
 }

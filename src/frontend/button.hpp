@@ -24,10 +24,14 @@ private:
     sf::Color activeColor;
 
 public:
+    sf::String getString();
     const sf::Texture *getTexturePack() { return sprite.getTexture(); }
     sf::Sprite getSprite() { return sprite; }
-
     sf::Text getText() { return text; }
+
+    void setText(std::string newText);
+    void setTextPosition(const sf::Vector2f pos);
+
     Button();
     // text-only buttons
     Button(float x, float y, float width, float height,
@@ -47,8 +51,9 @@ public:
 
     // functions
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    void update(const sf::Vector2f mousePosRelativeToWindow);
+    void update(const sf::Event &event, const sf::Vector2f mousePosRelativeToWindow);
     void centerVertical();
+    void wrapTextVertical();
 };
 
 #endif

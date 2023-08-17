@@ -16,9 +16,9 @@ TextBox::TextBox(int n_width, int n_height, int n_margin)
     foreground_text_.setFont(font_);
     setBackgroundTextColor(GREY); // grey
     setForegroundTextColor(sf::Color::Black);
-    setCharacterSize(16);
+    setCharacterSize(20);
 
-    setTypingOutlineColor(sf::Color::Green);
+    setTypingOutlineColor(sf::Color(10, 153, 254));
     setUntypingOutlineColor(sf::Color::Black);
 
     updateTexture();
@@ -28,7 +28,7 @@ void TextBox::processEvent(const sf::Event &event)
 {
     auto is_inside = [=](int x, int y) -> bool
     {
-        return getSprite().getGlobalBounds().contains(x, y);
+        return getSprite().getGlobalBounds().contains(x, y) && x < 1128;
     };
 
     switch (event.type)
@@ -190,7 +190,7 @@ void TextBox::updateTexture()
 
 void TextBox::centerText(sf::Text &text_display)
 {
-    text_display.setPosition(sf::Vector2f(getMargin(), texture_.getSize().y / 2));
+    text_display.setPosition(sf::Vector2f(getMargin(), 9));
 }
 
 void TextBox::updateText(const sf::Event &event)
