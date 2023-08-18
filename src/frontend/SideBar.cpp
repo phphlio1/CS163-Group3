@@ -19,7 +19,7 @@ SideBar::SideBar(int n_width, int n_height)
 	setWordBoxWidth(300);
 	setWordBoxHeight(50);
 	setWordBoxColor(sf::Color::White);
-	setWordFont("../resources/JetBrainsMonoNL-Regular.ttf");
+	setWordFont("resources/fonts/JetBrainsMonoNL-Regular.ttf");
 }
 
 void SideBar::processEvent(const sf::Event &event)
