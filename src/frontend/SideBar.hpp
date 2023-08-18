@@ -24,6 +24,7 @@ namespace Frontend
 		int getWordBoxSpacing() const;
 		int getCharacterSize() const;
 		const sf::String& getClickedWord() const;
+		const sf::Vector2f& getEditFavoritesPos() const;
 
 		void setBackgroundColor(const sf::Color &color);
 		void setWordBoxWidth(int n_width);
@@ -33,6 +34,8 @@ namespace Frontend
 		void setFirstWordBoxPos(const sf::Vector2f &n_pos);
 		void setWordBoxSpacing(int n_spacing);
 		void setCharacterSize(int n_size);
+		void setEditFavoritesPos(int x, int y);
+		void setEditFavoritesPos(const sf::Vector2f &n_pos);
 
 		std::list<sf::String>& words();
 		const std::list<sf::String>& words() const;
@@ -58,6 +61,8 @@ namespace Frontend
 		sf::Color background_color_;
 		sf::Font word_font_;
 		sf::RectangleShape word_box_;
+		sf::Vector2f edit_favorites_pos_;
+		sf::Texture edit_favorites_button_;
 
 		sf::String clicked_word_;
 	};

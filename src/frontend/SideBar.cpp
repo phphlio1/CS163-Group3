@@ -10,7 +10,8 @@ const int SideBar::NUM_WORDS = 10;
 SideBar::SideBar(int n_width, int n_height)
 	: Component(n_width, n_height),
 	  background_color_(GREY), character_size_(22),
-	  word_box_spacing_(10), first_word_box_pos_(15, 41)
+	  word_box_spacing_(10), first_word_box_pos_(15, 45),
+	  edit_favorites_pos_(290, 13)
 {
 	sprite_.setPosition(0, 74);
 
@@ -20,6 +21,10 @@ SideBar::SideBar(int n_width, int n_height)
 	setWordBoxHeight(50);
 	setWordBoxColor(sf::Color::White);
 	setWordFont("resources/fonts/JetBrainsMonoNL-Regular.ttf");
+
+	edit_favorites_button_.loadFromFile("resources/img/edit-favorites.png");
+
+	updateTexture();
 }
 
 void SideBar::processEvent(const sf::Event &event)
@@ -89,6 +94,11 @@ const sf::String& SideBar::getClickedWord() const
 	return clicked_word_;
 }
 
+const sf::Vector2f& SideBar::getEditFavoritesPos() const
+{
+	return edit_favorites_pos_;
+}
+
 void SideBar::setBackgroundColor(const sf::Color &n_color)
 {
 	word_box_.setFillColor(n_color);
@@ -137,6 +147,17 @@ void SideBar::setCharacterSize(int n_size)
 	updateTexture();
 }
 
+void SideBar::setEditFavoritesPos(int x, int y)
+{
+	setEditFavoritesPos(x, y);
+}
+
+void SideBar::setEditFavoritesPos(const sf::Vector2f &n_pos)
+{
+	edit_favorites_pos_ = n_pos;
+	updateTexture();
+}
+
 std::list<sf::String>& SideBar::words()
 {
 	return words_;
@@ -156,6 +177,11 @@ void SideBar::updateTexture()
 	{
 		drawWordBox(word, word_id++);
 	}
+
+	sf::Sprite edit_favorites_sprite(edit_favorites_button_);
+	edit_favorites_sprite.setPosition(getEditFavoritesPos());
+	
+	texture_.draw(edit_favorites_sprite);
 
 	texture_.display();
 }
