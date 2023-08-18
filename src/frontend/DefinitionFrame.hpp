@@ -24,7 +24,8 @@ namespace Frontend
 		int getButtonRadius() const;
 		int getButtonOutlineThickness() const;
 		const sf::Color& getButtonOutlineColor() const;
-		const sf::Vector2f& getButtonPosition() const;
+		const sf::Vector2f& getEditDefinitionPos() const;
+		const sf::Vector2f& getAddToFavoritesPos() const;
 
 		void setKeywordTextCharacterSize(int n_size);
 		void setKeywordTextColor(const sf::Color &n_color);
@@ -37,8 +38,10 @@ namespace Frontend
 		void setButtonRadius(int n_radius);
 		void setButtonOutlineThickness(int n_thickness);
 		void setButtonOutlineColor(const sf::Color &n_color);
-		void setButtonPosition(float x, float y);
-		void setButtonPosition(const sf::Vector2f &n_pos);
+		void setEditDefinitionPos(int x, int y);
+		void setEditDefinitionPos(const sf::Vector2f &n_pos);
+		void setAddToFavoritesPos(int x, int y);
+		void setAddToFavoritesPos(const sf::Vector2f &n_pos);
 
 		std::vector<sf::String>& definitions();
 		const std::vector<sf::String>& definitions() const;
@@ -48,7 +51,7 @@ namespace Frontend
 
 	private:
 		void centerKeywordText();
-		void drawButton(const sf::Texture &button_texture);
+		void drawButton(const sf::Texture &button_texture, const sf::Vector2f &position);
 		void drawDefinition(const sf::String &definition);
 		
 		int definition_bar_height_, bottom_bar_height_;
@@ -56,6 +59,7 @@ namespace Frontend
 		sf::Color bars_color_;
 		sf::Font font_;
 		sf::Text keyword_text_;
+		sf::Vector2f edit_definition_pos_, add_to_favorites_pos_;
 		sf::CircleShape button_circle_;
 		sf::Texture edit_definition_button_, add_to_favorites_button_;
 		std::vector<sf::String> definitions_;

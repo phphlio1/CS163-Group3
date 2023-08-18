@@ -7,7 +7,8 @@ using namespace Frontend;
 DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	: Component(n_width, n_height),
 	  definition_bar_height_(152), bottom_bar_height_(40),
-	  bars_color_(sf::Color(17, 105, 142))
+	  bars_color_(sf::Color(17, 105, 142)),
+	  add_to_favorites_pos_(430, 90), edit_definition_pos_(525, 90)
 {
 	sprite_.setPosition(330, 70);
 	
@@ -21,7 +22,9 @@ DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	edit_definition_button_.loadFromFile("resources/images/edit-definition.png");
 
 	setButtonRadius(20);
-	button_circle_.setOrigin((getButtonRadius() - 1) / 2, (getButtonRadius() - 1) / 22);
+	int button_circle_width = button_circle_.getLocalBounds().width,
+		button_circle_height = button_circle_.getLocalBounds().height;
+	button_circle_.setOrigin(button_circle_width / 2, button_circle_height / 2);
 	button_circle_.setFillColor(sf::Color::Transparent);
 	setButtonOutlineThickness(-2);
 	setButtonOutlineColor(sf::Color::White);
@@ -87,9 +90,14 @@ const sf::Color& DefinitionFrame::getButtonOutlineColor() const
 	return button_circle_.getOutlineColor();
 }
 
-const sf::Vector2f& DefinitionFrame::getButtonPosition() const
+const sf::Vector2f& DefinitionFrame::getEditDefinitionPos() const
 {
-	return button_circle_.getPosition();
+	return edit_definition_pos_;
+}
+
+const sf::Vector2f& DefinitionFrame::getAddToFavoritesPos() const
+{
+	return add_to_favorites_pos_;
 }
 
 void DefinitionFrame::setKeywordTextCharacterSize(int n_size)
@@ -158,15 +166,25 @@ void DefinitionFrame::setButtonOutlineColor(const sf::Color &n_color)
 	updateTexture();
 }
 
-void DefinitionFrame::setButtonPosition(float x, float y)
+void DefinitionFrame::setEditDefinitionPos(int x, int y)
 {
-	button_circle_.setPosition(x, y);
+	setEditDefinitionPos(sf::Vector2f(x, y));
+}
+
+void DefinitionFrame::setEditDefinitionPos(const sf::Vector2f &n_pos)
+{
+	edit_definition_pos_ = n_pos;
 	updateTexture();
 }
 
-void DefinitionFrame::setButtonPosition(const sf::Vector2f &n_pos)
+void DefinitionFrame::setAddToFavoritesPos(int x, int y)
 {
-	button_circle_.setPosition(n_pos);
+	setAddToFavoritesPos(sf::Vector2f(x, y));
+}
+
+void DefinitionFrame::setAddToFavoritesPos(const sf::Vector2f &n_pos)
+{
+	add_to_favorites_pos_ = n_pos;
 	updateTexture();
 }
 
@@ -195,8 +213,8 @@ void DefinitionFrame::updateTexture()
 	texture_.draw(definition_bar);
 	texture_.draw(bottom_bar);
 	texture_.draw(keyword_text_);
-	drawButton(edit_definition_button_);
-	drawButton(add_to_favorites_button_);
+	drawButton(edit_definition_button_, getEditDefinitionPos());
+	drawButton(add_to_favorites_button_, getAddToFavoritesPos());
 	// for (const sf::String &definition : definitions())
 	// {
 	// 	drawDefinition(definition);
@@ -213,13 +231,14 @@ void DefinitionFrame::centerKeywordText()
 							  getKeywordTextYPos());
 }
 
-void DefinitionFrame::drawButton(const sf::Texture &button_texture)
+void DefinitionFrame::drawButton(const sf::Texture &button_texture, const sf::Vector2f &position)
 {
 	sf::Sprite button_sprite(button_texture);
 	int button_width = button_sprite.getLocalBounds().width,
 		button_height = button_sprite.getLocalBounds().height;
 	button_sprite.setOrigin((button_width - 1) / 2, (button_height - 1) / 2);
-	button_sprite.setPosition(getButtonPosition());
+	button_sprite.setPosition(position);
+	button_circle_.setPosition(position);
 	
 	texture_.draw(button_sprite);
 	texture_.draw(button_circle_);
