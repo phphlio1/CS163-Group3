@@ -18,8 +18,8 @@ DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	setKeywordTextColor(sf::Color::White);
 	setKeywordTextYPos(23);
 
-	add_to_favorites_button_.loadFromFile("resources/images/add-to-favorites.png");
-	edit_definition_button_.loadFromFile("resources/images/edit-definition.png");
+	add_to_favorites_button_.loadFromFile("resources/img/add-to-favorites.png");
+	edit_definition_button_.loadFromFile("resources/img/edit-definition.png");
 
 	setButtonRadius(20);
 	int button_circle_width = button_circle_.getLocalBounds().width,
