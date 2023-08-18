@@ -226,7 +226,6 @@ void DefinitionFrame::updateTexture()
 void DefinitionFrame::centerKeywordText()
 {
 	int keyword_text_width = keyword_text_.getLocalBounds().width;
-	std::cerr << getWidth() << ' ' << keyword_text_width << '\n';
 	keyword_text_.setPosition((getWidth() - keyword_text_width) / 2,
 							  getKeywordTextYPos());
 }
