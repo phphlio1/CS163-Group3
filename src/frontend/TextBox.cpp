@@ -3,7 +3,7 @@
 using namespace Frontend;
 
 const int TextBox::OUTLINE_THICKNESS = -2;
-const sf::Color TextBox::GREY = sf::Color(0x939393);
+const sf::Color TextBox::GREY = sf::Color(93, 93, 93);
 
 TextBox::TextBox(int n_width, int n_height, int n_margin)
 	: Component(n_width, n_height),
@@ -15,6 +15,7 @@ TextBox::TextBox(int n_width, int n_height, int n_margin)
 	centerText(foreground_text_);
 	background_text_.setFont(getFont());
 	foreground_text_.setFont(getFont());
+	setFont("resources/fonts/JetBrainsMonoNL-Regular.ttf");
 	setBackgroundTextColor(GREY); // grey
 	setForegroundTextColor(sf::Color::Black);
 	setCharacterSize(16);
