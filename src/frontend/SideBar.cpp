@@ -20,7 +20,7 @@ SideBar::SideBar(int n_width, int n_height)
 	setWordBoxWidth(300);
 	setWordBoxHeight(50);
 	setWordBoxColor(sf::Color::White);
-	setWordFont("resources/fonts/JetBrainsMonoNL-Regular.ttf");
+	setWordFont("resources/font/Frank_Ruhl_Libre_font/FrankRuhlLibre-Medium.ttf");
 
 	edit_favorites_button_.loadFromFile("resources/img/edit-favorites.png");
 
@@ -221,7 +221,6 @@ void SideBar::drawWordBox(const sf::String &word, int word_id)
     word_box_.setPosition(getWordBoxPosition(word_id));
 	
 	sf::Text word_text(word, getWordFont(), getCharacterSize());
-	word_text.setStyle(sf::Text::Bold);
 	word_text.setFillColor(sf::Color::Black);
 	centerText(word_text);
 	
