@@ -51,7 +51,7 @@ public:
     void getComponent_1Word4Defis(std::vector<std::string>& wordSet, std::vector<std::vector<std::string>>& defiSet,
 std::vector<int>& correctOption, int index);
     void prepare_1Defi4Words();
-    void Trie::getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
+    void getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
 std::vector<int>& correctOption, int index);
 
     // Favourite list task
