@@ -11,14 +11,14 @@ TextBox::TextBox(int n_width, int n_height, int n_margin)
 	  background_color_(sf::Color(245, 245, 245)), // nearly white
 	  is_typing_(0)
 {
-	centerText(background_text_);
-	centerText(foreground_text_);
 	background_text_.setFont(getFont());
 	foreground_text_.setFont(getFont());
-	setFont("resources/fonts/JetBrainsMonoNL-Regular.ttf");
+	setFont("resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
 	setBackgroundTextColor(GREY); // grey
 	setForegroundTextColor(sf::Color::Black);
-	setCharacterSize(16);
+	setCharacterSize(20);
+	centerText(background_text_);
+	centerText(foreground_text_);
 
 	setTypingOutlineColor(sf::Color::Green);
 	setUntypingOutlineColor(sf::Color::Black);
