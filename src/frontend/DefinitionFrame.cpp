@@ -13,7 +13,7 @@ DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	sprite_.setPosition(330, 70);
 	
 	keyword_text_.setFont(getFont());
-	setFont("resources/fonts/JetBrainsMonoNL-Regular.ttf");
+	setFont("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
 	setKeywordTextCharacterSize(35);
 	setKeywordTextColor(sf::Color::White);
 	setKeywordTextYPos(23);
