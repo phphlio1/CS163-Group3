@@ -49,6 +49,15 @@ public:
 
     void quiz_1Word4Defis(std::string &question, std::vector<std::string> &choices, int &correctChoiceID);
     void quiz_1Defi4Words(std::string &question, std::vector<std::string> &choices, int &correctChoiceID);
+    void choose_1Word4Defis();
+    void choose_1Defi4Words();
+
+    void prepare_1Word4Defis();
+    void getComponent_1Word4Defis(std::vector<std::string>& wordSet, std::vector<std::vector<std::string>>& defiSet,
+std::vector<int>& correctOption, int index);
+    void prepare_1Defi4Words();
+    void getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
+std::vector<int>& correctOption, int index);
 
     // Favourite list task
     void searchForAWord_withSuggestion(std::string &subWord, std::vector<std::string> &suggest);
