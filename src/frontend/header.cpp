@@ -89,7 +89,7 @@ void Header::setButtons()
 void Header::setTextBox()
 {
     // searchBar = Frontend::TextBox(475, 40, 50);
-    searchBar.setFont("../resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
+    searchBar.setFont("resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
     searchBar.setBackgroundString("Search word to definition");
     searchBar.setPosition(697, 15);
     updateTexture();
