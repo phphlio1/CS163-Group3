@@ -1,80 +1,87 @@
 #ifndef HEADER_CPP
 #define HEADER_CPP
 
+#include "Component.hpp"
 #include "button.hpp"
 #include "TextBox.hpp"
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <cstring>
 
-enum SearchOptions
-{
-    WORD_TO_DEFINITION,
-    DEFINITION_TO_WORD
-};
-
-enum LanguageOfChoice
-{
-    ENG_TO_VIE,
-    ENG_TO_ENG,
-    VIE_TO_ENG,
-    EMO_TO_ENG
-};
-
-enum Tab
-{
-    DICTIONARY,
-    DAILY,
-    FAVORITE,
-    GAME
-}
-
-extern const std::vector<std::string>
-    LanguageOfChoicDisplay;
+extern const std::vector<std::string> LanguageOfChoiceDisplay;
 extern const std::vector<sf::Vector2f> LanguageTextPos;
 
-class Header : public sf::Drawable
+namespace Frontend
 {
-private:
-    short unsigned currentTab;
-    short unsigned searchOptions;
-    short unsigned languageOfChoice;
-    bool isWarning;
-    bool isReset;
-    sf::Font fontAwesome, serif, sans;
+    enum SearchOptions
+    {
+        WORD_TO_DEFINITION = 0,
+        DEFINITION_TO_WORD
+    };
 
-    sf::Text warningText;
+    enum LanguageOfChoice
+    {
+        ENG_TO_VIE = 0,
+        ENG_TO_ENG,
+        VIE_TO_ENG,
+        EMO_TO_ENG
+    };
 
-    sf::Texture icon, dictionary, daily, favorite, game, swap, search, config, reset;
-    sf::Sprite iconSprite, searchSprite;
+    enum Tab
+    {
+        DICTIONARY = 0,
+        DAILY,
+        FAVORITE,
+        GAME
+    };
 
-    sf::RectangleShape background, iconSeperate, warningBackground;
+    class Header : public Component
+    {
+    private:
+        short unsigned currentTab;
+        short unsigned searchOptions;
+        short unsigned languageOfChoice;
+        // bool isWarning;
+        bool isReset;
+        sf::Font fontAwesome, serif, sans;
 
-    Button *dictionaryBtn, *dailyBtn, *favBtn, *gameBtn, *setLangBtn, *configBtn, *resetBtn, *yesBtn, *noBtn;
-    Frontend::TextBox *searchBar;
+        // sf::Text warningText;
 
-public:
-    Header();
-    ~Header();
-    void setFonts();
-    void setTextures();
-    void setBackground();
-    void setSprites();
-    void setButtons();
-    void setTextBox();
-    void setWarningBox();
+        sf::Texture icon, dictionary, daily, favorite, game, swap, search, config, reset;
+        sf::Sprite iconSprite, searchSprite;
 
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    void update(const sf::Event &event, const sf::Vector2f mousePosRelativeToWindow);
-    void updateTextBox(const sf::Event &event);
-    void updateLangOfChoiceBtn();
-    void updateSearchOptions();
+        sf::RectangleShape background, iconSeperate; //, warningBackground;
 
-    std::string getUserLookUp();
-    std::string getCurrentLanguageOfChoice();
-    std::string getSearchOption();
-    bool getIsReset();
-    short unsigned getCurrentTab();
-};
+        Button dictionaryBtn, dailyBtn, favBtn, gameBtn, setLangBtn, configBtn, resetBtn; //, yesBtn, noBtn;
+        Frontend::TextBox searchBar;
+
+    public:
+        Header();
+        ~Header();
+
+        virtual void processEvent(const sf::Event &event) override;
+
+        void setFonts();
+        void setTextures();
+        void setBackground();
+        void setSprites();
+        void setButtons();
+        void setTextBox();
+        // void setWarningBox();
+
+        void updateLangOfChoiceBtn();
+        void updateSearchOptions();
+
+        std::string getUserLookUp();
+        std::string getCurrentLanguageOfChoice();
+        std::string getSearchOption();
+        bool getIsReset();
+        short unsigned getCurrentTab();
+
+    protected:
+        virtual void updateTexture() override;
+        // virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+    };
+}
 
 #endif

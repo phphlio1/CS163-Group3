@@ -1,4 +1,5 @@
 #include "TextBox.hpp"
+#include <iostream>
 
 using namespace Frontend;
 

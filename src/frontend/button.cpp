@@ -1,100 +1,50 @@
 #include "button.hpp"
 
-Button::Button()
+using namespace Frontend;
+
+Button::Button(int width, int height, sf::Color idle, sf::Color hover, sf::Color active)
+    : Component(width, height),
+      idleColor(idle),
+      hoverColor(hover),
+      activeColor(active)
 {
-}
-// constructor for text-only buttons
-Button::Button(float x, float y, float width, float height,
-               sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-               sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
-{
-    buttonState = BTN_IDLE;
-
-    this->shape.setPosition(sf::Vector2f(x, y));
-    this->shape.setSize(sf::Vector2f(width, height));
-
-    this->text.setFont(*font);
-    this->text.setString(text);
-    this->text.setCharacterSize(textSize);
-    this->text.setPosition(sf::Vector2f(t_x, t_y));
-    this->text.setFillColor(textColor);
-
-    this->idleColor = idleColor;
-    this->hoverColor = hoverColor;
-    this->activeColor = activeColor;
-
-    this->shape.setFillColor(this->idleColor);
-}
-
-Button::Button(float x, float y, float width, float height,
-               sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-               sf::Texture &texture, float texture_x, float texture_y,
-               sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
-{
-    buttonState = BTN_IDLE;
-
-    this->shape.setPosition(sf::Vector2f(x, y));
-    this->shape.setSize(sf::Vector2f(width, height));
-
-    this->text.setFont(*font);
-    this->text.setString(text);
-    this->text.setCharacterSize(textSize);
-    this->text.setPosition(sf::Vector2f(t_x, t_y));
-    this->text.setFillColor(textColor);
-
-    this->sprite.setTexture(texture);
-    this->sprite.setPosition(texture_x, texture_y);
-
-    this->idleColor = idleColor;
-    this->hoverColor = hoverColor;
-    this->activeColor = activeColor;
-
-    this->shape.setFillColor(this->idleColor);
+    shape.setPosition(0, 0);
+    shape.setSize(sf::Vector2f(width, height));
 }
 
 Button::~Button()
 {
 }
 
-void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void Button::updateTexture()
 {
-    target.draw(this->shape, states);
+    texture_.clear(sf::Color::White);
+    texture_.draw(shape);
+    texture_.draw(text);
+    texture_.draw(sprite);
 
-    target.draw(this->sprite, states);
-
-    target.draw(this->text, states);
+    texture_.display();
 }
 
-void Button::update(const sf::Event &event, sf::Vector2f mousePosRelativeToWindow)
+void Button::processEvent(const sf::Event &event)
 {
-    this->buttonState = BTN_IDLE;
-    if (this->shape.getGlobalBounds().contains(mousePosRelativeToWindow))
+    static bool pressed = false;
+    auto is_inside = [=](int x, int y) -> bool
     {
-        this->buttonState = BTN_HOVER;
-        if (event.type == sf::Event::MouseButtonPressed)
-        {
-            this->buttonState = BTN_ACTIVE;
-        }
-    }
+        return getSprite().getGlobalBounds().contains(x, y);
+    };
 
-    switch (buttonState)
+    setButtonInactive();
+    // std::cout << "Mouse button coordinate: " << event.mouseButton.x << ' ' << event.mouseButton.y << std::endl;
+    // std::cout << "Mouse move coordinate: " << event.mouseMove.x << ' ' << event.mouseMove.y << std::endl;
+    // std::cout << "container coordinate: " << getSprite().getGlobalBounds().left << ' ' << getSprite().getGlobalBounds().top << ' ' << getSprite().getGlobalBounds().width << ' ' << getSprite().getGlobalBounds().height << std::endl;
+    if ((is_inside(event.mouseMove.x, event.mouseMove.y)))
     {
-    case BTN_IDLE:
-        this->shape.setFillColor(idleColor);
-        // this->sprite.setColor(idleColor);
-        break;
-    case BTN_HOVER:
-        this->shape.setFillColor(hoverColor);
-        // this->sprite.setColor(hoverColor);
-        break;
-    case BTN_ACTIVE:
-        this->shape.setFillColor(activeColor);
-        // this->sprite.setColor(activeColor);
-        break;
-    default: // should never happen
-        this->shape.setFillColor(sf::Color::Red);
-        this->sprite.setColor(sf::Color::Red);
-        break;
+        setButtonHover();
+    }
+    if (is_inside(event.mouseButton.x, event.mouseButton.y) && event.type == sf::Event::MouseButtonPressed)
+    {
+        setButtonActive();
     }
 }
 
@@ -106,9 +56,10 @@ const bool Button::isPressed() const
 void Button::centerVertical()
 {
     text.setPosition(text.getPosition().x, shape.getPosition().y + (shape.getSize().y - text.getLocalBounds().height) / 2);
+    updateTexture();
 }
 
-sf::String Button::getString()
+const sf::String Button::getString()
 {
     return text.getString();
 }
@@ -131,14 +82,61 @@ void Button::wrapTextVertical()
             text.setString(str);
         }
     }
+    updateTexture();
 }
 
-void Button::setText(std::string newText)
+void Button::setText(sf::Font &font, std::string newText, int textSize, sf::Color textColor)
 {
+    text.setFont(font);
     text.setString(newText);
+    text.setCharacterSize(textSize);
+    text.setFillColor(textColor);
+    updateTexture();
+}
+
+void Button::setTextString(const std::string &newStr)
+{
+    text.setString(newStr);
+    updateTexture();
 }
 
 void Button::setTextPosition(const sf::Vector2f pos)
 {
     text.setPosition(pos);
+    updateTexture();
+}
+
+void Button::setTexture(sf::Texture &texture, float texture_x, float texture_y)
+{
+    sprite.setTexture(texture);
+    sprite.setPosition(texture_x, texture_y);
+    updateTexture();
+}
+
+void Button::setColor(sf::Color idle, sf::Color hover, sf::Color active)
+{
+    idleColor = idle;
+    hoverColor = hover;
+    activeColor = active;
+}
+
+void Button::setButtonActive()
+{
+    buttonState = BTN_ACTIVE;
+    shape.setFillColor(activeColor);
+    updateTexture();
+}
+
+void Button::setButtonInactive()
+{
+    buttonState = BTN_IDLE;
+    shape.setFillColor(idleColor);
+    updateTexture();
+}
+
+void Button::setButtonHover()
+{
+    buttonState = BTN_HOVER;
+    shape.setFillColor(hoverColor);
+    updateTexture();
 }

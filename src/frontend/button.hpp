@@ -1,59 +1,59 @@
 #ifndef BUTTON_HPP
 #define BUTTON_HPP
 
+#include "Component.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-enum ButtonState
+namespace Frontend
 {
-    BTN_IDLE,
-    BTN_HOVER,
-    BTN_ACTIVE
-};
+    enum ButtonState
+    {
+        BTN_IDLE,
+        BTN_HOVER,
+        BTN_ACTIVE
+    };
 
-class Button : public sf::Drawable
-{
-private:
-    short unsigned buttonState;
-    sf::Text text;
-    sf::Sprite sprite;
-    sf::RectangleShape shape;
+    class Button : public Component
+    {
+    private:
+        // int width_n, height_n;
+        short unsigned buttonState;
+        sf::Text text;
+        sf::RectangleShape shape;
+        sf::Sprite sprite;
 
-    sf::Color idleColor;
-    sf::Color hoverColor;
-    sf::Color activeColor;
+        sf::Color idleColor, hoverColor, activeColor;
 
-public:
-    sf::String getString();
-    const sf::Texture *getTexturePack() { return sprite.getTexture(); }
-    sf::Sprite getSprite() { return sprite; }
-    sf::Text getText() { return text; }
+    public:
+        virtual void processEvent(const sf::Event &event) override;
 
-    void setText(std::string newText);
-    void setTextPosition(const sf::Vector2f pos);
+        void setText(sf::Font &font, std::string newText, int textSize, sf::Color textColor);
+        void setTextPosition(const sf::Vector2f pos);
+        void setTextString(const std::string &newStr);
+        void setTexture(sf::Texture &texture, float texture_x, float texture_y);
+        void setColor(sf::Color idle, sf::Color hover, sf::Color active);
+        void setButtonActive();
+        void setButtonInactive();
+        void setButtonHover();
 
-    Button();
-    // text-only buttons
-    Button(float x, float y, float width, float height,
-           sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-           sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+        Button(int width, int height, sf::Color idle, sf::Color hover, sf::Color active);
 
-    // text and sprite buttons
-    Button(float x, float y, float width, float height,
-           sf::Font *font, std::string text, float textSize, float t_x, float t_y, sf::Color textColor,
-           sf::Texture &texture, float texture_x, float texture_y,
-           sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+        ~Button();
 
-    ~Button();
+        // accessors
+        const bool isPressed() const;
+        const sf::String getString();
+        const sf::Text getText() { return text; }
 
-    // accessors
-    const bool isPressed() const;
+        // functions
+        void centerVertical();
+        void wrapTextVertical();
+        void updateColor(sf::Event &event);
 
-    // functions
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    void update(const sf::Event &event, const sf::Vector2f mousePosRelativeToWindow);
-    void centerVertical();
-    void wrapTextVertical();
-};
+    protected:
+        virtual void updateTexture() override;
+    };
+}
 
 #endif
