@@ -23,8 +23,12 @@ namespace Frontend
 		const sf::Vector2f& getFirstWordBoxPos() const;
 		int getWordBoxSpacing() const;
 		int getCharacterSize() const;
-		const sf::String& getClickedWord() const;
+		const sf::String* getClickedWord() const;
 		const sf::Vector2f& getEditFavoritesPos() const;
+		int getCloseEditFavoritesThickness() const;
+		int getCloseEditFavoritesSize() const;
+		bool isFavoritesEditing() const;
+		const sf::Vector2f& getRemoveFromFavoritesPos() const;
 
 		void setBackgroundColor(const sf::Color &color);
 		void setWordBoxWidth(int n_width);
@@ -36,6 +40,11 @@ namespace Frontend
 		void setCharacterSize(int n_size);
 		void setEditFavoritesPos(int x, int y);
 		void setEditFavoritesPos(const sf::Vector2f &n_pos);
+		void setCloseEditFavoritesThickness(int n_thickness);
+		void setCloseEditFavoritesSize(int n_size);
+		void setFavoritesEditingEnabled(bool n_is_fav_editing);
+		void setRemoveFromFavoritesPos(int x, int y);
+		void setRemoveFromFavoritesPos(const sf::Vector2f &n_pos);
 
 		std::list<sf::String>& words();
 		const std::list<sf::String>& words() const;
@@ -47,24 +56,30 @@ namespace Frontend
 		static const sf::Color GREY;
 		static const int NUM_WORDS;
 
-		void setClickedWord(const sf::String &n_word);
-		sf::String findClickedWord(int mouseX, int mouseY) const;
+		const sf::String* findClickedWord(int mouseX, int mouseY) const;
 
 		void initializeWords();
 		void drawWordBox(const sf::String &word, int word_id);
 		sf::Vector2f getWordBoxPosition(int word_id) const;
 		void centerText(sf::Text &text) const;
-		
+		void createCloseEditFavoritesButton();
+		void createAddToFavoritesButton();
+		void createMainDiag(sf::VertexArray &main_diag);
+		void createMinorDiag(sf::VertexArray &minor_diag);
+		void drawAddToFavorites();
+
 		std::list<sf::String> words_;
 		int character_size_, word_box_spacing_;
-		sf::Vector2f first_word_box_pos_;
+		bool is_favorites_editing_;
+		int close_edit_favorites_thickness_, close_edit_favorites_size_;
+		sf::Vector2f first_word_box_pos_, edit_favorites_pos_, remove_from_favorites_pos_;
 		sf::Color background_color_;
 		sf::Font word_font_;
 		sf::RectangleShape word_box_;
-		sf::Vector2f edit_favorites_pos_;
-		sf::Texture edit_favorites_button_;
+		sf::Texture edit_favorites_button_, remove_from_favorites_button_;
+		sf::RenderTexture close_edit_favorites_button_, add_to_favorites_button_;
 
-		sf::String clicked_word_;
+		const sf::String *clicked_word_;
 	};
 }
 
