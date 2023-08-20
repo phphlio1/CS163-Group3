@@ -5,6 +5,8 @@ checker::checker(){
 
 
 bool checker::checkSubString(std::string subSt, std::string st){
+    if(subSt.size() > st.size())
+        return false;
     std::string s = "*" + subSt + "#" + st;
     int cnt, l, r;
     cnt = l = r = 0;

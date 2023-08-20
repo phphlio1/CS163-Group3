@@ -100,7 +100,7 @@ auto TrieNode::Deserialize_Traversal_DFS(std::ifstream &fin, int index) -> TrieN
     return this->Deserialize_Traversal_DFS(fin, index);
 }
 
-void TrieNode::allSuggestWord(std::string subWord, std::vector<std::string> &suggest)
+void TrieNode::allSuggestWord(std::string &subWord, std::vector<std::string> &suggest)
 {
     for (int i = 0; i < TrieSize; i++)
     {

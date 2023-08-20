@@ -35,7 +35,7 @@ public:
 
     // Favourite list
 
-    void allSuggestWord(std::string subWord, std::vector<std::string> &suggest);
+    void allSuggestWord(std::string &subWord, std::vector<std::string> &suggest);
 
     // Question 3
 

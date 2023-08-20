@@ -2,13 +2,13 @@
 // Special Notice: Get the seed for random ONCE only! If not, same set of numbers every time
 // extern unsigned int seed;
 // unsigned int seed = time(0);
-std::mt19937 generator(0);
+std::mt19937 generator(time(0));
 
 Trie::Trie(Datasets::ID _type) : root(nullptr), typeOfDict(_type), num_line(0) {}
 
-Trie::~Trie() { delete root; }
+Trie::~Trie() { delete root; root = nullptr;}
 
-void Trie::delete_Whole_Trie() { delete root; }
+void Trie::delete_Whole_Trie() { delete root; root = nullptr;}
 
 void Trie::build_Trie_EngEng()
 {
@@ -31,7 +31,7 @@ void Trie::build_Trie_EngEng()
     fin.close();
 }
 
-void Trie::build_Trie_From_Origin()
+void Trie::build_Trie_From_Origin(std::string &message)
 {
     std::ifstream fin;
     fin.open(preAdress + originFileName[typeOfDict]);
@@ -40,7 +40,7 @@ void Trie::build_Trie_From_Origin()
 
         if (!fin.is_open())
         {
-            std::cout << "File cannot open!\n";
+            message = "File cannot open!";
             return;
         }
     root = new TrieNode;
@@ -52,6 +52,7 @@ void Trie::build_Trie_From_Origin()
         addWordAndDefiToTrie(word, defi);
         ++num_line;
     }
+    message = "Init dictionary successfully";
     fin.close();
 }
 
@@ -69,28 +70,25 @@ void Trie::addWordAndDefiToTrie(std::string word, std::string defi)
     cur->definition.push_back(defi);
 }
 
-void Trie::findWordInTrie(std::string word)
+bool Trie::findWordInTrie(std::string word, std::vector<std::string> &defiList)
 {
     TrieNode *cur = root;
+    defiList.clear();
     for (int i = 0; i < word.size(); ++i)
     {
         int index = convertCharToNum(word[i]);
         if (!cur->edges[index])
         {
-            std::cout << word << " NOT FOUND!\n";
-            return;
+            return false;
         }
         cur = cur->edges[index];
     }
     if (cur->isEndOfWord)
     {
-        std::cout << word << " FOUND!\n";
-        for (int i = 0; i < cur->definition.size(); ++i)
-            std::cout << i + 1 << ". " << cur->definition[i] << '\n';
-        std::cout << '\n';
+        defiList = cur->definition;
+        return true;
     }
-    else
-        std::cout << word << " NOT FOUND!\n";
+    return false;
 }
 
 bool Trie::findWordExistedToGetDefi(std::string word, std::vector<std::string> &defi)
@@ -112,27 +110,27 @@ bool Trie::findWordExistedToGetDefi(std::string word, std::vector<std::string> &
         return false;
 }
 
-void Trie::Serialization_DFS()
+void Trie::Serialization_DFS(std::string &message)
 {
     std::ofstream fout;
-    fout.open("English_English_serializationDFS.txt");
+    fout.open(preAdress + FileName[typeOfDict] + serializeName);
     if (!fout.is_open())
     {
-        std::cout << "File cannot open!\n";
+        message = "File cannot open!";
         return;
     }
     root = root->Serialize_Traversal_DFS(fout, 0);
     fout.close();
-    std::cout << "Serialization complete!\n";
+    message = "Serialization complete!";
 }
 
-void Trie::Deserialization_DFS()
+void Trie::Deserialization_DFS(std::string &message)
 {
     std::ifstream fin;
-    fin.open("English_English_serializationDFS.txt");
+    fin.open(preAdress + FileName[typeOfDict] + serializeName);
     if (!fin.is_open())
     {
-        std::cout << "File cannot open!\n";
+        message = "File cannot open!";
         return;
     }
     std::string str1;
@@ -143,21 +141,13 @@ void Trie::Deserialization_DFS()
     root->isEndOfWord = false;
     root = root->Deserialize_Traversal_DFS(fin, 0);
     fin.close();
-    std::cout << "Deserialization complete!\n";
+    message = "Deserialization complete!";
 }
 
 ///////////////////////////////////////////////////
 // Question 3: Users can search for a definition.
-void Trie::findWordFromSubDefi(std::string subDefi){
-    std::vector<std::string> keywords;
-    root->checkSubString("", subDefi, keywords, checkerST);
-    int cnt = 0;
-    for(std::string tmp : keywords){ 
-        ++cnt;
-        std::cout << tmp << "\n";
-        if(cnt == 5)
-            return;
-    }
+void Trie::findWordFromSubDefi(std::string subDefi, std::vector<std::string> &ans){
+    root->checkSubString("", subDefi, ans, checkerST);
 }
 
 ///////////////////////////////////////////////////
@@ -166,7 +156,7 @@ void Trie::findWordFromSubDefi(std::string subDefi){
 
 ///////////////////////////////////////////////////
 // Question 6: Users can edit the defi of an existing word
-void Trie::editExistedWordDefi(std::string word, std::string newDefi)
+void Trie::editExistedWordDefi(std::string word, std::string newDefi, std::string &message)
 {
     // The std::cout << code below can be edit by frontend coders
 
@@ -177,118 +167,84 @@ void Trie::editExistedWordDefi(std::string word, std::string newDefi)
         int index = convertCharToNum(word[i]);
         if (!cur->edges[index])
         {
-            std::cout << "There is no " << word << " in the dictionary\n";
+            message = "There is no " + word + " in the dictionary";
             return;
         }
         cur = cur->edges[index];
     }
     if (!cur->isEndOfWord)
     {
-        std::cout << "There is no " << word << " in the dictionary\n";
+        message = "There is no " + word + " in the dictionary";
         return;
     }
-    //////////////////////////////////////////////////
-
-    std::cout << "There are " << cur->definition.size() << " definition in the dictionary:\n";
-    for (int i = 0; i < cur->definition.size(); ++i)
-        std::cout << i + 1 << ". " << cur->definition[i] << "\n";
-    std::cout << "------------------------------------------\n";
-    std::cout << "1. Adding new definition for this word.\n";
-    std::cout << "2. Replacing one existed definition by new definition.\n";
-    std::cout << "3. Replacing all definition by this new definition.\n";
-    std::cout << "Please input what do you want (only by number 1, 2, 3):\n";
-    int userInput;
-    std::cin >> userInput;
-    while (userInput < 1 || userInput > 3)
-    {
-        std::cout << "Please input what do you want (only by number 1, 2, 3):\n";
-        std::cin >> userInput;
-    }
-
-    int typeOfAction = userInput;
-
-    if (typeOfAction == 1)
-    {
-        cur->definition.push_back(newDefi);
-        std::cout << "Change successfully\n";
-    }
-
-    if (typeOfAction == 2)
-    {
-        std::cout << "Please input the number (from 1 to " << cur->definition.size() << ") to choose the editing definition\n";
-
-        while (std::cin >> userInput)
-        {
-            if (userInput < 1 || userInput > cur->definition.size())
-                std::cout << "Please input the number (from 1 to " << cur->definition.size() << ") to choose the editing definition\n";
-            else
-            {
-                cur->definition[userInput - 1] = newDefi;
-                std::cout << "Change successfully\n";
-                break;
-            }
-        }
-    }
-
-    if (typeOfAction == 3)
-    {
-        cur->definition.clear();
-        cur->definition.push_back(newDefi);
-        std::cout << "Change successfully\n";
-    }
+    cur->definition.clear();
+    cur->definition.push_back(newDefi);
+    message = "Change successfully";
 }
 
 ///////////////////////////////////////////////////
 // Question 7: Users can remove a word from the dictionary.
-void Trie::remove_Word_FromTrie(std::string word)
+void Trie::remove_Word_FromTrie(std::string word, std::string &message)
 {
     TrieNode *cur = root;
     for (int i = 0; i < word.size(); ++i)
     {
         int index = convertCharToNum(word[i]);
-        if (!cur->edges[index])
+        if (!cur->edges[index]){
+            message = "There is no " + word + " in the dictionary to remove!";
             return;
+        }
         cur = cur->edges[index];
     }
     if (cur->isEndOfWord)
     {
         cur->isEndOfWord = false;
         cur->definition.clear();
+        message = "Removing successfully!";
     }
+    message = "There is no " + word + " in the dictionary to remove!";
 }
 
 ///////////////////////////////////////////////////
 // Question 8: Users can reset the dictionary to its original state.
 
-void Trie::resetToOriginal()
+void Trie::resetToOriginal(std::string &message)
 {
     delete_Whole_Trie();
-    build_Trie_From_Origin();
+    resetFile();
+    build_Trie_From_Origin(message);
+    if(message == "Init dictionary successfully")
+        message = "Reset dictionary successfully";
+}
+
+void Trie::resetFile(){
+    std::ofstream fo(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
+    fo.close();
+    std::ofstream fon(preAdress + FileName[typeOfDict] + historyName);
+    fon.close();
 }
 
 ///////////////////////////////////////////////////
 // Question 9: Users can view a word and its definition
-void Trie::getRandomWordAndDefi()
+void Trie::getRandomWordAndDefi(std::string &word, std::vector<std::string> &defiList)
 {
     std::ifstream fin;
-    std::string word;
-    std::vector<std::string> defi;
-    fin.open("../data_set/English_English_original.txt");
+    std::string tmpWord;
+    defiList.clear();
+    fin.open(preAdress + originFileName[typeOfDict]);
     while (true)
     {
         int line = generator() % num_line;
         for (int i = 1; i < line; ++i)
             fin.ignore(500, '\n');
-        getline(fin, word, (char)9);
-        if (findWordExistedToGetDefi(word, defi))
+        getline(fin, tmpWord, (char)9);
+        if(tmpWord == "")
+            continue;
+        if (findWordInTrie(tmpWord, defiList))
             break;
     }
+    word = tmpWord;
     fin.close();
-    std::cout << "Random Word: " << word << '\n';
-    std::cout << "Definition: " << '\n';
-    for (int i = 0; i < defi.size(); ++i)
-        std::cout << i + 1 << ". " << defi[i] << '\n';
-    std::cout << '\n';
 }
 
 ///////////////////////////////////////////////////
@@ -351,7 +307,7 @@ std::string Trie::getRandomDefi_Of_Its_Word(std::string word)
     return defi;
 }
 
-void Trie::quiz_1Word4Defis()
+void Trie::quiz_1Word4Defis(std::string &question, std::vector<std::string> &choices, int &correctChoiceID)
 {
     std::string word = getRandomWord();
     std::string correct_defi = getRandomDefi_Of_Its_Word(word);
@@ -362,44 +318,17 @@ void Trie::quiz_1Word4Defis()
     std::vector<std::string> defis = {correct_defi, wrong_defi1, wrong_defi2, wrong_defi3};
     shuffle(defis.begin(), defis.end(), std::default_random_engine(generator()));
 
-    std::cout << "The given word is: " << word << '\n';
-    std::cout << "With 4 given definitions, choose the correct one!\n";
-    std::cout << "A. " << defis[0] << '\n';
-    std::cout << "B. " << defis[1] << '\n';
-    std::cout << "C. " << defis[2] << '\n';
-    std::cout << "D. " << defis[3] << '\n';
+    question = "The given word is: " + word + '\n' 
+    + "With 4 given definitions, choose the correct one!";
 
-    char ans;
-    int index_ans = -1;
-    while (index_ans == -1)
-    {
-        std::cout << "Your answer is: ";
-        std::cin >> ans;
-        if (ans == 'A' || ans == 'a')
-            index_ans = 0;
-        else if (ans == 'B' || ans == 'b')
-            index_ans = 1;
-        else if (ans == 'C' || ans == 'c')
-            index_ans = 2;
-        else if (ans == 'D' || ans == 'd')
-            index_ans = 3;
-        else
-            std::cout << "Answer Invalid! Please choose again!\n";
-    }
-    if (defis[index_ans] == correct_defi)
-        std::cout << "Correct Answer!\n";
-    else
-    {
-        std::cout << "Incorrect Answer!\n";
-        for (int i = 0; i < 4; ++i)
-            if (defis[i] == correct_defi)
-                index_ans = i;
-        char tmp = index_ans + 'A';
-        std::cout << "The correct answer is: " << tmp << ". " << correct_defi << '\n';
-    }
+    choices = defis;
+
+    for (int i = 0; i < 4; ++i)
+        if (defis[i] == correct_defi)
+            correctChoiceID = i;
 }
 
-void Trie::quiz_1Defi4Words()
+void Trie::quiz_1Defi4Words(std::string &question, std::vector<std::string> &choices, int &correctChoiceID)
 {
     std::string correct_word = getRandomWord();
     std::string defi = getRandomDefi_Of_Its_Word(correct_word);
@@ -410,47 +339,18 @@ void Trie::quiz_1Defi4Words()
     std::vector<std::string> words = {correct_word, wrong_word1, wrong_word2, wrong_word3};
     shuffle(words.begin(), words.end(), std::default_random_engine(generator()));
 
-    std::cout << "The given definition is: " << defi << '\n';
-    std::cout << "With 4 given words, choose the correct one!\n";
-    std::cout << "A. " << words[0] << '\n';
-    std::cout << "B. " << words[1] << '\n';
-    std::cout << "C. " << words[2] << '\n';
-    std::cout << "D. " << words[3] << '\n';
-
-    char ans;
-    int index_ans = -1;
-    while (index_ans == -1)
-    {
-        std::cout << "Your answer is: ";
-        std::cin >> ans;
-        if (ans == 'A' || ans == 'a')
-            index_ans = 0;
-        else if (ans == 'B' || ans == 'b')
-            index_ans = 1;
-        else if (ans == 'C' || ans == 'c')
-            index_ans = 2;
-        else if (ans == 'D' || ans == 'd')
-            index_ans = 3;
-        else
-            std::cout << "Answer Invalid! Please choose again!\n";
-    }
-    if (words[index_ans] == correct_word)
-        std::cout << "Correct Answer!\n";
-    else
-    {
-        std::cout << "Incorrect Answer!\n";
-        for (int i = 0; i < 4; ++i)
-            if (words[i] == correct_word)
-                index_ans = i;
-        char tmp = index_ans + 'A';
-        std::cout << "The correct answer is: " << tmp << ". " << correct_word << '\n';
-    }
+    question = "The given definition is: " + defi + '\n'
+    + "With 4 given words, choose the correct one!";
+    choices = words;
+    for (int i = 0; i < 4; ++i)
+        if (words[i] == correct_word)
+            correctChoiceID = i;
 }
 
 // Favourite list
 
 // Question 2 : User can search for a keyword. Users can add the word to their favorite list.
-void Trie::searchForAWord_withSuggestion(std::string subWord, std::vector<std::string> &suggest)
+void Trie::searchForAWord_withSuggestion(std::string &subWord, std::vector<std::string> &suggest)
 {
     TrieNode *cur = root;
     for (int i = 0; i < subWord.length(); i++)
@@ -467,7 +367,7 @@ void Trie::searchForAWord_withSuggestion(std::string subWord, std::vector<std::s
     cur->allSuggestWord(subWord, suggest);
 }
 
-void Trie::search_and_addToFavoriteList(std::string subWord)
+void Trie::search_and_addToFavoriteList(std::string &subWord)
 {
     std::vector<std::string> test;
     searchForAWord_withSuggestion(subWord, test);
@@ -486,46 +386,49 @@ void Trie::search_and_addToFavoriteList(std::string subWord)
     fout.close();
 }
 
+void Trie::addToFavoriteList(std::string word, std::string &message){
+    std::ofstream fout(preAdress + preFavoriteName + favoriteFileName[typeOfDict], std::ios_base::app);
+    if (!fout.is_open()){
+        message = "File not found";
+        return;
+    }
+    fout << word << "\n";
+    message = "Adding to Favorite list successfully!";
+    fout.close();
+}
+
 // Question 10 : User can view their favorite list
-void Trie::readData_FavoriteList(std::vector<std::string> &fav)
+void Trie::readData_FavoriteList(std::vector<std::string> &fav, std::string &message)
 {
     std::ifstream fin;
     fin.open(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
     if (!fin.is_open())
     {
-        std::cout << "File not found\n";
+        message = "File not found\n";
         return;
     }
     std::string word;
     while (fin >> word)
         fav.push_back(word);
     fin.close();
+    message = "View Favorite List successfully!";
 }
 
-void Trie::viewFavoriteList()
+void Trie::viewFavoriteList(std::vector<std::string> &fav, std::string &message)
 {
-    std::vector<std::string> fav;
-    readData_FavoriteList(fav);
-    for (int i = 0; i < fav.size(); i++)
-        std::cout << "[" << i + 1 << "] " << fav[i] << "\n";
+    readData_FavoriteList(fav, message);
 }
 
 // Question 11 : User can remove a word from their favorite list.
-void Trie::removeAWordFromFavoriteList()
+void Trie::removeAWordFromFavoriteList(int order, std::string &message)
 {
     std::vector<std::string> fav;
-    readData_FavoriteList(fav);
-    for (int i = 0; i < fav.size(); i++)
-        std::cout << "[" << i + 1 << "] " << fav[i] << "\n";
-
-    std::cout << "Order of the word you want to remove : ";
-    int order;
-    std::cin >> order;
+    readData_FavoriteList(fav, message);
 
     std::ofstream fout(preAdress + preFavoriteName + favoriteFileName[typeOfDict], std::ios_base::trunc);
     if (!fout.is_open())
     {
-        std::cout << "File not found !\n";
+        message = "File not found!";
         return;
     }
 
@@ -537,5 +440,61 @@ void Trie::removeAWordFromFavoriteList()
         }
     }
     fout.close();
-    std::cout << "Remove successfully !";
+    message = "Remove successfully!";
+}
+
+void Trie::addToHistory(std::string word, std::string &message) {
+    std::ofstream fout(preAdress + FileName[typeOfDict] + historyName, std::ios_base::app);
+    if (fout.is_open()) {
+        fout << word << "\n";
+    }
+    else {
+        message = "Error opening file !";
+        return ;
+    }
+    fout.close();
+}
+
+void Trie::takeHistory(std::vector<std::string> &historyList, std::string &message) {
+    std::ifstream fin(preAdress + FileName[typeOfDict] + historyName);
+    if (fin.is_open()) {
+        std::string s;
+        while (getline(fin, s)) 
+            historyList.push_back(s);
+    }
+    else {
+        message = "Error opening file !";
+        return;
+    }
+    fin.close();
+}
+
+void splitEachDefi(std::string tmp, std::pair<std::string, std::string> &ans){
+    std::string s;
+    std::string st;
+    s = ""; st = "";
+    int cnt = 0;
+    char pre = 's';
+    for(char c : tmp){
+        if(c == ' ' && pre == ')' && !cnt){
+            ++cnt;
+            continue;
+        }
+        if(!cnt)
+            s += c;
+        else 
+            st += c;
+        pre = c;
+    }
+    ans = std::make_pair(s, st); 
+}
+
+void split_Definition(std::vector<std::string> &defiList, std::vector<std::pair<std::string, std::string>> &ans){
+    ans.clear();
+    for(std::string tmp : defiList){
+        std::pair<std::string, std::string> defiAfterSplit;
+        splitEachDefi(tmp, defiAfterSplit);
+        ans.push_back(defiAfterSplit);
+    }
+    sort(ans.begin(),  ans.end());
 }
