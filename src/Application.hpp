@@ -3,10 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Component.hpp"
+
 class Application
 {
 public:
 	Application();
+	virtual ~Application();
 	
 	void run();
 
@@ -17,6 +20,7 @@ public:
 private:
 	int window_width_, window_height_, window_style_;
 	sf::String window_title_;
+	std::vector<Frontend::Component*> components_;
 };
 
 #endif

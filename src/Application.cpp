@@ -7,7 +7,28 @@ Application::Application()
 	: window_width_(1280), window_height_(720),
 	  window_title_("CS163 Dictionary")
 {
+	Frontend::TextBox *text_box = new Frontend::TextBox;
+	text_box->setPosition(701, 18);
+	
+	Frontend::SideBar *side_bar = new Frontend::SideBar;
+	side_bar->setPosition(0, 70);
+	
+	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
+	definition_frame->setPosition(330, 70);
+	definition_frame->setKeyword("welcome");
+	
+	components_ = std::move(std::vector<Frontend::Component*>
+							{text_box, side_bar, definition_frame});
+	
 	run();
+}
+
+Application::~Application()
+{
+	for (auto component : components_)
+	{
+		delete component;
+	}
 }
 
 void Application::run()
@@ -15,14 +36,6 @@ void Application::run()
     sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
 							getWindowTitle(),
 							sf::Style::Titlebar | sf::Style::Close);
-
-	Frontend::TextBox text_box;
-	text_box.setPosition(701, 18);
-	Frontend::SideBar side_bar;
-	side_bar.setPosition(0, 70);
-	Frontend::DefinitionFrame definition_frame;
-	definition_frame.setPosition(330, 70);
-	definition_frame.setKeyword("welcome");
 
     while (window.isOpen())
     {
@@ -36,16 +49,25 @@ void Application::run()
 				break;
 
 			default:
-				text_box.processEvent(event);
-				side_bar.processEvent(event);
 				break;
 			}
         }
+		for (auto component : components_)
+		{
+			if (component->isVisible())
+			{
+				component->processEvent(event);	
+			}
+		}
 
-        window.clear(sf::Color::White);
-		window.draw(text_box);
-		window.draw(side_bar);
-		window.draw(definition_frame);
+		window.clear(sf::Color::White);
+		for (auto component : components_)
+		{
+			if (component->isVisible())
+			{
+				window.draw(*component);	
+			}
+		}
         window.display();
     }
 }
