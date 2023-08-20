@@ -2,10 +2,25 @@
 #include "TextBox.hpp"
 #include "SideBar.hpp"
 #include "DefinitionFrame.hpp"
+#include "header.hpp"
 
 Application::Application()
 	: window_width_(1280), window_height_(720),
 	  window_title_("CS163 Dictionary")
+{
+	setup();
+	run();
+}
+
+Application::~Application()
+{
+	for (auto component : components_)
+	{
+		delete component;
+	}
+}
+
+void Application::setup()
 {
 	Frontend::TextBox *text_box = new Frontend::TextBox;
 	text_box->setPosition(701, 18);
@@ -16,19 +31,11 @@ Application::Application()
 	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
 	definition_frame->setPosition(330, 70);
 	definition_frame->setKeyword("welcome");
+
+	Frontend::Header *header = new Frontend::Header;
 	
 	components_ = std::move(std::vector<Frontend::Component*>
-							{text_box, side_bar, definition_frame});
-	
-	run();
-}
-
-Application::~Application()
-{
-	for (auto component : components_)
-	{
-		delete component;
-	}
+							{text_box, side_bar, definition_frame, header});
 }
 
 void Application::run()
