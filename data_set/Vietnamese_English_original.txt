@@ -309,7 +309,7 @@ su truu tuong	abstrusion
 truu tuong	abstrusity
 su vo ly	absurdness
 do cua toi	abuna
-dòi dào	abundant
+doi dao	abundant
 mot vu no	aburst
 dang lam dung	abusable
 bi lam dung	abused
@@ -807,7 +807,7 @@ adread	adread
 adrian	adrian
 adriatic	adriatic
 adrip	adrip
-khéo léo	adroit
+kheo leo	adroit
 chi so quang cao	adscript
 adstrict	adstrict
 adstrictory	adstrictory
@@ -1000,7 +1000,7 @@ ma nao	agaty
 Cay thua	agave
 lau doi	agedly
 khong tuoi tac	ageless
-hãng	agency
+hang	agency
 chuong trinh nghi su	agenda
 duoc hoan thanh	agendum
 tuoi thanh nien	agenesis
@@ -1427,7 +1427,7 @@ alloxanic	alloxanic
 alloxantin	alloxantin
 hop kim	alloyage
 hop kim hoa	alloying
-Mọi thu	allthing
+Moi thu	allthing
 noi bong noi gio	alluded
 aluminor	alluminor
 alluvia	alluvia
@@ -2754,7 +2754,7 @@ tong giam muc	archbishopric
 Archchamberlain	archchamberlain
 tong thu tuong	archchancellor
 thieu mau nao	archchemic
-chuc vu kien ​​truc su	archdeaconship
+chuc vu kien truc su	archdeaconship
 tong giao phan	archdiocese
 tong tai	archducal
 Archduke	archduke
@@ -2782,8 +2782,6 @@ archimandrite	archimandrite
 archimedean	archimedean
 Archimedes	archimedes
 quan dao	archipelago
-nu kien ​​truc su	architectress
-nganh kien ​​​​truc	architecture
 archivolt	archivolt
 vom hau	archlute
 vom	archly
@@ -3113,7 +3111,6 @@ boc len	aspersing
 aspersoir	aspersoir
 nhua hoa	asphaltic
 asphodel	asphodel
-sụ ngọp thỏ	asphyxia
 ngat tho	asphyxy
 asp	aspic
 aspidobranchia	aspidobranchia
@@ -3127,7 +3124,6 @@ assamar	assamar
 nguoi assamese	assamese
 bi am sat	assassinated
 am sat	assassinating
-Sụ am sat	assassination
 ke am sat	assassinator
 nguoi khao nghiem	assayer
 khao nghiem	assaying
@@ -3196,7 +3192,6 @@ benh hen suyen	asthmatic
 nguoi bi suy nhuoc	astigmatic
 astir	astir
 aston	aston
-kinh ngạc	astonishing
 astonying	astonying
 astoop	astoop
 astrachan	astrachan
@@ -3462,7 +3457,6 @@ khong co tham quyen	authorless
 co tac gia	authorly
 quyen tac gia	authorship
 tac gia	authotype
-Tụ dọng-	auto-
 auto-de-fe	auto-de-fe
 tu truyen	autobiographies
 nguoi viet tu truyen	autobiographist
@@ -3574,7 +3568,6 @@ avowee	avowee
 nguoi tien phong	avower
 avulse	avulse
 da cho doi	awaited
-thuc dạy	awaked
 su thuc tinh	awakenment
 nguoi trao giai	awarder
 di xa	awayward
@@ -6629,7 +6622,6 @@ cacuminal	cacuminal
 dau no	cacuminate
 cad	cad
 cadaster	cadaster
-tái mét	cadaverous
 Chadbait	cadbait
 caddice	caddice
 caddis	caddis
@@ -7542,7 +7534,6 @@ catarrhine	catarrhine
 catarrhous	catarrhous
 catastaltic	catastaltic
 benh catastasis	catastasis
-Thảm khoc	catastrophe
 catawba	catawba
 catawbas	catawbas
 catbird	catbird
@@ -9654,7 +9645,6 @@ mat loi lom	concavo-convex
 co the che giau	concealable
 kem che khuyet diem	concealer
 tu cao	conceit
-tuỏng tuọng	conceive
 nguoi thu thai	conceiver
 nguoi tap trung	concenter
 nong do	concentration
@@ -9919,7 +9909,6 @@ nha quan ly	consistorial
 lanh su quan bien	consolato del mare
 nguoi an ui	consolator
 ban dieu khien	consoler
-hop nhat, củng có	consolidated
 hop am	consonancy
 danh mot giac	consopite
 co the phoi hop	consortable
@@ -10116,7 +10105,6 @@ co cum lai	convocating
 su tap hop	convocation
 co nhieu y kien	convocational
 bi thu hut	convoked
-quán lại vói nhau	convoluted
 tich chap	convolution
 cay day leo	convolve
 bim bip	convolvulaceous
@@ -11857,7 +11845,6 @@ thang muoi hai	decenniums
 le hoi thang muoi hai	decennoval
 phan quyen	decentralize
 co the lua duoc	deceptible
-lua bịp	deceptively
 su lua doi	deceptivity
 decharm	decharm
 dechristianize	dechristianize
@@ -12115,7 +12102,6 @@ delphinic	delphinic
 delphinine	delphinine
 delphinoid	delphinoid
 delphinoidea	delphinoidea
-mọt con ca heo	delphinus
 delthyris	delthyris
 deltic	deltic
 deltidium	deltidium
@@ -12446,7 +12432,6 @@ su hoang vang	desolateness
 nguoi lam hoang vang	desolator
 hoang tan	desolatory
 ke tuyet vong	despairer
-NGUÒI LIÈU MẠNG	desperado
 nhung ke tuyet vong	desperadoes
 su hen ha	despicableness
 su khinh thuong	despisement
@@ -12786,7 +12771,6 @@ an kieng	dieting
 chuyen gia dinh duong	dietitian
 Su khac biet	differentia
 voi kho khan	difficultate
-thiéu tụ tin	diffidence
 giam phat	difflation
 chung chay	diffluent
 nhieu xa	diffractive
@@ -13682,7 +13666,6 @@ Drakl	douroucouli
 dung nhieu	doused
 dung thuoc	dousing
 dousing-chock	dousing-chock
-no ỏ dau	dove
 cay bo cau	dove plant
 chan chim bo cau	dove's-foot
 mat bo cau	dove-eyed
@@ -14695,7 +14678,6 @@ nguoi bo tron	eloper
 tai hung bien	eloquence
 Hung hon	eloquently
 elrich	elrich
-rùng rọn	elritch
 noi khac	elsewhere
 elsin	elsin
 Lam sang to	elucidate
@@ -15520,7 +15502,6 @@ epos	epos
 trong su thi	epozoan
 dai nguyen sinh	epozoic
 ong nghiem	eprouvette
-thuoc tảy ma-nhe	epsom salts
 epsoms	epsomite
 su rung trung	epulation
 epulose	epulose
@@ -15889,7 +15870,6 @@ eunuchate	eunuchate
 thuyet eunuchism	eunuchism
 euonymin	euonymin
 euonymus	euonymus
-dẻ anh ta di	euosmitte
 eupatorin eupatorine	eupatorin eupatorine
 Eupatris	eupatrid
 chung dong kinh	eupepsy
@@ -16121,7 +16101,6 @@ nha chu giai	exegetist
 tinh mau muc	exemplariness
 su mau muc	exemplarity
 su minh chung	exemplification
-neu guong, lam mau mục	exemplify
 lam guong	exemplifying
 su mien tru	exemption
 guong mau	exemptitious
@@ -16611,7 +16590,6 @@ que cha dat to	fatherland
 Mo coi cha	fatherless
 mo coi cha	fatherlessness
 tinh cha	fatherliness
-Thuọc vè phu he	fatherly
 quyen lam cha	fathership
 khong co gi dang so	fathomless
 su met moi	fatigue
@@ -16754,7 +16732,6 @@ fennec	fennec
 thi la	fennel
 fenny	fenny
 nguoi ham mo - khong co gi	fensi-ble
-Cay thảo linh lang	fenugreek
 feoffee	feoffee
 nguoi chong do	feoffer
 su chong do	feoffment
@@ -16843,7 +16820,6 @@ feuar	feuar
 moi thu han	feud
 phong kien	feudal
 che do phong kien	feudalist
-phong kien ​​hoa	feudalizing
 lanh chua phong kien	feudist
 moi thu	feudtory
 la chet	feuillemort
@@ -17182,7 +17158,6 @@ co thit	fleshed
 bui bui	fleshiness
 nguoi lam thit	fleshmonger
 den flashpot	fleshpot
-gọi cho toi	fleshquake
 fletch	fletch
 fletcher	fletcher
 lam banh mi	fletching
@@ -17212,7 +17187,6 @@ flingdust	flingdust
 chau chuc	flinger
 kinh da lua	flint glass
 trai tim bang da lua	flint-hearted
-lat vạt	flip-flap
 nguoi lat dat	flipper
 lat	flipping
 tha thinh	flirt
@@ -17267,7 +17241,6 @@ flotson	flotson
 troi noi	flotten
 su hung thinh	flounce
 nay no	flouring
-Hung thịnh	flourish
 tho lam bot mi	flourisher
 khoi sac	flourishes
 hung thinh	flourishingly
@@ -17595,7 +17568,6 @@ Doc truoc	forlese
 choi bo	forlet
 forlie	forlie
 su ren luyen	forlore
-hét hy vọng	forlorn
 su tan nhan	forlornness
 fomandehit	formaldehyde
 chu nghia hinh thuc	formalism
@@ -17880,7 +17852,6 @@ diem xep	fritillaria
 xep hinh	fritillary
 su lanh dam	fritinancy
 lam rau ri	fritted
-chien lan BỌT	fritter
 su rao ruc	fritting
 chu nghia phu phiem	frivolism
 toc xoan	frizzes
@@ -18150,7 +18121,6 @@ gadhelic	gadhelic
 gadic	gadic
 gaditanian	gaditanian
 gadling	gadling
-sụ coi giu	gadman
 gadoid	gadoid
 gadolinia	gadolinia
 gadolinic	gadolinic
@@ -18402,7 +18372,6 @@ don tru	garrisoning
 garron	garron
 garrote	garrote
 garroter	garroter
-già chuyẹn	garrulous
 garupa	garrupa
 garter	garter
 bi cat xen	gartered
@@ -19391,7 +19360,6 @@ vo gougeshell	gougeshell
 khoet lo	gouging
 goujere	goujere
 gouland	gouland
-chiet xuat tu ​​goulards	goulards extract
 hoan ho	goura
 nguoi sanh soi	gourami
 qua bau	gourd
@@ -20396,7 +20364,6 @@ HARAJ	harrage
 tren da	harridan
 lam bua	harrowed
 nguoi lam bua	harrower
-bi thảm	harrowing
 su khac nghiet	harshness
 harslet	harslet
 tho duc	hart
@@ -21303,7 +21270,6 @@ hircic	hircic
 hircin	hircin
 hircine	hircine
 khong thue muon	hireless
-nguòi làm muón	hireling
 Su phan no	hirs
 ram long	hirsuteness
 mot con dia	hirudo
@@ -21392,7 +21358,6 @@ hogchoker	hogchoker
 hogcote	hogcote
 hogframe	hogframe
 may bom chopper	hogger-pump
-dao bàu	hoggerel
 ong chopper	hoggerpipe
 hoggery	hoggery
 ham an	hoggish
@@ -21852,7 +21817,6 @@ humic	humic
 su ngam nga	humicubation
 humifuse	humifuse
 lam nhuc	humiliating
-sụ sỉ nhục	humiliation
 su khiem ton	humilities
 humin	humin
 hummel	hummel
@@ -23132,7 +23096,6 @@ gay kho chiu	indagative
 bo nao	indamage
 khong bi hu hai	indamaged
 indazol	indazol
-nọ	indebt
 mang on	indebted
 khong rung la	indeciduous
 khong the doan duoc	indecimable
@@ -23781,7 +23744,6 @@ con nguyen ven	intactable
 khong the xam nhap	intactible
 cham khac	intagli
 intaglio	intaglio
-rang của	intaglius
 intail	intail
 dau vao	intake
 so nguyen	integer
@@ -24082,7 +24044,6 @@ trong phan tu	intramolecular
 noi dia	intramundane
 trong nuoc	intranquillity
 khong the xam pham	intransgressible
-có cháp	intransigent
 khong the truyen duoc	intransmissible
 khong the chuyen doi	intransmutable
 ho vao	intrant
@@ -24762,7 +24723,6 @@ jerguer	jerguer
 jerry	jerid
 Toi giat minh	jerkin
 giat	jerking
-thịt kho	jerky
 jeronymite	jeronymite
 Chau au	jeropigia
 giat day	jerquer
@@ -24963,7 +24923,6 @@ da nhay	jumped
 jumpweld	jumpweld
 junartie	junartie
 juncite	juncite
-giao lọ	junction
 cho noi	juncture
 nuoc ep trai cay	juneberry
 jungermannia	jungermannia
@@ -25408,7 +25367,6 @@ nguoi nhay da	klipspringer
 clopemania	klopemania
 gion	knackish
 so truong	knacky
-co kien ​​thuc	knagged
 knaggy	knaggy
 cai nut	knap
 knapbottle	knapbottle
@@ -26032,7 +25990,6 @@ lass	lass
 lassie	lassie
 lassitude	lassitude
 lasslorn	lasslorn
-day cọt ngụa	lasso
 la ca	lassoing
 tre em	laste
 lastery	lastery
@@ -27147,7 +27104,6 @@ tren cau chuyen	lool
 khung cui	loom
 loom-gale	loom-gale
 loon	loon
-dien khùng	loony
 vong vo	loopholed
 den pha	looplight
 loord	loord
@@ -27216,7 +27172,6 @@ lothario	lothario
 nuoc thom	lotion
 nguoi an nhieu	lotos-eater
 danh lo to	lotted
-xo so kien ​​thiet	lotteries
 lo to	lotto
 hoa sen	lotus
 nguoi an hoa sen	lotus-eater
@@ -28259,7 +28214,6 @@ dau marmots	marmottes oil
 marmozet	marmozet
 maronite	maronite
 maronites	maronites
-Bỏ roi	maroon
 marooned	marooned
 marooning	marooning
 marplot	marplot
@@ -28338,7 +28292,6 @@ mascagni	mascagnin
 mascagnite	mascagnite
 nam tinh hoa	mascled
 linh vat	mascotte
-giong dục	masculine
 maselyn	maselyn
 maser	maser
 tho nghien	masher
@@ -28486,7 +28439,6 @@ maudril	maundril
 maundy thu nam	maundy thursday
 maungy	maungy
 tho lam maurist	maurist
-lang mọ	mausoleum
 tho lam mauther	mauther
 mauvanic	mauvaniline
 mau hoa ca	mauveine
@@ -29417,7 +29369,6 @@ ke khai	miliary
 trieu do la	miliola
 cac milioles	miliolite
 quan chinh tri	miliolitic
-sụ tranh dau	militancy
 quan phiet	militarist
 dieu hoa	militate
 dan quan	militiate
@@ -30014,7 +29965,6 @@ molypden	molybdenum
 molybdic	molybdic
 molybdite	molybdite
 molybdous	molybdous
-khoảng khac	moment
 hien hanh	momental
 nhat thoi	momentaneous
 thoi diem	momentany
@@ -30593,7 +30543,6 @@ mucigen	mucigen
 mucin	mucin
 mucinogen	mucinogen
 mucivore	mucivore
-váy bản	muck
 nguoi ngu ngoc	mucker
 nguoi lam nhay	muckerer
 muckmidden	muckmidden
@@ -30899,7 +30848,6 @@ lam bam	mutteringly
 thit cuu	muttony
 chu nghia tuong ho	mutualism
 tuong ho	mutuality
-ho trọ	mutually
 loi nguyen rua	mutuary
 su dot bien	mutuation
 Hay yen lang	mutule
@@ -31290,7 +31238,6 @@ khan choang co	neckweed
 thuoc sinh hoc	necrobiotic
 nha nghien cuu tu hoc	necrologist
 su hoai tu	necrology
-thày chieu hòn	necromancer
 thuoc ve dai duong	necromantic
 thuoc ve y hoc	necromantical
 thuoc hoai tu	necronite
@@ -32807,7 +32754,6 @@ Nho kho	raisin
 Ravel	raivel
 raj	raj
 raja	raja
-nhan vạt	rajah
 rajahship	rajahship
 rajpoot	rajpoot
 rajput	rajput
@@ -33330,7 +33276,6 @@ dai bang do	red-riband
 ngan mau do	red-short
 Tapism do	red-tapism
 bi mat do	red-tapist
-bien tạp	redact
 su bien tap	redaction
 redargue	redargue
 quan sat lai	redargued
@@ -33658,7 +33603,6 @@ gioi thieu lai	reintroduce
 sang tao lai	reinvestigate
 tai phat trien	reinvolve
 cac vi vua	reis
-bị cao	reis effendi
 mang tai phat hanh	reissner's membrane
 cap lai	reissuable
 phat hanh lai	reissue
@@ -34072,7 +34016,6 @@ may cong huong	resonator
 chat hap phu	resorbent
 resorcin	resorcin
 resorcylic	resorcylic
-tai hap thụ	resorption
 nguoi ban lai	resorter
 thao vat	resourceful
 khong co tai nguyen	resourceless
@@ -34273,7 +34216,6 @@ cong queo	reverencer
 su hoi tuong	reverencing
 cung kinh	reverent
 nguoi ton kinh	reverer
-sụ mo tuỏng	reverie
 nguoc lai	reversely
 co the dao nguoc	reversibly
 su dao nguoc	reversionary
@@ -35571,7 +35513,6 @@ samphire	samphire
 vat mau	sample
 nguoi lay mau	sampler
 luan hoi	samshoo
-Sam 丨	samshu
 con sam	samson
 sanable	sanable
 sanation	sanation
@@ -36028,7 +35969,6 @@ su hoa da	scarification
 nguoi lam kinh di	scarificator
 ban do	scarlatina
 khong seo	scarless
-dỏ tuoi	scarlet
 vu khi trang bi	scarmage
 bo hung	scaroid
 seo	scarring
@@ -36054,7 +35994,6 @@ scazon	scazon
 toi pham	scelerat
 canh dep	sceneful
 nguoi lam canh	scenemen
-phong cảnh	scenery
 nguoi chuyen canh	sceneshifter
 co canh dep thien nhien	scenic
 lam thom	scenting
@@ -36149,7 +36088,6 @@ schwenkfeldian	schwenkfeldian
 sciaenoid	sciaenoid
 sciagraph	sciagraph
 sciamachy	sciamachy
-dau than kinh toạ	sciatical
 ve mat khoa hoc	sciatically
 thuoc ve khoa hoc	scientific
 nha khoa hoc	scientist
@@ -36524,7 +36462,6 @@ tau bien	sea flewer
 ga bien	sea fowl
 cao bien	sea fox
 may do bien	sea gauge
-sea ​​gherkin	sea gherkin
 gung bien	sea ginger
 nau an bien	sea girkin
 than bien	sea god
@@ -36548,7 +36485,6 @@ thach bien	sea jelly
 cai xoan bien	sea kale
 vua bien	sea king
 day buoc bien	sea laces
-ca mut da biẻn	sea lamprey
 tieng bien	sea language
 be lark	sea lark
 hoa oai huong bien	sea lavender
@@ -36981,7 +36917,6 @@ tu di chuyen	self-moving
 ke tu sat	self-murderer
 tu bo qua	self-neglecting
 tu mot minh	self-one
-y kien ​​cua ban than	self-opinion
 tinh tu cao tu dai	self-partiality
 tu boi roi	self-perplexed
 tu cho minh	self-posited
@@ -38366,7 +38301,6 @@ siskin	siskin
 may do dia chan	sismometer
 du kich	siss
 sissoo	sissoo
-chị dau	sister-in-law
 tinh chi em	sisterly
 chi dau	sisters-in-law
 sistine	sistine
@@ -38917,7 +38851,6 @@ vua khit	snugly
 su am cung	snugness
 anh cat	snypy
 cai goi la	so-called
-Tam tạm	so-so
 ngam minh	soaking
 xa bong	soap
 cay xa phong	soapberry tree
@@ -39031,7 +38964,6 @@ nguoi di giay dep	solecist
 doc ton	solecistic
 da voi	solecize
 co de	soled
-co dọc	solely
 le trong	solemnities
 nguoi trang trong	solemnizer
 trang trong	solemnizing
@@ -39082,7 +39014,6 @@ niem vui	soliitation
 soliloquies	soliloquies
 loi giai thich	soliloquize
 giai doc	soliloquizing
-nguòi nói mọt mình	soliloquy
 dam duoi	soliped
 thom	solipedous
 thuyet duy nga	solipsism
@@ -39396,7 +39327,6 @@ luoi noi	spakenet
 dao phay	spalding knife
 se chay	spale
 spalpeen	spalpeen
-khoảng cách	spalt
 dao che	spalting knife
 span-moi	span-new
 chung tang huyet ap	spanaemia
@@ -39886,7 +39816,6 @@ banh xich	sprocket wheel
 sprod	sprod
 nhay	sprong
 nay mam	sprouting
-cay bách tung	spruce
 su dam choi	sprucing
 sprue	sprue
 da noi	sprug
@@ -39906,7 +39835,6 @@ spurgall	spurgall
 theo doi tu	spurgewort
 khong co suc	spurless
 spurling-line	spurling-line
-cụ tuyẹt	spurn
 nuoc phun	spurn-water
 bi hat hui	spurned
 nguoi thuc day	spurner
@@ -40836,7 +40764,6 @@ day khap khieng	stringhalt
 soi day	stringpiece
 co nhieu day	stringy
 dai la	strip-leaf
-vạch sọc	stripe
 soc	striped
 vach ao	striping
 vu nu thoat y	stripper
@@ -41368,7 +41295,6 @@ nguoi phuc tung	subtenant
 gia vo	subtending
 chay ra duoi	subterfluent
 khong thua	subterfluous
-sụ thoái thác	subterfuge
 duoi long dat	subterraneous
 subterrene	subterrene
 duoi trai dat	subterrestrial
@@ -42578,7 +42504,6 @@ tachygraphical	tachygraphical
 thuat in tachygraphy	tachygraphy
 tachilite	tachylyte
 Ngam ngam	tacit
-tràm mạc	taciturn
 su lam li	taciturnity
 tack	tack
 tackey	tackey
@@ -42814,13 +42739,11 @@ tham trang tri	tapiser
 Su am ap	tapish
 voi rong	taplings
 xong	tapoa tafa
-võ nhẹ	tappen
 nguoi khai thac	tapper
 nhan dan	tappester
 tappice	tappice
 khai thac	tapping
 bi giet	tappis
-bạn da giet anh ay	tappit hen
 phong tap	taproom
 re cai	taproot
 tapster	tapster
@@ -43760,7 +43683,6 @@ therial	therial
 theriodon	theriodont
 rang cua	theriodontia
 co the hoc	theriotomy
-nhiẹt	thermally
 nhiet	thermic
 thermifugine	thermifugine
 nhiet dien-	thermo-
@@ -43893,7 +43815,6 @@ cay thistly	thistly
 cai khac	thither
 ve sau	thitherward
 thitsee	thitsee
-sụ sàu nảo	thlipsis
 thole	thole
 tholed	tholed
 tholing	tholing
@@ -45058,7 +44979,6 @@ Sieu nhan	transhuman
 xuyen nhan loai	transhumanize
 qua do	transiency
 tinh xuyen suot	transiliency
-vuọt qua	transire
 Bac cau	transitive
 qua canh	transitoriness
 tam thoi	transitory
@@ -45489,7 +45409,6 @@ trimembral	trimembral
 trimera	trimera
 trimaran	trimeran
 trimesitic	trimesitic
-khoảng ba tháng	trimester
 hang quy	trimestrial
 ba met	trimeter
 trimethyl	trimethyl
@@ -45637,7 +45556,6 @@ tham yeu	triturium
 trityl	trityl
 tritylene	tritylene
 dac thang	triumpher
-Tam dàu ché	triumviri
 bo ba	triumvirs
 triumviry	triumviry
 triune	triune
@@ -45689,7 +45607,6 @@ trochus	trochus
 trod	trod
 cuoi ngua	trodden
 trode	trode
-nguòi ỏ hang	troglodyte
 troglodytes	troglodytes
 troglodytic	troglodytical
 trogonoid	trogonoid
@@ -46899,7 +46816,6 @@ chua xong	unfinished
 khong xac nhan	unfirm
 khong thich hop	unfit
 bo sua loi	unfix
-khong co kien ​​thuc	unfledged
 khong linh hoat	unflexible
 khong nao nung	unflinching
 mo hoa	unflower
@@ -48026,11 +47942,9 @@ wallonia	valonia
 valsalvian	valsalvian
 quy gia	valuable
 dinh gia	valuation
-khong có giá trị	valueless
 nguoi dinh gia	valuer
 dinh gia tri	valuing
 dung cam	valvasor
-bảo vẹ	valvata
 ban bao ve	valvate
 van nuoc	valve
 van-vo	valve-shell
@@ -48067,7 +47981,6 @@ tan bien	vanish
 bien mat	vanishing
 su bien mat	vanishment
 phu phiem	vanities
-Tụ phụ	vanity
 vanjas	vanjas
 nhieu nuoc	vanner
 dieu hau nuoc	vanner hawk
@@ -48135,7 +48048,6 @@ nguoi danh vecni	varnisher
 varuna	varuna
 tren ngon chan	varvel
 danh vecni	varveled
-thay dỏi	vary
 thay doi	varying
 vasa	vasa
 tau dang kinh	vasa deferentia
@@ -48254,7 +48166,6 @@ min nhu nhung	velvety
 vena	vena
 tinh mach chu	venae cavae
 tinh mach cua canh cong	venae portae
-dẻ hói lọ	venal
 venality	venality
 venally	venally
 dang toi	venantes
@@ -48643,7 +48554,6 @@ tiep te	victualling
 luong thuc	victuals
 bi danh bai	victus
 vicu a	vicu a
-vicuña	vicugna
 cuoc song chim se	vida finch
 vidame	vidame
 vide	vide
@@ -49486,7 +49396,6 @@ nai con nuoc	water deerlet
 quy nuoc	water devil
 ben nuoc	water dock
 bac si nuoc	water doctor
-hải cảu	water dog
 thoat nuoc	water drainage
 thay nuoc	water dressing
 giot nuoc	water dropwort
@@ -50348,7 +50257,6 @@ nguoi danh gio	windsor
 gio bao	windstorm
 kin gio	windtight
 thuan gio	windward
-có gió	windy
 ruou	wine
 ruou vang	wineberry
 yem ruou	winebibber
