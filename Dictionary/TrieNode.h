@@ -40,6 +40,11 @@ public:
     // Question 3
 
     void checkSubString(std::string curWord, std::string &subDefi, std::vector<std::string> &ans, checker &checkST);
+
+    // Phong request
+
+    void takeKWord(std::string &word, int need, std::vector<std::string> &ans);
+
 public:
     TrieNode *edges[TrieSize];
     bool isEndOfWord;
