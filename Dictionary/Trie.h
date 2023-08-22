@@ -70,6 +70,8 @@ std::vector<int>& correctOption, int index);
     void addToHistory(std::string word, std::string &message);
     void takeHistory(std::vector<std::string> &historyList, std::string &message);
 
+    // Phong task
+    auto take_First_K_Word(int k) -> std::vector<std::string>;
 
 private:
     void readData_FavoriteList(std::vector<std::string> &fav, std::string &message);

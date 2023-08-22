@@ -115,6 +115,20 @@ void TrieNode::allSuggestWord(std::string &subWord, std::vector<std::string> &su
     }
 }
 
+void TrieNode::takeKWord(std::string &word, int need, std::vector<std::string> &ans){
+    for(int i = 0; i < TrieSize; ++i){
+        if(!this->edges[i])
+            continue;
+        word += convertNumToChar(i);
+        if(this->edges[i]->isEndOfWord)
+            ans.push_back(word);
+        if(ans.size() == need) return;
+        this->edges[i]->takeKWord(word, need, ans);
+        if(ans.size() == need) return;
+        word.pop_back();
+    }
+}
+
 void TrieNode::checkSubString(std::string curWord, std::string &subDefi, std::vector<std::string> &ans, checker &checkST){
     for(int i = 0; i < TrieSize; ++i){
         if(this->edges[i] == nullptr)

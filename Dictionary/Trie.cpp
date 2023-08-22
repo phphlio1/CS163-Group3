@@ -8,7 +8,7 @@ Trie::Trie(Datasets::ID _type) : root(nullptr), typeOfDict(_type), num_line(0) {
 
 Trie::~Trie() { delete root; root = nullptr;}
 
-void Trie::delete_Whole_Trie() { delete root; root = nullptr;}
+void Trie::delete_Whole_Trie() { delete root; root = nullptr; num_line = 0;}
 
 void Trie::build_Trie_EngEng()
 {
@@ -19,7 +19,7 @@ void Trie::build_Trie_EngEng()
         std::cout << "File cannot open!\n";
         return;
     }
-    root = new TrieNode;
+    root = new TrieNode();
     while (!fin.eof())
     {
         std::string word, defi;
@@ -36,14 +36,12 @@ void Trie::build_Trie_From_Origin(std::string &message)
     std::ifstream fin;
     fin.open(preAdress + originFileName[typeOfDict]);
 
-    if (typeOfDict == Datasets::Eng_Viet)
-
-        if (!fin.is_open())
-        {
-            message = "File cannot open!";
-            return;
-        }
-    root = new TrieNode;
+    if (!fin.is_open())
+    {
+        message = "File cannot open!";
+        return;
+    }
+    root = new TrieNode();
     while (!fin.eof())
     {
         std::string word, defi;
@@ -63,7 +61,7 @@ void Trie::addWordAndDefiToTrie(std::string word, std::string defi)
     {
         int index = convertCharToNum(word[i]);
         if (!cur->edges[index])
-            cur->edges[index] = new TrieNode;
+            cur->edges[index] = new TrieNode();
         cur = cur->edges[index];
     }
     cur->isEndOfWord = true;
@@ -135,7 +133,7 @@ void Trie::Deserialization_DFS(std::string &message)
     }
     std::string str1;
     getline(fin, str1, '_');
-    root = new TrieNode;
+    root = new TrieNode();
     getline(fin, str1, '_');
     getline(fin, str1, '_');
     root->isEndOfWord = false;
@@ -218,10 +216,11 @@ void Trie::resetToOriginal(std::string &message)
 }
 
 void Trie::resetFile(){
-    std::ofstream fo(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
+    std::ofstream fo;
+    fo.open(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
     fo.close();
-    std::ofstream fon(preAdress + FileName[typeOfDict] + historyName);
-    fon.close();
+    fo.open(preAdress + FileName[typeOfDict] + historyName);
+    fo.close();
 }
 
 ///////////////////////////////////////////////////
@@ -232,6 +231,7 @@ void Trie::getRandomWordAndDefi(std::string &word, std::vector<std::string> &def
     std::string tmpWord;
     defiList.clear();
     fin.open(preAdress + originFileName[typeOfDict]);
+    
     while (true)
     {
         int line = generator() % num_line;
@@ -550,4 +550,11 @@ void split_Definition(std::vector<std::string> &defiList, std::vector<std::pair<
         ans.push_back(defiAfterSplit);
     }
     sort(ans.begin(),  ans.end());
+}
+
+auto Trie::take_First_K_Word(int k) -> std::vector<std::string>{
+    std::string tmp = "";
+    std::vector<std::string> ans;
+    root->takeKWord(tmp, k, ans);
+    return ans;
 }

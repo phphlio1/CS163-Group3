@@ -7,14 +7,15 @@ int main()
     // std::string message = "";
     // obj->build_Trie_From_Origin(message);
     // std::vector<std::string> defiList;
-
+    // std::cout << message << "\n";
     // Trie* obj[4];
     // obj[0] = new Trie(Datasets::Eng_Eng);
-    // Trie* obj = new Trie(Datasets::Eng_Viet);
-    // // obj[2] = new Trie(Datasets::Viet_Eng);
+    // // Trie* obj = new Trie(Datasets::Eng_Viet);
+    // obj[2] = new Trie(Datasets::Eng_Viet);
     // obj[3] = new Trie(Datasets::Emoji);
     // std::string message = "";
-    // obj->build_Trie_From_Origin(message);
+    // obj[2]->build_Trie_From_Origin(message);
+    // obj[2]->Serialization_DFS(message);
     // std::cout << message << "\n";
     // obj->Serialization_DFS(message);
     // std::cout << message << "\n";
@@ -29,34 +30,9 @@ int main()
     //     std::cout << message << "\n";
     // }
     // std::cout << "------------------------------------------\n";
-
-    // for(int i = 0; i < 4; ++i){
-    //     if(i == 2)
-    //         continue;
-    //     obj[i]->Serialization_DFS(message);
-    //     std::cout << message << "\n";
-    // }
-    // std::cout << "------------------------------------------\n";
-
-    // for(int i = 0; i < 4; ++i){
-    //     if(i == 2)
-    //         continue;
-    //     obj[i]->Deserialization_DFS(message);
-    //     std::cout << message << "\n";
-    // }
-    // std::cout << "------------------------------------------\n";
-    
-    // obj[0]->findWordInTrie("-ably", defiList);
-    // for(std::string tmp : defiList)
-    //     std::cout << tmp << "\n";
-    // std::cout << "------------------------------------------\n";
-
-    // obj[1]->findWordInTrie("adaptability", defiList);
-    // for(std::string tmp : defiList)
-    //     std::cout << tmp << "\n";
-    // std::cout << "------------------------------------------\n";
-
-    // obj[3]->findWordInTrie("ASDFGHJKL", defiList);
+    // obj[2]->Deserialization_DFS(message);
+    // std::cout << message << "\n";
+    // std::cout << obj[2]->findWordInTrie("'em", defiList) << "\n";
     // for(std::string tmp : defiList)
     //     std::cout << tmp << "\n";
     // std::cout << "------------------------------------------\n";
@@ -244,6 +220,6 @@ int main()
     // delete obj;
     // delete obj[2];
     // delete obj[3];
-    // delete obj
+    // delete obj;
     return 0;
 }
