@@ -1,5 +1,4 @@
-node_0_1_
-node_16_0_node_47_0_node_55_1_'em
+node_0_0_node_16_0_node_47_0_node_55_1_'em
 #_#_node_55_0_node_57_0_node_56_0_node_49_0_node_61_0_node_62_1_'mongst
 #_#_#_#_#_#_node_56_0_node_47_0_node_43_0_node_62_0_node_50_1_'neath
 #_#_#_#_#_node_61_1_'S
@@ -310,7 +309,7 @@ node_56_0_node_47_0_node_61_0_node_61_1_tinh kieng cu
 #_#_node_62_0_node_67_1_truu tuong
 #_#_#_#_#_#_#_node_63_0_node_60_0_node_46_0_node_56_0_node_47_0_node_61_0_node_61_1_su vo ly
 #_#_#_#_#_#_#_#_node_63_0_node_56_0_node_43_1_do cua toi
-#_node_46_0_node_43_0_node_56_0_node_62_1_dòi dào
+#_node_46_0_node_43_0_node_56_0_node_62_1_doi dao
 #_#_#_#_#_node_60_0_node_61_0_node_62_1_mot vu no
 #_#_#_node_61_0_node_43_0_node_44_0_node_54_0_node_47_1_dang lam dung
 #_#_#_#_node_47_0_node_46_1_bi lam dung
@@ -808,7 +807,7 @@ node_51_0_node_61_0_node_62_1_nguoi nhan con nuoi
 #_#_#_node_51_0_node_43_0_node_56_1_adrian
 #_node_62_0_node_51_0_node_45_1_adriatic
 #_#_#_#_node_58_1_adrip
-#_#_node_57_0_node_51_0_node_62_1_khéo léo
+#_#_node_57_0_node_51_0_node_62_1_kheo leo
 #_#_#_#_node_61_0_node_45_0_node_60_0_node_51_0_node_58_0_node_62_1_chi so quang cao
 #_#_#_#_#_node_62_0_node_60_0_node_51_0_node_45_0_node_62_1_adstrict
 node_57_0_node_60_0_node_67_1_adstrictory
@@ -1001,7 +1000,7 @@ node_63_0_node_55_1_agallochum
 #_#_node_64_0_node_47_1_Cay thua
 #_#_#_node_47_0_node_46_0_node_54_0_node_67_1_lau doi
 #_#_#_node_54_0_node_47_0_node_61_0_node_61_1_khong tuoi tac
-#_#_#_#_node_56_0_node_45_0_node_67_1_hãng
+#_#_#_#_node_56_0_node_45_0_node_67_1_hang
 #_#_node_46_0_node_43_1_chuong trinh nghi su
 #_node_63_0_node_55_1_duoc hoan thanh
 #_#_#_node_47_0_node_61_0_node_51_0_node_61_1_tuoi thanh nien
@@ -1428,7 +1427,7 @@ node_43_0_node_62_0_node_47_1_alloxanate
 #_#_node_62_0_node_51_0_node_56_1_alloxantin
 #_#_#_#_#_#_node_67_0_node_43_0_node_49_0_node_47_1_hop kim
 #_#_#_node_51_0_node_56_0_node_49_1_hop kim hoa
-#_#_#_#_#_node_62_0_node_50_0_node_51_0_node_56_0_node_49_1_Mọi thu
+#_#_#_#_#_node_62_0_node_50_0_node_51_0_node_56_0_node_49_1_Moi thu
 #_#_#_#_#_node_63_0_node_46_0_node_47_0_node_46_1_noi bong noi gio
 #_#_#_node_55_0_node_51_0_node_56_0_node_57_0_node_60_1_aluminor
 #_#_#_#_#_node_64_0_node_51_0_node_43_1_alluvia
@@ -2755,7 +2754,7 @@ node_51_0_node_45_1_thien co
 #_#_#_#_#_#_#_#_#_node_45_0_node_50_0_node_43_0_node_55_0_node_44_0_node_47_0_node_60_0_node_54_0_node_43_0_node_51_0_node_56_1_Archchamberlain
 #_#_#_#_#_#_#_#_node_56_0_node_45_0_node_47_0_node_54_0_node_54_0_node_57_0_node_60_1_tong thu tuong
 #_#_#_#_#_#_#_#_node_47_0_node_55_0_node_51_0_node_45_1_thieu mau nao
-#_#_#_#_#_#_node_46_0_node_47_0_node_43_0_node_45_0_node_57_0_node_56_0_node_61_0_node_50_0_node_51_0_node_58_1_chuc vu kien ​​truc su
+#_#_#_#_#_#_node_46_0_node_47_0_node_43_0_node_45_0_node_57_0_node_56_0_node_61_0_node_50_0_node_51_0_node_58_1_chuc vu kien truc su
 #_#_#_#_#_#_#_#_#_node_51_0_node_57_0_node_45_0_node_47_0_node_61_0_node_47_1_tong giao phan
 #_#_#_#_#_#_node_63_0_node_45_0_node_43_0_node_54_1_tong tai
 #_#_#_node_53_0_node_47_1_Archduke
@@ -2783,9 +2782,7 @@ node_57_0_node_45_0_node_50_0_node_51_0_node_43_0_node_56_1_archilochian
 #_#_#_#_#_#_#_node_47_0_node_46_0_node_47_0_node_43_0_node_56_1_archimedean
 #_#_node_61_1_Archimedes
 #_#_#_#_#_node_58_0_node_47_0_node_54_0_node_43_0_node_49_0_node_57_1_quan dao
-#_#_#_#_#_#_node_62_0_node_47_0_node_45_0_node_62_0_node_60_0_node_47_0_node_61_0_node_61_1_nu kien ​​truc su
-#_#_#_#_node_63_0_node_60_0_node_47_1_nganh kien ​​​​truc
-#_#_#_#_#_#_#_node_64_0_node_57_0_node_54_0_node_62_1_archivolt
+#_#_#_#_#_#_node_64_0_node_57_0_node_54_0_node_62_1_archivolt
 #_#_#_#_#_node_54_0_node_63_0_node_62_0_node_47_1_vom hau
 #_#_#_node_67_1_vom
 #_#_node_55_0_node_43_0_node_60_0_node_61_0_node_50_0_node_43_0_node_54_1_tong thong
@@ -3114,8 +3111,7 @@ node_51_0_node_48_0_node_57_0_node_60_0_node_55_1_aspergilliform
 #_#_#_node_57_0_node_51_0_node_60_1_aspersoir
 #_#_#_#_#_#_node_50_0_node_43_0_node_54_0_node_62_0_node_51_0_node_45_1_nhua hoa
 #_#_#_#_#_node_57_0_node_46_0_node_47_0_node_54_1_asphodel
-#_#_#_#_node_67_0_node_66_0_node_51_0_node_43_1_sụ ngọp thỏ
-#_#_node_67_1_ngat tho
+#_#_#_#_node_67_0_node_66_0_node_67_1_ngat tho
 #_#_#_#_node_51_0_node_45_1_asp
 #_node_46_0_node_57_0_node_44_0_node_60_0_node_43_0_node_56_0_node_45_0_node_50_0_node_51_0_node_43_1_aspidobranchia
 #_#_#_#_#_#_#_#_#_#_node_60_0_node_43_0_node_56_0_node_62_1_nguoi khao khat
@@ -3128,7 +3124,6 @@ node_51_0_node_48_0_node_57_0_node_60_0_node_55_1_aspergilliform
 #_#_node_47_0_node_61_0_node_47_1_nguoi assamese
 #_#_#_#_node_61_0_node_61_0_node_51_0_node_56_0_node_43_0_node_62_0_node_47_0_node_46_1_bi am sat
 #_#_node_51_0_node_56_0_node_49_1_am sat
-#_#_node_57_0_node_56_1_Sụ am sat
 #_#_#_node_57_0_node_60_1_ke am sat
 #_#_#_#_#_#_#_#_node_67_0_node_47_0_node_60_1_nguoi khao nghiem
 #_#_node_51_0_node_56_0_node_49_1_khao nghiem
@@ -3197,8 +3192,7 @@ node_62_0_node_51_0_node_45_1_benh hen suyen
 #_#_#_#_#_#_node_51_0_node_49_0_node_55_0_node_43_0_node_62_0_node_51_0_node_45_1_nguoi bi suy nhuoc
 #_#_#_#_#_#_node_60_1_astir
 #_#_node_57_0_node_56_1_aston
-node_51_0_node_61_0_node_50_0_node_51_0_node_56_0_node_49_1_kinh ngạc
-#_#_#_#_#_#_node_67_0_node_51_0_node_56_0_node_49_1_astonying
+node_67_0_node_51_0_node_56_0_node_49_1_astonying
 #_#_#_#_#_node_57_0_node_58_1_astoop
 #_#_#_node_60_0_node_43_0_node_45_0_node_50_0_node_43_0_node_56_1_astrachan
 #_#_#_#_node_47_0_node_43_0_node_56_1_astraean
@@ -3463,8 +3457,7 @@ node_43_0_node_61_0_node_51_0_node_43_0_node_56_1_australasian
 #_#_#_node_67_1_co tac gia
 #_#_node_61_0_node_50_0_node_51_0_node_58_1_quyen tac gia
 #_#_#_#_#_node_62_0_node_67_0_node_58_0_node_47_1_tac gia
-#_#_#_#_#_#_node_57_0_node_22_1_Tụ dọng-
-node_46_0_node_47_0_node_22_0_node_48_0_node_47_1_auto-de-fe
+#_#_#_#_#_#_node_57_0_node_22_0_node_46_0_node_47_0_node_22_0_node_48_0_node_47_1_auto-de-fe
 #_#_#_#_#_#_node_44_0_node_51_0_node_57_0_node_49_0_node_60_0_node_43_0_node_58_0_node_50_0_node_51_0_node_47_0_node_61_1_tu truyen
 #_#_node_61_0_node_62_1_nguoi viet tu truyen
 #_#_#_#_#_#_#_#_#_#_#_node_45_0_node_43_0_node_60_0_node_58_0_node_51_0_node_43_0_node_56_1_autocarpian
@@ -3575,8 +3568,7 @@ node_43_0_node_56_0_node_45_0_node_47_1_su san sang
 #_node_60_1_nguoi tien phong
 #_#_#_#_node_63_0_node_54_0_node_61_0_node_47_1_avulse
 #_#_#_#_#_node_65_0_node_43_0_node_51_0_node_62_0_node_47_0_node_46_1_da cho doi
-#_#_#_#_node_53_0_node_47_0_node_46_1_thuc dạy
-#_node_56_0_node_55_0_node_47_0_node_56_0_node_62_1_su thuc tinh
+#_#_#_#_node_53_0_node_47_0_node_56_0_node_55_0_node_47_0_node_56_0_node_62_1_su thuc tinh
 #_#_#_#_#_#_#_node_60_0_node_46_0_node_47_0_node_60_1_nguoi trao giai
 #_#_#_#_node_67_0_node_65_0_node_43_0_node_60_0_node_46_1_di xa
 #_#_#_#_#_#_node_53_1_awk
@@ -6630,8 +6622,7 @@ node_43_0_node_54_1_cacophonical
 #_node_62_0_node_47_1_dau no
 #_#_#_#_#_#_#_#_node_46_1_cad
 node_43_0_node_61_0_node_62_0_node_47_0_node_60_1_cadaster
-#_#_#_#_node_64_0_node_47_0_node_60_0_node_57_0_node_63_0_node_61_1_tái mét
-#_#_#_#_#_#_#_node_44_0_node_43_0_node_51_0_node_62_1_Chadbait
+#_#_#_#_#_node_44_0_node_43_0_node_51_0_node_62_1_Chadbait
 #_#_#_#_node_46_0_node_51_0_node_45_0_node_47_1_caddice
 #_#_node_61_1_caddis
 #_#_node_57_0_node_65_1_Trang
@@ -7543,8 +7534,7 @@ node_43_0_node_54_1_catarrhal
 #_#_#_node_57_0_node_63_0_node_61_1_catarrhous
 #_#_#_#_#_#_node_61_0_node_62_0_node_43_0_node_54_0_node_62_0_node_51_0_node_45_1_catastaltic
 #_#_#_#_node_61_0_node_51_0_node_61_1_benh catastasis
-#_#_#_#_node_60_0_node_57_0_node_58_0_node_50_0_node_47_1_Thảm khoc
-#_#_#_#_#_#_#_node_65_0_node_44_0_node_43_1_catawba
+#_#_#_#_#_#_node_65_0_node_44_0_node_43_1_catawba
 node_61_1_catawbas
 #_#_#_#_#_node_44_0_node_51_0_node_60_0_node_46_1_catbird
 #_#_#_node_57_0_node_43_0_node_62_1_ca no
@@ -9655,8 +9645,7 @@ node_61_0_node_50_0_node_51_0_node_58_1_tinh dong chi
 #_#_#_#_#_#_#_#_#_#_node_47_0_node_43_0_node_54_0_node_43_0_node_44_0_node_54_0_node_47_1_co the che giau
 #_#_#_#_node_47_0_node_60_1_kem che khuyet diem
 #_#_#_#_node_51_0_node_62_1_tu cao
-#_node_64_0_node_47_1_tuỏng tuọng
-node_60_1_nguoi thu thai
+#_node_64_0_node_47_0_node_60_1_nguoi thu thai
 #_#_#_#_node_56_0_node_62_0_node_47_0_node_60_1_nguoi tap trung
 #_#_node_60_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_nong do
 #_#_#_node_57_0_node_60_1_may tap trung
@@ -9920,8 +9909,7 @@ node_47_1_nguoi nhan hang
 #_#_#_#_#_#_#_#_node_57_0_node_54_0_node_43_0_node_62_0_node_57_0_node_42_0_node_46_0_node_47_0_node_54_0_node_42_0_node_55_0_node_43_0_node_60_0_node_47_1_lanh su quan bien
 #_#_#_#_#_#_#_#_#_node_60_1_nguoi an ui
 #_#_#_#_node_47_0_node_60_1_ban dieu khien
-#_#_node_51_0_node_46_0_node_43_0_node_62_0_node_47_0_node_46_1_hop nhat, củng có
-#_#_#_#_#_#_#_node_56_0_node_43_0_node_56_0_node_45_0_node_67_1_hop am
+#_#_#_node_56_0_node_43_0_node_56_0_node_45_0_node_67_1_hop am
 #_#_#_#_#_node_58_0_node_51_0_node_62_0_node_47_1_danh mot giac
 #_#_#_#_node_60_0_node_62_0_node_43_0_node_44_0_node_54_0_node_47_1_co the phoi hop
 #_#_#_#_node_51_0_node_56_0_node_49_1_nhap hang
@@ -10117,8 +10105,7 @@ node_1_0_node_51_0_node_44_0_node_54_0_node_47_1_co the ket toi
 #_#_node_57_0_node_56_1_su tap hop
 node_43_0_node_54_1_co nhieu y kien
 #_#_#_#_#_#_#_#_node_53_0_node_47_0_node_46_1_bi thu hut
-#_#_#_node_54_0_node_63_0_node_62_0_node_47_0_node_46_1_quán lại vói nhau
-#_#_node_51_0_node_57_0_node_56_1_tich chap
+#_#_#_node_54_0_node_63_0_node_62_0_node_51_0_node_57_0_node_56_1_tich chap
 #_#_#_#_#_node_64_0_node_47_1_cay day leo
 #_node_63_0_node_54_0_node_43_0_node_45_0_node_47_0_node_57_0_node_63_0_node_61_1_bim bip
 #_#_#_#_#_#_node_51_0_node_56_1_bim bim biec
@@ -11858,8 +11845,7 @@ node_51_1_cua thang muoi hai
 #_#_#_#_node_57_0_node_64_0_node_43_0_node_54_1_le hoi thang muoi hai
 #_#_#_#_#_node_62_0_node_60_0_node_43_0_node_54_0_node_51_0_node_68_0_node_47_1_phan quyen
 #_#_#_#_#_#_#_#_node_58_0_node_62_0_node_51_0_node_44_0_node_54_0_node_47_1_co the lua duoc
-#_#_#_node_64_0_node_47_0_node_54_0_node_67_1_lua bịp
-#_#_#_node_51_0_node_62_0_node_67_1_su lua doi
+#_#_#_node_64_0_node_51_0_node_62_0_node_67_1_su lua doi
 #_#_#_#_#_#_#_#_node_50_0_node_43_0_node_60_0_node_55_1_decharm
 #_#_#_node_60_0_node_51_0_node_61_0_node_62_0_node_51_0_node_43_0_node_56_0_node_51_0_node_68_0_node_47_1_dechristianize
 node_46_1_dechristianized
@@ -12116,8 +12102,7 @@ node_51_0_node_43_0_node_56_1_delphian
 #_node_56_0_node_47_1_delphinine
 #_#_#_node_57_0_node_51_0_node_46_1_delphinoid
 node_47_0_node_43_1_delphinoidea
-#_#_#_#_#_node_63_0_node_61_1_mọt con ca heo
-#_#_#_#_#_#_node_62_0_node_50_0_node_67_0_node_60_0_node_51_0_node_61_1_delthyris
+#_#_#_#_#_#_#_#_#_node_62_0_node_50_0_node_67_0_node_60_0_node_51_0_node_61_1_delthyris
 #_#_#_#_#_node_51_0_node_45_1_deltic
 #_node_46_0_node_51_0_node_63_0_node_55_1_deltidium
 #_#_#_#_#_node_57_0_node_50_0_node_47_0_node_46_0_node_60_0_node_57_0_node_56_1_khoi tam dien
@@ -12447,8 +12432,7 @@ node_51_0_node_43_0_node_56_1_nguoi desmidian
 #_#_#_#_#_node_57_0_node_60_1_nguoi lam hoang vang
 node_67_1_hoang tan
 #_#_#_#_#_#_#_node_58_0_node_43_0_node_51_0_node_60_0_node_47_0_node_60_1_ke tuyet vong
-#_#_#_#_#_node_47_0_node_60_0_node_43_0_node_46_0_node_57_1_NGUÒI LIÈU MẠNG
-node_47_0_node_61_1_nhung ke tuyet vong
+#_#_#_#_#_node_47_0_node_60_0_node_43_0_node_46_0_node_57_0_node_47_0_node_61_1_nhung ke tuyet vong
 #_#_#_#_#_#_#_node_51_0_node_45_0_node_43_0_node_44_0_node_54_0_node_47_0_node_56_0_node_47_0_node_61_0_node_61_1_su hen ha
 #_#_#_#_#_#_#_#_#_node_61_0_node_47_0_node_55_0_node_47_0_node_56_0_node_62_1_su khinh thuong
 #_#_#_#_node_60_1_ho an
@@ -12787,8 +12771,7 @@ node_47_0_node_60_1_nguoi an kieng
 #_#_node_62_0_node_51_0_node_43_0_node_56_1_chuyen gia dinh duong
 #_#_#_#_#_#_#_node_48_0_node_48_0_node_47_0_node_60_0_node_47_0_node_56_0_node_62_0_node_51_0_node_43_1_Su khac biet
 #_#_#_#_#_#_#_node_51_0_node_45_0_node_63_0_node_54_0_node_62_0_node_43_0_node_62_0_node_47_1_voi kho khan
-#_#_#_#_#_#_#_node_46_0_node_47_0_node_56_0_node_45_0_node_47_1_thiéu tụ tin
-#_#_#_#_#_#_node_54_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_giam phat
+#_#_#_#_#_#_#_#_node_54_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_giam phat
 #_#_#_#_#_node_63_0_node_47_0_node_56_0_node_62_1_chung chay
 #_#_#_#_#_node_60_0_node_43_0_node_45_0_node_62_0_node_51_0_node_64_0_node_47_1_nhieu xa
 #_#_#_#_#_#_#_node_63_0_node_61_0_node_47_0_node_54_0_node_67_1_lan toa
@@ -13683,8 +13666,7 @@ node_57_0_node_63_0_node_45_0_node_57_0_node_63_0_node_54_0_node_51_1_Drakl
 #_#_#_#_#_#_#_#_node_61_0_node_47_0_node_46_1_dung nhieu
 #_#_node_51_0_node_56_0_node_49_1_dung thuoc
 node_22_0_node_45_0_node_50_0_node_57_0_node_45_0_node_53_1_dousing-chock
-#_#_#_#_#_#_#_#_#_#_#_node_64_0_node_47_1_no ỏ dau
-node_16_0_node_61_0_node_22_0_node_48_0_node_57_0_node_57_0_node_62_1_chan chim bo cau
+#_#_#_#_#_#_#_#_#_#_#_node_64_0_node_47_0_node_16_0_node_61_0_node_22_0_node_48_0_node_57_0_node_57_0_node_62_1_chan chim bo cau
 #_#_#_#_#_#_#_node_22_0_node_47_0_node_67_0_node_47_0_node_46_1_mat bo cau
 #_#_#_#_#_node_42_0_node_58_0_node_54_0_node_43_0_node_56_0_node_62_1_cay bo cau
 #_#_#_#_#_#_node_54_0_node_47_0_node_62_1_dovelet
@@ -14696,8 +14678,7 @@ node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_su keo dai
 #_#_#_node_59_0_node_63_0_node_47_0_node_56_0_node_45_0_node_47_1_tai hung bien
 #_#_node_62_0_node_54_0_node_67_1_Hung hon
 #_#_#_#_#_#_#_#_node_60_0_node_51_0_node_45_0_node_50_1_elrich
-#_#_node_62_0_node_45_0_node_50_1_rùng rọn
-#_#_#_#_#_node_61_0_node_47_0_node_65_0_node_50_0_node_47_0_node_60_0_node_47_1_noi khac
+#_#_#_#_node_61_0_node_47_0_node_65_0_node_50_0_node_47_0_node_60_0_node_47_1_noi khac
 #_#_#_#_#_#_node_51_0_node_56_1_elsin
 #_#_#_node_63_0_node_45_0_node_51_0_node_46_0_node_43_0_node_62_0_node_47_1_Lam sang to
 #_node_57_0_node_60_1_nguoi lam sang to
@@ -15521,8 +15502,7 @@ node_54_1_epimeral
 #_node_68_0_node_57_0_node_43_0_node_56_1_trong su thi
 #_#_node_51_0_node_45_1_dai nguyen sinh
 #_#_#_#_#_node_60_0_node_57_0_node_63_0_node_64_0_node_47_0_node_62_0_node_62_0_node_47_1_ong nghiem
-#_#_#_#_#_#_#_#_node_61_0_node_57_0_node_55_0_node_42_0_node_61_0_node_43_0_node_54_0_node_62_0_node_61_1_thuoc tảy ma-nhe
-#_#_#_#_#_#_node_51_0_node_62_0_node_47_1_epsoms
+#_#_#_#_#_#_#_#_node_61_0_node_57_0_node_55_0_node_51_0_node_62_0_node_47_1_epsoms
 #_#_#_#_#_#_node_63_0_node_54_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_su rung trung
 #_#_#_#_#_node_57_0_node_61_0_node_47_1_epulose
 #_node_51_0_node_62_0_node_67_1_tinh lich su
@@ -15890,8 +15870,7 @@ node_43_0_node_62_0_node_47_1_eunuchate
 #_#_#_node_51_0_node_61_0_node_55_1_thuyet eunuchism
 #_#_#_#_#_#_#_node_57_0_node_56_0_node_67_0_node_55_0_node_51_0_node_56_1_euonymin
 #_#_node_63_0_node_61_1_euonymus
-#_#_#_#_#_node_61_0_node_55_0_node_51_0_node_62_0_node_62_0_node_47_1_dẻ anh ta di
-#_#_#_#_#_#_#_node_58_0_node_43_0_node_62_0_node_57_0_node_60_0_node_51_0_node_56_0_node_42_0_node_47_0_node_63_0_node_58_0_node_43_0_node_62_0_node_57_0_node_60_0_node_51_0_node_56_0_node_47_1_eupatorin eupatorine
+#_#_#_#_#_#_node_58_0_node_43_0_node_62_0_node_57_0_node_60_0_node_51_0_node_56_0_node_42_0_node_47_0_node_63_0_node_58_0_node_43_0_node_62_0_node_57_0_node_60_0_node_51_0_node_56_0_node_47_1_eupatorin eupatorine
 #_#_#_#_#_#_#_#_#_#_#_#_#_#_#_node_60_0_node_51_0_node_46_1_Eupatris
 #_#_#_#_#_node_47_0_node_58_0_node_61_0_node_67_1_chung dong kinh
 #_#_#_#_node_50_0_node_47_0_node_55_0_node_51_0_node_61_0_node_62_0_node_51_0_node_45_1_uyen ngu
@@ -16122,8 +16101,7 @@ node_43_0_node_54_1_chu giai
 #_#_#_#_#_#_node_55_0_node_58_0_node_54_0_node_43_0_node_60_0_node_51_0_node_56_0_node_47_0_node_61_0_node_61_1_tinh mau muc
 #_#_#_#_node_62_0_node_67_1_su mau muc
 #_#_#_#_#_node_51_0_node_48_0_node_51_0_node_45_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_su minh chung
-#_#_#_#_#_#_#_node_67_1_neu guong, lam mau mục
-node_51_0_node_56_0_node_49_1_lam guong
+#_#_#_#_#_#_#_node_67_0_node_51_0_node_56_0_node_49_1_lam guong
 #_#_#_#_#_#_#_node_62_0_node_51_0_node_57_0_node_56_1_su mien tru
 #_#_node_62_0_node_51_0_node_57_0_node_63_0_node_61_1_guong mau
 #_#_#_#_#_#_#_#_#_node_56_0_node_62_0_node_47_0_node_60_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_su ra suc
@@ -16612,8 +16590,7 @@ node_46_1_bi phat xit hoa
 #_#_#_node_47_0_node_61_0_node_61_1_Mo coi cha
 node_56_0_node_47_0_node_61_0_node_61_1_mo coi cha
 #_#_#_#_#_#_#_node_51_0_node_56_0_node_47_0_node_61_0_node_61_1_tinh cha
-#_#_#_#_#_node_67_1_Thuọc vè phu he
-#_#_node_61_0_node_50_0_node_51_0_node_58_1_quyen lam cha
+#_#_#_#_#_#_node_61_0_node_50_0_node_51_0_node_58_1_quyen lam cha
 #_#_#_#_#_#_node_57_0_node_55_0_node_54_0_node_47_0_node_61_0_node_61_1_khong co gi dang so
 #_#_#_#_#_#_#_node_51_0_node_49_0_node_63_0_node_47_1_su met moi
 #_#_#_node_54_0_node_57_0_node_59_0_node_63_0_node_47_0_node_56_0_node_62_1_ho se noi chuyen
@@ -16755,7 +16732,6 @@ node_47_1_cac cua so
 #_node_54_1_thi la
 #_#_node_67_1_fenny
 #_#_node_61_0_node_51_0_node_22_0_node_44_0_node_54_0_node_47_1_nguoi ham mo - khong co gi
-#_#_#_#_#_#_node_63_0_node_49_0_node_60_0_node_47_0_node_47_0_node_53_1_Cay thảo linh lang
 #_#_#_#_#_#_#_node_57_0_node_48_0_node_48_0_node_47_0_node_47_1_feoffee
 #_node_60_1_nguoi chong do
 #_#_node_55_0_node_47_0_node_56_0_node_62_1_su chong do
@@ -16844,8 +16820,7 @@ node_54_0_node_47_0_node_61_0_node_61_1_khong co thai
 #_#_node_46_1_moi thu han
 node_43_0_node_54_1_phong kien
 node_51_0_node_61_0_node_62_1_che do phong kien
-#_#_node_68_0_node_51_0_node_56_0_node_49_1_phong kien ​​hoa
-#_#_#_#_#_#_#_node_51_0_node_61_0_node_62_1_lanh chua phong kien
+#_#_#_#_#_node_51_0_node_61_0_node_62_1_lanh chua phong kien
 #_#_#_node_62_0_node_57_0_node_60_0_node_67_1_moi thu
 #_#_#_#_#_node_51_0_node_54_0_node_54_0_node_47_0_node_55_0_node_57_0_node_60_0_node_62_1_la chet
 #_#_#_#_#_node_62_0_node_57_0_node_56_0_node_51_0_node_61_0_node_62_1_nguoi theo chu nghia ton giao
@@ -17183,8 +17158,7 @@ node_47_0_node_60_1_vet o
 #_#_node_51_0_node_56_0_node_47_0_node_61_0_node_61_1_bui bui
 #_#_#_#_#_node_55_0_node_57_0_node_56_0_node_49_0_node_47_0_node_60_1_nguoi lam thit
 #_#_#_#_#_#_node_58_0_node_57_0_node_62_1_den flashpot
-#_#_#_node_59_0_node_63_0_node_43_0_node_53_0_node_47_1_gọi cho toi
-#_#_#_#_#_#_#_node_62_0_node_45_0_node_50_1_fletch
+#_#_#_#_#_node_62_0_node_45_0_node_50_1_fletch
 node_47_0_node_60_1_fletcher
 #_#_node_51_0_node_56_0_node_49_1_lam banh mi
 #_#_#_#_#_node_51_0_node_48_0_node_47_0_node_60_0_node_57_0_node_63_0_node_61_1_phu du
@@ -17213,8 +17187,7 @@ node_46_0_node_63_0_node_61_0_node_62_1_flingdust
 #_#_#_#_node_47_0_node_60_1_chau chuc
 #_#_#_node_62_0_node_22_0_node_50_0_node_47_0_node_43_0_node_60_0_node_62_0_node_47_0_node_46_1_trai tim bang da lua
 #_#_#_#_#_#_#_#_node_42_0_node_49_0_node_54_0_node_43_0_node_61_0_node_61_1_kinh da lua
-#_#_#_#_#_#_#_#_node_58_0_node_22_0_node_48_0_node_54_0_node_43_0_node_58_1_lat vạt
-#_#_#_#_#_node_58_0_node_47_0_node_60_1_nguoi lat dat
+#_#_#_#_#_#_#_#_node_58_0_node_58_0_node_47_0_node_60_1_nguoi lat dat
 #_#_node_51_0_node_56_0_node_49_1_lat
 #_#_#_#_#_node_60_0_node_62_1_tha thinh
 node_51_0_node_49_0_node_51_0_node_49_1_flirtigig
@@ -17268,8 +17241,7 @@ node_43_0_node_42_0_node_44_0_node_47_0_node_43_0_node_56_1_dau florida
 #_#_#_node_62_0_node_47_0_node_56_1_troi noi
 #_#_#_#_node_63_0_node_56_0_node_45_0_node_47_1_su hung thinh
 #_#_#_node_60_0_node_51_0_node_56_0_node_49_1_nay no
-#_#_node_61_0_node_50_1_Hung thịnh
-node_47_0_node_60_1_tho lam bot mi
+#_#_node_61_0_node_50_0_node_47_0_node_60_1_tho lam bot mi
 #_node_61_1_khoi sac
 #_#_node_51_0_node_56_0_node_49_0_node_54_0_node_67_1_hung thinh
 #_#_#_#_#_#_#_#_#_#_node_65_0_node_47_0_node_56_1_luu luong
@@ -17596,8 +17568,7 @@ node_46_1_forisfamiliated
 #_#_node_62_1_choi bo
 #_#_node_51_0_node_47_1_forlie
 #_#_node_57_0_node_60_0_node_47_1_su ren luyen
-#_node_56_1_hét hy vọng
-node_56_0_node_47_0_node_61_0_node_61_1_su tan nhan
+#_node_56_0_node_56_0_node_47_0_node_61_0_node_61_1_su tan nhan
 #_#_#_#_#_#_#_#_node_55_0_node_43_0_node_54_0_node_46_0_node_47_0_node_50_0_node_67_0_node_46_0_node_47_1_fomandehit
 #_#_#_#_#_#_node_51_0_node_61_0_node_55_1_chu nghia hinh thuc
 #_node_62_1_nguoi theo chu nghia hinh thuc
@@ -17881,7 +17852,6 @@ node_47_0_node_60_1_nguoi lan lon
 #_#_node_67_1_xep hinh
 #_#_#_#_#_node_56_0_node_43_0_node_56_0_node_45_0_node_67_1_su lanh dam
 #_#_#_#_#_#_node_62_0_node_47_0_node_46_1_lam rau ri
-#_node_60_1_chien lan BỌT
 #_#_node_51_0_node_56_0_node_49_1_su rao ruc
 #_#_#_#_#_node_64_0_node_57_0_node_54_0_node_51_0_node_61_0_node_55_1_chu nghia phu phiem
 #_#_#_#_#_#_node_68_0_node_68_0_node_47_0_node_61_1_toc xoan
@@ -18151,8 +18121,7 @@ node_54_0_node_67_1_gaddingly
 #_#_#_#_#_node_51_0_node_45_1_gadic
 #_node_62_0_node_43_0_node_56_0_node_51_0_node_43_0_node_56_1_gaditanian
 #_#_#_#_#_#_#_node_54_0_node_51_0_node_56_0_node_49_1_gadling
-#_#_#_#_node_55_0_node_43_0_node_56_1_sụ coi giu
-#_#_#_node_57_0_node_51_0_node_46_1_gadoid
+#_#_#_#_node_57_0_node_51_0_node_46_1_gadoid
 #_#_node_54_0_node_51_0_node_56_0_node_51_0_node_43_1_gadolinia
 #_node_45_1_gadolinic
 #_node_63_0_node_55_1_gadolinium
@@ -18403,8 +18372,7 @@ node_51_0_node_56_0_node_49_1_garnisheeing
 #_#_#_#_#_#_#_node_57_0_node_56_1_garron
 #_node_62_0_node_47_1_garrote
 node_60_1_garroter
-#_#_#_#_node_63_0_node_54_0_node_57_0_node_63_0_node_61_1_già chuyẹn
-#_#_#_#_node_58_0_node_43_1_garupa
+#_#_#_#_node_63_0_node_58_0_node_43_1_garupa
 #_#_#_#_node_62_0_node_47_0_node_60_1_garter
 node_47_0_node_46_1_bi cat xen
 #_#_#_#_node_50_1_garth
@@ -19392,8 +19360,7 @@ node_46_1_gothicized
 #_#_#_#_#_#_node_51_0_node_56_0_node_49_1_khoet lo
 #_#_#_#_node_52_0_node_47_0_node_60_0_node_47_1_goujere
 #_#_#_#_node_54_0_node_43_0_node_56_0_node_46_1_gouland
-#_#_node_60_0_node_46_0_node_61_0_node_42_0_node_47_0_node_66_0_node_62_0_node_60_0_node_43_0_node_45_0_node_62_1_chiet xuat tu ​​goulards
-#_#_#_#_#_#_#_#_#_#_#_#_#_node_60_0_node_43_1_hoan ho
+#_#_#_#_node_60_0_node_43_1_hoan ho
 node_55_0_node_51_1_nguoi sanh soi
 #_#_#_node_46_1_qua bau
 node_42_0_node_62_0_node_60_0_node_47_0_node_47_1_cay do bau
@@ -20397,8 +20364,7 @@ node_47_1_harquebuse
 #_#_#_node_51_0_node_46_0_node_43_0_node_56_1_tren da
 #_#_#_#_node_57_0_node_65_0_node_47_0_node_46_1_lam bua
 #_node_60_1_nguoi lam bua
-#_#_node_51_0_node_56_0_node_49_1_bi thảm
-#_#_#_#_#_#_node_61_0_node_50_0_node_56_0_node_47_0_node_61_0_node_61_1_su khac nghiet
+#_#_#_#_#_node_61_0_node_50_0_node_56_0_node_47_0_node_61_0_node_61_1_su khac nghiet
 #_#_#_#_#_node_54_0_node_47_0_node_62_1_harslet
 #_#_#_#_node_62_1_tho duc
 node_16_0_node_61_0_node_22_0_node_47_0_node_43_0_node_60_1_tai tho
@@ -21304,7 +21270,6 @@ node_51_0_node_61_0_node_55_1_chu nghia than mat
 #_node_56_1_hircin
 node_47_1_hircine
 #_#_#_#_node_47_0_node_54_0_node_47_0_node_61_0_node_61_1_khong thue muon
-#_#_#_node_51_0_node_56_0_node_49_1_nguòi làm muón
 #_#_#_#_#_node_61_1_Su phan no
 node_63_0_node_62_0_node_47_0_node_56_0_node_47_0_node_61_0_node_61_1_ram long
 #_#_#_#_#_#_#_#_node_63_0_node_46_0_node_57_1_mot con dia
@@ -21393,8 +21358,7 @@ node_16_0_node_61_0_node_22_0_node_44_0_node_43_0_node_45_0_node_53_1_lung heo
 #_#_#_#_#_node_57_0_node_62_0_node_47_1_hogcote
 #_#_#_#_node_48_0_node_60_0_node_43_0_node_55_0_node_47_1_hogframe
 #_#_#_#_#_node_49_0_node_47_0_node_60_0_node_22_0_node_58_0_node_63_0_node_55_0_node_58_1_may bom chopper
-#_#_#_#_#_node_47_0_node_54_1_dao bàu
-#_#_node_58_0_node_51_0_node_58_0_node_47_1_ong chopper
+#_#_#_#_#_node_58_0_node_51_0_node_58_0_node_47_1_ong chopper
 #_#_#_#_node_67_1_hoggery
 #_#_#_node_51_0_node_61_0_node_50_1_ham an
 #_#_#_#_node_50_0_node_47_0_node_60_0_node_46_1_hogherd
@@ -21853,7 +21817,6 @@ node_43_0_node_56_0_node_62_1_humectant
 node_63_0_node_44_0_node_43_0_node_62_0_node_51_0_node_57_0_node_56_1_su ngam nga
 #_#_#_#_#_#_#_#_node_48_0_node_63_0_node_61_0_node_47_1_humifuse
 #_#_#_#_node_54_0_node_51_0_node_43_0_node_62_0_node_51_0_node_56_0_node_49_1_lam nhuc
-#_#_node_57_0_node_56_1_sụ sỉ nhục
 #_#_#_#_#_node_62_0_node_51_0_node_47_0_node_61_1_su khiem ton
 #_#_#_#_#_#_node_56_1_humin
 #_#_node_55_0_node_47_0_node_54_1_hummel
@@ -23133,8 +23096,7 @@ node_47_0_node_46_1_incysted
 #_#_#_#_#_#_node_55_0_node_43_0_node_49_0_node_47_1_bo nao
 node_46_1_khong bi hu hai
 #_#_#_#_#_node_68_0_node_57_0_node_54_1_indazol
-#_#_#_#_node_47_0_node_44_0_node_62_1_nọ
-node_47_0_node_46_1_mang on
+#_#_#_#_node_47_0_node_44_0_node_62_0_node_47_0_node_46_1_mang on
 #_#_#_#_node_45_0_node_51_0_node_46_0_node_63_0_node_57_0_node_63_0_node_61_1_khong rung la
 #_#_#_#_#_node_55_0_node_43_0_node_44_0_node_54_0_node_47_1_khong the doan duoc
 #_#_#_#_#_node_58_0_node_50_0_node_47_0_node_60_0_node_43_0_node_44_0_node_54_0_node_47_1_khong the giai ma
@@ -23782,8 +23744,7 @@ node_43_0_node_44_0_node_54_0_node_47_1_con nguyen ven
 #_#_#_#_node_51_0_node_44_0_node_54_0_node_47_1_khong the xam nhap
 #_#_#_#_#_#_node_49_0_node_54_0_node_51_1_cham khac
 node_57_1_intaglio
-#_node_63_0_node_61_1_rang của
-#_#_#_#_#_node_51_0_node_54_1_intail
+#_#_#_#_node_51_0_node_54_1_intail
 #_#_node_53_0_node_47_1_dau vao
 #_#_#_node_47_0_node_49_0_node_47_0_node_60_1_so nguyen
 #_#_node_60_0_node_43_0_node_44_0_node_51_0_node_54_0_node_51_0_node_62_0_node_67_1_kha nang tich hop
@@ -24083,8 +24044,7 @@ node_51_0_node_56_0_node_49_1_nhap vao
 #_#_#_#_#_#_#_#_node_63_0_node_56_0_node_46_0_node_43_0_node_56_0_node_47_1_noi dia
 #_#_#_#_#_#_#_node_56_0_node_59_0_node_63_0_node_51_0_node_54_0_node_54_0_node_51_0_node_62_0_node_67_1_trong nuoc
 #_#_#_#_#_#_#_#_node_61_0_node_49_0_node_60_0_node_47_0_node_61_0_node_61_0_node_51_0_node_44_0_node_54_0_node_47_1_khong the xam pham
-#_#_#_#_#_#_#_#_#_node_51_0_node_49_0_node_47_0_node_56_0_node_62_1_có cháp
-#_#_#_#_#_node_55_0_node_51_0_node_61_0_node_61_0_node_51_0_node_44_0_node_54_0_node_47_1_khong the truyen duoc
+#_#_#_#_#_#_#_#_#_node_55_0_node_51_0_node_61_0_node_61_0_node_51_0_node_44_0_node_54_0_node_47_1_khong the truyen duoc
 #_#_#_#_#_#_#_node_63_0_node_62_0_node_43_0_node_44_0_node_54_0_node_47_1_khong the chuyen doi
 #_#_#_#_#_#_#_#_node_62_1_ho vao
 #_node_63_0_node_45_0_node_54_0_node_47_0_node_43_0_node_60_1_trong hat nhan
@@ -24763,8 +24723,7 @@ node_51_0_node_56_0_node_49_1_nau ruou
 #_#_#_#_node_51_0_node_46_1_jerry
 #_#_node_53_0_node_51_0_node_56_1_Toi giat minh
 node_49_1_giat
-#_#_#_node_67_1_thịt kho
-#_#_node_57_0_node_56_0_node_67_0_node_55_0_node_51_0_node_62_0_node_47_1_jeronymite
+#_#_#_#_node_57_0_node_56_0_node_67_0_node_55_0_node_51_0_node_62_0_node_47_1_jeronymite
 #_#_#_#_#_#_node_58_0_node_51_0_node_49_0_node_51_0_node_43_1_Chau au
 #_#_#_#_#_#_node_59_0_node_63_0_node_47_0_node_60_1_giat day
 #_#_#_#_node_60_0_node_67_0_node_22_0_node_44_0_node_63_0_node_51_0_node_54_0_node_62_1_jerry-xay dung
@@ -24964,8 +24923,7 @@ node_60_1_nguoi noi chuyen phiem
 #_#_node_65_0_node_47_0_node_54_0_node_46_1_jumpweld
 #_#_#_#_#_#_node_56_0_node_43_0_node_60_0_node_62_0_node_51_0_node_47_1_junartie
 #_#_#_#_#_node_45_0_node_51_0_node_62_0_node_47_1_juncite
-#_#_#_node_62_0_node_51_0_node_57_0_node_56_1_giao lọ
-#_#_#_node_63_0_node_60_0_node_47_1_cho noi
+#_#_#_node_62_0_node_63_0_node_60_0_node_47_1_cho noi
 #_#_#_#_#_node_47_0_node_44_0_node_47_0_node_60_0_node_60_0_node_67_1_nuoc ep trai cay
 #_#_#_#_#_#_node_49_0_node_47_0_node_60_0_node_55_0_node_43_0_node_56_0_node_56_0_node_51_0_node_43_1_jungermannia
 node_47_1_Jungermanniae
@@ -25409,8 +25367,7 @@ node_47_0_node_62_1_cu nhap chuot
 #_#_#_#_#_#_#_#_#_#_node_57_0_node_58_0_node_47_0_node_55_0_node_43_0_node_56_0_node_51_0_node_43_1_clopemania
 #_#_#_#_#_#_#_#_#_node_56_0_node_43_0_node_45_0_node_53_0_node_51_0_node_61_0_node_50_1_gion
 #_#_#_node_67_1_so truong
-#_#_#_node_49_0_node_49_0_node_47_0_node_46_1_co kien ​​thuc
-#_#_node_67_1_knaggy
+#_#_#_node_49_0_node_49_0_node_67_1_knaggy
 #_#_#_node_58_1_cai nut
 node_44_0_node_57_0_node_62_0_node_62_0_node_54_0_node_47_1_knapbottle
 #_#_#_#_#_#_node_58_0_node_51_0_node_56_0_node_49_1_cai cuc ao
@@ -26033,8 +25990,7 @@ node_47_0_node_60_1_cua co the
 node_51_0_node_47_1_lassie
 #_node_62_0_node_63_0_node_46_0_node_47_1_lassitude
 #_#_#_#_#_node_54_0_node_57_0_node_60_0_node_56_1_lasslorn
-#_#_#_#_node_57_1_day cọt ngụa
-node_51_0_node_56_0_node_49_1_la ca
+#_#_#_#_node_57_0_node_51_0_node_56_0_node_49_1_la ca
 #_#_#_#_#_node_62_0_node_47_1_tre em
 node_60_0_node_67_1_lastery
 #_#_#_#_#_node_62_0_node_43_0_node_53_0_node_51_0_node_43_1_latakia
@@ -27148,8 +27104,7 @@ node_51_0_node_47_0_node_61_1_loobies
 #_node_55_1_khung cui
 node_22_0_node_49_0_node_43_0_node_54_0_node_47_1_loom-gale
 #_#_#_#_#_#_node_56_1_loon
-node_67_1_dien khùng
-#_#_node_58_0_node_50_0_node_57_0_node_54_0_node_47_0_node_46_1_vong vo
+#_node_58_0_node_50_0_node_57_0_node_54_0_node_47_0_node_46_1_vong vo
 #_#_#_#_#_node_54_0_node_51_0_node_49_0_node_50_0_node_62_1_den pha
 #_#_#_#_#_#_node_60_0_node_46_1_loord
 #_#_node_61_0_node_47_0_node_56_0_node_47_0_node_60_1_nguoi noi long
@@ -27217,8 +27172,7 @@ node_43_0_node_60_0_node_51_0_node_57_1_lothario
 #_#_#_#_#_node_51_0_node_57_0_node_56_1_nuoc thom
 #_#_#_node_57_0_node_61_0_node_22_0_node_47_0_node_43_0_node_62_0_node_47_0_node_60_1_nguoi an nhieu
 #_#_#_#_#_#_#_#_node_62_0_node_47_0_node_46_1_danh lo to
-#_node_60_0_node_51_0_node_47_0_node_61_1_xo so kien ​​thiet
-#_#_#_#_#_node_57_1_lo to
+#_#_node_57_1_lo to
 #_#_node_63_0_node_61_1_hoa sen
 node_22_0_node_47_0_node_43_0_node_62_0_node_47_0_node_60_1_nguoi an hoa sen
 #_#_#_#_#_#_#_#_#_node_63_0_node_45_0_node_50_0_node_47_0_node_62_0_node_62_0_node_47_0_node_61_1_la thu
@@ -28260,8 +28214,7 @@ node_62_0_node_47_0_node_61_0_node_42_0_node_57_0_node_51_0_node_54_1_dau marmot
 #_#_#_#_#_#_#_#_node_68_0_node_47_0_node_62_1_marmozet
 #_#_#_#_#_node_57_0_node_56_0_node_51_0_node_62_0_node_47_1_maronite
 node_61_1_maronites
-#_#_#_#_#_node_57_0_node_56_1_Bỏ roi
-node_47_0_node_46_1_marooned
+#_#_#_#_#_node_57_0_node_56_0_node_47_0_node_46_1_marooned
 #_#_node_51_0_node_56_0_node_49_1_marooning
 #_#_#_#_#_#_node_58_0_node_54_0_node_57_0_node_62_1_marplot
 #_#_#_#_node_59_0_node_63_0_node_47_1_Danh dau
@@ -28339,8 +28292,7 @@ node_22_0_node_44_0_node_63_0_node_46_1_mary-bud
 #_node_62_0_node_47_1_mascagnite
 #_#_#_#_#_#_node_54_0_node_47_0_node_46_1_nam tinh hoa
 #_#_#_node_57_0_node_62_0_node_62_0_node_47_1_linh vat
-#_#_#_#_node_63_0_node_54_0_node_51_0_node_56_0_node_47_1_giong dục
-#_#_#_#_#_#_node_47_0_node_54_0_node_67_0_node_56_1_maselyn
+#_#_#_#_#_node_47_0_node_54_0_node_67_0_node_56_1_maselyn
 #_#_#_node_60_1_maser
 #_#_node_50_0_node_47_0_node_60_1_tho nghien
 #_#_node_54_0_node_51_0_node_56_1_Mashlin
@@ -28487,8 +28439,7 @@ node_60_0_node_51_0_node_54_1_maudril
 #_#_#_node_67_0_node_42_0_node_62_0_node_50_0_node_63_0_node_60_0_node_61_0_node_46_0_node_43_0_node_67_1_maundy thu nam
 #_#_#_#_#_#_#_#_#_#_#_node_49_0_node_67_1_maungy
 #_#_#_node_60_0_node_51_0_node_61_0_node_62_1_tho lam maurist
-#_#_#_#_node_61_0_node_57_0_node_54_0_node_47_0_node_63_0_node_55_1_lang mọ
-#_#_#_#_#_#_node_62_0_node_50_0_node_47_0_node_60_1_tho lam mauther
+#_#_#_#_node_62_0_node_50_0_node_47_0_node_60_1_tho lam mauther
 #_#_#_#_node_64_0_node_43_0_node_56_0_node_51_0_node_54_0_node_51_0_node_56_0_node_47_1_mauvanic
 #_#_#_#_#_#_#_node_47_0_node_51_0_node_56_0_node_47_1_mau hoa ca
 #_#_#_#_node_51_0_node_56_0_node_47_1_mauvine
@@ -29418,8 +29369,7 @@ node_47_0_node_62_0_node_62_0_node_47_1_mignonette
 #_#_#_node_57_0_node_54_0_node_43_1_trieu do la
 #_node_51_0_node_62_0_node_47_1_cac milioles
 #_node_51_0_node_45_1_quan chinh tri
-#_#_#_#_#_#_node_62_0_node_43_0_node_56_0_node_45_0_node_67_1_sụ tranh dau
-#_#_#_node_60_0_node_51_0_node_61_0_node_62_1_quan phiet
+#_#_#_#_#_#_node_62_0_node_43_0_node_60_0_node_51_0_node_61_0_node_62_1_quan phiet
 #_#_#_#_node_62_0_node_47_1_dieu hoa
 #_#_#_node_51_0_node_43_0_node_62_0_node_47_1_dan quan
 #_#_#_#_#_#_node_53_0_node_22_0_node_54_0_node_51_0_node_64_0_node_47_0_node_60_0_node_47_0_node_46_1_tai san song
@@ -30015,8 +29965,7 @@ node_44_0_node_46_0_node_43_0_node_62_0_node_47_1_molybdate
 #_#_#_#_node_51_0_node_45_1_molybdic
 #_node_62_0_node_47_1_molybdite
 #_#_#_node_57_0_node_63_0_node_61_1_molybdous
-#_#_#_#_#_#_#_node_55_0_node_47_0_node_56_0_node_62_1_khoảng khac
-node_43_0_node_54_1_hien hanh
+#_#_#_#_#_#_#_node_55_0_node_47_0_node_56_0_node_62_0_node_43_0_node_54_1_hien hanh
 #_node_56_0_node_47_0_node_57_0_node_63_0_node_61_1_nhat thoi
 #_#_#_#_node_67_1_thoi diem
 #_#_node_60_0_node_51_0_node_54_0_node_67_1_choc lat
@@ -30594,8 +30543,7 @@ node_46_0_node_51_0_node_56_1_mucedin
 #_#_#_node_56_1_mucin
 node_57_0_node_49_0_node_47_0_node_56_1_mucinogen
 #_#_#_#_#_node_64_0_node_57_0_node_60_0_node_47_1_mucivore
-#_#_#_#_#_node_53_1_váy bản
-node_47_0_node_60_1_nguoi ngu ngoc
+#_#_#_#_#_node_53_0_node_47_0_node_60_1_nguoi ngu ngoc
 node_47_0_node_60_1_nguoi lam nhay
 #_#_#_#_node_55_0_node_51_0_node_46_0_node_46_0_node_47_0_node_56_1_muckmidden
 #_#_#_#_#_#_node_61_0_node_67_1_mucksy
@@ -30900,8 +30848,7 @@ node_57_0_node_63_0_node_61_1_lan nhau
 #_#_#_#_#_#_#_node_57_0_node_56_0_node_67_1_thit cuu
 #_#_#_#_node_63_0_node_43_0_node_54_0_node_51_0_node_61_0_node_55_1_chu nghia tuong ho
 #_#_node_62_0_node_67_1_tuong ho
-#_#_#_node_54_0_node_67_1_ho trọ
-#_#_#_node_60_0_node_67_1_loi nguyen rua
+#_#_#_#_node_60_0_node_67_1_loi nguyen rua
 #_#_node_62_0_node_51_0_node_57_0_node_56_1_su dot bien
 #_#_#_#_#_node_54_0_node_47_1_Hay yen lang
 #_#_#_#_node_66_1_mux
@@ -31291,8 +31238,7 @@ node_60_1_may phun suong
 #_#_#_#_#_node_60_0_node_57_0_node_44_0_node_51_0_node_57_0_node_62_0_node_51_0_node_45_1_thuoc sinh hoc
 #_#_#_#_#_#_node_54_0_node_57_0_node_49_0_node_51_0_node_61_0_node_62_1_nha nghien cuu tu hoc
 #_#_#_node_67_1_su hoai tu
-#_#_#_#_node_55_0_node_43_0_node_56_0_node_45_0_node_47_0_node_60_1_thày chieu hòn
-#_#_#_node_62_0_node_51_0_node_45_1_thuoc ve dai duong
+#_#_#_#_node_55_0_node_43_0_node_56_0_node_62_0_node_51_0_node_45_1_thuoc ve dai duong
 node_43_0_node_54_1_thuoc ve y hoc
 #_#_#_#_#_#_#_#_node_56_0_node_51_0_node_62_0_node_47_1_thuoc hoai tu
 #_#_#_#_node_58_0_node_50_0_node_57_0_node_44_0_node_51_0_node_43_1_chung so hoai tu
@@ -32808,8 +32754,7 @@ node_43_0_node_44_0_node_54_0_node_47_1_co the lam kho
 #_#_#_node_64_0_node_47_0_node_54_1_Ravel
 #_#_#_#_node_52_1_raj
 node_43_1_raja
-node_50_1_nhan vạt
-node_61_0_node_50_0_node_51_0_node_58_1_rajahship
+node_50_0_node_61_0_node_50_0_node_51_0_node_58_1_rajahship
 #_#_#_#_#_#_node_58_0_node_57_0_node_57_0_node_62_1_rajpoot
 #_#_#_node_63_0_node_62_1_rajput
 #_#_#_#_node_53_0_node_47_0_node_22_0_node_64_0_node_47_0_node_51_0_node_56_1_cao-tinh mach
@@ -33331,8 +33276,7 @@ node_67_1_phuc hoi suc khoe
 #_#_#_#_#_#_node_61_0_node_50_0_node_57_0_node_60_0_node_62_1_ngan mau do
 #_#_#_#_#_node_62_0_node_43_0_node_58_0_node_51_0_node_61_0_node_55_1_Tapism do
 #_node_62_1_bi mat do
-#_#_#_#_#_#_#_node_43_0_node_45_0_node_62_1_bien tạp
-node_51_0_node_57_0_node_56_1_su bien tap
+#_#_#_#_#_#_#_node_43_0_node_45_0_node_62_0_node_51_0_node_57_0_node_56_1_su bien tap
 #_#_#_#_#_node_60_0_node_49_0_node_63_0_node_47_1_redargue
 node_46_1_quan sat lai
 #_#_node_51_0_node_56_0_node_49_1_huong dan lai
@@ -33659,8 +33603,7 @@ node_60_0_node_57_0_node_49_0_node_43_0_node_62_0_node_47_1_phong van lai
 #_#_#_#_#_#_#_node_64_0_node_47_0_node_61_0_node_62_0_node_51_0_node_49_0_node_43_0_node_62_0_node_47_1_sang tao lai
 #_#_#_#_#_#_#_#_node_57_0_node_54_0_node_64_0_node_47_1_tai phat trien
 #_#_#_#_#_#_node_61_1_cac vi vua
-node_42_0_node_47_0_node_48_0_node_48_0_node_47_0_node_56_0_node_46_0_node_51_1_bị cao
-#_#_#_#_#_#_#_#_node_61_0_node_56_0_node_47_0_node_60_0_node_16_0_node_61_0_node_42_0_node_55_0_node_47_0_node_55_0_node_44_0_node_60_0_node_43_0_node_56_0_node_47_1_mang tai phat hanh
+node_61_0_node_56_0_node_47_0_node_60_0_node_16_0_node_61_0_node_42_0_node_55_0_node_47_0_node_55_0_node_44_0_node_60_0_node_43_0_node_56_0_node_47_1_mang tai phat hanh
 #_#_#_#_#_#_#_#_#_#_#_#_#_#_node_63_0_node_43_0_node_44_0_node_54_0_node_47_1_cap lai
 #_#_#_#_node_47_1_phat hanh lai
 #_#_#_#_node_62_1_reit
@@ -34073,7 +34016,6 @@ node_51_0_node_61_0_node_62_1_nguoi kien quyet
 #_#_#_#_#_node_60_0_node_44_0_node_47_0_node_56_0_node_62_1_chat hap phu
 #_#_#_#_node_45_0_node_51_0_node_56_1_resorcin
 #_#_node_67_0_node_54_0_node_51_0_node_45_1_resorcylic
-#_#_#_#_#_node_58_0_node_62_0_node_51_0_node_57_0_node_56_1_tai hap thụ
 #_#_#_#_#_node_62_0_node_47_0_node_60_1_nguoi ban lai
 #_#_#_#_node_63_0_node_60_0_node_45_0_node_47_0_node_48_0_node_63_0_node_54_1_thao vat
 #_#_#_node_54_0_node_47_0_node_61_0_node_61_1_khong co tai nguyen
@@ -34274,7 +34216,6 @@ node_67_1_tieng vang
 #_#_node_51_0_node_56_0_node_49_1_su hoi tuong
 #_#_#_#_node_62_1_cung kinh
 #_#_node_60_1_nguoi ton kinh
-#_#_node_51_0_node_47_1_sụ mo tuỏng
 #_#_node_61_0_node_47_0_node_54_0_node_67_1_nguoc lai
 #_#_#_node_51_0_node_44_0_node_54_0_node_67_1_co the dao nguoc
 #_#_#_node_57_0_node_56_0_node_43_0_node_60_0_node_67_1_su dao nguoc
@@ -35572,8 +35513,7 @@ node_50_0_node_51_0_node_60_0_node_47_1_samphire
 #_#_#_#_node_54_0_node_47_1_vat mau
 node_60_1_nguoi lay mau
 #_#_#_#_node_61_0_node_50_0_node_57_0_node_57_1_luan hoi
-#_#_node_63_1_Sam 丨
-#_#_node_57_0_node_56_1_con sam
+#_#_#_node_57_0_node_56_1_con sam
 #_#_#_#_node_56_0_node_43_0_node_44_0_node_54_0_node_47_1_sanable
 #_#_#_node_62_0_node_51_0_node_57_0_node_56_1_sanation
 #_#_node_64_0_node_47_1_sanative
@@ -36029,8 +35969,7 @@ node_45_0_node_60_0_node_57_0_node_65_1_bu nhin
 #_#_#_node_57_0_node_60_1_nguoi lam kinh di
 #_#_#_#_#_#_#_#_node_54_0_node_43_0_node_62_0_node_51_0_node_56_0_node_43_1_ban do
 #_#_#_#_#_node_47_0_node_61_0_node_61_1_khong seo
-#_#_node_62_1_dỏ tuoi
-#_#_#_node_55_0_node_43_0_node_49_0_node_47_1_vu khi trang bi
+#_#_#_#_node_55_0_node_43_0_node_49_0_node_47_1_vu khi trang bi
 #_#_#_#_node_57_0_node_51_0_node_46_1_bo hung
 #_#_#_node_60_0_node_51_0_node_56_0_node_49_1_seo
 #_#_#_#_node_63_0_node_61_1_co seo
@@ -36055,8 +35994,7 @@ node_60_1_nguoi nhat rac
 #_#_#_#_node_47_0_node_54_0_node_47_0_node_60_0_node_43_0_node_62_1_toi pham
 #_#_#_#_#_node_56_0_node_47_0_node_48_0_node_63_0_node_54_1_canh dep
 #_#_#_node_55_0_node_47_0_node_56_1_nguoi lam canh
-#_#_#_node_60_0_node_67_1_phong cảnh
-#_#_node_61_0_node_50_0_node_51_0_node_48_0_node_62_0_node_47_0_node_60_1_nguoi chuyen canh
+#_#_#_node_61_0_node_50_0_node_51_0_node_48_0_node_62_0_node_47_0_node_60_1_nguoi chuyen canh
 #_#_#_#_#_#_#_#_node_51_0_node_45_1_co canh dep thien nhien
 #_#_node_62_0_node_51_0_node_56_0_node_49_1_lam thom
 #_#_#_#_#_node_58_0_node_61_0_node_51_0_node_61_1_rao chan
@@ -36150,8 +36088,7 @@ node_43_0_node_45_0_node_47_0_node_57_0_node_63_0_node_61_1_schorlaceous
 #_#_#_#_#_#_#_#_#_#_#_#_node_51_0_node_43_0_node_47_0_node_56_0_node_57_0_node_51_0_node_46_1_sciaenoid
 #_#_#_#_#_node_49_0_node_60_0_node_43_0_node_58_0_node_50_1_sciagraph
 #_#_#_#_#_node_55_0_node_43_0_node_45_0_node_50_0_node_67_1_sciamachy
-#_#_#_#_#_node_62_0_node_51_0_node_45_0_node_43_0_node_54_1_dau than kinh toạ
-node_54_0_node_67_1_ve mat khoa hoc
+#_#_#_#_#_node_62_0_node_51_0_node_45_0_node_43_0_node_54_0_node_54_0_node_67_1_ve mat khoa hoc
 #_#_#_#_#_#_#_#_node_47_0_node_56_0_node_62_0_node_51_0_node_48_0_node_51_0_node_45_1_thuoc ve khoa hoc
 #_#_#_node_61_0_node_62_1_nha khoa hoc
 #_#_#_#_#_#_node_54_0_node_51_0_node_45_0_node_47_0_node_62_1_tat nhien roi
@@ -36540,8 +36477,7 @@ node_48_0_node_51_0_node_61_0_node_50_1_ca tre bien
 #_#_#_#_#_node_57_0_node_65_0_node_54_1_ga bien
 #_#_node_66_1_cao bien
 #_#_#_node_49_0_node_43_0_node_63_0_node_49_0_node_47_1_may do bien
-#_#_#_#_node_50_0_node_47_0_node_60_0_node_53_0_node_51_0_node_56_1_sea ​​gherkin
-#_#_#_#_#_#_node_51_0_node_56_0_node_49_0_node_47_0_node_60_1_gung bien
+#_#_#_#_node_51_0_node_56_0_node_49_0_node_47_0_node_60_1_gung bien
 #_#_#_#_node_60_0_node_53_0_node_51_0_node_56_1_nau an bien
 #_#_#_#_#_node_57_0_node_46_1_than bien
 node_46_0_node_47_0_node_61_0_node_61_1_nu than bien
@@ -36564,8 +36500,7 @@ node_46_0_node_47_0_node_61_0_node_61_1_nu than bien
 #_#_#_#_#_node_53_0_node_43_0_node_54_0_node_47_1_cai xoan bien
 #_#_#_node_51_0_node_56_0_node_49_1_vua bien
 #_#_#_#_node_54_0_node_43_0_node_45_0_node_47_0_node_61_1_day buoc bien
-#_#_#_node_55_0_node_58_0_node_60_0_node_47_0_node_67_1_ca mut da biẻn
-#_#_#_#_#_node_56_0_node_49_0_node_63_0_node_43_0_node_49_0_node_47_1_tieng bien
+#_#_#_node_56_0_node_49_0_node_63_0_node_43_0_node_49_0_node_47_1_tieng bien
 #_#_#_#_#_#_node_60_0_node_53_1_be lark
 #_#_node_64_0_node_47_0_node_56_0_node_46_0_node_47_0_node_60_1_hoa oai huong bien
 #_#_#_#_#_#_node_65_0_node_67_0_node_47_0_node_60_1_luat su bien
@@ -36982,8 +36917,7 @@ node_43_0_node_54_1_selenographical
 #_#_#_#_#_node_63_0_node_60_0_node_46_0_node_47_0_node_60_0_node_47_0_node_60_1_ke tu sat
 #_#_#_#_#_#_#_#_node_56_0_node_47_0_node_49_0_node_54_0_node_47_0_node_45_0_node_62_0_node_51_0_node_56_0_node_49_1_tu bo qua
 #_#_#_#_#_#_#_#_#_#_node_57_0_node_56_0_node_47_1_tu mot minh
-#_#_node_58_0_node_51_0_node_56_0_node_51_0_node_57_0_node_56_1_y kien ​​cua ban than
-#_#_#_#_#_#_#_node_58_0_node_43_0_node_60_0_node_62_0_node_51_0_node_43_0_node_54_0_node_51_0_node_62_0_node_67_1_tinh tu cao tu dai
+#_#_#_node_58_0_node_43_0_node_60_0_node_62_0_node_51_0_node_43_0_node_54_0_node_51_0_node_62_0_node_67_1_tinh tu cao tu dai
 #_#_#_#_#_#_#_#_#_node_47_0_node_60_0_node_58_0_node_54_0_node_47_0_node_66_0_node_47_0_node_46_1_tu boi roi
 #_#_#_#_#_#_#_#_node_57_0_node_61_0_node_51_0_node_62_0_node_47_0_node_46_1_tu cho minh
 #_#_node_51_0_node_56_0_node_49_1_tu tu the
@@ -38367,8 +38301,7 @@ node_54_1_noi bo
 #_#_#_node_55_0_node_57_0_node_55_0_node_47_0_node_62_0_node_47_0_node_60_1_may do dia chan
 #_#_#_#_#_#_#_node_61_1_du kich
 node_57_0_node_57_1_sissoo
-#_#_#_node_62_0_node_47_0_node_60_0_node_22_0_node_51_0_node_56_0_node_22_0_node_54_0_node_43_0_node_65_1_chị dau
-#_#_#_#_#_#_#_node_54_0_node_67_1_tinh chi em
+#_#_#_node_62_0_node_47_0_node_60_0_node_54_0_node_67_1_tinh chi em
 #_#_node_61_0_node_22_0_node_51_0_node_56_0_node_22_0_node_54_0_node_43_0_node_65_1_chi dau
 #_#_#_#_#_#_#_#_#_#_node_51_0_node_56_0_node_47_1_sistine
 #_#_#_node_60_0_node_47_0_node_56_1_Sistren
@@ -38918,8 +38851,7 @@ node_22_0_node_56_0_node_57_0_node_61_0_node_47_0_node_46_1_mui hech
 #_#_node_56_0_node_47_0_node_61_0_node_61_1_su am cung
 #_#_#_#_#_#_node_67_0_node_58_0_node_67_1_anh cat
 #_#_#_#_node_57_0_node_22_0_node_45_0_node_43_0_node_54_0_node_54_0_node_47_0_node_46_1_cai goi la
-#_#_#_#_#_#_node_61_0_node_57_1_Tam tạm
-#_#_#_node_43_0_node_53_0_node_51_0_node_56_0_node_49_1_ngam minh
+#_#_#_#_#_#_#_node_43_0_node_53_0_node_51_0_node_56_0_node_49_1_ngam minh
 #_#_#_#_node_58_1_xa bong
 node_44_0_node_47_0_node_60_0_node_60_0_node_67_0_node_42_0_node_62_0_node_60_0_node_47_0_node_47_1_cay xa phong
 #_#_#_#_#_#_#_#_#_#_node_48_0_node_51_0_node_61_0_node_50_1_ca xa phong
@@ -39032,8 +38964,7 @@ node_47_0_node_54_1_bang han
 node_51_0_node_45_1_doc ton
 #_#_#_#_node_68_0_node_47_1_da voi
 #_#_#_#_node_46_1_co de
-#_node_54_0_node_67_1_co dọc
-#_#_node_55_0_node_56_0_node_51_0_node_62_0_node_51_0_node_47_0_node_61_1_le trong
+#_node_55_0_node_56_0_node_51_0_node_62_0_node_51_0_node_47_0_node_61_1_le trong
 #_#_#_#_node_68_0_node_47_0_node_60_1_nguoi trang trong
 #_#_node_51_0_node_56_0_node_49_1_trang trong
 #_#_#_#_#_node_56_0_node_47_0_node_61_0_node_61_1_su trang trong
@@ -39083,8 +39014,7 @@ node_51_0_node_61_0_node_55_1_chu nghia nu quyen
 #_#_#_#_#_#_#_node_54_0_node_57_0_node_59_0_node_63_0_node_51_0_node_47_0_node_61_1_soliloquies
 #_#_node_68_0_node_47_1_loi giai thich
 #_node_51_0_node_56_0_node_49_1_giai doc
-#_#_#_#_#_node_67_1_nguòi nói mọt mình
-#_#_#_#_#_node_58_0_node_47_0_node_46_1_dam duoi
+#_#_#_#_#_#_#_#_#_node_58_0_node_47_0_node_46_1_dam duoi
 node_57_0_node_63_0_node_61_1_thom
 #_#_#_#_#_node_61_0_node_51_0_node_61_0_node_55_1_thuyet duy nga
 #_#_#_#_#_node_62_0_node_43_0_node_51_0_node_60_0_node_47_1_solitaire
@@ -39397,8 +39327,7 @@ node_43_0_node_54_1_co hinh cau
 #_#_#_#_#_node_54_0_node_46_0_node_51_0_node_56_0_node_49_0_node_42_0_node_53_0_node_56_0_node_51_0_node_48_0_node_47_1_dao phay
 #_#_#_#_#_#_#_#_#_#_node_47_1_se chay
 #_node_58_0_node_47_0_node_47_0_node_56_1_spalpeen
-#_#_#_#_node_62_1_khoảng cách
-node_51_0_node_56_0_node_49_0_node_42_0_node_53_0_node_56_0_node_51_0_node_48_0_node_47_1_dao che
+#_#_#_#_node_62_0_node_51_0_node_56_0_node_49_0_node_42_0_node_53_0_node_56_0_node_51_0_node_48_0_node_47_1_dao che
 #_#_#_#_#_#_#_#_#_#_#_node_56_0_node_22_0_node_56_0_node_47_0_node_65_1_span-moi
 #_#_#_#_node_43_0_node_47_0_node_55_0_node_51_0_node_43_1_chung tang huyet ap
 #_node_45_1_spanaemic
@@ -39887,8 +39816,7 @@ node_47_0_node_54_0_node_51_0_node_56_0_node_47_0_node_61_0_node_61_1_chay nuoc 
 #_#_#_#_#_#_#_#_#_#_node_46_1_sprod
 #_node_56_0_node_49_1_nhay
 #_#_node_63_0_node_62_0_node_51_0_node_56_0_node_49_1_nay mam
-#_#_#_#_#_#_node_63_0_node_45_0_node_47_1_cay bách tung
-#_node_51_0_node_56_0_node_49_1_su dam choi
+#_#_#_#_#_#_node_63_0_node_45_0_node_51_0_node_56_0_node_49_1_su dam choi
 #_#_#_#_node_47_1_sprue
 #_node_49_1_da noi
 #_node_56_0_node_49_1_bung len
@@ -39907,8 +39835,7 @@ node_47_0_node_54_0_node_51_0_node_56_0_node_47_0_node_61_0_node_61_1_chay nuoc 
 #_#_#_node_47_0_node_65_0_node_57_0_node_60_0_node_62_1_theo doi tu
 #_#_#_#_#_#_node_54_0_node_47_0_node_61_0_node_61_1_khong co suc
 #_#_#_node_51_0_node_56_0_node_49_0_node_22_0_node_54_0_node_51_0_node_56_0_node_47_1_spurling-line
-#_#_#_#_#_#_#_#_#_node_56_1_cụ tuyẹt
-node_22_0_node_65_0_node_43_0_node_62_0_node_47_0_node_60_1_nuoc phun
+#_#_#_#_#_#_#_#_#_node_56_0_node_22_0_node_65_0_node_43_0_node_62_0_node_47_0_node_60_1_nuoc phun
 #_#_#_#_#_#_node_47_0_node_46_1_bi hat hui
 #_node_60_1_nguoi thuc day
 #_#_node_51_0_node_56_0_node_49_1_cau hoi
@@ -40837,8 +40764,7 @@ node_60_1_tien dao
 #_#_#_#_node_58_0_node_51_0_node_47_0_node_45_0_node_47_1_soi day
 #_#_#_#_#_node_67_1_co nhieu day
 #_#_#_node_58_0_node_22_0_node_54_0_node_47_0_node_43_0_node_48_1_dai la
-#_#_#_#_#_node_47_1_vạch sọc
-node_46_1_soc
+#_#_#_#_#_node_47_0_node_46_1_soc
 #_#_node_51_0_node_56_0_node_49_1_vach ao
 #_#_#_node_58_0_node_47_0_node_60_1_vu nu thoat y
 #_#_node_51_0_node_56_0_node_49_1_tuoc
@@ -41369,8 +41295,7 @@ node_51_0_node_57_0_node_56_1_su cat giam
 #_#_#_node_46_0_node_51_0_node_56_0_node_49_1_gia vo
 #_#_#_#_#_node_60_0_node_48_0_node_54_0_node_63_0_node_47_0_node_56_0_node_62_1_chay ra duoi
 #_#_#_node_57_0_node_63_0_node_61_1_khong thua
-#_#_#_#_#_node_63_0_node_49_0_node_47_1_sụ thoái thác
-#_#_#_#_node_60_0_node_43_0_node_56_0_node_47_0_node_57_0_node_63_0_node_61_1_duoi long dat
+#_#_#_#_#_#_node_60_0_node_43_0_node_56_0_node_47_0_node_57_0_node_63_0_node_61_1_duoi long dat
 #_#_#_#_#_#_node_47_0_node_56_0_node_47_1_subterrene
 #_#_node_61_0_node_62_0_node_60_0_node_51_0_node_43_0_node_54_1_duoi trai dat
 #_#_#_#_#_#_#_#_#_#_node_50_0_node_43_0_node_54_0_node_43_0_node_55_0_node_51_0_node_45_1_duoi doi
@@ -42579,8 +42504,7 @@ node_43_0_node_54_1_tachygraphical
 #_#_#_#_node_67_1_thuat in tachygraphy
 #_#_#_#_#_#_node_54_0_node_67_0_node_62_0_node_47_1_tachilite
 #_#_#_#_#_#_node_51_0_node_62_1_Ngam ngam
-node_63_0_node_60_0_node_56_1_tràm mạc
-node_51_0_node_62_0_node_67_1_su lam li
+node_63_0_node_60_0_node_56_0_node_51_0_node_62_0_node_67_1_su lam li
 #_#_#_#_#_#_#_#_node_53_1_tack
 node_47_0_node_67_1_tackey
 #_#_node_51_0_node_56_0_node_49_1_dong goi
@@ -42815,14 +42739,12 @@ node_47_0_node_60_1_tham trang tri
 #_#_node_50_1_Su am ap
 #_#_#_node_54_0_node_51_0_node_56_0_node_49_0_node_61_1_voi rong
 #_#_#_#_#_node_57_0_node_43_0_node_42_0_node_62_0_node_43_0_node_48_0_node_43_1_xong
-#_#_#_#_#_#_#_node_58_0_node_47_0_node_56_1_võ nhẹ
-#_node_60_1_nguoi khai thac
+#_#_#_#_#_#_#_node_58_0_node_47_0_node_60_1_nguoi khai thac
 #_node_61_0_node_62_0_node_47_0_node_60_1_nhan dan
 #_#_#_#_#_node_51_0_node_45_0_node_47_1_tappice
 #_#_node_56_0_node_49_1_khai thac
 #_#_node_61_1_bi giet
-#_node_62_0_node_42_0_node_50_0_node_47_0_node_56_1_bạn da giet anh ay
-#_#_#_#_#_#_#_node_60_0_node_57_0_node_57_0_node_55_1_phong tap
+#_#_#_node_60_0_node_57_0_node_57_0_node_55_1_phong tap
 #_node_62_1_re cai
 #_#_#_#_node_61_0_node_62_0_node_47_0_node_60_1_tapster
 #_#_#_#_#_node_59_0_node_63_0_node_43_0_node_22_0_node_56_0_node_63_0_node_62_1_taqua-nut
@@ -43761,8 +43683,7 @@ node_54_1_theriacal
 #_#_node_57_0_node_46_0_node_57_0_node_56_0_node_62_1_theriodon
 node_51_0_node_43_1_rang cua
 #_#_#_#_#_#_node_62_0_node_57_0_node_55_0_node_67_1_co the hoc
-#_#_#_#_#_#_node_55_0_node_43_0_node_54_0_node_54_0_node_67_1_nhiẹt
-#_#_#_#_node_51_0_node_45_1_nhiet
+#_#_#_#_#_#_node_55_0_node_51_0_node_45_1_nhiet
 #_node_48_0_node_63_0_node_49_0_node_51_0_node_56_0_node_47_1_thermifugine
 #_#_#_#_#_#_#_node_57_0_node_22_1_nhiet dien-
 #_node_44_0_node_43_0_node_62_0_node_62_0_node_47_0_node_60_0_node_67_1_pin nhiet
@@ -43894,8 +43815,7 @@ node_43_0_node_49_0_node_47_1_manh dat
 #_#_#_#_node_62_0_node_50_0_node_47_0_node_60_1_cai khac
 node_65_0_node_43_0_node_60_0_node_46_1_ve sau
 #_#_#_#_#_#_#_node_61_0_node_47_0_node_47_1_thitsee
-#_#_#_#_#_node_54_0_node_51_0_node_58_0_node_61_0_node_51_0_node_61_1_sụ sàu nảo
-#_#_#_#_#_#_node_57_0_node_54_0_node_47_1_thole
+#_#_#_#_#_node_57_0_node_54_0_node_47_1_thole
 node_46_1_tholed
 #_#_node_51_0_node_56_0_node_49_1_tholing
 #_#_#_#_node_55_0_node_43_0_node_47_0_node_43_0_node_56_1_thomaean
@@ -45059,8 +44979,7 @@ node_43_0_node_62_0_node_47_1_tang toc
 node_51_0_node_68_0_node_47_1_xuyen nhan loai
 #_#_#_#_#_#_#_#_node_51_0_node_47_0_node_56_0_node_45_0_node_67_1_qua do
 #_#_#_#_node_54_0_node_51_0_node_47_0_node_56_0_node_45_0_node_67_1_tinh xuyen suot
-#_#_#_#_#_#_node_60_0_node_47_1_vuọt qua
-#_#_node_62_0_node_51_0_node_64_0_node_47_1_Bac cau
+#_#_#_#_#_#_node_62_0_node_51_0_node_64_0_node_47_1_Bac cau
 #_#_#_node_57_0_node_60_0_node_51_0_node_56_0_node_47_0_node_61_0_node_61_1_qua canh
 #_#_#_#_#_node_67_1_tam thoi
 #_#_#_#_#_node_54_0_node_43_0_node_62_0_node_43_0_node_44_0_node_54_0_node_47_1_co the dich
@@ -45490,8 +45409,7 @@ node_61_1_trilithons
 #_#_#_#_#_node_60_0_node_43_1_trimera
 node_56_1_trimaran
 #_#_#_node_61_0_node_51_0_node_62_0_node_51_0_node_45_1_trimesitic
-#_#_#_#_node_62_0_node_47_0_node_60_1_khoảng ba tháng
-#_#_node_60_0_node_51_0_node_43_0_node_54_1_hang quy
+#_#_#_#_node_62_0_node_60_0_node_51_0_node_43_0_node_54_1_hang quy
 #_#_#_#_#_#_node_62_0_node_47_0_node_60_1_ba met
 #_#_node_50_0_node_67_0_node_54_1_trimethyl
 node_43_0_node_55_0_node_51_0_node_56_0_node_47_1_trimetylamin
@@ -45638,8 +45556,7 @@ node_47_1_sa giong
 #_#_#_#_#_node_67_0_node_54_1_trityl
 node_47_0_node_56_0_node_47_1_tritylene
 #_#_#_#_#_#_node_63_0_node_55_0_node_58_0_node_50_0_node_47_0_node_60_1_dac thang
-#_#_#_#_node_64_0_node_51_0_node_60_0_node_51_1_Tam dàu ché
-#_node_61_1_bo ba
+#_#_#_#_node_64_0_node_51_0_node_60_0_node_61_1_bo ba
 #_node_67_1_triumviry
 #_#_#_#_#_node_56_0_node_47_1_triune
 #_node_49_0_node_63_0_node_54_0_node_51_1_Hinh tam giac
@@ -45690,8 +45607,7 @@ node_43_0_node_54_1_trochoidal
 #_#_#_#_node_46_1_trod
 node_46_0_node_47_0_node_56_1_cuoi ngua
 #_#_#_node_47_1_trode
-#_#_node_49_0_node_54_0_node_57_0_node_46_0_node_67_0_node_62_0_node_47_1_nguòi ỏ hang
-node_61_1_troglodytes
+#_#_node_49_0_node_54_0_node_57_0_node_46_0_node_67_0_node_62_0_node_47_0_node_61_1_troglodytes
 #_#_node_51_0_node_45_0_node_43_0_node_54_1_troglodytic
 #_#_#_#_#_#_#_#_#_node_57_0_node_56_0_node_57_0_node_51_0_node_46_1_trogonoid
 #_#_#_#_#_node_63_0_node_47_1_lua gat
@@ -46900,8 +46816,7 @@ node_47_0_node_46_1_khong thuoc ve
 #_#_#_#_#_#_node_60_0_node_55_1_khong xac nhan
 #_#_node_62_1_khong thich hop
 #_node_66_1_bo sua loi
-#_#_node_54_0_node_47_0_node_46_0_node_49_0_node_47_0_node_46_1_khong co kien ​​thuc
-#_#_#_#_node_66_0_node_51_0_node_44_0_node_54_0_node_47_1_khong linh hoat
+#_#_node_54_0_node_47_0_node_66_0_node_51_0_node_44_0_node_54_0_node_47_1_khong linh hoat
 #_#_#_#_#_#_node_51_0_node_56_0_node_45_0_node_50_0_node_51_0_node_56_0_node_49_1_khong nao nung
 #_#_#_#_#_#_#_node_57_0_node_65_0_node_47_0_node_60_1_mo hoa
 #_#_#_#_#_node_57_0_node_60_0_node_47_0_node_61_0_node_47_0_node_47_0_node_43_0_node_44_0_node_54_0_node_47_1_khong luong truoc duoc
@@ -48027,12 +47942,10 @@ node_67_1_vallary
 #_#_#_#_node_61_0_node_43_0_node_54_0_node_64_0_node_51_0_node_43_0_node_56_1_valsalvian
 #_#_#_#_#_#_#_node_63_0_node_43_0_node_44_0_node_54_0_node_47_1_quy gia
 #_#_#_node_62_0_node_51_0_node_57_0_node_56_1_dinh gia
-#_#_#_#_#_node_47_0_node_54_0_node_47_0_node_61_0_node_61_1_khong có giá trị
-#_#_#_#_node_60_1_nguoi dinh gia
+#_#_#_#_#_node_47_0_node_60_1_nguoi dinh gia
 #_#_node_51_0_node_56_0_node_49_1_dinh gia tri
 #_#_#_#_node_64_0_node_43_0_node_61_0_node_57_0_node_60_1_dung cam
-#_#_#_node_62_0_node_43_1_bảo vẹ
-#_node_47_1_ban bao ve
+#_#_#_node_62_0_node_47_1_ban bao ve
 #_#_#_node_47_1_van nuoc
 node_22_0_node_61_0_node_50_0_node_47_0_node_54_0_node_54_1_van-vo
 #_#_#_#_#_#_node_46_1_co gia tri
@@ -48068,8 +47981,7 @@ node_61_0_node_61_0_node_43_1_vanessa
 node_51_0_node_56_0_node_49_1_bien mat
 #_#_#_node_55_0_node_47_0_node_56_0_node_62_1_su bien mat
 #_#_#_#_#_#_node_62_0_node_51_0_node_47_0_node_61_1_phu phiem
-#_#_#_node_67_1_Tụ phụ
-#_#_#_node_52_0_node_43_0_node_61_1_vanjas
+#_#_#_#_#_node_52_0_node_43_0_node_61_1_vanjas
 #_#_#_node_56_0_node_47_0_node_60_1_nhieu nuoc
 node_42_0_node_50_0_node_43_0_node_65_0_node_53_1_dieu hau nuoc
 #_#_#_#_#_#_#_node_51_0_node_56_0_node_49_1_thuy loi
@@ -48136,8 +48048,7 @@ node_47_0_node_60_1_nguoi danh vecni
 #_#_#_#_#_#_node_63_0_node_56_0_node_43_1_varuna
 #_#_#_node_64_0_node_47_0_node_54_1_tren ngon chan
 node_47_0_node_46_1_danh vecni
-#_#_#_#_#_node_67_1_thay dỏi
-node_51_0_node_56_0_node_49_1_thay doi
+#_#_#_#_#_node_67_0_node_51_0_node_56_0_node_49_1_thay doi
 #_#_#_#_#_node_61_0_node_43_1_vasa
 node_42_0_node_46_0_node_47_0_node_48_0_node_47_0_node_60_0_node_47_0_node_56_0_node_62_0_node_51_0_node_43_1_tau dang kinh
 #_#_#_#_#_#_#_#_#_#_#_#_node_45_0_node_63_0_node_54_0_node_43_1_tau thuyen
@@ -48255,8 +48166,7 @@ node_46_1_duoc bao ve
 #_#_#_#_#_node_56_0_node_43_1_vena
 node_47_0_node_42_0_node_45_0_node_43_0_node_64_0_node_43_0_node_47_1_tinh mach chu
 #_#_#_#_#_node_58_0_node_57_0_node_60_0_node_62_0_node_43_0_node_47_1_tinh mach cua canh cong
-#_#_#_#_#_#_#_#_node_54_1_dẻ hói lọ
-node_51_0_node_62_0_node_67_1_venality
+#_#_#_#_#_#_#_#_node_54_0_node_51_0_node_62_0_node_67_1_venality
 #_#_#_node_54_0_node_67_1_venally
 #_#_#_node_56_0_node_62_0_node_47_0_node_61_1_dang toi
 #_#_#_#_node_60_0_node_67_1_chim an thit
@@ -48644,8 +48554,7 @@ node_56_1_nguoi victoria
 #_#_#_#_node_61_1_luong thuc
 #_#_#_node_61_1_bi danh bai
 #_#_#_node_63_0_node_42_0_node_43_1_vicu a
-#_#_node_49_0_node_56_0_node_43_1_vicuña
-#_#_#_#_#_node_46_0_node_43_0_node_42_0_node_48_0_node_51_0_node_56_0_node_45_0_node_50_1_cuoc song chim se
+#_#_#_#_node_46_0_node_43_0_node_42_0_node_48_0_node_51_0_node_56_0_node_45_0_node_50_1_cuoc song chim se
 #_#_#_#_#_#_node_55_0_node_47_1_vidame
 #_#_#_node_47_1_vide
 node_62_0_node_62_0_node_47_1_anh ay da xem
@@ -49503,8 +49412,7 @@ node_54_0_node_47_0_node_62_1_nai con nuoc
 #_#_#_#_#_node_64_0_node_51_0_node_54_1_quy nuoc
 #_#_#_#_node_57_0_node_45_0_node_53_1_ben nuoc
 #_node_62_0_node_57_0_node_60_1_bac si nuoc
-#_#_#_#_node_49_1_hải cảu
-#_#_node_60_0_node_43_0_node_51_0_node_56_0_node_43_0_node_49_0_node_47_1_thoat nuoc
+#_#_#_#_#_node_60_0_node_43_0_node_51_0_node_56_0_node_43_0_node_49_0_node_47_1_thoat nuoc
 #_#_#_#_#_#_node_47_0_node_61_0_node_61_0_node_51_0_node_56_0_node_49_1_thay nuoc
 #_#_#_#_#_#_node_57_0_node_58_0_node_65_0_node_57_0_node_60_0_node_62_1_giot nuoc
 #_#_#_#_#_#_#_#_node_47_0_node_43_0_node_49_0_node_54_0_node_47_1_dai bang nuoc
@@ -50349,8 +50257,7 @@ node_47_0_node_46_1_co gio
 #_#_node_62_0_node_57_0_node_60_0_node_55_1_gio bao
 #_#_#_#_#_node_62_0_node_51_0_node_49_0_node_50_0_node_62_1_kin gio
 #_#_#_#_#_node_65_0_node_43_0_node_60_0_node_46_1_thuan gio
-#_#_#_#_node_67_1_có gió
-#_#_node_47_1_ruou
+#_#_#_#_#_node_47_1_ruou
 node_44_0_node_47_0_node_60_0_node_60_0_node_67_1_ruou vang
 #_#_#_#_node_51_0_node_44_0_node_44_0_node_47_0_node_60_1_yem ruou
 #_#_#_#_#_#_node_49_0_node_54_0_node_43_0_node_61_0_node_61_0_node_48_0_node_63_0_node_54_0_node_61_1_ly ruou
