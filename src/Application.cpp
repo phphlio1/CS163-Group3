@@ -1,50 +1,21 @@
 #include "Application.hpp"
 #include "TextBox.hpp"
-#include "SideBar.hpp"
-#include "DefinitionFrame.hpp"
-#include "header.hpp"
 
 Application::Application()
 	: window_width_(1280), window_height_(720),
 	  window_title_("CS163 Dictionary")
 {
-	setup();
 	run();
-}
-
-Application::~Application()
-{
-	for (auto component : components_)
-	{
-		delete component;
-	}
-}
-
-void Application::setup()
-{
-	Frontend::TextBox *text_box = new Frontend::TextBox;
-	text_box->setPosition(701, 18);
-	
-	Frontend::SideBar *side_bar = new Frontend::SideBar;
-	side_bar->setPosition(0, 70);
-	
-	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
-	definition_frame->setPosition(330, 70);
-	definition_frame->setKeyword("welcome");
-
-	Frontend::Header *header = new Frontend::Header;
-	header->setPosition(0, 0);
-	
-	components_ = std::move(std::vector<Frontend::Component*>
-							{text_box, side_bar, definition_frame, header});
 }
 
 void Application::run()
 {
-	sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
-							getWindowTitle(),
-							sf::Style::Titlebar | sf::Style::Close);
-	window.setFramerateLimit(60);
+    sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
+							getWindowTitle());
+	
+	Frontend::TextBox text_box(500, 200);
+	text_box.setBackgroundString("background");
+	text_box.setFont("../resources/JetBrainsMonoNL-Regular.ttf");
 
     while (window.isOpen())
     {
@@ -58,25 +29,13 @@ void Application::run()
 				break;
 
 			default:
+				text_box.processEvent(event);
 				break;
 			}
         }
-		for (auto component : components_)
-		{
-			if (component->isVisible())
-			{
-				component->processEvent(event);	
-			}
-		}
 
-		window.clear(sf::Color::White);
-		for (auto component : components_)
-		{
-			if (component->isVisible())
-			{
-				window.draw(*component);
-			}
-		}
+        window.clear(sf::Color::White);
+		window.draw(text_box);
         window.display();
     }
 }
