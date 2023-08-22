@@ -12,6 +12,7 @@ add_subdirectory(src)
 target_include_directories(${PROJECT_NAME} PRIVATE
   .
   SFML/include
+  Dictionary
   src
   src/frontend)
 target_link_directories(${PROJECT_NAME} PRIVATE SFML/lib)

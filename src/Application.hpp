@@ -1,5 +1,5 @@
-#ifndef APPLICATION_H
-#define APPLICATION_H
+#ifndef APPLICATION_HPP
+#define APPLICATION_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -23,6 +23,8 @@ private:
 	int window_width_, window_height_, window_style_;
 	sf::String window_title_;
 	std::vector<Frontend::Component*> components_;
+
+	Trie *tries_[4];
 };
 
 #endif

@@ -5,18 +5,56 @@ Application::Application()
 	: window_width_(1280), window_height_(720),
 	  window_title_("CS163 Dictionary")
 {
+	setupFrontend();
+	initTries();
 	run();
+}
+
+Application::~Application()
+{
+	for (auto component : components_)
+	{
+		delete component;
+	}
+	for (auto trie : tries_)
+	{
+		delete trie;
+	}
+}
+
+void Application::setupFrontend()
+{
+	Frontend::TextBox *text_box = new Frontend::TextBox;
+	text_box->setPosition(701, 18);
+	
+	Frontend::SideBar *side_bar = new Frontend::SideBar;
+	side_bar->setPosition(0, 70);
+	
+	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
+	definition_frame->setPosition(330, 70);
+	definition_frame->setKeyword("welcome");
+
+	Frontend::Header *header = new Frontend::Header;
+	header->setPosition(0, 0);
+	
+	components_ = std::move(std::vector<Frontend::Component*>
+							{text_box, side_bar, definition_frame, header});
+}
+
+void Application::initTries()
+{
+	tries_[0] = new Trie(Datasets::Eng_Eng);
+	tries_[1] = new Trie(Datasets::Eng_Viet);
+	tries_[2] = new Trie(Datasets::Viet_Eng);
+	tries_[3] = new Trie(Datasets::Emoji);
 }
 
 void Application::run()
 {
     sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
-							getWindowTitle());
+							getWindowTitle(),
+							sf::Style::Titlebar | sf::Style::Close);
 	
-	Frontend::TextBox text_box(500, 200);
-	text_box.setBackgroundString("background");
-	text_box.setFont("../resources/JetBrainsMonoNL-Regular.ttf");
-
     while (window.isOpen())
     {
         sf::Event event;
@@ -29,13 +67,27 @@ void Application::run()
 				break;
 
 			default:
-				text_box.processEvent(event);
 				break;
 			}
         }
+		for (Frontend::Component &component : components_)
+		{
+			if (component->isVisible())
+			{
+				component->processEvent(event);
+			}
+		}
 
         window.clear(sf::Color::White);
-		window.draw(text_box);
+		
+		for (const Frontend::Component &component : components_)
+		{
+			if (component->isVisible())
+			{
+				window.draw(*component);
+			}
+		}
+		
         window.display();
     }
 }
