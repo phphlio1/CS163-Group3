@@ -1,4 +1,6 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(Dictionary)
+target_sources(${PROJECT_NAME} PRIVATE
+  main.cpp
+  Application.hpp
+  Application.cpp)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_subdirectory(frontend)
