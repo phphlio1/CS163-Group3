@@ -10,6 +10,11 @@ Component::Component(int n_width, int n_height)
     sprite_.setTexture(getTexture().getTexture());
 }
 
+sf::Vector2f Component::findWindowRelativePos() const
+{
+	return getPosition();
+}
+
 bool Component::isVisible() const
 {
     return is_visible_;
@@ -49,7 +54,7 @@ void Component::setHeight(int n_height)
 
 void Component::setPosition(int x, int y)
 {
-    sprite_.setPosition(x, y);
+	setPosition(sf::Vector2f(x, y));
 }
 
 void Component::setPosition(const sf::Vector2f &n_pos)

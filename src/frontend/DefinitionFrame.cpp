@@ -7,32 +7,50 @@ using namespace Frontend;
 DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	: Component(n_width, n_height),
 	  definition_bar_height_(152), bottom_bar_height_(40),
-	  bars_color_(sf::Color(17, 105, 142)),
-	  add_to_favorites_pos_(430, 90), edit_definition_pos_(525, 90)
+	  bars_color_(17, 105, 142),
+	  button_circle_(25),
+	  edit_definition_button_(button_circle_.getRadius() * 2,
+							  button_circle_.getRadius() * 2,
+							  sf::Color::Transparent,
+							  sf::Color(255, 255, 255, 160),
+							  sf::Color(255, 255, 255, 200)),
+	  add_to_favorites_button_(button_circle_.getRadius() * 2,
+							   button_circle_.getRadius() * 2,
+							   sf::Color::Transparent,
+							   sf::Color(255, 255, 255, 160),
+							   sf::Color(255, 255, 255, 200))
 {
-	sprite_.setPosition(330, 70);
+	edit_definition_button_.setContainer(static_cast<Component*>(this));
+	add_to_favorites_button_.setContainer(static_cast<Component*>(this));
+	
+	int button_circle_width = button_circle_.getLocalBounds().width,
+		button_circle_height = button_circle_.getLocalBounds().height;
+	button_circle_.setOrigin(int(button_circle_width - 1) / 2,
+							 int(button_circle_height - 1) / 2);
+	button_circle_.setFillColor(sf::Color::Transparent);
+	button_circle_.setOutlineThickness(-2);
+	button_circle_.setOutlineColor(sf::Color::White);
+
+	createEditDefinitionButton();
+	createAddToFavoritesButton();
+
+	setEditDefinitionPos(500, 70);
+	setAddToFavoritesPos(405, 70);
+
+	setPosition(330, 70);
 	
 	keyword_text_.setFont(getFont());
 	setFont("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
 	setKeywordTextCharacterSize(35);
 	setKeywordTextColor(sf::Color::White);
 	setKeywordTextYPos(23);
-
-	add_to_favorites_button_.loadFromFile("resources/img/add-to-favorites.png");
-	edit_definition_button_.loadFromFile("resources/img/edit-definition.png");
-
-	setButtonRadius(20);
-	int button_circle_width = button_circle_.getLocalBounds().width,
-		button_circle_height = button_circle_.getLocalBounds().height;
-	button_circle_.setOrigin(button_circle_width / 2, button_circle_height / 2);
-	button_circle_.setFillColor(sf::Color::Transparent);
-	setButtonOutlineThickness(-2);
-	setButtonOutlineColor(sf::Color::White);
 }
 
 void DefinitionFrame::processEvent(const sf::Event &event)
 {
-	
+	edit_definition_button_.processEvent(event);
+	add_to_favorites_button_.processEvent(event);
+	updateTexture();
 }
 
 int DefinitionFrame::getKeywordTextCharacterSize() const
@@ -92,12 +110,12 @@ const sf::Color& DefinitionFrame::getButtonOutlineColor() const
 
 const sf::Vector2f& DefinitionFrame::getEditDefinitionPos() const
 {
-	return edit_definition_pos_;
+	return edit_definition_button_.getPosition();
 }
 
 const sf::Vector2f& DefinitionFrame::getAddToFavoritesPos() const
 {
-	return add_to_favorites_pos_;
+	return add_to_favorites_button_.getPosition();
 }
 
 void DefinitionFrame::setKeywordTextCharacterSize(int n_size)
@@ -173,7 +191,7 @@ void DefinitionFrame::setEditDefinitionPos(int x, int y)
 
 void DefinitionFrame::setEditDefinitionPos(const sf::Vector2f &n_pos)
 {
-	edit_definition_pos_ = n_pos;
+	edit_definition_button_.setPosition(n_pos);
 	updateTexture();
 }
 
@@ -184,7 +202,7 @@ void DefinitionFrame::setAddToFavoritesPos(int x, int y)
 
 void DefinitionFrame::setAddToFavoritesPos(const sf::Vector2f &n_pos)
 {
-	add_to_favorites_pos_ = n_pos;
+	add_to_favorites_button_.setPosition(n_pos);
 	updateTexture();
 }
 
@@ -213,8 +231,8 @@ void DefinitionFrame::updateTexture()
 	texture_.draw(definition_bar);
 	texture_.draw(bottom_bar);
 	texture_.draw(keyword_text_);
-	drawButton(edit_definition_button_, getEditDefinitionPos());
-	drawButton(add_to_favorites_button_, getAddToFavoritesPos());
+	texture_.draw(edit_definition_button_);
+	texture_.draw(add_to_favorites_button_);
 	// for (const sf::String &definition : definitions())
 	// {
 	// 	drawDefinition(definition);
@@ -230,17 +248,54 @@ void DefinitionFrame::centerKeywordText()
 							  getKeywordTextYPos());
 }
 
-void DefinitionFrame::drawButton(const sf::Texture &button_texture, const sf::Vector2f &position)
+void DefinitionFrame::createEditDefinitionButton()
 {
-	sf::Sprite button_sprite(button_texture);
-	int button_width = button_sprite.getLocalBounds().width,
-		button_height = button_sprite.getLocalBounds().height;
-	button_sprite.setOrigin((button_width - 1) / 2, (button_height - 1) / 2);
-	button_sprite.setPosition(position);
-	button_circle_.setPosition(position);
+	int button_width = edit_definition_button_.getWidth(),
+		button_height = edit_definition_button_.getHeight();
 	
-	texture_.draw(button_sprite);
-	texture_.draw(button_circle_);
+	sf::Texture image;
+	image.loadFromFile("resources/img/edit-definition.png");
+	int image_width = image.getSize().x, image_height = image.getSize().y;
+	
+	sf::Sprite sprite(image);
+	// center the image
+	sprite.setOrigin((image_width - 1) / 2, (image_height - 1) / 2);
+	sprite.setPosition((button_width - 1) / 2, (button_height - 1) / 2);
+
+	button_circle_.setPosition(sprite.getPosition());
+
+	edit_definition_texture_.create(button_width, button_height);
+	edit_definition_texture_.clear(sf::Color::Transparent);
+	edit_definition_texture_.draw(sprite);
+	edit_definition_texture_.draw(button_circle_);
+	edit_definition_texture_.display();
+
+	edit_definition_button_.setTexture(edit_definition_texture_.getTexture(), 0, 0);
+}
+
+void DefinitionFrame::createAddToFavoritesButton()
+{
+	int button_width = add_to_favorites_button_.getWidth(),
+		button_height = add_to_favorites_button_.getHeight();
+	
+	sf::Texture image;
+	image.loadFromFile("resources/img/add-to-favorites.png");
+	int image_width = image.getSize().x, image_height = image.getSize().y;
+	
+	sf::Sprite sprite(image);
+	// center the image
+	sprite.setOrigin((image_width - 1) / 2, (image_height - 1) / 2);
+	sprite.setPosition((button_width - 1) / 2, (button_height - 1) / 2);
+
+	button_circle_.setPosition(sprite.getPosition());
+
+	add_to_favorites_texture_.create(button_width, button_height);
+	add_to_favorites_texture_.clear(sf::Color::Transparent);
+	add_to_favorites_texture_.draw(sprite);
+	add_to_favorites_texture_.draw(button_circle_);
+	add_to_favorites_texture_.display();
+
+	add_to_favorites_button_.setTexture(add_to_favorites_texture_.getTexture(), 0, 0);
 }
 
 void DefinitionFrame::drawDefinition(const sf::String &definition)

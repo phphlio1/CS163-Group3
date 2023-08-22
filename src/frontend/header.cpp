@@ -47,7 +47,7 @@ void Header::setSprites()
 
     searchSprite.setTexture(search);
     searchSprite.setPosition(706, 19);
-    updateTexture();
+	updateTexture();
 }
 
 void Header::setButtons()
@@ -56,32 +56,39 @@ void Header::setButtons()
     dictionaryBtn.setText(fontAwesome, "Dictionary", 18, sf::Color::White);
     dictionaryBtn.setTextPosition(sf::Vector2f(6, 51));
     dictionaryBtn.setTexture(dictionary, 24, 7);
+	dictionaryBtn.setContainer(this);
 
     dailyBtn.setPosition(193, 0);
     dailyBtn.setText(fontAwesome, "Daily", 18, sf::Color::White);
     dailyBtn.setTextPosition(sf::Vector2f(16, 51));
     dailyBtn.setTexture(daily, 15, 5);
+	dailyBtn.setContainer(this);
 
     favBtn.setPosition(267, 0);
     favBtn.setText(fontAwesome, "Favorite", 18, sf::Color::White);
     favBtn.setTextPosition(sf::Vector2f(8, 51));
     favBtn.setTexture(favorite, 19, 9);
+	favBtn.setContainer(this);
 
     gameBtn.setPosition(354, 0);
     gameBtn.setText(fontAwesome, "Game", 18, sf::Color::White);
     gameBtn.setTextPosition(sf::Vector2f(10, 51));
     gameBtn.setTexture(game, 10, 0);
+	gameBtn.setContainer(this);
 
     configBtn.setPosition(1129, 18);
     configBtn.setTexture(config, 0, 0);
+	configBtn.setContainer(this);
 
     resetBtn.setPosition(1193, 0);
     resetBtn.setTexture(reset, 12, 12);
+	resetBtn.setContainer(this);
 
     setLangBtn.setPosition(447, 0);
     setLangBtn.setText(serif, LanguageOfChoiceDisplay.at(languageOfChoice), 30, sf::Color::White);
     setLangBtn.setTextPosition(LanguageTextPos.at(languageOfChoice));
     setLangBtn.setTexture(swap, 90, 10);
+	setLangBtn.setContainer(this);
 
     updateTexture();
 }

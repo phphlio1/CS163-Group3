@@ -33,6 +33,7 @@ void Application::setup()
 	definition_frame->setKeyword("welcome");
 
 	Frontend::Header *header = new Frontend::Header;
+	header->setPosition(0, 0);
 	
 	components_ = std::move(std::vector<Frontend::Component*>
 							{text_box, side_bar, definition_frame, header});
@@ -40,9 +41,10 @@ void Application::setup()
 
 void Application::run()
 {
-    sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
+	sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
 							getWindowTitle(),
 							sf::Style::Titlebar | sf::Style::Close);
+	window.setFramerateLimit(60);
 
     while (window.isOpen())
     {
@@ -72,7 +74,7 @@ void Application::run()
 		{
 			if (component->isVisible())
 			{
-				window.draw(*component);	
+				window.draw(*component);
 			}
 		}
         window.display();

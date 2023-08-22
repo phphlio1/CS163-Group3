@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "Component.hpp"
+#include "button.hpp"
 
 namespace Frontend
 {
@@ -11,8 +12,9 @@ namespace Frontend
 	{
 	public:
 		DefinitionFrame(int n_width = 950, int n_height = 650);
-		
+
 		virtual void processEvent(const sf::Event &event) override;
+		
 		int getKeywordTextCharacterSize() const;
 		const sf::Color& getKeywordTextColor() const;
 		const sf::String& getKeyword() const;
@@ -51,18 +53,20 @@ namespace Frontend
 
 	private:
 		void centerKeywordText();
-		void drawButton(const sf::Texture &button_texture, const sf::Vector2f &position);
+		void createEditDefinitionButton();
+		void createAddToFavoritesButton();
 		void drawDefinition(const sf::String &definition);
 		
+		std::vector<sf::String> definitions_;
+		
 		int definition_bar_height_, bottom_bar_height_;
-
 		sf::Color bars_color_;
 		sf::Font font_;
 		sf::Text keyword_text_;
-		sf::Vector2f edit_definition_pos_, add_to_favorites_pos_;
 		sf::CircleShape button_circle_;
-		sf::Texture edit_definition_button_, add_to_favorites_button_;
-		std::vector<sf::String> definitions_;
+		sf::RenderTexture edit_definition_texture_, add_to_favorites_texture_;
+
+		Button edit_definition_button_, add_to_favorites_button_;
 	};
 }
 
