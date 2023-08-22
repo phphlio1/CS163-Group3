@@ -318,8 +318,7 @@ void Trie::quiz_1Word4Defis(std::string &question, std::vector<std::string> &cho
     std::vector<std::string> defis = {correct_defi, wrong_defi1, wrong_defi2, wrong_defi3};
     shuffle(defis.begin(), defis.end(), std::default_random_engine(generator()));
 
-    question = "The given word is: " + word + '\n' 
-    + "With 4 given definitions, choose the correct one!";
+    question = word;
 
     choices = defis;
 
@@ -339,124 +338,11 @@ void Trie::quiz_1Defi4Words(std::string &question, std::vector<std::string> &cho
     std::vector<std::string> words = {correct_word, wrong_word1, wrong_word2, wrong_word3};
     shuffle(words.begin(), words.end(), std::default_random_engine(generator()));
 
-    question = "The given definition is: " + defi + '\n'
-    + "With 4 given words, choose the correct one!";
+    question = defi;
     choices = words;
     for (int i = 0; i < 4; ++i)
         if (words[i] == correct_word)
             correctChoiceID = i;
-}
-
-void Trie::prepare_1Word4Defis()
-{
-    std::vector<std::string> wordSet(10);
-    std::vector<std::vector<std::string>> defiSet(10);
-    std::vector<int> correctOption(10);
-    for(int i = 0; i < 10; ++i)
-        getComponent_1Word4Defis(wordSet, defiSet, correctOption, i);
-}
-
-void Trie::getComponent_1Word4Defis(std::vector<std::string>& wordSet, std::vector<std::vector<std::string>>& defiSet,
-std::vector<int>& correctOption, int index)
-{
-    std::string word = getRandomWord();
-    std::string correct_defi = getRandomDefi_Of_Its_Word(word);
-    std::string wrong_defi1 = getRandomDefi_Of_Random_Word();
-    std::string wrong_defi2 = getRandomDefi_Of_Random_Word();
-    std::string wrong_defi3 = getRandomDefi_Of_Random_Word();
-
-    std::vector<std::string> defis = {correct_defi, wrong_defi1, wrong_defi2, wrong_defi3};
-    shuffle(defis.begin(), defis.end(), std::default_random_engine(generator()));
-
-    wordSet[index] = word;
-    defiSet[index] = defis;
-    for(int i = 0; i < 4; ++i)
-        if(correct_defi == defis[i])
-            correctOption[index] = i;
-}
-
-void Trie::prepare_1Defi4Words()
-{
-    std::vector<std::string> defiSet(10);
-    std::vector<std::vector<std::string>> wordSet(10);
-    std::vector<int> correctOption(10);
-    for(int i = 0; i < 10; ++i)
-        getComponent_1Word4Defis(defiSet, wordSet, correctOption, i);
-}
-
-void Trie::getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
-std::vector<int>& correctOption, int index)
-{
-    std::string correct_word = getRandomWord();
-    std::string defi = getRandomDefi_Of_Its_Word(correct_word);
-    std::string wrong_word1 = getRandomWord();
-    std::string wrong_word2 = getRandomWord();
-    std::string wrong_word3 = getRandomWord();
-
-    std::vector<std::string> words = {correct_word, wrong_word1, wrong_word2, wrong_word3};
-    shuffle(words.begin(), words.end(), std::default_random_engine(generator()));
-
-    defiSet[index] = defi;
-    wordSet[index] = words;
-    for(int i = 0; i < 4; ++i)
-        if(correct_word == words[i])
-            correctOption[index] = i;
-}
-
-void Trie::prepare_1Word4Defis()
-{
-    std::vector<std::string> wordSet(10);
-    std::vector<std::vector<std::string>> defiSet(10);
-    std::vector<int> correctOption(10);
-    for(int i = 0; i < 10; ++i)
-        getComponent_1Word4Defis(wordSet, defiSet, correctOption, i);
-}
-
-void Trie::getComponent_1Word4Defis(std::vector<std::string>& wordSet, std::vector<std::vector<std::string>>& defiSet,
-std::vector<int>& correctOption, int index)
-{
-    std::string word = getRandomWord();
-    std::string correct_defi = getRandomDefi_Of_Its_Word(word);
-    std::string wrong_defi1 = getRandomDefi_Of_Random_Word();
-    std::string wrong_defi2 = getRandomDefi_Of_Random_Word();
-    std::string wrong_defi3 = getRandomDefi_Of_Random_Word();
-
-    std::vector<std::string> defis = {correct_defi, wrong_defi1, wrong_defi2, wrong_defi3};
-    shuffle(defis.begin(), defis.end(), std::default_random_engine(generator()));
-
-    wordSet[index] = word;
-    defiSet[index] = defis;
-    for(int i = 0; i < 4; ++i)
-        if(correct_defi == defis[i])
-            correctOption[index] = i;
-}
-
-void Trie::prepare_1Defi4Words()
-{
-    std::vector<std::string> defiSet(10);
-    std::vector<std::vector<std::string>> wordSet(10);
-    std::vector<int> correctOption(10);
-    for(int i = 0; i < 10; ++i)
-        getComponent_1Word4Defis(defiSet, wordSet, correctOption, i);
-}
-
-void Trie::getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
-std::vector<int>& correctOption, int index)
-{
-    std::string correct_word = getRandomWord();
-    std::string defi = getRandomDefi_Of_Its_Word(correct_word);
-    std::string wrong_word1 = getRandomWord();
-    std::string wrong_word2 = getRandomWord();
-    std::string wrong_word3 = getRandomWord();
-
-    std::vector<std::string> words = {correct_word, wrong_word1, wrong_word2, wrong_word3};
-    shuffle(words.begin(), words.end(), std::default_random_engine(generator()));
-
-    defiSet[index] = defi;
-    wordSet[index] = words;
-    for(int i = 0; i < 4; ++i)
-        if(correct_word == words[i])
-            correctOption[index] = i;
 }
 
 void Trie::prepare_1Word4Defis()
