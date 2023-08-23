@@ -1,11 +1,37 @@
+#include "frontend/InGame.hpp"
 #include "frontend/header.hpp"
+#include "frontend/gameMode.hpp"
 #include <iostream>
 
 int main()
 {
+    // std::vector<std::string> keywordStr = {"sequence", "null"};
+    // std::vector<std::vector<std::string>> definitionStr = {{"a series of related things or events, or the order in which they follow each other", "to combine things in a particular order, or discover the order in which they are combined", "to discover the order in which nucleotides (= chemical substances) are combined within DNA", "all of the above"}, {"null", "null", "null", "null"}};
+    // std::vector<int> ans = {3, 0};
+
+    std::string key = "sequence";
+    std::string ans1 = "a series of related things or events, or the order in which they follow each other";
+    std::string ans2 = "to combine things in a particular order, or discover the order in which they are combined";
+    std::string ans3 = "to discover the order in which nucleotides (= chemical substances) are combined within DNA";
+    std::string ans4 = "all of the above";
+    int ans = 3;
+
+    // std::string key = "to discover the order in which nucleotides are combined within DNA";
+    // std::string ans1 = "sequence";
+    // std::string ans2 = "sentence";
+    // std::string ans3 = "search";
+    // std::string ans4 = "none of the above";
+    // int ans = 0;
+
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
     Frontend::Header header;
+
+    // Frontend::InGame game(Frontend::GameMode::DEF_TO_WORD);
+
+    Frontend::GameModeMenu menu;
+
+    // game.setQuestionParams(key, ans1, ans2, ans3, ans4, ans);
 
     while (window.isOpen())
     {
@@ -15,10 +41,17 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
 
+            // game.processEvent(event);
             header.processEvent(event);
+            menu.processEvent(event);
         }
         window.clear(sf::Color::White);
 
+        if (header.getCurrentTab() == Frontend::DICTIONARY)
+            std::cout << "Dictionary\n";
+
+        // window.draw(game);
+        window.draw(menu);
         window.draw(header);
 
         window.display();

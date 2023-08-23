@@ -10,6 +10,7 @@ Button::Button(int width, int height, sf::Color idle, sf::Color hover, sf::Color
 {
     shape.setPosition(0, 0);
     shape.setSize(sf::Vector2f(width, height));
+    // shape.setFillColor(idleColor);
 }
 
 Button::~Button()
@@ -22,7 +23,6 @@ void Button::updateTexture()
     texture_.draw(shape);
     texture_.draw(text);
     texture_.draw(sprite);
-
     texture_.display();
 }
 
@@ -35,9 +35,7 @@ void Button::processEvent(const sf::Event &event)
     };
 
     setButtonInactive();
-    // std::cout << "Mouse button coordinate: " << event.mouseButton.x << ' ' << event.mouseButton.y << std::endl;
-    // std::cout << "Mouse move coordinate: " << event.mouseMove.x << ' ' << event.mouseMove.y << std::endl;
-    // std::cout << "container coordinate: " << getSprite().getGlobalBounds().left << ' ' << getSprite().getGlobalBounds().top << ' ' << getSprite().getGlobalBounds().width << ' ' << getSprite().getGlobalBounds().height << std::endl;
+
     if ((is_inside(event.mouseMove.x, event.mouseMove.y)))
     {
         setButtonHover();
@@ -124,6 +122,7 @@ void Button::setButtonActive()
 {
     buttonState = BTN_ACTIVE;
     shape.setFillColor(activeColor);
+    sprite.setColor(sf::Color(215, 215, 215));
     updateTexture();
 }
 
@@ -131,6 +130,7 @@ void Button::setButtonInactive()
 {
     buttonState = BTN_IDLE;
     shape.setFillColor(idleColor);
+    sprite.setColor(sf::Color::White);
     updateTexture();
 }
 
@@ -138,5 +138,6 @@ void Button::setButtonHover()
 {
     buttonState = BTN_HOVER;
     shape.setFillColor(hoverColor);
+    sprite.setColor(sf::Color(215, 215, 215));
     updateTexture();
 }

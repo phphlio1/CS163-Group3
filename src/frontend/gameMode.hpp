@@ -1,48 +1,48 @@
-// #ifndef GAME_MODE_HPP
-// #define GAME_MODE_HPP
+#ifndef GAME_MODE_HPP
+#define GAME_MODE_HPP
 
-// #include "button.hpp"
-// #include <vector>
-// #include <SFML/Graphics.hpp>
+#include "button.hpp"
+#include "Component.hpp"
+#include <vector>
+#include <SFML/Graphics.hpp>
 
-// enum class GameMode
-// {
-//     WORD_TO_DEF,
-//     DEF_TO_WORD
-// };
+namespace Frontend
+{
+    enum GameMenu
+    {
+        GAME_MODE_MENU,
+        WORD_TO_DEF,
+        DEF_TO_WORD
+    };
 
-// enum class GameMenu
-// {
-//     GAME_MODE_MENU,
-//     IN_GAME
-// };
+    class GameModeMenu : public Component
+    {
+    private:
+        short unsigned gameMenu;
+        sf::Font font;
+        sf::Texture wordToDefIcon;
+        sf::Texture defToWordIcon;
 
-// class GameModeMenu : public sf::Drawable
-// {
-// private:
-//     GameMode mode;
-//     GameMenu menu;
+        std::vector<sf::RectangleShape> rectShapes;
+        std::vector<sf::Text> titles;
+        Button wordToDefBtn, defToWordBtn;
 
-//     sf::Font font;
-//     sf::Texture wordToDefIcon;
-//     sf::Texture defTOWordIcon;
+    public:
+        GameModeMenu();
+        ~GameModeMenu();
 
-//     std::vector<sf::RectangleShape *> rectShapes;
-//     std::vector<sf::Text *> titles;
-//     std::vector<Button *> buttons;
+        void setFont();
+        void setButtons();
+        void setTexture();
+        void setTitles();
+        void setShapes();
 
-// public:
-//     GameModeMenu();
-//     ~GameModeMenu();
+        virtual void processEvent(const sf::Event &event) override;
 
-//     void initFont();
-//     void initButtons();
-//     void initTexture();
-//     void initTitles();
-//     void initShapes();
+    protected:
+        virtual void updateTexture() override;
+    };
 
-//     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-//     void Update(const sf::Event &event, sf::Vector2f mousePosRelativeToWindow);
-// };
+}
 
-// #endif
+#endif
