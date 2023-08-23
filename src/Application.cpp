@@ -1,5 +1,9 @@
+#include <SFML/Graphics.hpp>
+
 #include "Application.hpp"
-#include "TextBox.hpp"
+#include "header.hpp"
+#include "SideBar.hpp"
+#include "DefinitionFrame.hpp"
 
 Application::Application()
 	: window_width_(1280), window_height_(720),
@@ -16,8 +20,11 @@ Application::~Application()
 	{
 		delete component;
 	}
+	
+	std::string message = "";
 	for (auto trie : tries_)
 	{
+		trie->Serialization_DFS(message);
 		delete trie;
 	}
 }
@@ -47,6 +54,12 @@ void Application::initTries()
 	tries_[1] = new Trie(Datasets::Eng_Viet);
 	tries_[2] = new Trie(Datasets::Viet_Eng);
 	tries_[3] = new Trie(Datasets::Emoji);
+
+	std::string message = "";
+	for (auto trie : tries_)
+	{
+		trie->Deserialization_DFS(message);
+	}
 }
 
 void Application::run()
@@ -70,7 +83,7 @@ void Application::run()
 				break;
 			}
         }
-		for (Frontend::Component &component : components_)
+		for (Frontend::Component *component : components_)
 		{
 			if (component->isVisible())
 			{
@@ -80,7 +93,7 @@ void Application::run()
 
         window.clear(sf::Color::White);
 		
-		for (const Frontend::Component &component : components_)
+		for (const Frontend::Component *component : components_)
 		{
 			if (component->isVisible())
 			{

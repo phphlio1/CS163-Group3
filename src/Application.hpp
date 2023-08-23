@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "Trie.h"
+#include "Dictionary.h"
 #include "Component.hpp"
 
 class Application
@@ -18,7 +20,8 @@ public:
 	const sf::String& getWindowTitle() const;
 
 private:
-	void setup();
+	void setupFrontend();
+	void initTries();
 
 	int window_width_, window_height_, window_style_;
 	sf::String window_title_;

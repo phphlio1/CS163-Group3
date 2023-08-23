@@ -8,6 +8,7 @@ project(Dictionary LANGUAGES CXX)
 add_executable(${PROJECT_NAME})
 
 add_subdirectory(src)
+add_subdirectory(Dictionary)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
   .
