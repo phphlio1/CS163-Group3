@@ -18,7 +18,7 @@ namespace Frontend
     class GameModeMenu : public Component
     {
     private:
-        short unsigned gameMenu;
+        GameMenu gameMenu;
         sf::Font font;
         sf::Texture wordToDefIcon;
         sf::Texture defToWordIcon;
@@ -31,11 +31,14 @@ namespace Frontend
         GameModeMenu();
         ~GameModeMenu();
 
+        GameMenu getCurrentGameMenu();
+
         void setFont();
         void setButtons();
         void setTexture();
         void setTitles();
         void setShapes();
+        void setGameMenu(GameMenu menu);
 
         virtual void processEvent(const sf::Event &event) override;
 
