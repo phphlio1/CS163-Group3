@@ -5,6 +5,7 @@
 #include "gameMode.hpp"
 #include "Component.hpp"
 #include <SFML/Graphics.hpp>
+#include <unistd.h>
 #include <vector>
 #include <cstring>
 #include <iostream>
@@ -19,17 +20,19 @@ namespace Frontend
         sf::Text questionForWordToDef, scoreText, counterText;
         std::vector<sf::RectangleShape> ansOutline;
 
+        sf::RectangleShape header, footer;
+
         int counter, score, maxCounter;
 
         sf::Text key, congrats, subCongrats, finalScore;
         Button quit, ans1, ans2, ans3, ans4, home;
 
+    public:
         // question params
         std::string keyStr;
         std::vector<std::string> ansStrs;
         int ans;
 
-    public:
         // constructors
         InGame(short unsigned gameMode);
         ~InGame();
@@ -46,7 +49,7 @@ namespace Frontend
         void setUtilityTexts();   // score and counter
         void setQuestionParams(); // call backend function to update params
         void setButton();
-        void setMetric(int startCount = 1, int startScore = 0, int numberOfQuestions = 10);
+        void setMetric(int startCount = 1, int startScore = 0, int numberOfQuestions = 2);
         void setQuestion();
         void setOutlineAns();
         void setFinalScore();
@@ -63,5 +66,7 @@ namespace Frontend
         virtual void updateTexture() override;
     };
 }
+
+void setParams(std::string &key_n, std::vector<std::string> &ansStr_n, int &ans_n);
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef COMPONENT_H
-#define COMPONENT_H
+#ifndef COMPONENT_HPP
+#define COMPONENT_HPP
 
 #include <SFML/Graphics.hpp>
 
@@ -11,6 +11,7 @@ namespace Frontend
         Component(int n_width = 0, int n_height = 0);
 
         virtual void processEvent(const sf::Event &event) = 0;
+        virtual sf::Vector2f findWindowRelativePos() const;
 
         bool isVisible() const;
         int getWidth() const;

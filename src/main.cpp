@@ -9,12 +9,18 @@ int main()
     // std::vector<std::vector<std::string>> definitionStr = {{"a series of related things or events, or the order in which they follow each other", "to combine things in a particular order, or discover the order in which they are combined", "to discover the order in which nucleotides (= chemical substances) are combined within DNA", "all of the above"}, {"null", "null", "null", "null"}};
     // std::vector<int> ans = {3, 0};
 
-    std::string key = "sequence";
-    std::string ans1 = "a series of related things or events, or the order in which they follow each other";
-    std::string ans2 = "to combine things in a particular order, or discover the order in which they are combined";
-    std::string ans3 = "to discover the order in which nucleotides (= chemical substances) are combined within DNA";
-    std::string ans4 = "all of the above";
-    int ans = 3;
+    // std::vector<std::string> key = {"sequence", "happy"};
+    // std::vector<std::string> ansStr = {
+    //     {"a series of related things or events, or the order in which they follow each other",
+    //      "to combine things in a particular order, or discover the order in which they are combined",
+    //      "to discover the order in which nucleotides (= chemical substances) are combined within DNA",
+    //      "all of the above"},
+    //     {"the state of joyfulness",
+    //      "what you feel when you failed your test",
+    //      "a feeling of nothingness",
+    //      "all of the above"}};
+
+    // std::vector<int> ans = {3, 0};
 
     // std::string key = "to discover the order in which nucleotides are combined within DNA";
     // std::string ans1 = "sequence";
@@ -27,9 +33,10 @@ int main()
 
     Frontend::Header header;
 
-    // Frontend::InGame game(Frontend::GameMode::DEF_TO_WORD);
+    Frontend::InGame game(Frontend::GameMenu::WORD_TO_DEF);
+    // game.setVisibility(false);
 
-    Frontend::GameModeMenu menu;
+    // Frontend::GameModeMenu menu;
 
     // game.setQuestionParams(key, ans1, ans2, ans3, ans4, ans);
 
@@ -41,17 +48,30 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            // game.processEvent(event);
+            if (game.isVisible())
+                game.processEvent(event);
+
             header.processEvent(event);
-            menu.processEvent(event);
+
+            // if (menu.isVisible())
+            //     menu.processEvent(event);
         }
         window.clear(sf::Color::White);
 
-        if (header.getCurrentTab() == Frontend::DICTIONARY)
-            std::cout << "Dictionary\n";
+        // if (menu.getCurrentGameMenu() == Frontend::GameMenu::WORD_TO_DEF)
+        // {
+        //     game.setVisibility(true);
+        // }
 
-        // window.draw(game);
-        window.draw(menu);
+        // if (!game.isVisible())
+        //     menu.setGameMenu(Frontend::GameMenu::GAME_MODE_MENU);
+
+        if (game.isVisible())
+            window.draw(game);
+
+        // if (menu.isVisible())
+        //     window.draw(menu);
+
         window.draw(header);
 
         window.display();

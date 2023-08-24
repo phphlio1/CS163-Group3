@@ -2,6 +2,16 @@
 
 using namespace Frontend;
 
+GameMenu GameModeMenu::getCurrentGameMenu()
+{
+    return gameMenu;
+}
+
+void GameModeMenu::setGameMenu(GameMenu menu)
+{
+    gameMenu = menu;
+}
+
 void GameModeMenu::setFont()
 {
     font.loadFromFile("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
@@ -37,11 +47,13 @@ void GameModeMenu::setButtons()
     wordToDefBtn.setText(font, "Word to Definition", 24, sf::Color::Black);
     wordToDefBtn.setTextPosition(sf::Vector2f(24, 267));
     wordToDefBtn.setTexture(wordToDefIcon, 0, 0);
+    wordToDefBtn.setContainer(this);
 
     defToWordBtn.setPosition(780, 270);
     defToWordBtn.setText(font, "Definition to Word", 24, sf::Color::Black);
     defToWordBtn.setTextPosition(sf::Vector2f(24, 267));
     defToWordBtn.setTexture(defToWordIcon, 0, 0);
+    defToWordBtn.setContainer(this);
 
     updateTexture();
 }
@@ -65,7 +77,7 @@ void GameModeMenu::setTitles()
 GameModeMenu::GameModeMenu()
     : Component(1280, 720),
       gameMenu(GAME_MODE_MENU),
-      wordToDefBtn(270, 300, sf::Color(215, 215, 215), sf::Color(215, 215, 215), sf::Color(215, 215, 215)),
+      wordToDefBtn(270, 300, sf::Color::White, sf::Color(215, 215, 215), sf::Color(215, 215, 215)),
       defToWordBtn(270, 300, sf::Color::White, sf::Color(215, 215, 215), sf::Color(215, 215, 215))
 {
     setFont();

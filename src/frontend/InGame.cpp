@@ -44,7 +44,7 @@ void InGame::setMetric(int startCount, int startScore, int numberOfQuestions)
 void InGame::setQuestionParams()
 {
     // call backend function to update params
-
+    setParams(keyStr, ansStrs, ans);
     setButton();
     setQuestion();
     // setOutlineAns();
@@ -85,10 +85,11 @@ void InGame::setUtilityTexts()
 void InGame::setFinalScore()
 {
     finalScore.setFont(font);
-    finalScore.setString(std::to_string(score) + "pts");
+    finalScore.setString(std::to_string(score) + " pts");
     finalScore.setFillColor(sf::Color(22, 199, 154));
     finalScore.setCharacterSize(60);
     centerText(finalScore, 378);
+    updateTexture();
 }
 
 void InGame::setButton()
@@ -96,34 +97,40 @@ void InGame::setButton()
     quit.setPosition(1205, 684);
     quit.setText(font, "Quit", 23, sf::Color::White);
     quit.setTextPosition(sf::Vector2f(0, 0));
+    quit.setContainer(this);
 
     ans1.setPosition(154, 266);
     ans1.setText(font, "A.      " + ansStrs.at(0), 20, sf::Color::Black);
     ans1.setTextPosition(sf::Vector2f(36, 0));
     ans1.wrapTextVertical();
     ans1.centerVertical();
+    ans1.setContainer(this);
 
     ans2.setPosition(154, 366);
     ans2.setText(font, "B.      " + ansStrs.at(1), 20, sf::Color::Black);
     ans2.setTextPosition(sf::Vector2f(36, 0));
     ans2.wrapTextVertical();
     ans2.centerVertical();
+    ans2.setContainer(this);
 
     ans3.setPosition(154, 466);
     ans3.setText(font, "C.      " + ansStrs.at(2), 20, sf::Color::Black);
     ans3.setTextPosition(sf::Vector2f(36, 0));
     ans3.wrapTextVertical();
     ans3.centerVertical();
+    ans3.setContainer(this);
 
     ans4.setPosition(154, 566);
     ans4.setText(font, "D.      " + ansStrs.at(3), 20, sf::Color::Black);
     ans4.setTextPosition(sf::Vector2f(36, 0));
     ans4.wrapTextVertical();
     ans4.centerVertical();
+    ans4.setContainer(this);
 
     home.setPosition(553, 636);
     home.setText(font, "Back to Home", 25, sf::Color(0, 0, 0, 125));
     home.setTextPosition(sf::Vector2f(0, 0));
+    home.setContainer(this);
 
     updateTexture();
 }
@@ -131,7 +138,7 @@ void InGame::setButton()
 void InGame::centerText(sf::Text &keyword, float y)
 {
     sf::FloatRect textRect = keyword.getLocalBounds();
-    keyword.setPosition((1280 - textRect.width) / 2, 183);
+    keyword.setPosition((1280 - textRect.width) / 2, y);
     updateTexture();
 }
 
@@ -230,13 +237,21 @@ void InGame::setOutlineAns()
 InGame::InGame(short unsigned gameMode)
     : Component(1280, 720),
       inGameMode(gameMode),
+      header(sf::Vector2f(1280, 40)),
+      footer(sf::Vector2f(1280, 40)),
       quit(51, 31, sf::Color(17, 105, 142), sf::Color(255, 255, 255, 50), sf::Color(17, 105, 142)),
       ans1(960, 75, sf::Color(231, 240, 243), sf::Color(173, 196, 206), sf::Color(173, 196, 206)),
       ans2(960, 75, sf::Color(231, 240, 243), sf::Color(173, 196, 206), sf::Color(173, 196, 206)),
       ans3(960, 75, sf::Color(231, 240, 243), sf::Color(173, 196, 206), sf::Color(173, 196, 206)),
       ans4(960, 75, sf::Color(231, 240, 243), sf::Color(173, 196, 206), sf::Color(173, 196, 206)),
-      home(174, 34, sf::Color::Transparent, sf::Color::Transparent, sf::Color::Transparent);
+      home(174, 34, sf::Color::Transparent, sf::Color::Transparent, sf::Color::Transparent)
 {
+    header.setPosition(0, 70);
+    header.setFillColor(sf::Color(17, 105, 142));
+
+    footer.setPosition(0, 680);
+    footer.setFillColor(sf::Color(17, 105, 142));
+
     setFont();
     setMetric();
     setUtilityTexts();
@@ -302,32 +317,49 @@ void InGame::processEvent(const sf::Event &event)
         {
             setVisibility(false);
         }
+        setFinalScore();
     }
-    quit.processEvent(event);
-    ans1.processEvent(event);
-    ans2.processEvent(event);
-    ans3.processEvent(event);
-    ans4.processEvent(event);
-
-    static bool showAns = false;
-    if (ans1.isPressed() || ans2.isPressed() || ans3.isPressed() || ans4.isPressed())
+    else
     {
-        showAns = true;
-        if (ans1.isPressed() && ans == 0 || ans2.isPressed() && ans == 1 || ans3.isPressed() && ans == 2 || ans4.isPressed() && ans == 3)
+        quit.processEvent(event);
+        ans1.processEvent(event);
+        ans2.processEvent(event);
+        ans3.processEvent(event);
+        ans4.processEvent(event);
+
+        if (quit.isPressed())
+            setVisibility(false);
+
+        static bool showAns = false;
+        if (showAns == false && (ans1.isPressed() || ans2.isPressed() || ans3.isPressed() || ans4.isPressed()))
         {
-            updateScores();
+            showAns = true;
+            if (ans1.isPressed() && ans == 0 || ans2.isPressed() && ans == 1 || ans3.isPressed() && ans == 2 || ans4.isPressed() && ans == 3)
+            {
+                updateScores();
+            }
         }
-        updateCounter();
+        highlightAns(showAns);
+
+        if (showAns == true)
+        {
+            if (event.type == sf::Event::MouseButtonPressed && !(ans1.isPressed() || ans2.isPressed() || ans3.isPressed() || ans4.isPressed()))
+            {
+                updateCounter();
+                if (counter <= maxCounter)
+                    setQuestionParams();
+                showAns = false;
+            }
+        }
     }
-    highlightAns(showAns);
-    // halt 3 seconds
-    // setQuestionParams();
-    // showAns = false;
 }
 
 void InGame::updateTexture()
 {
     texture_.clear(sf::Color::White);
+
+    texture_.draw(header);
+    texture_.draw(footer);
 
     if (counter > maxCounter)
     {
@@ -355,4 +387,27 @@ void InGame::updateTexture()
     }
 
     texture_.display();
+}
+
+// test functionalities here
+
+void setParams(std::string &key_n, std::vector<std::string> &ansStr_n, int &ans_n)
+{
+    static std::vector<std::string> key = {"sequence", "happy"};
+    static std::vector<std::vector<std::string>> ansStr = {
+        {"a series of related things or events, or the order in which they follow each other",
+         "to combine things in a particular order, or discover the order in which they are combined",
+         "to discover the order in which nucleotides (= chemical substances) are combined within DNA",
+         "all of the above"},
+        {"the state of joyfulness",
+         "what you feel when you failed your test",
+         "a feeling of nothingness",
+         "all of the above"}};
+
+    static std::vector<int> ans = {3, 0};
+    static int i = 0;
+    key_n = key.at(i);
+    ansStr_n = ansStr.at(i);
+    ans_n = ans.at(i);
+    ++i;
 }
