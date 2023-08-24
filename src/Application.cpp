@@ -34,33 +34,30 @@ Application::~Application()
 }
 
 void Application::setupFrontend()
-{
-	Frontend::TextBox *text_box = new Frontend::TextBox;
-	text_box->setPosition(701, 18);
-	
+{	
 	Frontend::SideBar *side_bar = new Frontend::SideBar;
 	side_bar->setPosition(0, 70);
+	components_.push_back(side_bar);
 	
 	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
 	definition_frame->setPosition(330, 70);
-	// definition_frame->setKeyword("welcome");
+	definition_frame->setKeyword("welcome");
+	components_.push_back(definition_frame);
 
 	Frontend::Header *header = new Frontend::Header;
 	header->setPosition(0, 0);
-	
-	components_ = std::move(std::vector<Frontend::Component*>
-							{text_box, side_bar, definition_frame, header});
+	components_.push_back(header);
 }
 
 void Application::initTries()
 {
-	tries_[0] = new Trie(Datasets::Eng_Eng);
-	tries_[1] = new Trie(Datasets::Eng_Viet);
-	tries_[2] = new Trie(Datasets::Viet_Eng);
-	tries_[3] = new Trie(Datasets::Emoji);
+	g_tries[0] = new Trie(Datasets::Eng_Eng);
+	g_tries[1] = new Trie(Datasets::Eng_Viet);
+	g_tries[2] = new Trie(Datasets::Viet_Eng);
+	g_tries[3] = new Trie(Datasets::Emoji);
 
 	std::string message = "";
-	for (auto trie : tries_)
+	for (auto trie : g_tries)
 	{
 		trie->Deserialization_DFS(message);
 	}
@@ -71,13 +68,14 @@ void Application::run()
 	g_window = new sf::RenderWindow(sf::VideoMode(getWindowWidth(), getWindowHeight()),
 									getWindowTitle(),
 									sf::Style::Titlebar | sf::Style::Close);
+	g_window->setFramerateLimit(60);
 	
     while (g_window->isOpen())
     {
         sf::Event event;
         while (g_window->pollEvent(event))
         {
-            switch (event.type)
+			switch (event.type)
 			{
 			case sf::Event::Closed:
 				g_window->close();
@@ -86,23 +84,28 @@ void Application::run()
 			default:
 				break;
 			}
-        }
-		for (Frontend::Component *component : components_)
-		{
-			if (component->isVisible())
+			
+			for (Frontend::Component *component : components_)
 			{
+				if (!component->isVisible())
+				{
+					continue;
+				}
+				
 				component->processEvent(event);
 			}
-		}
+        }
 
         g_window->clear(sf::Color::White);
 		
 		for (const Frontend::Component *component : components_)
 		{
-			if (component->isVisible())
+			if (!component->isVisible())
 			{
-				g_window->draw(*component);
+				continue;
 			}
+			
+			g_window->draw(*component);
 		}
 		
         g_window->display();
@@ -122,36 +125,4 @@ int Application::getWindowHeight() const
 const sf::String& Application::getWindowTitle() const
 {
 	return window_title_;
-}
-
-void Application::setupFrontend()
-{
-	Frontend::SideBar *side_bar = new Frontend::SideBar;
-	side_bar->setPosition(0, 70);
-	
-	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
-	definition_frame->setPosition(330, 70);
-	// definition_frame->setKeyword("welcome");
-
-	Frontend::Header *header = new Frontend::Header;
-	header->setPosition(0, 0);
-	
-	components_ = std::move(std::vector<Frontend::Component*>
-							{side_bar, definition_frame, header});
-}
-
-void Application::initTries()
-{
-	g_tries[0] = new Trie(Datasets::Eng_Eng);
-	g_tries[1] = new Trie(Datasets::Eng_Viet);
-	g_tries[2] = new Trie(Datasets::Viet_Eng);
-	g_tries[3] = new Trie(Datasets::Emoji);
-
-	std::string message;
-	for (auto trie : g_tries)
-	{
-		trie->Deserialization_DFS(message);
-	}
-
-	g_curr_trie = g_tries[0];
 }

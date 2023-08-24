@@ -53,6 +53,7 @@ namespace Frontend
         sf::RectangleShape background, iconSeperate; //, warningBackground;
 
         Button dictionaryBtn, dailyBtn, favBtn, gameBtn, setLangBtn, configBtn, resetBtn; //, yesBtn, noBtn;
+		bool dictionaryBtn_pressed_, dailyBtn_pressed_, favBtn_pressed_, gameBtn_pressed_, setLangBtn_pressed_, configBtn_pressed_, resetBtn_pressed_;
         Frontend::TextBox searchBar;
 
     public:

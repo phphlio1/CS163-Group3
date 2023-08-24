@@ -292,13 +292,12 @@ void TextBox::updateText(const sf::Event &event)
 		}
 		break;
 	}
-	std::cerr << foreground_string_.toAnsiString() << '\n';
 	updateTexture();
 }
 
 void TextBox::wrapText()
 {
-	sf::String &tmp_string = foreground_string_;
+	sf::String tmp_string = foreground_string_;
 	int curr_width;
 	for (int i = 0; i < tmp_string.getSize(); ++i)
 	{

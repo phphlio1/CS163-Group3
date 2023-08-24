@@ -96,7 +96,6 @@ void Button::processEvent(const sf::Event &event)
 		break;
 
 	default:
-		state = BTN_IDLE;
 		break;
 	}
 	setButtonState(state);

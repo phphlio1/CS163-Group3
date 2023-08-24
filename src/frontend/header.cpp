@@ -90,6 +90,8 @@ void Header::setButtons()
     setLangBtn.setTexture(swap, 90, 10);
 	setLangBtn.setContainer(this);
 
+	searchBar.setContainer(this);
+
     updateTexture();
 }
 
@@ -113,15 +115,6 @@ Header::Header()
       resetBtn(73, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
       setLangBtn(229, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151))
 {
-
-	dictionaryBtn.setContainer(this);
-	dailyBtn.setContainer(this);
-	favBtn.setContainer(this);
-	gameBtn.setContainer(this);
-	setLangBtn.setContainer(this);
-	configBtn.setContainer(this);
-	resetBtn.setContainer(this);
-	searchBar.setContainer(this);
 	
     currentTab = DICTIONARY;
     isReset = false;
@@ -145,6 +138,7 @@ Header::~Header()
 void Header::updateTexture()
 {
     texture_.clear(sf::Color::White);
+	
     texture_.draw(background);
     texture_.draw(iconSeperate);
     texture_.draw(searchBar);
@@ -179,8 +173,7 @@ void Header::processEvent(const sf::Event &event)
     resetBtn.processEvent(event);
     setLangBtn.processEvent(event);
     searchBar.processEvent(event);
-    updateLangOfChoiceBtn();
-    updateSearchOptions();
+	// std::cerr << searchBar.getForegroundString().toAnsiString() << '\n';
 
     // if (resetBtn->isPressed())
     // {
@@ -198,22 +191,39 @@ void Header::processEvent(const sf::Event &event)
     //         isReset = true;
     //     isReset = false;
     // }
-    if (dictionaryBtn.isPressed())
+	
+    if (dictionaryBtn.isPressed() && !dictionaryBtn_pressed_)
     {
         currentTab = DICTIONARY;
     }
-    else if (dailyBtn.isPressed())
+    else if (dailyBtn.isPressed() && !dailyBtn_pressed_)
     {
         currentTab = DAILY;
     }
-    else if (favBtn.isPressed())
+    else if (favBtn.isPressed() && !favBtn_pressed_)
     {
         currentTab = FAVORITE;
     }
-    else if (gameBtn.isPressed())
+    else if (gameBtn.isPressed() && !gameBtn_pressed_)
     {
         currentTab = GAME;
     }
+	else if (setLangBtn.isPressed() && !setLangBtn_pressed_)
+	{
+		updateLangOfChoiceBtn();
+	}
+	else if (configBtn.isPressed() && !configBtn_pressed_)
+	{
+		updateSearchOptions();
+	}
+	dictionaryBtn_pressed_ = dictionaryBtn.isPressed();
+	dailyBtn_pressed_ = dailyBtn.isPressed();
+	favBtn_pressed_ = favBtn.isPressed();
+	gameBtn_pressed_ = gameBtn.isPressed();
+	setLangBtn_pressed_ = setLangBtn.isPressed();
+	resetBtn_pressed_ = resetBtn.isPressed();
+
+	updateTexture();
 }
 
 std::string Header::getUserLookUp()
@@ -249,21 +259,15 @@ std::string Header::getCurrentLanguageOfChoice()
 
 void Header::updateLangOfChoiceBtn()
 {
-    if (setLangBtn.isPressed())
-    {
-        languageOfChoice = (languageOfChoice + 1) % 4;
-        setLangBtn.setTextString(LanguageOfChoiceDisplay.at(languageOfChoice));
-        setLangBtn.setTextPosition(LanguageTextPos.at(languageOfChoice));
-    }
+	languageOfChoice = (languageOfChoice + 1) % 4;
+	setLangBtn.setTextString(LanguageOfChoiceDisplay.at(languageOfChoice));
+	setLangBtn.setTextPosition(LanguageTextPos.at(languageOfChoice));
     updateTexture();
 }
 
 void Header::updateSearchOptions()
 {
-    if (configBtn.isPressed())
-    {
-        searchOptions = (searchOptions + 1) % 2;
-    }
+	searchOptions = (searchOptions + 1) % 2;
     switch (searchOptions)
     {
     case WORD_TO_DEFINITION:

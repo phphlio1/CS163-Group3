@@ -65,7 +65,7 @@ namespace Frontend
 		void setEditDefinitionPressedState(bool n_state);
 		void setAddToFavoritesPressedState(bool n_state);
 
-		void drawDefinitions();
+		// void drawDefinitions();
 
 		std::vector<std::pair<std::string, std::string>> definitions_;
 		
