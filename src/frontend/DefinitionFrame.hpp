@@ -28,6 +28,11 @@ namespace Frontend
 		const sf::Color& getButtonOutlineColor() const;
 		const sf::Vector2f& getEditDefinitionPos() const;
 		const sf::Vector2f& getAddToFavoritesPos() const;
+		bool editDefinitonIsPressed() const;
+		bool addToFavoritesIsPressed() const;
+		int getDefiDefiSpacing() const;
+		int getDefiTypeSpacing() const;
+		const sf::Vector2f& getFirstDefinitionPos() const;
 
 		void setKeywordTextCharacterSize(int n_size);
 		void setKeywordTextColor(const sf::Color &n_color);
@@ -44,10 +49,11 @@ namespace Frontend
 		void setEditDefinitionPos(const sf::Vector2f &n_pos);
 		void setAddToFavoritesPos(int x, int y);
 		void setAddToFavoritesPos(const sf::Vector2f &n_pos);
-
-		std::vector<sf::String>& definitions();
-		const std::vector<sf::String>& definitions() const;
-
+		void setDefiDefiSpacing(int n_spacing);
+		void setDefiTypeSpacing(int n_spacing);
+		void setFirstDefinitionPos(int x, int y);
+		void setFirstDefinitionPos(const sf::Vector2f &n_pos);
+		
 	protected:
 		virtual void updateTexture() override;
 
@@ -55,9 +61,13 @@ namespace Frontend
 		void centerKeywordText();
 		void createEditDefinitionButton();
 		void createAddToFavoritesButton();
-		void drawDefinition(const sf::String &definition);
-		
-		std::vector<sf::String> definitions_;
+
+		void setEditDefinitionPressedState(bool n_state);
+		void setAddToFavoritesPressedState(bool n_state);
+
+		void drawDefinitions();
+
+		std::vector<std::pair<std::string, std::string>> definitions_;
 		
 		int definition_bar_height_, bottom_bar_height_;
 		sf::Color bars_color_;
@@ -66,7 +76,12 @@ namespace Frontend
 		sf::CircleShape button_circle_;
 		sf::RenderTexture edit_definition_texture_, add_to_favorites_texture_;
 
+		bool edit_definition_is_pressed_, add_to_favorites_is_pressed_;
 		Button edit_definition_button_, add_to_favorites_button_;
+
+		sf::RenderTexture definition_pane_;
+		sf::Vector2f first_definition_pos_;
+		int defi_defi_spacing_, defi_type_spacing_;
 	};
 }
 

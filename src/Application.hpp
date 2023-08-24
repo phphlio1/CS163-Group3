@@ -7,6 +7,10 @@
 #include "Dictionary.h"
 #include "Component.hpp"
 
+extern sf::RenderWindow *g_window;
+extern Trie *g_tries[];
+extern Trie *g_curr_trie;
+
 class Application
 {
 public:
@@ -26,8 +30,6 @@ private:
 	int window_width_, window_height_, window_style_;
 	sf::String window_title_;
 	std::vector<Frontend::Component*> components_;
-
-	Trie *tries_[4];
 };
 
 #endif

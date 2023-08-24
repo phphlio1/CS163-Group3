@@ -112,8 +112,17 @@ Header::Header()
       configBtn(35, 35, sf::Color(254, 254, 254), sf::Color(215, 215, 215), sf::Color(254, 254, 254)),
       resetBtn(73, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
       setLangBtn(229, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151))
-
 {
+
+	dictionaryBtn.setContainer(this);
+	dailyBtn.setContainer(this);
+	favBtn.setContainer(this);
+	gameBtn.setContainer(this);
+	setLangBtn.setContainer(this);
+	configBtn.setContainer(this);
+	resetBtn.setContainer(this);
+	searchBar.setContainer(this);
+	
     currentTab = DICTIONARY;
     isReset = false;
     // isWarning = false;

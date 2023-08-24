@@ -8,9 +8,10 @@ const sf::Color TextBox::GREY = sf::Color(93, 93, 93);
 
 TextBox::TextBox(int n_width, int n_height, int n_margin)
 	: Component(n_width, n_height),
+	  container_(nullptr),
 	  margin_(n_margin),
 	  background_color_(sf::Color(245, 245, 245)), // nearly white
-	  is_typing_(0)
+	  is_typing_(0), is_typable_(1), is_wrapped_(0)
 {
 	background_text_.setFont(getFont());
 	foreground_text_.setFont(getFont());
@@ -29,15 +30,22 @@ TextBox::TextBox(int n_width, int n_height, int n_margin)
 
 void TextBox::processEvent(const sf::Event &event)
 {
-	auto is_inside = [=](int x, int y) -> bool
-	{
-		return getSprite().getGlobalBounds().contains(x, y);
-	};
+    auto is_inside = [&](int x, int y) -> bool
+    {
+		sf::FloatRect bounds_in_window = getSprite().getGlobalBounds();
+		sf::Vector2f window_relative_pos = findWindowRelativePos();
+		bounds_in_window.left = window_relative_pos.x;
+		bounds_in_window.top = window_relative_pos.y;
+		return bounds_in_window.contains(x, y);
+    };
 	
 	switch (event.type)
 	{
 	case sf::Event::MouseButtonPressed:
-		setTypingEnabled(is_inside(event.mouseButton.x, event.mouseButton.y));
+		if (isTypable())
+		{
+			setTypingEnabled(is_inside(event.mouseButton.x, event.mouseButton.y));
+		}
 		break;
 
 	case sf::Event::TextEntered:
@@ -52,6 +60,17 @@ void TextBox::processEvent(const sf::Event &event)
 	}
 }
 
+sf::Vector2f TextBox::findWindowRelativePos() const
+{
+	return getPosition() + (getContainer() ? getContainer()->findWindowRelativePos() :
+							sf::Vector2f(0, 0));
+}
+
+const Component* TextBox::getContainer() const
+{
+	return container_;
+}
+
 int TextBox::getMargin() const
 {
 	return margin_;
@@ -64,12 +83,12 @@ int TextBox::getCharacterSize() const
 
 const sf::String& TextBox::getBackgroundString() const
 {
-	return background_text_.getString();
+	return background_string_;
 }
 
 const sf::String& TextBox::getForegroundString() const
 {
-	return foreground_text_.getString();
+	return foreground_string_;
 }
 
 const sf::Font& TextBox::getFont() const
@@ -107,6 +126,21 @@ bool TextBox::isTyping() const
 	return is_typing_;
 }
 
+bool TextBox::isWrapped() const
+{
+	return is_wrapped_;
+}
+
+bool TextBox::isTypable() const
+{
+	return is_typable_;
+}
+
+void TextBox::setContainer(const Component *n_container)
+{
+	container_ = n_container;
+}
+
 void TextBox::setMargin(int n_margin)
 {
 	margin_ = n_margin;
@@ -122,13 +156,19 @@ void TextBox::setCharacterSize(int size)
 
 void TextBox::setBackgroundString(const sf::String &text)
 {
+	background_string_ = text;
 	background_text_.setString(text);
 	updateTexture();
 }
 
 void TextBox::setForegroundString(const sf::String &text)
 {
+	foreground_string_ = text;
 	foreground_text_.setString(text);
+	if (isWrapped())
+	{
+		wrapText();
+	}
 	updateTexture();
 }
 
@@ -136,6 +176,11 @@ void TextBox::setFont(const sf::String &filename)
 {
 	font_.loadFromFile(filename.toAnsiString());
 	updateTexture();
+}
+
+void TextBox::setFont(const sf::Font &n_font)
+{
+	font_ = n_font;
 }
 
 void TextBox::setBackgroundColor(const sf::Color &color)
@@ -174,8 +219,26 @@ void TextBox::setTypingEnabled(bool n_is_typing)
 	updateTexture();
 }
 
+void TextBox::setWrappedEnabled(bool n_is_wrapped)
+{
+	is_wrapped_ = n_is_wrapped;
+	updateTexture();
+}
+
+void TextBox::setTypability(bool n_is_typable)
+{
+	is_typable_ = n_is_typable;
+}
+
 void TextBox::updateTexture()
 {
+	if (isWrapped())
+	{
+		setHeight(foreground_text_.getLocalBounds().height);
+		centerText(background_text_);
+		centerText(foreground_text_);
+	}
+	
 	texture_.clear(background_color_);
 	
 	sf::RectangleShape outline(sf::Vector2f(texture_.getSize()));
@@ -200,7 +263,7 @@ void TextBox::centerText(sf::Text &text_display)
 
 void TextBox::updateText(const sf::Event &event)
 {
-	if (event.type != sf::Event::TextEntered)
+	if (!isTypable() || event.type != sf::Event::TextEntered)
 	{
 		return;
 	}
@@ -229,5 +292,37 @@ void TextBox::updateText(const sf::Event &event)
 		}
 		break;
 	}
+	std::cerr << foreground_string_.toAnsiString() << '\n';
 	updateTexture();
+}
+
+void TextBox::wrapText()
+{
+	sf::String &tmp_string = foreground_string_;
+	int curr_width;
+	for (int i = 0; i < tmp_string.getSize(); ++i)
+	{
+		int character_width = getFont().getGlyph(tmp_string[i],
+												 getCharacterSize(), 0).bounds.width;
+		if (curr_width + character_width + foreground_text_.getLetterSpacing()
+			<= getWidth() - 2*getMargin())
+		{
+			continue;
+		}
+
+		for (int j = i; j > 0; --j)
+		{
+			if (tmp_string[j-1] != ' ')
+			{
+				continue;
+			}
+			
+			tmp_string[j-1] = '\n';
+			curr_width = foreground_text_.findCharacterPos(i).x
+				- foreground_text_.findCharacterPos(j).x
+				+ character_width;
+			break;
+		}
+	}
+	foreground_text_.setString(tmp_string);
 }

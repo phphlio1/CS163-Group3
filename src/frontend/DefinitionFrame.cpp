@@ -1,8 +1,13 @@
 #include <iostream>
+#include <string>
 
 #include "DefinitionFrame.hpp"
+#include "TextBox.hpp"
+#include "Trie.h"
 
 using namespace Frontend;
+
+extern Trie *g_curr_trie;
 
 DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	: Component(n_width, n_height),
@@ -50,6 +55,18 @@ void DefinitionFrame::processEvent(const sf::Event &event)
 {
 	edit_definition_button_.processEvent(event);
 	add_to_favorites_button_.processEvent(event);
+
+	if (edit_definition_button_.isPressed() && !editDefinitonIsPressed())
+	{
+		
+	}
+	if (add_to_favorites_button_.isPressed() && !addToFavoritesIsPressed())
+	{
+		std::string message;
+		g_curr_trie->addToFavoriteList(getKeyword().toAnsiString(), message);
+	}
+	setEditDefinitionPressedState(edit_definition_button_.isPressed());
+	setAddToFavoritesPressedState(add_to_favorites_button_.isPressed());
 	updateTexture();
 }
 
@@ -118,6 +135,26 @@ const sf::Vector2f& DefinitionFrame::getAddToFavoritesPos() const
 	return add_to_favorites_button_.getPosition();
 }
 
+bool DefinitionFrame::editDefinitonIsPressed() const
+{
+	return edit_definition_is_pressed_;
+}
+
+bool DefinitionFrame::addToFavoritesIsPressed() const
+{
+	return add_to_favorites_is_pressed_;
+}
+
+int DefinitionFrame::getDefiDefiSpacing() const
+{
+	return defi_defi_spacing_;
+}
+
+int DefinitionFrame::getDefiTypeSpacing() const
+{
+	return defi_type_spacing_;
+}
+
 void DefinitionFrame::setKeywordTextCharacterSize(int n_size)
 {
 	keyword_text_.setCharacterSize(n_size);
@@ -133,6 +170,17 @@ void DefinitionFrame::setKeywordTextColor(const sf::Color &n_color)
 void DefinitionFrame::setKeyword(const sf::String &n_keyword)
 {
 	keyword_text_.setString(n_keyword);
+
+	std::string message;
+	g_curr_trie->addToHistory(getKeyword().toAnsiString(), message);
+	definitions_.clear();
+	std::vector<std::string> tmp_definitions;
+	g_curr_trie->findWordInTrie(getKeyword(), tmp_definitions);
+	split_Definition(tmp_definitions, definitions_);
+	
+	setEditDefinitionPressedState(0);
+	setAddToFavoritesPressedState(0);
+	
 	updateTexture();
 }
 
@@ -206,14 +254,28 @@ void DefinitionFrame::setAddToFavoritesPos(const sf::Vector2f &n_pos)
 	updateTexture();
 }
 
-std::vector<sf::String>& DefinitionFrame::definitions()
+void DefinitionFrame::setDefiDefiSpacing(int n_spacing)
 {
-	return definitions_;
+	defi_defi_spacing_ = n_spacing;
+	drawDefinitions();
 }
 
-const std::vector<sf::String>& DefinitionFrame::definitions() const
+void DefinitionFrame::setDefiTypeSpacing(int n_spacing)
 {
-	return definitions_;
+	defi_type_spacing_ = n_spacing;
+	drawDefinitions();
+}
+
+void DefinitionFrame::setFirstDefinitionPos(int x, int y)
+{
+	setFirstDefinitionPos(sf::Vector2f(x, y));
+	drawDefinitions();
+}
+
+void DefinitionFrame::setFirstDefinitionPos(const sf::Vector2f &n_pos)
+{
+	first_definition_pos_ = n_pos;
+	updateTexture();
 }
 
 void DefinitionFrame::updateTexture()
@@ -233,10 +295,10 @@ void DefinitionFrame::updateTexture()
 	texture_.draw(keyword_text_);
 	texture_.draw(edit_definition_button_);
 	texture_.draw(add_to_favorites_button_);
-	// for (const sf::String &definition : definitions())
-	// {
-	// 	drawDefinition(definition);
-	// }
+
+	sf::Sprite definition_sprite(definition_pane_.getTexture());
+	definition_sprite.setPosition(0, definition_bar_height_);
+	texture_.draw(definition_sprite);
 
 	texture_.display();
 }
@@ -298,7 +360,44 @@ void DefinitionFrame::createAddToFavoritesButton()
 	add_to_favorites_button_.setTexture(add_to_favorites_texture_.getTexture(), 0, 0);
 }
 
-void DefinitionFrame::drawDefinition(const sf::String &definition)
+void DefinitionFrame::drawDefinitions()
 {
+	definition_pane_.create(getWidth(), 500);
+	definition_pane_.clear(sf::Color::White);
+
+	sf::Vector2f curr_pos;
+	for (int i = 0; i < 1; ++i)
+	{
+		auto [word_type, definition] = definitions_[i];
+		if (i == 0 || word_type != definitions_[i-1].first)
+		{
+			TextBox word_type_text(30, 100, 0);
+			word_type_text.setContainer(this);
+			word_type_text.setFont(getFont());
+			word_type_text.setPosition(curr_pos);
+			word_type_text.setTypingOutlineColor(sf::Color::White);
+			word_type_text.setUntypingOutlineColor(sf::Color::White);
+			word_type_text.setTypability(0);
+			
+			definition_pane_.draw(word_type_text);
+			curr_pos.y += word_type_text.getHeight() + getDefiDefiSpacing();
+		}
+		// drawOneDefinition(definition, curr_pos);
+	}
+
+	definition_pane_.display();
+	updateTexture();
+}
+
+void DefinitionFrame::setEditDefinitionPressedState(bool n_state)
+{
+	edit_definition_is_pressed_ = n_state;
 	
+	updateTexture();
+}
+
+void DefinitionFrame::setAddToFavoritesPressedState(bool n_state)
+{
+	add_to_favorites_is_pressed_ = n_state;
+	updateTexture();
 }
