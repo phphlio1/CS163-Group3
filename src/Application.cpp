@@ -39,7 +39,7 @@ void Application::setupFrontend()
 	
 	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
 	definition_frame->setPosition(330, 70);
-	definition_frame->setKeyword("welcome");
+	// definition_frame->setKeyword("welcome");
 
 	Frontend::Header *header = new Frontend::Header;
 	header->setPosition(0, 0);
