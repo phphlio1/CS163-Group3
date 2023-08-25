@@ -13,7 +13,7 @@ void Trie::delete_Whole_Trie() { delete root; root = nullptr; num_line = 0;}
 void Trie::build_Trie_EngEng()
 {
     std::ifstream fin;
-    fin.open("../data_set/English_English_original.txt");
+    fin.open(preAdress + "English_English_original.txt");
     if (!fin.is_open())
     {
         std::cout << "File cannot open!\n";

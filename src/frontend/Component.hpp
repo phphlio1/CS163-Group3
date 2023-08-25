@@ -26,7 +26,6 @@ namespace Frontend
 
 	protected:
 		virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
-		virtual void createTexture();
 		virtual void updateTexture();
 
 		const sf::RenderTexture& getTexture() const;

@@ -1,6 +1,9 @@
 #include <iostream>
+#include <algorithm>
 
 #include "SideBar.hpp"
+#include "DefinitionFrame.hpp"
+#include "Global.hpp"
 
 using namespace Frontend;
 
@@ -9,16 +12,15 @@ const int SideBar::NUM_WORDS = 10;
 
 SideBar::SideBar(int n_width, int n_height)
 	: Component(n_width, n_height),
+	  definition_frame_(nullptr), clicked_word_(nullptr),
 	  background_color_(GREY), character_size_(22),
 	  word_box_spacing_(10), first_word_box_pos_(15, 45),
 	  edit_favorites_pos_(290, 13),
 	  close_edit_favorites_thickness_(5), close_edit_favorites_size_(25),
-	  is_favorites_editing_(1)
+	  is_favorites_editing_(0)
 {
-	sprite_.setPosition(0, 74);
-
-	initializeWords();
-
+	words_ = &g_favorites;
+	
 	setWordBoxWidth(300);
 	setWordBoxHeight(50);
 	setWordBoxColor(sf::Color::White);
@@ -30,29 +32,39 @@ SideBar::SideBar(int n_width, int n_height)
 	createAddToFavoritesButton();
     setRemoveFromFavoritesPos(getWordBoxWidth() - 10 - remove_from_favorites_button_.getSize().x,
 							  (getWordBoxHeight() - remove_from_favorites_button_.getSize().y) / 2);
+	
 	updateTexture();
 }
 
 void SideBar::processEvent(const sf::Event &event)
 {
-	bool is_left_mouse_clicked = 0;
+    auto is_inside = [&](int x, int y) -> bool
+    {
+		sf::FloatRect bounds_in_window = getSprite().getGlobalBounds();
+		sf::Vector2f window_relative_pos = findWindowRelativePos();
+		bounds_in_window.left = window_relative_pos.x;
+		bounds_in_window.top = window_relative_pos.y;
+		return bounds_in_window.contains(x, y);
+    };
+	
 	switch (event.type)
 	{
 	case sf::Event::MouseButtonPressed:
-		is_left_mouse_clicked = (event.mouseButton.button == sf::Mouse::Left);
+		if (is_inside(event.mouseButton.x, event.mouseButton.y))
+		{
+			clicked_word_ = findClickedWord(event.mouseButton.x, event.mouseButton.y);
+			if (definition_frame_ && clicked_word_)
+			{
+				definition_frame_->setKeyword(*getClickedWord());
+			}
+		}
 		break;
 
 	default:
 		break;
 	}
-
-	int mouseX = event.mouseButton.x, mouseY = event.mouseButton.y;
-	sf::FloatRect global_bounds = getSprite().getGlobalBounds();
-	if (is_left_mouse_clicked
-		&& global_bounds.contains(mouseX, mouseY))
-	{
-		clicked_word_ = findClickedWord(mouseX, mouseY);
-	}
+	
+	updateTexture();
 }
 
 const sf::Color& SideBar::getBackgroundColor() const
@@ -95,7 +107,7 @@ int SideBar::getCharacterSize() const
 	return character_size_;
 }
 
-const sf::String* SideBar::getClickedWord() const
+const std::string* SideBar::getClickedWord() const
 {
 	return clicked_word_;
 }
@@ -212,32 +224,22 @@ void SideBar::setRemoveFromFavoritesPos(const sf::Vector2f &n_pos)
 	updateTexture();
 }
 
-std::list<sf::String>& SideBar::words()
+void SideBar::setDefinitionFrame(DefinitionFrame *n_definition_frame)
 {
-	return words_;
-}
-
-const std::list<sf::String>& SideBar::words() const
-{
-	return words_;
+	definition_frame_ = n_definition_frame;
 }
 
 void SideBar::updateTexture()
 {
 	texture_.clear(background_color_);
 
-	int word_id = 0;
-	for (const sf::String &word : words())
-	{
-		drawWordBox(word, word_id++);
-	}
-
+	drawWordBoxes();
+	
 	sf::Sprite top_right;
 	top_right.setPosition(getEditFavoritesPos());
 	if (isFavoritesEditing())
 	{
 		top_right.setTexture(close_edit_favorites_button_.getTexture());
-		drawAddToFavorites();
 	}
 	else
 	{
@@ -248,29 +250,32 @@ void SideBar::updateTexture()
 	texture_.display();
 }
 
-const sf::String* SideBar::findClickedWord(int mouseX, int mouseY) const
+const std::string* SideBar::findClickedWord(int mouseX, int mouseY) const
 {
-	mouseX -= getSprite().getPosition().x;
-	mouseY -= getSprite().getPosition().y;
-	for (int i = 0; i < NUM_WORDS; ++i)
+	sf::Vector2f window_relative_pos = findWindowRelativePos();
+	mouseX -= window_relative_pos.x;
+	mouseY -= window_relative_pos.y;
+	for (int i = 0; i < std::min(int(words_->size()), NUM_WORDS); ++i)
 	{
 		sf::FloatRect word_box_bounds(getWordBoxPosition(i),
-									sf::Vector2f(getWordBoxWidth(), getWordBoxHeight()));
+									  sf::Vector2f(getWordBoxWidth(), getWordBoxHeight()));
 		if (word_box_bounds.contains(mouseX, mouseY))
 		{
-			return &*std::next(words().begin(), i);
+			return &*std::next(words_->rbegin(), i);
 		}
 	}
 	return nullptr;
 }
 
-void SideBar::initializeWords()
+void SideBar::drawWordBoxes()
 {
-	sf::String tmp;
-	for (int i = 0; i < NUM_WORDS; ++i)
-	{
-		words().push_back(tmp += char('a' + i));
-	}
+	int word_id = 0;
+	std::for_each(words_->rbegin(),
+				  std::next(words_->rbegin(), std::min(int(words_->size()), NUM_WORDS)),
+				  [&](const std::string &word)
+				  {
+					  drawWordBox(word, word_id++);
+				  });
 }
 
 void SideBar::drawWordBox(const sf::String &word, int word_id)
@@ -369,11 +374,11 @@ void SideBar::createAddToFavoritesButton()
 	button.display();
 }
 
-void SideBar::drawAddToFavorites()
-{
-	sf::Sprite add_to_favorites_sprite(add_to_favorites_button_.getTexture());
-	sf::Vector2f add_to_favorites_pos = getEditFavoritesPos();
-	add_to_favorites_pos.x = getWidth() - getEditFavoritesPos().x - edit_favorites_button_.getSize().x;
-	add_to_favorites_sprite.setPosition(add_to_favorites_pos);
-	texture_.draw(add_to_favorites_sprite);	
-}
+// void SideBar::drawAddToFavorites()
+// {
+// 	sf::Sprite add_to_favorites_sprite(add_to_favorites_button_.getTexture());
+// 	sf::Vector2f add_to_favorites_pos = getEditFavoritesPos();
+// 	add_to_favorites_pos.x = getWidth() - getEditFavoritesPos().x - edit_favorites_button_.getSize().x;
+// 	add_to_favorites_sprite.setPosition(add_to_favorites_pos);
+// 	texture_.draw(add_to_favorites_sprite);	
+// }

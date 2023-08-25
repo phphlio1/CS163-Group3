@@ -1,13 +1,15 @@
 #ifndef SIDE_BAR_HPP
 #define SIDE_BAR_HPP
 
-#include <list>
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #include "Component.hpp"
 
 namespace Frontend
 {
+	class DefinitionFrame;
+	
 	class SideBar : public Component
 	{
 	public:
@@ -23,7 +25,7 @@ namespace Frontend
 		const sf::Vector2f& getFirstWordBoxPos() const;
 		int getWordBoxSpacing() const;
 		int getCharacterSize() const;
-		const sf::String* getClickedWord() const;
+		const std::string* getClickedWord() const;
 		const sf::Vector2f& getEditFavoritesPos() const;
 		int getCloseEditFavoritesThickness() const;
 		int getCloseEditFavoritesSize() const;
@@ -46,29 +48,31 @@ namespace Frontend
 		void setRemoveFromFavoritesPos(int x, int y);
 		void setRemoveFromFavoritesPos(const sf::Vector2f &n_pos);
 
-		std::list<sf::String>& words();
-		const std::list<sf::String>& words() const;
+		void setDefinitionFrame(DefinitionFrame *n_definition_frame);
 
 	protected:
-		virtual void updateTexture() override;
-
-	private:
 		static const sf::Color GREY;
 		static const int NUM_WORDS;
-
-		const sf::String* findClickedWord(int mouseX, int mouseY) const;
-
-		void initializeWords();
-		void drawWordBox(const sf::String &word, int word_id);
-		sf::Vector2f getWordBoxPosition(int word_id) const;
+		
+		virtual void updateTexture() override;
 		void centerText(sf::Text &text) const;
+		sf::Vector2f getWordBoxPosition(int word_id) const;
+		void drawWordBoxes();
+		
+		const std::vector<std::string> *words_;
+
+	private:
+		const std::string* findClickedWord(int mouseX, int mouseY) const;
+
 		void createCloseEditFavoritesButton();
 		void createAddToFavoritesButton();
 		void createMainDiag(sf::VertexArray &main_diag);
 		void createMinorDiag(sf::VertexArray &minor_diag);
-		void drawAddToFavorites();
 
-		std::list<sf::String> words_;
+		void drawWordBox(const sf::String &word, int word_id);
+
+		DefinitionFrame *definition_frame_;
+
 		int character_size_, word_box_spacing_;
 		bool is_favorites_editing_;
 		int close_edit_favorites_thickness_, close_edit_favorites_size_;
@@ -79,7 +83,7 @@ namespace Frontend
 		sf::Texture edit_favorites_button_, remove_from_favorites_button_;
 		sf::RenderTexture close_edit_favorites_button_, add_to_favorites_button_;
 
-		const sf::String *clicked_word_;
+		const std::string *clicked_word_;
 	};
 }
 

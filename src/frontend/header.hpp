@@ -21,8 +21,8 @@ namespace Frontend
 
     enum LanguageOfChoice
     {
-        ENG_TO_VIE = 0,
-        ENG_TO_ENG,
+        ENG_TO_ENG = 0,
+        ENG_TO_VIE,
         VIE_TO_ENG,
         EMO_TO_ENG
     };

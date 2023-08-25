@@ -1,4 +1,6 @@
+#include "Trie.h"
 #include "header.hpp"
+#include "Global.hpp"
 
 using namespace Frontend;
 
@@ -53,8 +55,8 @@ void Header::setSprites()
 void Header::setButtons()
 {
     dictionaryBtn.setPosition(94, 0);
-    dictionaryBtn.setText(fontAwesome, "Dictionary", 18, sf::Color::White);
-    dictionaryBtn.setTextPosition(sf::Vector2f(6, 51));
+    dictionaryBtn.setText(fontAwesome, "History", 18, sf::Color::White);
+    dictionaryBtn.setTextPosition(sf::Vector2f(19, 51));
     dictionaryBtn.setTexture(dictionary, 24, 7);
 	dictionaryBtn.setContainer(this);
 
@@ -120,7 +122,8 @@ Header::Header()
     isReset = false;
     // isWarning = false;
     searchOptions = WORD_TO_DEFINITION;
-    languageOfChoice = ENG_TO_VIE;
+	languageOfChoice = ENG_TO_ENG;
+	g_curr_trie = g_tries[languageOfChoice];
     setFonts();
     setBackground();
     setTextures();
@@ -260,6 +263,7 @@ std::string Header::getCurrentLanguageOfChoice()
 void Header::updateLangOfChoiceBtn()
 {
 	languageOfChoice = (languageOfChoice + 1) % 4;
+	g_curr_trie = g_tries[languageOfChoice];
 	setLangBtn.setTextString(LanguageOfChoiceDisplay.at(languageOfChoice));
 	setLangBtn.setTextPosition(LanguageTextPos.at(languageOfChoice));
     updateTexture();

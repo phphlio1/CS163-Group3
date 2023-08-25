@@ -6,6 +6,7 @@
 #include "DefinitionFrame.hpp"
 #include "Global.hpp"
 #include "HistoryBar.hpp"
+#include "EditDefinition.hpp"
 
 sf::RenderWindow *g_window;
 Trie *g_tries[4];
@@ -54,8 +55,6 @@ void Application::setupFrontend()
 	definition_frame->setHistoryBar(history_bar);
 	definition_frame->setPosition(330, 70);
 	definition_frame->setKeyword("test");
-	definition_frame->setKeyword("welcome");
-	definition_frame->setKeyword("sequence");
 	components_.push_back(definition_frame);
 
 	history_bar->setDefinitionFrame(definition_frame);
@@ -65,6 +64,15 @@ void Application::setupFrontend()
 	side_bar->setPosition(0, 70);
 	components_.push_back(side_bar);
 	side_bar->setVisibility(0);
+
+	Frontend::EditDefinition *edit_definition = new Frontend::EditDefinition;
+	edit_definition->setDefinitionFrame(definition_frame);
+	edit_definition->setPosition(330, 70);
+	edit_definition->initialize(definition_frame->getKeyword());
+	edit_definition->setVisibility(0);
+	components_.push_back(edit_definition);
+
+	definition_frame->setEditScreen(edit_definition);
 }
 
 void Application::initTries()

@@ -8,6 +8,9 @@
 
 namespace Frontend
 {
+	class HistoryBar;
+	class EditDefinition;
+	
 	class DefinitionFrame : public Component
 	{
 	public:
@@ -30,9 +33,12 @@ namespace Frontend
 		const sf::Vector2f& getAddToFavoritesPos() const;
 		bool editDefinitonIsPressed() const;
 		bool addToFavoritesIsPressed() const;
+		int getTypeCharacterSize() const;
+		const sf::Color& getTypeColor() const;
 		int getDefiDefiSpacing() const;
 		int getDefiTypeSpacing() const;
-		const sf::Vector2f& getFirstDefinitionPos() const;
+		int getDefinitionMargin() const;
+		int getDefiCharacterSize() const;
 
 		void setKeywordTextCharacterSize(int n_size);
 		void setKeywordTextColor(const sf::Color &n_color);
@@ -49,10 +55,15 @@ namespace Frontend
 		void setEditDefinitionPos(const sf::Vector2f &n_pos);
 		void setAddToFavoritesPos(int x, int y);
 		void setAddToFavoritesPos(const sf::Vector2f &n_pos);
+		void setTypeCharacterSize(int n_size);
+		void setTypeColor(const sf::Color &n_color);
 		void setDefiDefiSpacing(int n_spacing);
 		void setDefiTypeSpacing(int n_spacing);
-		void setFirstDefinitionPos(int x, int y);
-		void setFirstDefinitionPos(const sf::Vector2f &n_pos);
+		void setDefinitionMargin(int n_margin);
+		void setDefiCharacterSize(int n_size);
+
+		void setHistoryBar(HistoryBar *n_history_bar);
+		void setEditScreen(EditDefinition *n_edit_screen);
 		
 	protected:
 		virtual void updateTexture() override;
@@ -65,9 +76,12 @@ namespace Frontend
 		void setEditDefinitionPressedState(bool n_state);
 		void setAddToFavoritesPressedState(bool n_state);
 
-		// void drawDefinitions();
+		void drawDefinitions();
 
 		std::vector<std::pair<std::string, std::string>> definitions_;
+		
+		HistoryBar *history_bar_;
+		EditDefinition *edit_screen_;
 		
 		int definition_bar_height_, bottom_bar_height_;
 		sf::Color bars_color_;
@@ -78,10 +92,15 @@ namespace Frontend
 
 		bool edit_definition_is_pressed_, add_to_favorites_is_pressed_;
 		Button edit_definition_button_, add_to_favorites_button_;
+		std::string add_to_favorites_message_;
 
 		sf::RenderTexture definition_pane_;
-		sf::Vector2f first_definition_pos_;
-		int defi_defi_spacing_, defi_type_spacing_;
+		sf::IntRect defi_pane_screen_;
+		sf::Color type_color_;
+		int defi_defi_spacing_, defi_type_spacing_, definition_margin_;
+		int type_character_size_, defi_character_size_;
+
+		friend class EditDefinition;
 	};
 }
 

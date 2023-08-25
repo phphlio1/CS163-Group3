@@ -18,6 +18,7 @@ namespace Frontend
 		const Component* getContainer() const;
 		int getMargin() const;
 		int getCharacterSize() const;
+		int getOutlineThickness() const;
 		const sf::String& getBackgroundString() const;
 		const sf::String& getForegroundString() const;
 		const sf::Font& getFont() const;
@@ -33,6 +34,7 @@ namespace Frontend
 		void setContainer(const Component *n_container);
 		void setMargin(int n_margin);
 		void setCharacterSize(int size);
+		void setOutlineThickness(int n_thickness);
 		void setBackgroundString(const sf::String &text);
 		void setForegroundString(const sf::String &text);
 		void setFont(const sf::String &filename);
@@ -50,15 +52,13 @@ namespace Frontend
 		virtual void updateTexture() override;
 		
 	private:
-		static const int OUTLINE_THICKNESS; // inward outline is negative
 		static const sf::Color GREY;
-
 		
 		void centerText(sf::Text &text_display);
 		void updateText(const sf::Event &event);
 		void wrapText();
 
-		int width_, height_, margin_;
+		int width_, height_, margin_, outline_thickness_;
 		sf::Font font_;
 		sf::Color background_color_, typing_outline_color_, untyping_outline_color_;
 		sf::String background_string_, foreground_string_;

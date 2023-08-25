@@ -3,6 +3,8 @@ target_sources(${PROJECT_NAME} PRIVATE
   TextBox.hpp
   SideBar.hpp
   DefinitionFrame.hpp
+  HistoryBar.hpp
+  EditDefinition.hpp
   button.hpp
   header.hpp
   gameMode.hpp
@@ -12,6 +14,8 @@ target_sources(${PROJECT_NAME} PRIVATE
   TextBox.cpp
   SideBar.cpp
   DefinitionFrame.cpp
+  HistoryBar.cpp
+  EditDefinition.cpp
   button.cpp
   header.cpp
   gameMode.cpp

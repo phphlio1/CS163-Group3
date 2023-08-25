@@ -4,13 +4,15 @@
 #include "DefinitionFrame.hpp"
 #include "TextBox.hpp"
 #include "Trie.h"
+#include "HistoryBar.hpp"
+#include "EditDefinition.hpp"
+#include "Global.hpp"
 
 using namespace Frontend;
 
-extern Trie *g_curr_trie;
-
 DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	: Component(n_width, n_height),
+	  history_bar_(nullptr), edit_screen_(nullptr),
 	  definition_bar_height_(152), bottom_bar_height_(40),
 	  bars_color_(17, 105, 142),
 	  button_circle_(25),
@@ -23,7 +25,10 @@ DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 							   button_circle_.getRadius() * 2,
 							   sf::Color::Transparent,
 							   sf::Color(255, 255, 255, 160),
-							   sf::Color(255, 255, 255, 200))
+							   sf::Color(255, 255, 255, 200)),
+	  definition_margin_(30),
+	  type_color_(17, 105, 142), type_character_size_(30),
+	  defi_character_size_(20), defi_defi_spacing_(10), defi_type_spacing_(20)
 {
 	edit_definition_button_.setContainer(static_cast<Component*>(this));
 	add_to_favorites_button_.setContainer(static_cast<Component*>(this));
@@ -49,25 +54,46 @@ DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	setKeywordTextCharacterSize(35);
 	setKeywordTextColor(sf::Color::White);
 	setKeywordTextYPos(23);
+
+	defi_pane_screen_.width = getWidth() - 2*getDefinitionMargin();
+	defi_pane_screen_.height = getHeight() - getDefinitionBarHeight() - getBottomBarHeight() - 2*getDefiDefiSpacing();
 }
 
 void DefinitionFrame::processEvent(const sf::Event &event)
 {
+	auto is_inside = [&](int x, int y) -> bool
+    {
+		sf::FloatRect bounds_in_window = getSprite().getGlobalBounds();
+		sf::Vector2f window_relative_pos = findWindowRelativePos();
+		bounds_in_window.left = window_relative_pos.x;
+		bounds_in_window.top = window_relative_pos.y;
+		return bounds_in_window.contains(x, y);
+    };
+
 	edit_definition_button_.processEvent(event);
 	add_to_favorites_button_.processEvent(event);
 
+	if (event.type == sf::Event::MouseWheelScrolled
+		&& is_inside(event.mouseWheelScroll.x, event.mouseWheelScroll.y))
+	{
+		defi_pane_screen_.top -= 3*event.mouseWheelScroll.delta;
+	}
+
 	if (edit_definition_button_.isPressed() && !editDefinitonIsPressed())
 	{
-		
+		setVisibility(0);
+		edit_screen_->setVisibility(1);
 	}
 	if (add_to_favorites_button_.isPressed() && !addToFavoritesIsPressed())
 	{
+		g_curr_trie->addToFavoriteList(getKeyword().toAnsiString(),
+									   add_to_favorites_message_);
 		std::string message;
-		g_curr_trie->addToFavoriteList(getKeyword().toAnsiString(), message);
+		g_curr_trie->viewFavoriteList(g_favorites, message);
 	}
+	updateTexture();
 	setEditDefinitionPressedState(edit_definition_button_.isPressed());
 	setAddToFavoritesPressedState(add_to_favorites_button_.isPressed());
-	updateTexture();
 }
 
 int DefinitionFrame::getKeywordTextCharacterSize() const
@@ -155,6 +181,26 @@ int DefinitionFrame::getDefiTypeSpacing() const
 	return defi_type_spacing_;
 }
 
+int DefinitionFrame::getDefinitionMargin() const
+{
+	return definition_margin_;
+}
+
+int DefinitionFrame::getTypeCharacterSize() const
+{
+	return type_character_size_;
+}
+
+int DefinitionFrame::getDefiCharacterSize() const
+{
+	return defi_character_size_;
+}
+
+const sf::Color& DefinitionFrame::getTypeColor() const
+{
+	return type_color_;
+}
+
 void DefinitionFrame::setKeywordTextCharacterSize(int n_size)
 {
 	keyword_text_.setCharacterSize(n_size);
@@ -172,14 +218,22 @@ void DefinitionFrame::setKeyword(const sf::String &n_keyword)
 	keyword_text_.setString(n_keyword);
 
 	std::string message;
-	// g_curr_trie->addToHistory(getKeyword().toAnsiString(), message);
+	g_curr_trie->addToHistory(getKeyword().toAnsiString(), message);
+	g_curr_trie->takeHistory(g_history, message);
+	if (history_bar_)
+	{
+		history_bar_->updateTexture();
+	}
+	
 	definitions_.clear();
 	std::vector<std::string> tmp_definitions;
-	// g_curr_trie->findWordInTrie(getKeyword().toAnsiString(), tmp_definitions);
-	// split_Definition(tmp_definitions, definitions_);
+	g_curr_trie->findWordInTrie(getKeyword().toAnsiString(), tmp_definitions);
+	split_Definition(tmp_definitions, definitions_);
 	
 	setEditDefinitionPressedState(0);
 	setAddToFavoritesPressedState(0);
+
+	drawDefinitions();
 	
 	updateTexture();
 }
@@ -257,25 +311,47 @@ void DefinitionFrame::setAddToFavoritesPos(const sf::Vector2f &n_pos)
 void DefinitionFrame::setDefiDefiSpacing(int n_spacing)
 {
 	defi_defi_spacing_ = n_spacing;
-	// drawDefinitions();
+	drawDefinitions();
 }
 
 void DefinitionFrame::setDefiTypeSpacing(int n_spacing)
 {
 	defi_type_spacing_ = n_spacing;
-	// drawDefinitions();
+	drawDefinitions();
 }
 
-void DefinitionFrame::setFirstDefinitionPos(int x, int y)
+void DefinitionFrame::setDefinitionMargin(int n_margin)
 {
-	setFirstDefinitionPos(sf::Vector2f(x, y));
-	// drawDefinitions();
-}
-
-void DefinitionFrame::setFirstDefinitionPos(const sf::Vector2f &n_pos)
-{
-	first_definition_pos_ = n_pos;
+	definition_margin_ = n_margin;
 	updateTexture();
+}
+
+void DefinitionFrame::setTypeCharacterSize(int n_size)
+{
+	type_character_size_ = n_size;
+	drawDefinitions();
+}
+
+void DefinitionFrame::setDefiCharacterSize(int n_size)
+{
+	defi_character_size_ = n_size;
+	drawDefinitions();
+}
+
+void DefinitionFrame::setTypeColor(const sf::Color &n_color)
+{
+	type_color_ = n_color;
+	drawDefinitions();
+}
+
+void DefinitionFrame::setHistoryBar(HistoryBar *n_history_bar)
+{
+	history_bar_ = n_history_bar;
+}
+
+void DefinitionFrame::setEditScreen(EditDefinition *n_edit_screen)
+{
+	edit_screen_ = n_edit_screen;
 }
 
 void DefinitionFrame::updateTexture()
@@ -296,8 +372,22 @@ void DefinitionFrame::updateTexture()
 	texture_.draw(edit_definition_button_);
 	texture_.draw(add_to_favorites_button_);
 
+	if (add_to_favorites_button_.isPressed())
+	{
+		sf::Text output_text(add_to_favorites_message_, getFont(), 20);
+		output_text.setFillColor(sf::Color::Green);
+		sf::Vector2f output_text_pos = getAddToFavoritesPos();
+		output_text_pos.x = (getWidth() - output_text.getGlobalBounds().width) / 2;
+		output_text_pos.y += add_to_favorites_button_.getHeight();
+		output_text.setPosition(output_text_pos);
+		
+		texture_.draw(output_text);
+	}
+
 	sf::Sprite definition_sprite(definition_pane_.getTexture());
-	definition_sprite.setPosition(0, definition_bar_height_);
+	definition_sprite.setTextureRect(defi_pane_screen_);
+	definition_sprite.setPosition(getDefinitionMargin(),
+								  getDefinitionBarHeight() + getDefiDefiSpacing());
 	texture_.draw(definition_sprite);
 
 	texture_.display();
@@ -360,33 +450,58 @@ void DefinitionFrame::createAddToFavoritesButton()
 	add_to_favorites_button_.setTexture(add_to_favorites_texture_.getTexture(), 0, 0);
 }
 
-// void DefinitionFrame::drawDefinitions()
-// {
-// 	definition_pane_.create(getWidth(), 500);
-// 	definition_pane_.clear(sf::Color::White);
+void DefinitionFrame::drawDefinitions()
+{
+	definition_pane_.create(getWidth() - getDefinitionMargin() * 2,
+							250 * definitions_.size());
+	definition_pane_.clear(sf::Color::White);
 
-// 	sf::Vector2f curr_pos;
-// 	for (int i = 0; i < 1; ++i)
-// 	{
-// 		auto [word_type, definition] = definitions_[i];
-// 		if (i == 0 || word_type != definitions_[i-1].first)
-// 		{
-// 			TextBox word_type_text(30, 100, 0);
-// 			word_type_text.setContainer(this);
-// 			word_type_text.setTypability(0);
-// 			word_type_text.setFont(getFont());
-// 			word_type_text.setPosition(curr_pos);
-// 			word_type_text.setTypingOutlineColor(sf::Color::White);
-// 			word_type_text.setUntypingOutlineColor(sf::Color::White);
-			
-// 			definition_pane_.draw(word_type_text);
-// 			// curr_pos.y += word_type_text.getHeight() + getDefiDefiSpacing();
-// 		}
-// 	}
+	TextBox type_text(definition_pane_.getSize().x, 45, 0);
+	type_text.setContainer(this);
+	type_text.setTypability(0);
+	type_text.setWrappedEnabled(1);
+	type_text.setFont(getFont());
+	type_text.setCharacterSize(getTypeCharacterSize());
+	type_text.setBackgroundColor(sf::Color::Transparent);
+	type_text.setOutlineThickness(0);
+	type_text.setForegroundTextColor(getTypeColor());
+	
+	TextBox defi_text(definition_pane_.getSize().x, 30, 0);
+	defi_text.setContainer(this);
+	defi_text.setTypability(0);
+	defi_text.setWrappedEnabled(1);
+	defi_text.setFont(getFont());
+	defi_text.setCharacterSize(getDefiCharacterSize());
+	defi_text.setBackgroundColor(sf::Color::Transparent);
+	defi_text.setOutlineThickness(0);
+	defi_text.setForegroundTextColor(sf::Color::Black);
+	
+	sf::Vector2f curr_pos(0, 0);
+	for (int i = 0; i < definitions_.size(); ++i)
+	{
+		auto [type, definition] = definitions_[i];
+		std::cerr << type << '\n' << definition << "\n\n";
+		
+		if (i == 0 || type != definitions_[i-1].first)
+		{
+			type_text.setForegroundString(type);
+			type_text.setPosition(curr_pos);
+			definition_pane_.draw(type_text);
+			curr_pos.y += type_text.getHeight() + getDefiDefiSpacing();
+		}
+		sf::String defi_string = std::to_string(i+1) + "   : ";
+		defi_string += definition;
+		defi_text.setForegroundString(defi_string);
+		defi_text.setPosition(curr_pos);
+		definition_pane_.draw(defi_text);
+		curr_pos.y += defi_text.getHeight();
+		curr_pos.y += (i+1 < definitions_.size() && type != definitions_[i+1].first ?
+					   getDefiTypeSpacing() : getDefiDefiSpacing());
+	}
 
-// 	definition_pane_.display();
-// 	updateTexture();
-// }
+	definition_pane_.display();
+	updateTexture();
+}
 
 void DefinitionFrame::setEditDefinitionPressedState(bool n_state)
 {
