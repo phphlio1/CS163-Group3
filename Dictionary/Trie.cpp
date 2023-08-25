@@ -453,6 +453,7 @@ void Trie::addToFavoriteList(std::string word, std::string &message){
 // Question 10 : User can view their favorite list
 void Trie::readData_FavoriteList(std::vector<std::string> &fav, std::string &message)
 {
+	fav.clear();
     std::ifstream fin;
     fin.open(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
     if (!fin.is_open())

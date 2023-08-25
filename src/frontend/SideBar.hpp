@@ -25,7 +25,7 @@ namespace Frontend
 		const sf::Vector2f& getFirstWordBoxPos() const;
 		int getWordBoxSpacing() const;
 		int getCharacterSize() const;
-		const std::string* getClickedWord() const;
+		int getClickedWord() const;
 		const sf::Vector2f& getEditFavoritesPos() const;
 		int getCloseEditFavoritesThickness() const;
 		int getCloseEditFavoritesSize() const;
@@ -62,7 +62,7 @@ namespace Frontend
 		const std::vector<std::string> *words_;
 
 	private:
-		const std::string* findClickedWord(int mouseX, int mouseY) const;
+		int findClickedWord(int mouseX, int mouseY) const;
 
 		void createCloseEditFavoritesButton();
 		void createAddToFavoritesButton();
@@ -82,8 +82,9 @@ namespace Frontend
 		sf::RectangleShape word_box_;
 		sf::Texture edit_favorites_button_, remove_from_favorites_button_;
 		sf::RenderTexture close_edit_favorites_button_, add_to_favorites_button_;
+		sf::Sprite edit_favorites_sprite_, close_edit_favorites_sprite_;
 
-		const std::string *clicked_word_;
+		int clicked_word_;
 	};
 }
 

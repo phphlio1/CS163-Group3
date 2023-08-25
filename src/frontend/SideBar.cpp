@@ -12,7 +12,7 @@ const int SideBar::NUM_WORDS = 10;
 
 SideBar::SideBar(int n_width, int n_height)
 	: Component(n_width, n_height),
-	  definition_frame_(nullptr), clicked_word_(nullptr),
+	  definition_frame_(nullptr),
 	  background_color_(GREY), character_size_(22),
 	  word_box_spacing_(10), first_word_box_pos_(15, 45),
 	  edit_favorites_pos_(290, 13),
@@ -32,6 +32,11 @@ SideBar::SideBar(int n_width, int n_height)
 	createAddToFavoritesButton();
     setRemoveFromFavoritesPos(getWordBoxWidth() - 10 - remove_from_favorites_button_.getSize().x,
 							  (getWordBoxHeight() - remove_from_favorites_button_.getSize().y) / 2);
+
+	edit_favorites_sprite_.setTexture(edit_favorites_button_);
+	close_edit_favorites_sprite_.setTexture(close_edit_favorites_button_.getTexture());
+	edit_favorites_sprite_.setPosition(getEditFavoritesPos());
+	close_edit_favorites_sprite_.setPosition(getEditFavoritesPos());
 	
 	updateTexture();
 }
@@ -50,13 +55,38 @@ void SideBar::processEvent(const sf::Event &event)
 	switch (event.type)
 	{
 	case sf::Event::MouseButtonPressed:
-		if (is_inside(event.mouseButton.x, event.mouseButton.y))
+		if (!is_inside(event.mouseButton.x, event.mouseButton.y))
 		{
-			clicked_word_ = findClickedWord(event.mouseButton.x, event.mouseButton.y);
-			if (definition_frame_ && clicked_word_)
+			break;
+		}
+
+		{
+			int mouseX = event.mouseButton.x - getPosition().x;
+			int mouseY = event.mouseButton.y - getPosition().y;
+			if (isFavoritesEditing())
 			{
-				definition_frame_->setKeyword(*getClickedWord());
+				if (close_edit_favorites_sprite_.getGlobalBounds().contains(mouseX, mouseY))
+				{
+					setFavoritesEditingEnabled(0);
+				}
 			}
+			else if (edit_favorites_sprite_.getGlobalBounds().contains(mouseX, mouseY))
+			{
+				setFavoritesEditingEnabled(1);
+			}
+		}
+		
+		clicked_word_ = findClickedWord(event.mouseButton.x, event.mouseButton.y);
+		if (!is_favorites_editing_ && definition_frame_ && getClickedWord() != -1)
+		{
+			definition_frame_->setKeyword((*words_)[words_->size() - getClickedWord() - 1]);
+		}
+
+		if (isFavoritesEditing() && getClickedWord() != -1)
+		{
+			std::string message;
+			g_curr_trie->removeAWordFromFavoriteList(g_favorites.size() - getClickedWord(), message);
+			g_curr_trie->viewFavoriteList(g_favorites, message);
 		}
 		break;
 
@@ -107,7 +137,7 @@ int SideBar::getCharacterSize() const
 	return character_size_;
 }
 
-const std::string* SideBar::getClickedWord() const
+int SideBar::getClickedWord() const
 {
 	return clicked_word_;
 }
@@ -239,18 +269,20 @@ void SideBar::updateTexture()
 	top_right.setPosition(getEditFavoritesPos());
 	if (isFavoritesEditing())
 	{
-		top_right.setTexture(close_edit_favorites_button_.getTexture());
+		// top_right.setTexture(close_edit_favorites_button_.getTexture());
+		texture_.draw(close_edit_favorites_sprite_);
 	}
 	else
 	{
-		top_right.setTexture(edit_favorites_button_);
+		// top_right.setTexture(edit_favorites_button_);
+		texture_.draw(edit_favorites_sprite_);
 	}
-	texture_.draw(top_right);
+	// texture_.draw(top_right);
 
 	texture_.display();
 }
 
-const std::string* SideBar::findClickedWord(int mouseX, int mouseY) const
+int SideBar::findClickedWord(int mouseX, int mouseY) const
 {
 	sf::Vector2f window_relative_pos = findWindowRelativePos();
 	mouseX -= window_relative_pos.x;
@@ -261,10 +293,10 @@ const std::string* SideBar::findClickedWord(int mouseX, int mouseY) const
 									  sf::Vector2f(getWordBoxWidth(), getWordBoxHeight()));
 		if (word_box_bounds.contains(mouseX, mouseY))
 		{
-			return &*std::next(words_->rbegin(), i);
+			return i;
 		}
 	}
-	return nullptr;
+	return -1;
 }
 
 void SideBar::drawWordBoxes()

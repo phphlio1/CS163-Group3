@@ -49,6 +49,7 @@ void Application::setupFrontend()
 
 	Frontend::HistoryBar *history_bar = new Frontend::HistoryBar;
 	history_bar->setPosition(0, 70);
+	history_bar->setVisibility(0);
 	components_.push_back(history_bar);
 	
 	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
@@ -63,7 +64,7 @@ void Application::setupFrontend()
 	side_bar->setDefinitionFrame(definition_frame);
 	side_bar->setPosition(0, 70);
 	components_.push_back(side_bar);
-	side_bar->setVisibility(0);
+	// side_bar->setVisibility(0);
 
 	Frontend::EditDefinition *edit_definition = new Frontend::EditDefinition;
 	edit_definition->setDefinitionFrame(definition_frame);

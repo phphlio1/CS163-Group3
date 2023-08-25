@@ -480,7 +480,6 @@ void DefinitionFrame::drawDefinitions()
 	for (int i = 0; i < definitions_.size(); ++i)
 	{
 		auto [type, definition] = definitions_[i];
-		std::cerr << type << '\n' << definition << "\n\n";
 		
 		if (i == 0 || type != definitions_[i-1].first)
 		{
