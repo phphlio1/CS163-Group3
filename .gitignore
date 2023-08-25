@@ -37,6 +37,7 @@
 # Miscellaneous
 CMakeLists.txt.user
 CMakeCache.txt
+CMakeLists.txt
 CMakeFiles
 CMakeScripts
 Testing
@@ -51,3 +52,5 @@ _deps
 build/
 [Bb][Uu][Ii][Ll][Dd]/
 .history
+
+main.cpp
