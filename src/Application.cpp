@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 
+#include "InGame.hpp"
 #include "Application.hpp"
 #include "header.hpp"
 #include "SideBar.hpp"
@@ -7,6 +8,7 @@
 #include "Global.hpp"
 #include "HistoryBar.hpp"
 #include "EditDefinition.hpp"
+#include "gameMode.hpp"
 
 sf::RenderWindow *g_window;
 Trie *g_tries[4];
@@ -84,6 +86,14 @@ void Application::initTries()
 	g_tries[3] = new Trie(Datasets::Emoji);
 
 	std::string message = "";
+	// Fix backend bugs
+	for (auto trie : g_tries)
+	{
+		trie->build_Trie_From_Origin(message);
+		int num = trie->num_line;
+		trie->delete_Whole_Trie();
+		trie->num_line = num;
+	}
 	for (auto trie : g_tries)
 	{
 		trie->Deserialization_DFS(message);
@@ -149,7 +159,7 @@ int Application::getWindowHeight() const
 	return window_height_;
 }
 
-const sf::String& Application::getWindowTitle() const
+const sf::String &Application::getWindowTitle() const
 {
 	return window_title_;
 }

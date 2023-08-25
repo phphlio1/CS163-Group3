@@ -18,7 +18,7 @@ public:
 
 	int getWindowWidth() const;
 	int getWindowHeight() const;
-	const sf::String& getWindowTitle() const;
+	const sf::String &getWindowTitle() const;
 
 private:
 	void setupFrontend();

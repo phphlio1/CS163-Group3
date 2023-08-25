@@ -23,6 +23,8 @@ const std::string historyName = "_history.txt";
 class Trie
 {
 public:
+    int num_line;
+
     Trie(Datasets::ID _type);
     ~Trie();
 
@@ -53,11 +55,11 @@ public:
     void choose_1Defi4Words();
 
     void prepare_1Word4Defis();
-    void getComponent_1Word4Defis(std::vector<std::string>& wordSet, std::vector<std::vector<std::string>>& defiSet,
-std::vector<int>& correctOption, int index);
+    void getComponent_1Word4Defis(std::vector<std::string> &wordSet, std::vector<std::vector<std::string>> &defiSet,
+                                  std::vector<int> &correctOption, int index);
     void prepare_1Defi4Words();
-    void getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
-std::vector<int>& correctOption, int index);
+    void getComponent_1Defi4Words(std::vector<std::string> &defiSet, std::vector<std::vector<std::string>> &wordSet,
+                                  std::vector<int> &correctOption, int index);
 
     // Favourite list task
     void searchForAWord_withSuggestion(std::string &subWord, std::vector<std::string> &suggest);
@@ -79,7 +81,6 @@ private:
     TrieNode *root;
     Datasets::ID typeOfDict;
     checker checkerST;
-    int num_line;
 };
 
 // Additional function

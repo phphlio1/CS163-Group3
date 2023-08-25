@@ -1,30 +1,28 @@
+#include "TextBox.hpp"
 #include <iostream>
 #include <cmath>
 
-#include "TextBox.hpp"
-
 using namespace Frontend;
 
-const sf::Color TextBox::GREY = sf::Color(93, 93, 93);
+const int TextBox::OUTLINE_THICKNESS = -2;
+const sf::Color TextBox::GREY = sf::Color(0, 0, 0, 100);
 
 TextBox::TextBox(int n_width, int n_height, int n_margin)
 	: Component(n_width, n_height),
-	  container_(nullptr),
-	  margin_(n_margin), outline_thickness_(-2),
-	  background_color_(sf::Color(245, 245, 245)), // nearly white
-	  is_typing_(0), is_typable_(1), is_wrapped_(0)
+	  margin_(n_margin),
+	  background_color_(sf::Color(245, 245, 245)) // nearly white
 {
-	background_text_.setFont(getFont());
-	foreground_text_.setFont(getFont());
-	setFont("resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
+	centerText(background_text_);
+	centerText(foreground_text_);
+	background_text_.setFont(font_);
+	foreground_text_.setFont(font_);
 	setBackgroundTextColor(GREY); // grey
 	setForegroundTextColor(sf::Color::Black);
 	setCharacterSize(20);
-	foreground_text_.setLineSpacing(1);
 
-	setTypingOutlineColor(sf::Color::Green);
+	setTypingOutlineColor(sf::Color(10, 153, 254));
 	setUntypingOutlineColor(sf::Color::Black);
-	
+
 	updateTexture();
 }
 
@@ -54,7 +52,7 @@ void TextBox::processEvent(const sf::Event &event)
 			updateText(event);
 		}
 		break;
-		
+
 	default:
 		break;
 	}
@@ -92,37 +90,37 @@ const sf::String& TextBox::getBackgroundString() const
 	return background_string_;
 }
 
-const sf::String& TextBox::getForegroundString() const
+const sf::String &TextBox::getForegroundString() const
 {
 	return foreground_string_;
 }
 
-const sf::Font& TextBox::getFont() const
+const sf::Font &TextBox::getFont() const
 {
 	return font_;
 }
 
-const sf::Color& TextBox::getBackgroundColor() const
+const sf::Color &TextBox::getBackgroundColor() const
 {
 	return background_color_;
 }
 
-const sf::Color& TextBox::getBackgroundTextColor() const
+const sf::Color &TextBox::getBackgroundTextColor() const
 {
 	return background_text_.getFillColor();
 }
 
-const sf::Color& TextBox::getForegroundTextColor() const
+const sf::Color &TextBox::getForegroundTextColor() const
 {
 	return foreground_text_.getFillColor();
 }
 
-const sf::Color& TextBox::getTypingOutlineColor() const
+const sf::Color &TextBox::getTypingOutlineColor() const
 {
 	return typing_outline_color_;
 }
 
-const sf::Color& TextBox::getUntypingOutlineColor() const
+const sf::Color &TextBox::getUntypingOutlineColor() const
 {
 	return untyping_outline_color_;
 }
@@ -269,8 +267,13 @@ void TextBox::updateTexture()
 	
 	texture_.draw(outline);
 	texture_.draw(text_display);
-	
+
 	texture_.display();
+}
+
+void TextBox::centerText(sf::Text &text_display)
+{
+	text_display.setPosition(sf::Vector2f(getMargin(), texture_.getSize().y / 2));
 }
 
 void TextBox::updateText(const sf::Event &event)

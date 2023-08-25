@@ -1,141 +1,121 @@
-// #include "gameMode.hpp"
+#include "gameMode.hpp"
 
-// void GameModeMenu::initFont()
-// {
-//     if (!this->font.loadFromFile("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf"))
-//         throw "No font found!" && __cpp_exceptions;
-// }
+using namespace Frontend;
 
-// void GameModeMenu::initShapes()
-// {
-//     sf::RectangleShape *gameHeader = new sf::RectangleShape(sf::Vector2f(1280, 40));
-//     gameHeader->setFillColor(sf::Color(17, 105, 142));
-//     gameHeader->setPosition(0, 70);
-//     this->rectShapes.push_back(gameHeader);
+GameMenu GameModeMenu::getCurrentGameMenu()
+{
+    return gameMenu;
+}
 
-//     sf::RectangleShape *gameFooter = new sf::RectangleShape(sf::Vector2f(1280, 40));
-//     gameFooter->setFillColor(sf::Color(17, 105, 142));
-//     gameFooter->setPosition(0, 680);
-//     this->rectShapes.push_back(gameFooter);
+void GameModeMenu::setGameMenu(GameMenu menu)
+{
+    gameMenu = menu;
+}
 
-//     sf::RectangleShape *test = new sf::RectangleShape(sf::Vector2f(1280, 70));
-//     test->setFillColor(sf::Color(25, 69, 107));
-//     test->setPosition(0, 0);
-//     this->rectShapes.push_back(test);
-// }
+void GameModeMenu::setFont()
+{
+    font.loadFromFile("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
+    updateTexture();
+}
 
-// void GameModeMenu::initTexture()
-// {
-//     this->wordToDefIcon.loadFromFile("resources/img/word-to-def.png");
-//     this->defTOWordIcon.loadFromFile("resources/img/def-to-word.png");
-// }
+void GameModeMenu::setShapes()
+{
+    sf::RectangleShape gameHeader(sf::Vector2f(1280, 40));
+    gameHeader.setFillColor(sf::Color(17, 105, 142));
+    gameHeader.setPosition(0, 70);
+    rectShapes.push_back(gameHeader);
 
-// void GameModeMenu::initButtons()
-// {
-//     Button *wordToDefButton = new Button(240, 270, 270, 300, &this->font, "Word to Definition", 24, 264, 537, sf::Color::Black, wordToDefIcon, 0, 0, sf::Color::White, sf::Color(215, 215, 215), sf::Color::White);
-//     Button *defToWordButton = new Button(780, 270, 270, 300, &this->font, "Definition to Word", 24, 804, 537, sf::Color::Black, defTOWordIcon, 0, 0, sf::Color::White, sf::Color(215, 215, 215), sf::Color::White);
-//     this->buttons.push_back(wordToDefButton);
-//     this->buttons.push_back(defToWordButton);
-// }
+    sf::RectangleShape gameFooter(sf::Vector2f(1280, 40));
+    gameFooter.setFillColor(sf::Color(17, 105, 142));
+    gameFooter.setPosition(0, 680);
+    rectShapes.push_back(gameFooter);
 
-// void GameModeMenu::initTitles()
-// {
-//     std::string Title = "Choose Your Game Mode";
-//     sf::Text *GameModeTitle = new sf::Text(Title, this->font, 50);
-//     GameModeTitle->setPosition(sf::Vector2f(346, 112));
-//     GameModeTitle->setFillColor(sf::Color(25, 69, 107));
+    updateTexture();
+}
 
-//     std::string Subtitle = "Remember to switch to your desired language!";
-//     sf::Text *GameModeSubtitle = new sf::Text(Subtitle, this->font, 24);
-//     GameModeSubtitle->setPosition(sf::Vector2f(381, 180));
-//     GameModeSubtitle->setFillColor(sf::Color(25, 69, 107));
+void GameModeMenu::setTexture()
+{
+    wordToDefIcon.loadFromFile("resources/img/word-to-def.png");
+    defToWordIcon.loadFromFile("resources/img/def-to-word.png");
 
-//     this->titles.push_back(GameModeTitle);
-//     this->titles.push_back(GameModeSubtitle);
-// }
+    updateTexture();
+}
 
-// GameModeMenu::GameModeMenu()
-// {
-//     this->menu = GameMenu::GAME_MODE_MENU;
-//     this->initFont();
-//     this->initTexture();
-//     this->initButtons();
-//     this->initTitles();
-//     this->initShapes();
-// }
+void GameModeMenu::setButtons()
+{
+    wordToDefBtn.setPosition(240, 270);
+    wordToDefBtn.setText(font, "Word to Definition", 24, sf::Color::Black);
+    wordToDefBtn.setTextPosition(sf::Vector2f(24, 267));
+    wordToDefBtn.setTexture(wordToDefIcon, 0, 0);
+    wordToDefBtn.setContainer(this);
 
-// GameModeMenu::~GameModeMenu()
-// {
-//     for (auto button : buttons)
-//     {
-//         delete button;
-//     }
-//     for (auto title : titles)
-//     {
-//         delete title;
-//     }
-//     for (auto shape : rectShapes)
-//     {
-//         delete shape;
-//     }
-// }
+    defToWordBtn.setPosition(780, 270);
+    defToWordBtn.setText(font, "Definition to Word", 24, sf::Color::Black);
+    defToWordBtn.setTextPosition(sf::Vector2f(24, 267));
+    defToWordBtn.setTexture(defToWordIcon, 0, 0);
+    defToWordBtn.setContainer(this);
 
-// void GameModeMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
-// {
-//     for (auto button : buttons)
-//     {
-//         target.draw(*button, states);
-//     }
-//     for (auto title : titles)
-//     {
-//         target.draw(*title, states);
-//     }
-//     for (auto shape : rectShapes)
-//     {
-//         target.draw(*shape, states);
-//     }
-// }
+    updateTexture();
+}
 
-// void GameModeMenu::Update(const sf::Event &event, sf::Vector2f mousePosRelativeToWindow)
-// {
-//     for (auto button : buttons)
-//     {
-//         button->update(event, mousePosRelativeToWindow);
-//     }
-//     if (this->buttons[0]->isPressed())
-//     {
-//         this->menu = GameMenu::IN_GAME;
-//         this->mode = GameMode::WORD_TO_DEF;
-//     }
-//     if (this->buttons[1]->isPressed())
-//     {
-//         this->menu = GameMenu::IN_GAME;
-//         this->mode = GameMode::DEF_TO_WORD;
-//     }
-// }
+void GameModeMenu::setTitles()
+{
+    sf::Text GameModeTitle("Choose Your Game Mode", font, 50);
+    GameModeTitle.setPosition(sf::Vector2f(346, 112));
+    GameModeTitle.setFillColor(sf::Color(25, 69, 107));
 
-// // void GameModeMenu::centerKeyword(sf::Text *textDisplay)
-// // {
-// //     sf::FloatRect textRect = textDisplay->getLocalBounds();
-// //     textDisplay->setPosition((1280 - textRect.width) / 2, 183);
-// // }
+    sf::Text GameModeSubtitle("Remember to switch to your desired language!", font, 24);
+    GameModeSubtitle.setPosition(sf::Vector2f(381, 180));
+    GameModeSubtitle.setFillColor(sf::Color(25, 69, 107));
 
-// // void GameModeMenu::getWordToDefQuestions(std::vector<std::string> questionsStr)
-// // {
-// //     if (this->menu == GameMenu::GAME_MODE_MENU && this->mode == GameMode::WORD_TO_DEF)
-// //     {
-// //         for (auto &question : questionsStr)
-// //         {
-// //             std::string firstClauseStr = "What is the meaning of ";
-// //             sf::Text *firstClause = new sf::Text(firstClauseStr, this->font, 50);
-// //             firstClause->setFillColor(sf::Color(17, 105, 142));
-// //             firstClause->setPosition(345, 115);
+    titles.push_back(GameModeTitle);
+    titles.push_back(GameModeSubtitle);
 
-// //             sf::Text *keyWord = new sf::Text(question, this->font, 50);
-// //             keyWord->setFillColor(sf::Color(22, 199, 154));
-// //             centerKeyword(keyWord);
+    updateTexture();
+}
 
-// //             this->renderedQuestions.push_back(wholeQuestion);
-// //         }
-// //     }
-// // }
+GameModeMenu::GameModeMenu()
+    : Component(1280, 720),
+      gameMenu(GAME_MODE_MENU),
+      wordToDefBtn(270, 300, sf::Color::White, sf::Color(215, 215, 215), sf::Color(215, 215, 215)),
+      defToWordBtn(270, 300, sf::Color::White, sf::Color(215, 215, 215), sf::Color(215, 215, 215))
+{
+    setFont();
+    setTexture();
+    setTitles();
+    setShapes();
+    setButtons();
+
+    updateTexture();
+}
+
+GameModeMenu::~GameModeMenu()
+{
+}
+
+void GameModeMenu::processEvent(const sf::Event &event)
+{
+    wordToDefBtn.processEvent(event);
+    defToWordBtn.processEvent(event);
+
+    if (wordToDefBtn.isPressed())
+        gameMenu = WORD_TO_DEF;
+    else if (defToWordBtn.isPressed())
+        gameMenu = DEF_TO_WORD;
+}
+
+void GameModeMenu::updateTexture()
+{
+    texture_.clear(sf::Color::White);
+
+    for (auto title : titles)
+        texture_.draw(title);
+
+    for (auto shape : rectShapes)
+        texture_.draw(shape);
+
+    texture_.draw(wordToDefBtn);
+    texture_.draw(defToWordBtn);
+
+    texture_.display();
+}

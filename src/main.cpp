@@ -3,6 +3,6 @@
 
 int main()
 {
-	Application application;
-	return 0;
+    Application application;
+    return 0;
 }

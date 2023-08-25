@@ -8,7 +8,7 @@ target_sources(${PROJECT_NAME} PRIVATE
   button.hpp
   header.hpp
   gameMode.hpp
-  wordToDefGame.hpp
+  inGame.hpp
 
   Component.cpp
   TextBox.cpp
@@ -19,4 +19,4 @@ target_sources(${PROJECT_NAME} PRIVATE
   button.cpp
   header.cpp
   gameMode.cpp
-  wordToDefGame.cpp)
+  InGame.cpp)

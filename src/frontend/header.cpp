@@ -7,8 +7,49 @@ using namespace Frontend;
 const std::vector<std::string> LanguageOfChoiceDisplay = {"Eng             Vie", "Eng              Eng", "Vie               Eng", "Emo              Eng"};
 const std::vector<sf::Vector2f> LanguageTextPos = {sf::Vector2f(17, 15), sf::Vector2f(17, 15), sf::Vector2f(22, 15), sf::Vector2f(9, 15)};
 
+void Header::setSuggestionBtns()
+{
+    for (int i = 0; i < 4; ++i)
+    {
+        Button *suggest = new Button(473, 40, sf::Color::White, sf::Color(215, 215, 215), sf::Color(215, 215, 215));
+        suggest->setPosition(698, i * 40 + 56);
+
+        suggest->setTextPosition(sf::Vector2f(53, 9));
+        suggest->setContainer(this);
+        suggestBtns.push_back(suggest);
+
+        sf::RectangleShape outline(sf::Vector2f(471, 40));
+        outline.setFillColor(sf::Color::Transparent);
+        outline.setPosition(sf::Vector2f(suggest->getPosition().x + 1, suggest->getPosition().y));
+        outline.setOutlineThickness(1);
+        outline.setOutlineColor(sf::Color(215, 215, 215));
+        suggestOulines.push_back(outline);
+    }
+    updateTexture();
+}
+
+void Header::setSuggestionStr()
+{
+    int maxSuggestions = (suggestions.size() < 4 ? suggestions.size() : 4);
+
+    if (maxSuggestions < 4)
+    {
+        for (int i = maxSuggestions; i < 4; ++i)
+            suggestBtns.at(i)->setText(roboto, "", 20, sf::Color::Black);
+    }
+
+    for (int i = 0; i < maxSuggestions; ++i)
+    {
+        suggestBtns.at(i)->setText(roboto, suggestions.at(i), 20, sf::Color::Black);
+    }
+    // suggestBtns.at(i)->setText(fontAwesome, suggestions.at(i), 20, sf::Color::Black);
+
+    updateTexture();
+}
+
 void Header::setFonts()
 {
+    roboto.loadFromFile("resources/font/Roboto/Roboto-Regular.ttf");
     fontAwesome.loadFromFile("resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
     serif.loadFromFile("resources/font/DM_Serif_Text/DMSerifText-Regular.ttf");
     sans.loadFromFile("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
@@ -107,7 +148,7 @@ void Header::setTextBox()
 }
 
 Header::Header()
-    : Component(1280, 70),
+    : Component(1280, 220),
       searchBar(475, 40, 50),
       dictionaryBtn(99, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
       dailyBtn(74, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
@@ -130,18 +171,20 @@ Header::Header()
     setSprites();
     setButtons();
     setTextBox();
+    setSuggestionBtns();
     // setWarningBox();
     updateTexture();
 }
 
 Header::~Header()
 {
+    for (auto button : suggestBtns)
+        delete button;
 }
 
 void Header::updateTexture()
 {
-    texture_.clear(sf::Color::White);
-	
+    texture_.clear(sf::Color::Transparent);
     texture_.draw(background);
     texture_.draw(iconSeperate);
     texture_.draw(searchBar);
@@ -156,18 +199,47 @@ void Header::updateTexture()
     texture_.draw(resetBtn);
     texture_.draw(setLangBtn);
 
-    // if (isWarning == true)
-    // {
-    //     texture_.draw(warningBackground);
-    //     texture_.draw(warningText);
-    //     texture_.draw(*yesBtn);
-    //     texture_.draw(*noBtn);
-    // }
+    if (getUserLookUp() != "")
+    {
+        for (int i = 0; i < suggestBtns.size(); ++i)
+            if (suggestBtns.at(i)->getString() != "")
+            {
+                texture_.draw(*suggestBtns.at(i));
+                texture_.draw(suggestOulines.at(i));
+            }
+    }
+
     texture_.display();
 }
 
 void Header::processEvent(const sf::Event &event)
 {
+    for (auto btn : suggestBtns)
+    {
+        if (btn->getString() != "")
+            btn->processEvent(event);
+    }
+
+    static sf::Clock clock;
+
+    if (searchBar.isTyping() && clock.getElapsedTime().asSeconds() >= 0.5)
+    {
+        std::string currentTextBoxString = getUserLookUp();
+        std::vector<std::string> suggestions;
+        // std::cout << currentTextBoxString << std::endl;
+        g_tries[0]->searchForAWord_withSuggestion(currentTextBoxString, suggestions);
+        this->suggestions = suggestions;
+
+        setSuggestionStr();
+        clock.restart();
+    }
+
+    if (!searchBar.isTyping())
+    {
+        for (auto btn : suggestBtns)
+            btn->setText(fontAwesome, "", 20, sf::Color::Black);
+    }
+
     dictionaryBtn.processEvent(event);
     dailyBtn.processEvent(event);
     favBtn.processEvent(event);
@@ -177,23 +249,6 @@ void Header::processEvent(const sf::Event &event)
     setLangBtn.processEvent(event);
     searchBar.processEvent(event);
 	// std::cerr << searchBar.getForegroundString().toAnsiString() << '\n';
-
-    // if (resetBtn->isPressed())
-    // {
-    //     isWarning = true;
-    // }
-    // if (isWarning == true)
-    // {
-    //     yesBtn->processEvent(event);
-    //     noBtn->processEvent(event);
-    // }
-    // if (yesBtn->isPressed() || noBtn->isPressed())
-    // {
-    //     isWarning = false;
-    //     if (yesBtn->isPressed())
-    //         isReset = true;
-    //     isReset = false;
-    // }
 	
     if (dictionaryBtn.isPressed() && !dictionaryBtn_pressed_)
     {
@@ -218,6 +273,10 @@ void Header::processEvent(const sf::Event &event)
 	else if (configBtn.isPressed() && !configBtn_pressed_)
 	{
 		updateSearchOptions();
+	}
+	else if (resetBtn.isPressed() && !resetBtn_pressed_)
+	{
+		resetTrie();
 	}
 	dictionaryBtn_pressed_ = dictionaryBtn.isPressed();
 	dailyBtn_pressed_ = dailyBtn.isPressed();
@@ -307,29 +366,6 @@ std::string Header::getSearchOption()
     }
 }
 
-// void Header::setWarningBox()
-// {
-//     warningText.setFont(sans);
-//     warningText.setFillColor(sf::Color::Black);
-//     warningText.setString("This will resets your dictionary!\n                 Still continue?");
-//     warningText.setPosition(491, 285);
-//     warningText.setCharacterSize(22);
-
-//     warningBackground.setPosition(448, 264);
-//     warningBackground.setFillColor(sf::Color(245, 245, 245));
-//     warningBackground.setOutlineColor(sf::Color::Black);
-//     warningBackground.setOutlineThickness(1);
-//     warningBackground.setSize(sf::Vector2f(436, 232));
-
-//     yesBtn = new Button(596, 398, 67, 67,
-//                         &sans, "Yes", 22, 610, 414, sf::Color::Black,
-//                         sf::Color(22, 199, 154), sf::Color(22, 199, 154, 75), sf::Color(22, 199, 154));
-//     noBtn = new Button(668, 398, 67, 67,
-//                        &sans, "No", 22, 688, 417, sf::Color::Black,
-//                        sf::Color(10, 153, 254), sf::Color(10, 153, 254, 75), sf::Color(10, 153, 254));
-//     updateTexture();
-// }
-
 bool Header::getIsReset()
 {
     return isReset;
@@ -339,3 +375,17 @@ short unsigned Header::getCurrentTab()
 {
     return currentTab;
 }
+
+void Header::resetTrie()
+{
+    for (int i = 0; i < 4; ++i)
+    {
+        std::string resetMessage = "Reset trie (" + std::to_string(i) + ") sucessfully";
+        g_tries[i]->resetToOriginal(resetMessage);
+    }
+}
+
+// void Header::getStr(std::vector<std::string> suggestions)
+// {
+//     this->suggestions = suggestions;
+// }

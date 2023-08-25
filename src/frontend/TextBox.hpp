@@ -50,7 +50,7 @@ namespace Frontend
 
 	protected:
 		virtual void updateTexture() override;
-		
+
 	private:
 		static const sf::Color GREY;
 		

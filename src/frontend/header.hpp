@@ -43,7 +43,11 @@ namespace Frontend
         short unsigned languageOfChoice;
         // bool isWarning;
         bool isReset;
-        sf::Font fontAwesome, serif, sans;
+        sf::Font fontAwesome, serif, sans, roboto;
+
+        std::vector<std::string> suggestions;
+        std::vector<Button *> suggestBtns;
+        std::vector<sf::RectangleShape> suggestOulines;
 
         // sf::Text warningText;
 
@@ -68,6 +72,8 @@ namespace Frontend
         void setSprites();
         void setButtons();
         void setTextBox();
+        void setSuggestionBtns();
+        void setSuggestionStr();
         // void setWarningBox();
 
         void updateLangOfChoiceBtn();
@@ -78,6 +84,9 @@ namespace Frontend
         std::string getSearchOption();
         bool getIsReset();
         short unsigned getCurrentTab();
+
+        void getStr(std::vector<std::string> suggestions);
+        void resetTrie();
 
     protected:
         virtual void updateTexture() override;
