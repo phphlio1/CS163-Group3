@@ -29,9 +29,12 @@ int main()
     // std::string ans4 = "none of the above";
     // int ans = 0;
 
+    std::vector<std::string> suggest{"she", "sequence", "happy", "happy", "hello"};
+
     sf::RenderWindow window(sf::VideoMode(1280, 720), "SFML works!");
 
     Frontend::Header header;
+    header.getStr(suggest);
 
     Frontend::InGame game(Frontend::GameMenu::WORD_TO_DEF);
     // game.setVisibility(false);
@@ -57,7 +60,6 @@ int main()
             //     menu.processEvent(event);
         }
         window.clear(sf::Color::White);
-
         // if (menu.getCurrentGameMenu() == Frontend::GameMenu::WORD_TO_DEF)
         // {
         //     game.setVisibility(true);

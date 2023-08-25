@@ -356,7 +356,7 @@ void InGame::processEvent(const sf::Event &event)
 
 void InGame::updateTexture()
 {
-    texture_.clear(sf::Color::White);
+    texture_.clear(sf::Color::Transparent);
 
     texture_.draw(header);
     texture_.draw(footer);
