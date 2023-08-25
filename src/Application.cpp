@@ -4,10 +4,13 @@
 #include "header.hpp"
 #include "SideBar.hpp"
 #include "DefinitionFrame.hpp"
+#include "Global.hpp"
+#include "HistoryBar.hpp"
 
 sf::RenderWindow *g_window;
 Trie *g_tries[4];
 Trie *g_curr_trie;
+std::vector<std::string> g_favorites, g_history;
 
 Application::Application()
 	: window_width_(1280), window_height_(720),
@@ -26,7 +29,7 @@ Application::~Application()
 	}
 	
 	std::string message = "";
-	for (auto trie : g_tries)
+	for (Trie *trie : g_tries)
 	{
 		trie->Serialization_DFS(message);
 		delete trie;
@@ -35,18 +38,33 @@ Application::~Application()
 
 void Application::setupFrontend()
 {	
-	Frontend::SideBar *side_bar = new Frontend::SideBar;
-	side_bar->setPosition(0, 70);
-	components_.push_back(side_bar);
-	
-	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
-	definition_frame->setPosition(330, 70);
-	definition_frame->setKeyword("welcome");
-	components_.push_back(definition_frame);
-
 	Frontend::Header *header = new Frontend::Header;
 	header->setPosition(0, 0);
 	components_.push_back(header);
+	
+	std::string message;
+	g_curr_trie->takeHistory(g_history, message);
+	g_curr_trie->viewFavoriteList(g_favorites, message);
+
+	Frontend::HistoryBar *history_bar = new Frontend::HistoryBar;
+	history_bar->setPosition(0, 70);
+	components_.push_back(history_bar);
+	
+	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
+	definition_frame->setHistoryBar(history_bar);
+	definition_frame->setPosition(330, 70);
+	definition_frame->setKeyword("test");
+	definition_frame->setKeyword("welcome");
+	definition_frame->setKeyword("sequence");
+	components_.push_back(definition_frame);
+
+	history_bar->setDefinitionFrame(definition_frame);
+
+	Frontend::SideBar *side_bar = new Frontend::SideBar;
+	side_bar->setDefinitionFrame(definition_frame);
+	side_bar->setPosition(0, 70);
+	components_.push_back(side_bar);
+	side_bar->setVisibility(0);
 }
 
 void Application::initTries()

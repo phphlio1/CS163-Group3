@@ -1,15 +1,12 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
+#include <string>
+#include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "Trie.h"
 #include "Dictionary.h"
 #include "Component.hpp"
-
-extern sf::RenderWindow *g_window;
-extern Trie *g_tries[];
-extern Trie *g_curr_trie;
 
 class Application
 {
