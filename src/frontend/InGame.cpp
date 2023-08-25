@@ -45,6 +45,7 @@ void InGame::setQuestionParams()
 {
     // call backend function to update params
     setParams(keyStr, ansStrs, ans);
+
     setButton();
     setQuestion();
     // setOutlineAns();
