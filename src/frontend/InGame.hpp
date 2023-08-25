@@ -27,12 +27,12 @@ namespace Frontend
         sf::Text key, congrats, subCongrats, finalScore;
         Button quit, ans1, ans2, ans3, ans4, home;
 
-    public:
         // question params
         std::string keyStr;
         std::vector<std::string> ansStrs;
         int ans;
 
+    public:
         // constructors
         InGame(short unsigned gameMode);
         ~InGame();
@@ -49,7 +49,7 @@ namespace Frontend
         void setUtilityTexts();   // score and counter
         void setQuestionParams(); // call backend function to update params
         void setButton();
-        void setMetric(int startCount = 1, int startScore = 0, int numberOfQuestions = 2);
+        void setMetric(int startCount = 1, int startScore = 0, int numberOfQuestions = 10);
         void setQuestion();
         void setOutlineAns();
         void setFinalScore();

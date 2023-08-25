@@ -1,4 +1,6 @@
 #include "InGame.hpp"
+#include "../../Dictionary/Trie.h"
+#include "Global.hpp"
 
 using namespace Frontend;
 
@@ -44,7 +46,16 @@ void InGame::setMetric(int startCount, int startScore, int numberOfQuestions)
 void InGame::setQuestionParams()
 {
     // call backend function to update params
-    setParams(keyStr, ansStrs, ans);
+    // setParams(keyStr, ansStrs, ans);
+
+    if (inGameMode == WORD_TO_DEF)
+        // std::cout << keyStr << std::endl;
+        // std::cout << ans << std::endl;
+        g_tries[0]->quiz_1Word4Defis(keyStr, ansStrs, ans);
+    // std::cout << keyStr << std::endl;
+
+    else if (inGameMode == DEF_TO_WORD)
+        g_tries[0]->quiz_1Defi4Words(keyStr, ansStrs, ans);
 
     setButton();
     setQuestion();

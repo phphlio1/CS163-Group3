@@ -6,9 +6,18 @@ std::mt19937 generator(time(0));
 
 Trie::Trie(Datasets::ID _type) : root(nullptr), typeOfDict(_type), num_line(0) {}
 
-Trie::~Trie() { delete root; root = nullptr;}
+Trie::~Trie()
+{
+    delete root;
+    root = nullptr;
+}
 
-void Trie::delete_Whole_Trie() { delete root; root = nullptr; num_line = 0;}
+void Trie::delete_Whole_Trie()
+{
+    delete root;
+    root = nullptr;
+    num_line = 0;
+}
 
 void Trie::build_Trie_EngEng()
 {
@@ -144,7 +153,8 @@ void Trie::Deserialization_DFS(std::string &message)
 
 ///////////////////////////////////////////////////
 // Question 3: Users can search for a definition.
-void Trie::findWordFromSubDefi(std::string subDefi, std::vector<std::string> &ans){
+void Trie::findWordFromSubDefi(std::string subDefi, std::vector<std::string> &ans)
+{
     root->checkSubString("", subDefi, ans, checkerST);
 }
 
@@ -188,7 +198,8 @@ void Trie::remove_Word_FromTrie(std::string word, std::string &message)
     for (int i = 0; i < word.size(); ++i)
     {
         int index = convertCharToNum(word[i]);
-        if (!cur->edges[index]){
+        if (!cur->edges[index])
+        {
             message = "There is no " + word + " in the dictionary to remove!";
             return;
         }
@@ -211,11 +222,12 @@ void Trie::resetToOriginal(std::string &message)
     delete_Whole_Trie();
     resetFile();
     build_Trie_From_Origin(message);
-    if(message == "Init dictionary successfully")
+    if (message == "Init dictionary successfully")
         message = "Reset dictionary successfully";
 }
 
-void Trie::resetFile(){
+void Trie::resetFile()
+{
     std::ofstream fo;
     fo.open(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
     fo.close();
@@ -231,14 +243,14 @@ void Trie::getRandomWordAndDefi(std::string &word, std::vector<std::string> &def
     std::string tmpWord;
     defiList.clear();
     fin.open(preAdress + originFileName[typeOfDict]);
-    
+
     while (true)
     {
         int line = generator() % num_line;
         for (int i = 1; i < line; ++i)
             fin.ignore(500, '\n');
         getline(fin, tmpWord, (char)9);
-        if(tmpWord == "")
+        if (tmpWord == "")
             continue;
         if (findWordInTrie(tmpWord, defiList))
             break;
@@ -350,12 +362,12 @@ void Trie::prepare_1Word4Defis()
     std::vector<std::string> wordSet(10);
     std::vector<std::vector<std::string>> defiSet(10);
     std::vector<int> correctOption(10);
-    for(int i = 0; i < 10; ++i)
+    for (int i = 0; i < 10; ++i)
         getComponent_1Word4Defis(wordSet, defiSet, correctOption, i);
 }
 
-void Trie::getComponent_1Word4Defis(std::vector<std::string>& wordSet, std::vector<std::vector<std::string>>& defiSet,
-std::vector<int>& correctOption, int index)
+void Trie::getComponent_1Word4Defis(std::vector<std::string> &wordSet, std::vector<std::vector<std::string>> &defiSet,
+                                    std::vector<int> &correctOption, int index)
 {
     std::string word = getRandomWord();
     std::string correct_defi = getRandomDefi_Of_Its_Word(word);
@@ -368,8 +380,8 @@ std::vector<int>& correctOption, int index)
 
     wordSet[index] = word;
     defiSet[index] = defis;
-    for(int i = 0; i < 4; ++i)
-        if(correct_defi == defis[i])
+    for (int i = 0; i < 4; ++i)
+        if (correct_defi == defis[i])
             correctOption[index] = i;
 }
 
@@ -378,12 +390,12 @@ void Trie::prepare_1Defi4Words()
     std::vector<std::string> defiSet(10);
     std::vector<std::vector<std::string>> wordSet(10);
     std::vector<int> correctOption(10);
-    for(int i = 0; i < 10; ++i)
+    for (int i = 0; i < 10; ++i)
         getComponent_1Word4Defis(defiSet, wordSet, correctOption, i);
 }
 
-void Trie::getComponent_1Defi4Words(std::vector<std::string>& defiSet, std::vector<std::vector<std::string>>& wordSet,
-std::vector<int>& correctOption, int index)
+void Trie::getComponent_1Defi4Words(std::vector<std::string> &defiSet, std::vector<std::vector<std::string>> &wordSet,
+                                    std::vector<int> &correctOption, int index)
 {
     std::string correct_word = getRandomWord();
     std::string defi = getRandomDefi_Of_Its_Word(correct_word);
@@ -396,8 +408,8 @@ std::vector<int>& correctOption, int index)
 
     defiSet[index] = defi;
     wordSet[index] = words;
-    for(int i = 0; i < 4; ++i)
-        if(correct_word == words[i])
+    for (int i = 0; i < 4; ++i)
+        if (correct_word == words[i])
             correctOption[index] = i;
 }
 
@@ -439,9 +451,11 @@ void Trie::search_and_addToFavoriteList(std::string &subWord)
     fout.close();
 }
 
-void Trie::addToFavoriteList(std::string word, std::string &message){
+void Trie::addToFavoriteList(std::string word, std::string &message)
+{
     std::ofstream fout(preAdress + preFavoriteName + favoriteFileName[typeOfDict], std::ios_base::app);
-    if (!fout.is_open()){
+    if (!fout.is_open())
+    {
         message = "File not found";
         return;
     }
@@ -496,63 +510,76 @@ void Trie::removeAWordFromFavoriteList(int order, std::string &message)
     message = "Remove successfully!";
 }
 
-void Trie::addToHistory(std::string word, std::string &message) {
+void Trie::addToHistory(std::string word, std::string &message)
+{
     std::ofstream fout(preAdress + FileName[typeOfDict] + historyName, std::ios_base::app);
-    if (fout.is_open()) {
+    if (fout.is_open())
+    {
         fout << word << "\n";
     }
-    else {
+    else
+    {
         message = "Error opening file !";
-        return ;
+        return;
     }
     fout.close();
 }
 
-void Trie::takeHistory(std::vector<std::string> &historyList, std::string &message) {
+void Trie::takeHistory(std::vector<std::string> &historyList, std::string &message)
+{
     std::ifstream fin(preAdress + FileName[typeOfDict] + historyName);
-    if (fin.is_open()) {
+    if (fin.is_open())
+    {
         std::string s;
-        while (getline(fin, s)) 
+        while (getline(fin, s))
             historyList.push_back(s);
     }
-    else {
+    else
+    {
         message = "Error opening file !";
         return;
     }
     fin.close();
 }
 
-void splitEachDefi(std::string tmp, std::pair<std::string, std::string> &ans){
+void splitEachDefi(std::string tmp, std::pair<std::string, std::string> &ans)
+{
     std::string s;
     std::string st;
-    s = ""; st = "";
+    s = "";
+    st = "";
     int cnt = 0;
     char pre = 's';
-    for(char c : tmp){
-        if(c == ' ' && pre == ')' && !cnt){
+    for (char c : tmp)
+    {
+        if (c == ' ' && pre == ')' && !cnt)
+        {
             ++cnt;
             continue;
         }
-        if(!cnt)
+        if (!cnt)
             s += c;
-        else 
+        else
             st += c;
         pre = c;
     }
-    ans = std::make_pair(s, st); 
+    ans = std::make_pair(s, st);
 }
 
-void split_Definition(std::vector<std::string> &defiList, std::vector<std::pair<std::string, std::string>> &ans){
+void split_Definition(std::vector<std::string> &defiList, std::vector<std::pair<std::string, std::string>> &ans)
+{
     ans.clear();
-    for(std::string tmp : defiList){
+    for (std::string tmp : defiList)
+    {
         std::pair<std::string, std::string> defiAfterSplit;
         splitEachDefi(tmp, defiAfterSplit);
         ans.push_back(defiAfterSplit);
     }
-    sort(ans.begin(),  ans.end());
+    sort(ans.begin(), ans.end());
 }
 
-auto Trie::take_First_K_Word(int k) -> std::vector<std::string>{
+auto Trie::take_First_K_Word(int k) -> std::vector<std::string>
+{
     std::string tmp = "";
     std::vector<std::string> ans;
     root->takeKWord(tmp, k, ans);

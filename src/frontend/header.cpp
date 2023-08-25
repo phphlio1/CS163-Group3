@@ -1,4 +1,6 @@
 #include "header.hpp"
+#include "Trie.h"
+#include "Global.hpp"
 
 using namespace Frontend;
 
@@ -33,12 +35,12 @@ void Header::setSuggestionStr()
     if (maxSuggestions < 4)
     {
         for (int i = maxSuggestions; i < 4; ++i)
-            suggestBtns.at(i)->setText(fontAwesome, "", 20, sf::Color::Black);
+            suggestBtns.at(i)->setText(roboto, "", 20, sf::Color::Black);
     }
 
     for (int i = 0; i < maxSuggestions; ++i)
     {
-        suggestBtns.at(i)->setText(fontAwesome, suggestions.at(i), 20, sf::Color::Black);
+        suggestBtns.at(i)->setText(roboto, suggestions.at(i), 20, sf::Color::Black);
     }
     // suggestBtns.at(i)->setText(fontAwesome, suggestions.at(i), 20, sf::Color::Black);
 
@@ -47,6 +49,7 @@ void Header::setSuggestionStr()
 
 void Header::setFonts()
 {
+    roboto.loadFromFile("resources/font/Roboto/Roboto-Regular.ttf");
     fontAwesome.loadFromFile("resources/font/font-awesome-5/Font-Awesome-5-Free-Regular-400.otf");
     serif.loadFromFile("resources/font/DM_Serif_Text/DMSerifText-Regular.ttf");
     sans.loadFromFile("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
@@ -218,7 +221,12 @@ void Header::processEvent(const sf::Event &event)
 
     if (searchBar.isTyping() && clock.getElapsedTime().asSeconds() >= 0.5)
     {
-        // backend_function(getUserLookup(), );
+        std::string currentTextBoxString = getUserLookUp();
+        std::vector<std::string> suggestions;
+        // std::cout << currentTextBoxString << std::endl;
+        g_tries[0]->searchForAWord_withSuggestion(currentTextBoxString, suggestions);
+        this->suggestions = suggestions;
+
         setSuggestionStr();
         clock.restart();
     }
@@ -255,6 +263,10 @@ void Header::processEvent(const sf::Event &event)
     else if (gameBtn.isPressed())
     {
         currentTab = GAME;
+    }
+    if (resetBtn.isPressed())
+    {
+        resetTrie();
     }
 }
 
@@ -351,7 +363,16 @@ short unsigned Header::getCurrentTab()
     return currentTab;
 }
 
-void Header::getStr(std::vector<std::string> suggestions)
+void Header::resetTrie()
 {
-    this->suggestions = suggestions;
+    for (int i = 0; i < 4; ++i)
+    {
+        std::string resetMessage = "Reset trie (" + std::to_string(i) + ") sucessfully";
+        g_tries[i]->resetToOriginal(resetMessage);
+    }
 }
+
+// void Header::getStr(std::vector<std::string> suggestions)
+// {
+//     this->suggestions = suggestions;
+// }
