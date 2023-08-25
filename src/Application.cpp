@@ -1,5 +1,7 @@
 #include "Application.hpp"
 #include "TextBox.hpp"
+#include "InGame.hpp"
+#include
 
 Application::Application()
 	: window_width_(1280), window_height_(720),
@@ -10,34 +12,23 @@ Application::Application()
 
 void Application::run()
 {
-    sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
+	sf::RenderWindow window(sf::VideoMode(getWindowWidth(), getWindowHeight()),
 							getWindowTitle());
-	
-	Frontend::TextBox text_box(500, 200);
-	text_box.setBackgroundString("background");
-	text_box.setFont("../resources/JetBrainsMonoNL-Regular.ttf");
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            switch (event.type)
-			{
-			case sf::Event::Closed:
-				window.close();
-				break;
+	Frontend::InGame game(Frontend::GameMenu::WORD_TO_DEF);
 
-			default:
-				text_box.processEvent(event);
-				break;
-			}
-        }
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			game.processEvent(event);
+		}
 
-        window.clear(sf::Color::White);
-		window.draw(text_box);
-        window.display();
-    }
+		window.clear(sf::Color::White);
+		window.draw(game);
+		window.display();
+	}
 }
 
 int Application::getWindowWidth() const
@@ -50,7 +41,7 @@ int Application::getWindowHeight() const
 	return window_height_;
 }
 
-const sf::String& Application::getWindowTitle() const
+const sf::String &Application::getWindowTitle() const
 {
 	return window_title_;
 }

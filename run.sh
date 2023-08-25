@@ -1,3 +1,3 @@
 #! /bin/sh
 
-cd build; ./Dictionary
+cd build; ./CS163_Dictionary
