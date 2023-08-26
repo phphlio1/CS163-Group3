@@ -47,11 +47,8 @@ void EditDefinition::processEvent(const sf::Event &event)
 
 	if (done_.isPressed())
 	{
-		std::string message;
-		g_curr_trie->editExistedWordDefi(keyword_.getForegroundString(),
-										 definition_.getForegroundString(),
-										 message);
 		definition_frame_->setKeyword(keyword_.getForegroundString());
+		internalProcess();
 		setVisibility(0);
 		definition_frame_->setVisibility(1);
 	}
@@ -79,6 +76,16 @@ void EditDefinition::setDefinitionFrame(DefinitionFrame *n_definition_frame)
 	definition_frame_ = n_definition_frame;
 }
 
+std::string EditDefinition::getKeyword() const
+{
+	return keyword_.getForegroundString();
+}
+
+std::string EditDefinition::getDefinition() const
+{
+	return definition_.getForegroundString();
+}
+
 void EditDefinition::updateTexture()
 {
 	texture_.clear(sf::Color::White);
@@ -89,4 +96,13 @@ void EditDefinition::updateTexture()
 	texture_.draw(cancel_);
 
 	texture_.display();
+}
+
+void EditDefinition::internalProcess()
+{
+	std::string message;
+	g_curr_trie->editExistedWordDefi(keyword_.getForegroundString(),
+									 definition_.getForegroundString(),
+									 message);
+	
 }

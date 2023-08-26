@@ -9,6 +9,7 @@
 namespace Frontend
 {
 	class DefinitionFrame;
+	class Header;
 	
 	class SideBar : public Component
 	{
@@ -85,6 +86,8 @@ namespace Frontend
 		sf::Sprite edit_favorites_sprite_, close_edit_favorites_sprite_;
 
 		int clicked_word_;
+
+		friend class Header;
 	};
 }
 

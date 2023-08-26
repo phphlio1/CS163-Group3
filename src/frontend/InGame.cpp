@@ -51,11 +51,11 @@ void InGame::setQuestionParams()
     if (inGameMode == WORD_TO_DEF)
         // std::cout << keyStr << std::endl;
         // std::cout << ans << std::endl;
-        g_tries[0]->quiz_1Word4Defis(keyStr, ansStrs, ans);
+        g_curr_trie->quiz_1Word4Defis(keyStr, ansStrs, ans);
     // std::cout << keyStr << std::endl;
 
     else if (inGameMode == DEF_TO_WORD)
-        g_tries[0]->quiz_1Defi4Words(keyStr, ansStrs, ans);
+        g_curr_trie->quiz_1Defi4Words(keyStr, ansStrs, ans);
 
     setButton();
     setQuestion();

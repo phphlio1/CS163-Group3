@@ -6,13 +6,14 @@
 #include "Trie.h"
 #include "HistoryBar.hpp"
 #include "EditDefinition.hpp"
+#include "AddWordScreen.hpp"
 #include "Global.hpp"
 
 using namespace Frontend;
 
 DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 	: Component(n_width, n_height),
-	  history_bar_(nullptr), edit_screen_(nullptr),
+	  history_bar_(nullptr), edit_screen_(nullptr), add_word_screen_(nullptr),
 	  definition_bar_height_(152), bottom_bar_height_(40),
 	  bars_color_(17, 105, 142),
 	  button_circle_(25),
@@ -26,38 +27,55 @@ DefinitionFrame::DefinitionFrame(int n_width, int n_height)
 							   sf::Color::Transparent,
 							   sf::Color(255, 255, 255, 160),
 							   sf::Color(255, 255, 255, 200)),
+	  add_word_button_(50, 50,
+					   sf::Color::Transparent,
+					   sf::Color(255, 255, 255, 160),
+					   sf::Color(255, 255, 255, 200)),
+	  remove_word_button_(25, 25,
+						  sf::Color::Transparent,
+						  sf::Color(255, 255, 255, 160),
+						  sf::Color(255, 255, 255, 200)),
 	  definition_margin_(30),
 	  type_color_(17, 105, 142), type_character_size_(30),
-	  defi_character_size_(20), defi_defi_spacing_(10), defi_type_spacing_(20)
-{
-	edit_definition_button_.setContainer(static_cast<Component*>(this));
-	add_to_favorites_button_.setContainer(static_cast<Component*>(this));
+	defi_character_size_(20), defi_defi_spacing_(10), defi_type_spacing_(20)
+	  {
+		  edit_definition_button_.setContainer(static_cast<Component*>(this));
+		  add_to_favorites_button_.setContainer(static_cast<Component*>(this));
+		  add_word_button_.setContainer(this);
+		  remove_word_button_.setContainer(this);
+
+		  add_word_texture_.loadFromFile("resources/img/plus.png");
+		  add_word_button_.setTexture(add_word_texture_, 0, 0);
+		  add_word_button_.setPosition(20, 20);
+		  remove_word_texture_.loadFromFile("resources/img/trash-bin.png");
+		  remove_word_button_.setTexture(remove_word_texture_, 0, 0);
+		  remove_word_button_.setPosition(getWidth() - 50, getHeight() - getBottomBarHeight() - 25);
+
+		  int button_circle_width = button_circle_.getLocalBounds().width,
+			  button_circle_height = button_circle_.getLocalBounds().height;
+		  button_circle_.setOrigin(int(button_circle_width - 1) / 2,
+								   int(button_circle_height - 1) / 2);
+		  button_circle_.setFillColor(sf::Color::Transparent);
+		  button_circle_.setOutlineThickness(-2);
+		  button_circle_.setOutlineColor(sf::Color::White);
+
+		  createEditDefinitionButton();
+		  createAddToFavoritesButton();
+
+		  setEditDefinitionPos(500, 70);
+		  setAddToFavoritesPos(405, 70);
+
+		  setPosition(330, 70);
 	
-	int button_circle_width = button_circle_.getLocalBounds().width,
-		button_circle_height = button_circle_.getLocalBounds().height;
-	button_circle_.setOrigin(int(button_circle_width - 1) / 2,
-							 int(button_circle_height - 1) / 2);
-	button_circle_.setFillColor(sf::Color::Transparent);
-	button_circle_.setOutlineThickness(-2);
-	button_circle_.setOutlineColor(sf::Color::White);
+		  keyword_text_.setFont(getFont());
+		  setFont("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
+		  setKeywordTextCharacterSize(35);
+		  setKeywordTextColor(sf::Color::White);
+		  setKeywordTextYPos(23);
 
-	createEditDefinitionButton();
-	createAddToFavoritesButton();
-
-	setEditDefinitionPos(500, 70);
-	setAddToFavoritesPos(405, 70);
-
-	setPosition(330, 70);
-	
-	keyword_text_.setFont(getFont());
-	setFont("resources/font/open-sans-hebrew/OpenSansHebrew-Bold.ttf");
-	setKeywordTextCharacterSize(35);
-	setKeywordTextColor(sf::Color::White);
-	setKeywordTextYPos(23);
-
-	defi_pane_screen_.width = getWidth() - 2*getDefinitionMargin();
-	defi_pane_screen_.height = getHeight() - getDefinitionBarHeight() - getBottomBarHeight() - 2*getDefiDefiSpacing();
-}
+		  defi_pane_screen_.width = getWidth() - 2*getDefinitionMargin();
+		  defi_pane_screen_.height = getHeight() - getDefinitionBarHeight() - getBottomBarHeight() - 2*getDefiDefiSpacing();
+	  }
 
 void DefinitionFrame::processEvent(const sf::Event &event)
 {
@@ -72,6 +90,8 @@ void DefinitionFrame::processEvent(const sf::Event &event)
 
 	edit_definition_button_.processEvent(event);
 	add_to_favorites_button_.processEvent(event);
+	add_word_button_.processEvent(event);
+	remove_word_button_.processEvent(event);
 
 	if (event.type == sf::Event::MouseWheelScrolled
 		&& is_inside(event.mouseWheelScroll.x, event.mouseWheelScroll.y))
@@ -91,9 +111,25 @@ void DefinitionFrame::processEvent(const sf::Event &event)
 		std::string message;
 		g_curr_trie->viewFavoriteList(g_favorites, message);
 	}
+	if (add_word_button_.isPressed() && !add_word_pressed_)
+	{
+		setVisibility(0);
+		add_word_screen_->setVisibility(1);
+	}
+	if (remove_word_button_.isPressed() && !remove_word_pressed_)
+	{
+		std::string message;
+		g_curr_trie->remove_Word_FromTrie(getKeyword(), message);
+		std::string word;
+		std::vector<std::string> defi_list;
+		g_curr_trie->getRandomWordAndDefi(word, defi_list);
+		setKeyword(word);
+	}
 	updateTexture();
 	setEditDefinitionPressedState(edit_definition_button_.isPressed());
 	setAddToFavoritesPressedState(add_to_favorites_button_.isPressed());
+	add_word_pressed_ = add_word_button_.isPressed();
+	remove_word_pressed_ = remove_word_button_.isPressed();
 }
 
 int DefinitionFrame::getKeywordTextCharacterSize() const
@@ -354,6 +390,43 @@ void DefinitionFrame::setEditScreen(EditDefinition *n_edit_screen)
 	edit_screen_ = n_edit_screen;
 }
 
+void DefinitionFrame::setSubDefi(const std::string &sub_defi)
+{
+	keyword_text_.setString("");
+	g_curr_trie->findWordFromSubDefi(sub_defi, words_);
+	
+	definition_pane_.create(getWidth() - getDefinitionMargin() * 2,
+							250*40);
+	definition_pane_.clear(sf::Color::White);
+	
+	TextBox defi_text(definition_pane_.getSize().x, 30, 0);
+	defi_text.setContainer(this);
+	defi_text.setTypability(0);
+	defi_text.setWrappedEnabled(1);
+	defi_text.setFont(getFont());
+	defi_text.setCharacterSize(getDefiCharacterSize());
+	defi_text.setBackgroundColor(sf::Color::Transparent);
+	defi_text.setOutlineThickness(0);
+	defi_text.setForegroundTextColor(sf::Color::Black);
+	
+	sf::Vector2f curr_pos(0, 0);
+	for (int i = 0; i < std::min(40, int(words_.size())); ++i)
+	{
+		std::string definition = words_[i];
+		
+		sf::String defi_string = std::to_string(i+1) + "   : ";
+		defi_string += definition;
+		defi_text.setForegroundString(defi_string);
+		defi_text.setPosition(curr_pos);
+		definition_pane_.draw(defi_text);
+		curr_pos.y += defi_text.getHeight() + getDefiDefiSpacing();
+	}
+
+	definition_pane_.display();
+	updateTexture();
+}	
+
+
 void DefinitionFrame::updateTexture()
 {
 	texture_.clear(sf::Color::White);
@@ -389,6 +462,9 @@ void DefinitionFrame::updateTexture()
 	definition_sprite.setPosition(getDefinitionMargin(),
 								  getDefinitionBarHeight() + getDefiDefiSpacing());
 	texture_.draw(definition_sprite);
+
+	texture_.draw(add_word_button_);
+	texture_.draw(remove_word_button_);
 
 	texture_.display();
 }
@@ -479,7 +555,12 @@ void DefinitionFrame::drawDefinitions()
 	sf::Vector2f curr_pos(0, 0);
 	for (int i = 0; i < definitions_.size(); ++i)
 	{
-		auto [type, definition] = definitions_[i];
+		std::string type = definitions_[i].first, definition = definitions_[i].second;
+		if (g_curr_trie != g_tries[0])
+		{
+			definition = type + definition;
+			type = "";
+		}
 		
 		if (i == 0 || type != definitions_[i-1].first)
 		{

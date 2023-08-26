@@ -5,6 +5,7 @@ target_sources(${PROJECT_NAME} PRIVATE
   DefinitionFrame.hpp
   HistoryBar.hpp
   EditDefinition.hpp
+  AddWordScreen.hpp
   button.hpp
   header.hpp
   gameMode.hpp
@@ -16,6 +17,7 @@ target_sources(${PROJECT_NAME} PRIVATE
   DefinitionFrame.cpp
   HistoryBar.cpp
   EditDefinition.cpp
+  AddWordScreen.cpp
   button.cpp
   header.cpp
   gameMode.cpp

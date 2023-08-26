@@ -21,9 +21,12 @@ namespace Frontend
 		void initialize(const std::string &n_keyword);
 
 		void setDefinitionFrame(DefinitionFrame *n_definition_frame);
+		std::string getKeyword() const;
+		std::string getDefinition() const;
 
 	protected:
 		virtual void updateTexture() override;
+		virtual void internalProcess();
 
 	private:
 		DefinitionFrame *definition_frame_;

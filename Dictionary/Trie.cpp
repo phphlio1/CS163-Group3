@@ -528,6 +528,7 @@ void Trie::addToHistory(std::string word, std::string &message)
 
 void Trie::takeHistory(std::vector<std::string> &historyList, std::string &message)
 {
+	historyList.clear();
     std::ifstream fin(preAdress + FileName[typeOfDict] + historyName);
     if (fin.is_open())
     {

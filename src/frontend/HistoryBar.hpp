@@ -20,6 +20,7 @@ namespace Frontend
 		virtual void updateTexture() override;
 
 		friend class DefinitionFrame;
+		friend class Header;
 	};
 }
 

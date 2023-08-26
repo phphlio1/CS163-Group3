@@ -10,6 +10,7 @@ namespace Frontend
 {
 	class HistoryBar;
 	class EditDefinition;
+	class AddWordScreen;
 	
 	class DefinitionFrame : public Component
 	{
@@ -64,6 +65,8 @@ namespace Frontend
 
 		void setHistoryBar(HistoryBar *n_history_bar);
 		void setEditScreen(EditDefinition *n_edit_screen);
+
+		void setSubDefi(const std::string &sub_defi);
 		
 	protected:
 		virtual void updateTexture() override;
@@ -79,9 +82,11 @@ namespace Frontend
 		void drawDefinitions();
 
 		std::vector<std::pair<std::string, std::string>> definitions_;
+		std::vector<std::string> words_;
 		
 		HistoryBar *history_bar_;
 		EditDefinition *edit_screen_;
+		AddWordScreen *add_word_screen_;
 		
 		int definition_bar_height_, bottom_bar_height_;
 		sf::Color bars_color_;
@@ -99,6 +104,10 @@ namespace Frontend
 		sf::Color type_color_;
 		int defi_defi_spacing_, defi_type_spacing_, definition_margin_;
 		int type_character_size_, defi_character_size_;
+
+		Button add_word_button_, remove_word_button_;
+		sf::Texture remove_word_texture_, add_word_texture_;
+		bool add_word_pressed_, remove_word_pressed_;
 
 		friend class EditDefinition;
 	};

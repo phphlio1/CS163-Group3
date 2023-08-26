@@ -8,6 +8,7 @@
 #include "Global.hpp"
 #include "HistoryBar.hpp"
 #include "EditDefinition.hpp"
+#include "AddWordScreen.hpp"
 #include "gameMode.hpp"
 
 sf::RenderWindow *g_window;
@@ -43,7 +44,6 @@ void Application::setupFrontend()
 {	
 	Frontend::Header *header = new Frontend::Header;
 	header->setPosition(0, 0);
-	components_.push_back(header);
 	
 	std::string message;
 	g_curr_trie->takeHistory(g_history, message);
@@ -51,7 +51,7 @@ void Application::setupFrontend()
 
 	Frontend::HistoryBar *history_bar = new Frontend::HistoryBar;
 	history_bar->setPosition(0, 70);
-	history_bar->setVisibility(0);
+	// history_bar->setVisibility(0);
 	components_.push_back(history_bar);
 	
 	Frontend::DefinitionFrame *definition_frame = new Frontend::DefinitionFrame;
@@ -66,7 +66,7 @@ void Application::setupFrontend()
 	side_bar->setDefinitionFrame(definition_frame);
 	side_bar->setPosition(0, 70);
 	components_.push_back(side_bar);
-	// side_bar->setVisibility(0);
+	side_bar->setVisibility(0);
 
 	Frontend::EditDefinition *edit_definition = new Frontend::EditDefinition;
 	edit_definition->setDefinitionFrame(definition_frame);
@@ -75,7 +75,22 @@ void Application::setupFrontend()
 	edit_definition->setVisibility(0);
 	components_.push_back(edit_definition);
 
+	Frontend::AddWordScreen *add_word_screen = new Frontend::AddWordScreen;
+	add_word_screen->setDefinitionFrame(definition_frame);
+    add_word_screen->setPosition(330, 70);
+	add_word_screen->initialize("");
+    add_word_screen->setVisibility(0);
+	components_.push_back(add_word_screen);
+
+	// Frontend::InGame *
+
 	definition_frame->setEditScreen(edit_definition);
+	header->setDefinitionFrame(definition_frame);
+	header->setSideBar(side_bar);
+	header->setHistoryBar(history_bar);
+	// header->setInGame(in_game);
+	
+	components_.push_back(header);
 }
 
 void Application::initTries()
