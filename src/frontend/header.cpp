@@ -1,11 +1,31 @@
-#include "header.hpp"
 #include "Trie.h"
+#include "header.hpp"
+#include "DefinitionFrame.hpp"
+#include "SideBar.hpp"
+#include "HistoryBar.hpp"
+#include "InGame.hpp"
 #include "Global.hpp"
 
 using namespace Frontend;
 
-const std::vector<std::string> LanguageOfChoiceDisplay = {"Eng             Vie", "Eng              Eng", "Vie               Eng", "Emo              Eng"};
+const std::vector<std::string> LanguageOfChoiceDisplay = {"Eng              Eng", "Eng             Vie", "Vie               Eng", "Emo              Eng"};
 const std::vector<sf::Vector2f> LanguageTextPos = {sf::Vector2f(17, 15), sf::Vector2f(17, 15), sf::Vector2f(22, 15), sf::Vector2f(9, 15)};
+
+const LanguageOfChoice Header::toLang[] = {        ENG_TO_ENG,
+        ENG_TO_VIE,
+        VIE_TO_ENG,
+        EMO_TO_ENG
+};
+
+const SearchOptions Header::toSearch[] = {        WORD_TO_DEFINITION,
+        DEFINITION_TO_WORD
+};
+
+const Tab Header::toTab[] = {        DICTIONARY,
+        DAILY,
+        FAVORITE,
+        GAME
+};
 
 void Header::setSuggestionBtns()
 {
@@ -90,48 +110,50 @@ void Header::setSprites()
 
     searchSprite.setTexture(search);
     searchSprite.setPosition(706, 19);
-    updateTexture();
+	updateTexture();
 }
 
 void Header::setButtons()
 {
     dictionaryBtn.setPosition(94, 0);
-    dictionaryBtn.setText(fontAwesome, "Dictionary", 18, sf::Color::White);
-    dictionaryBtn.setTextPosition(sf::Vector2f(6, 51));
+    dictionaryBtn.setText(fontAwesome, "History", 18, sf::Color::White);
+    dictionaryBtn.setTextPosition(sf::Vector2f(19, 51));
     dictionaryBtn.setTexture(dictionary, 24, 7);
-    dictionaryBtn.setContainer(this);
+	dictionaryBtn.setContainer(this);
 
     dailyBtn.setPosition(193, 0);
     dailyBtn.setText(fontAwesome, "Daily", 18, sf::Color::White);
     dailyBtn.setTextPosition(sf::Vector2f(16, 51));
     dailyBtn.setTexture(daily, 15, 5);
-    dailyBtn.setContainer(this);
+	dailyBtn.setContainer(this);
 
     favBtn.setPosition(267, 0);
     favBtn.setText(fontAwesome, "Favorite", 18, sf::Color::White);
     favBtn.setTextPosition(sf::Vector2f(8, 51));
     favBtn.setTexture(favorite, 19, 9);
-    favBtn.setContainer(this);
+	favBtn.setContainer(this);
 
     gameBtn.setPosition(354, 0);
     gameBtn.setText(fontAwesome, "Game", 18, sf::Color::White);
     gameBtn.setTextPosition(sf::Vector2f(10, 51));
     gameBtn.setTexture(game, 10, 0);
-    gameBtn.setContainer(this);
+	gameBtn.setContainer(this);
 
     configBtn.setPosition(1129, 18);
     configBtn.setTexture(config, 0, 0);
-    configBtn.setContainer(this);
+	configBtn.setContainer(this);
 
     resetBtn.setPosition(1193, 0);
     resetBtn.setTexture(reset, 12, 12);
-    resetBtn.setContainer(this);
+	resetBtn.setContainer(this);
 
     setLangBtn.setPosition(447, 0);
     setLangBtn.setText(serif, LanguageOfChoiceDisplay.at(languageOfChoice), 30, sf::Color::White);
     setLangBtn.setTextPosition(LanguageTextPos.at(languageOfChoice));
     setLangBtn.setTexture(swap, 90, 10);
-    setLangBtn.setContainer(this);
+	setLangBtn.setContainer(this);
+
+	searchBar.setContainer(this);
 
     updateTexture();
 }
@@ -147,6 +169,7 @@ void Header::setTextBox()
 
 Header::Header()
     : Component(1280, 220),
+	  definition_frame_(nullptr),
       searchBar(475, 40, 50),
       dictionaryBtn(99, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
       dailyBtn(74, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
@@ -155,13 +178,14 @@ Header::Header()
       configBtn(35, 35, sf::Color(254, 254, 254), sf::Color(215, 215, 215), sf::Color(254, 254, 254)),
       resetBtn(73, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151)),
       setLangBtn(229, 70, sf::Color(25, 69, 107), sf::Color(95, 125, 151), sf::Color(95, 125, 151))
-
 {
+	
     currentTab = DICTIONARY;
     isReset = false;
     // isWarning = false;
     searchOptions = WORD_TO_DEFINITION;
-    languageOfChoice = ENG_TO_VIE;
+	languageOfChoice = ENG_TO_ENG;
+	g_curr_trie = g_tries[languageOfChoice];
     setFonts();
     setBackground();
     setTextures();
@@ -196,7 +220,7 @@ void Header::updateTexture()
     texture_.draw(resetBtn);
     texture_.draw(setLangBtn);
 
-    if (getUserLookUp() != "")
+    if (getUserLookUp() != "" && getSearchOption() == WORD_TO_DEFINITION)
     {
         for (int i = 0; i < suggestBtns.size(); ++i)
             if (suggestBtns.at(i)->getString() != "")
@@ -211,21 +235,45 @@ void Header::updateTexture()
 
 void Header::processEvent(const sf::Event &event)
 {
-    for (auto btn : suggestBtns)
-    {
-        if (btn->getString() != "")
-            btn->processEvent(event);
-    }
+	// std::cerr << "processed events\n";
+	if (getSearchOption() == WORD_TO_DEFINITION)
+	{
+		for (auto btn : suggestBtns)
+		{
+			if (btn->getString() != "")
+				btn->processEvent(event);
+		}
+	}
 
     static sf::Clock clock;
 
-    if (searchBar.isTyping() && clock.getElapsedTime().asSeconds() >= 0.5)
+	// std::cerr << clock.getElapsedTime().asSeconds() << '\n';
+    if (searchBar.isTyping())
     {
         std::string currentTextBoxString = getUserLookUp();
-        std::vector<std::string> suggestions;
-        // std::cout << currentTextBoxString << std::endl;
-        g_tries[0]->searchForAWord_withSuggestion(currentTextBoxString, suggestions);
-        this->suggestions = suggestions;
+		if (getSearchOption() == WORD_TO_DEFINITION)
+		{
+			std::vector<std::string> suggestions;
+			g_curr_trie->searchForAWord_withSuggestion(currentTextBoxString, suggestions);
+			this->suggestions = suggestions;
+		}
+        
+		if (event.type == sf::Event::KeyPressed
+			&& event.key.code == sf::Keyboard::Enter)
+		{
+			std::cerr << "enter pressed\n";
+			if (definition_frame_)
+			{
+				if (getSearchOption() == WORD_TO_DEFINITION)
+				{
+					definition_frame_->setKeyword(getUserLookUp());
+				}
+				else
+				{
+					definition_frame_->setSubDefi(getUserLookUp());
+				}
+			}
+		}
 
         setSuggestionStr();
         clock.restart();
@@ -236,7 +284,7 @@ void Header::processEvent(const sf::Event &event)
         for (auto btn : suggestBtns)
             btn->setText(fontAwesome, "", 20, sf::Color::Black);
     }
-
+	
     dictionaryBtn.processEvent(event);
     dailyBtn.processEvent(event);
     favBtn.processEvent(event);
@@ -245,29 +293,71 @@ void Header::processEvent(const sf::Event &event)
     resetBtn.processEvent(event);
     setLangBtn.processEvent(event);
     searchBar.processEvent(event);
-    updateLangOfChoiceBtn();
-    updateSearchOptions();
-
-    if (dictionaryBtn.isPressed())
+	// std::cerr << searchBar.getForegroundString().toAnsiString() << '\n';
+	
+    if (dictionaryBtn.isPressed() && !dictionaryBtn_pressed_)
     {
         currentTab = DICTIONARY;
+		std::string message;
+		g_curr_trie->takeHistory(g_history, message);
+		side_bar_->setVisibility(0);
+		history_bar_->setVisibility(1);
+		in_game_->setVisibility(0);
+		definition_frame_->setVisibility(1);
+		history_bar_->updateTexture();
     }
-    else if (dailyBtn.isPressed())
+    else if (dailyBtn.isPressed() && !dailyBtn_pressed_)
     {
         currentTab = DAILY;
+		std::string word;
+		std::vector<std::string> defi_list;
+		g_curr_trie->getRandomWordAndDefi(word, defi_list);
+		definition_frame_->setKeyword(word);
+		side_bar_->setVisibility(0);
+		history_bar_->setVisibility(1);
+		in_game_->setVisibility(0);
+		definition_frame_->setVisibility(1);
     }
-    else if (favBtn.isPressed())
+    else if (favBtn.isPressed() && !favBtn_pressed_)
     {
         currentTab = FAVORITE;
+		std::string message;
+		g_curr_trie->viewFavoriteList(g_favorites, message);
+	    side_bar_->setVisibility(1);
+		history_bar_->setVisibility(0);
+		in_game_->setVisibility(0);
+		definition_frame_->setVisibility(1);
+	    side_bar_->updateTexture();
     }
-    else if (gameBtn.isPressed())
+    else if (gameBtn.isPressed() && !gameBtn_pressed_)
     {
         currentTab = GAME;
+		side_bar_->setVisibility(0);
+		history_bar_->setVisibility(0);
+		in_game_->setVisibility(1);
+		definition_frame_->setVisibility(0);
     }
-    if (resetBtn.isPressed())
-    {
-        resetTrie();
-    }
+	else if (setLangBtn.isPressed() && !setLangBtn_pressed_)
+	{
+		updateLangOfChoiceBtn();
+		g_curr_trie = g_tries[getCurrentLanguageOfChoice()];
+	}
+	else if (configBtn.isPressed() && !configBtn_pressed_)
+	{
+		updateSearchOptions();
+	}
+	else if (resetBtn.isPressed() && !resetBtn_pressed_)
+	{
+		resetTrie();
+	}
+	updateTexture();
+	dictionaryBtn_pressed_ = dictionaryBtn.isPressed();
+	dailyBtn_pressed_ = dailyBtn.isPressed();
+	favBtn_pressed_ = favBtn.isPressed();
+	gameBtn_pressed_ = gameBtn.isPressed();
+	setLangBtn_pressed_ = setLangBtn.isPressed();
+	resetBtn_pressed_ = resetBtn.isPressed();
+	configBtn_pressed_ = configBtn.isPressed();
 }
 
 std::string Header::getUserLookUp()
@@ -275,50 +365,27 @@ std::string Header::getUserLookUp()
     return searchBar.getForegroundString().toAnsiString();
 }
 
-std::string Header::getCurrentLanguageOfChoice()
+LanguageOfChoice Header::getCurrentLanguageOfChoice()
 {
-    switch (languageOfChoice)
-    {
-    case ENG_TO_VIE:
-        return "eng to vie";
-        break;
-
-    case ENG_TO_ENG:
-        return "eng to eng";
-        break;
-
-    case VIE_TO_ENG:
-        return "vie to eng";
-        break;
-
-    case EMO_TO_ENG:
-        return "emo to eng";
-        break;
-
-    default:
-        return "Error: no lang of choice found!";
-        break;
-    }
+	return languageOfChoice;
 }
 
 void Header::updateLangOfChoiceBtn()
 {
-    if (setLangBtn.isPressed())
-    {
-        languageOfChoice = (languageOfChoice + 1) % 4;
-        setLangBtn.setTextString(LanguageOfChoiceDisplay.at(languageOfChoice));
-        setLangBtn.setTextPosition(LanguageTextPos.at(languageOfChoice));
-    }
+	int lang_of_choice = languageOfChoice;
+	lang_of_choice = (lang_of_choice + 1) % 4;
+	languageOfChoice = toLang[lang_of_choice];
+	setLangBtn.setTextString(LanguageOfChoiceDisplay.at(lang_of_choice));
+	setLangBtn.setTextPosition(LanguageTextPos.at(lang_of_choice));
     updateTexture();
 }
 
 void Header::updateSearchOptions()
 {
-    if (configBtn.isPressed())
-    {
-        searchOptions = (searchOptions + 1) % 2;
-    }
-    switch (searchOptions)
+	int search_options = searchOptions;
+	search_options = (search_options + 1) % 2;
+	searchOptions = toSearch[search_options];
+    switch (search_options)
     {
     case WORD_TO_DEFINITION:
         searchBar.setBackgroundString("Search word to definition");
@@ -335,22 +402,9 @@ void Header::updateSearchOptions()
     updateTexture();
 }
 
-std::string Header::getSearchOption()
+SearchOptions Header::getSearchOption()
 {
-    switch (searchOptions)
-    {
-    case WORD_TO_DEFINITION:
-        return "word to def";
-        break;
-
-    case DEFINITION_TO_WORD:
-        return "def to word";
-        break;
-
-    default:
-        return "Error: no search options found!";
-        break;
-    }
+	return searchOptions;
 }
 
 bool Header::getIsReset()
@@ -358,9 +412,29 @@ bool Header::getIsReset()
     return isReset;
 }
 
-short unsigned Header::getCurrentTab()
+Tab Header::getCurrentTab()
 {
     return currentTab;
+}
+
+void Header::setDefinitionFrame(DefinitionFrame *n_definition_frame)
+{
+	definition_frame_ = n_definition_frame;
+}
+
+void Header::setSideBar(SideBar *n_side_bar)
+{
+	side_bar_ = n_side_bar;
+}
+
+void Header::setHistoryBar(HistoryBar *n_history_bar)
+{
+	history_bar_=  n_history_bar;
+}
+
+void Header::setInGame(InGame *n_in_game)
+{
+	in_game = n_in_game;
 }
 
 void Header::resetTrie()
@@ -370,6 +444,11 @@ void Header::resetTrie()
         std::string resetMessage = "Reset trie (" + std::to_string(i) + ") sucessfully";
         g_tries[i]->resetToOriginal(resetMessage);
     }
+	std::string message;
+	g_curr_trie->viewFavoriteList(g_favorites, message);
+	g_curr_trie->takeHistory(g_history, message);
+	side_bar_->updateTexture();
+	history_bar_->updateTexture();
 }
 
 // void Header::getStr(std::vector<std::string> suggestions)

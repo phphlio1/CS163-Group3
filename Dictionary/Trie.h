@@ -11,7 +11,7 @@
 #include <chrono>
 #include <cstdlib>
 
-const std::string preAdress = "../data_set/";
+const std::string preAdress = "data_set/";
 const std::string FileName[4] = {"English_English", "English_Vietnamese", "Vietnamese_English", "slang_emoji"};
 const std::string originFileName[4] = {"English_English_original.txt", "English_Vietnamese_original.txt",
                                        "Vietnamese_English_original.txt", "slang_emoji_original.txt"};

@@ -22,7 +22,7 @@ void Trie::delete_Whole_Trie()
 void Trie::build_Trie_EngEng()
 {
     std::ifstream fin;
-    fin.open("../data_set/English_English_original.txt");
+    fin.open(preAdress + "English_English_original.txt");
     if (!fin.is_open())
     {
         std::cout << "File cannot open!\n";
@@ -467,6 +467,7 @@ void Trie::addToFavoriteList(std::string word, std::string &message)
 // Question 10 : User can view their favorite list
 void Trie::readData_FavoriteList(std::vector<std::string> &fav, std::string &message)
 {
+	fav.clear();
     std::ifstream fin;
     fin.open(preAdress + preFavoriteName + favoriteFileName[typeOfDict]);
     if (!fin.is_open())
@@ -527,6 +528,7 @@ void Trie::addToHistory(std::string word, std::string &message)
 
 void Trie::takeHistory(std::vector<std::string> &historyList, std::string &message)
 {
+	historyList.clear();
     std::ifstream fin(preAdress + FileName[typeOfDict] + historyName);
     if (fin.is_open())
     {

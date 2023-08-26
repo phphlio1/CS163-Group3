@@ -37,7 +37,6 @@
 # Miscellaneous
 CMakeLists.txt.user
 CMakeCache.txt
-CMakeLists.txt
 CMakeFiles
 CMakeScripts
 Testing
@@ -53,4 +52,5 @@ build/
 [Bb][Uu][Ii][Ll][Dd]/
 .history
 
-main.cpp
+# MacOS system file
+.DS_Store

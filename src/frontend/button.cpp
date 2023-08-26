@@ -7,11 +7,11 @@ Button::Button(int width, int height, sf::Color idle, sf::Color hover, sf::Color
       idleColor(idle),
       hoverColor(hover),
       activeColor(active),
-      is_pressed_(0)
+	  is_pressed_(0)
 {
     shape.setPosition(0, 0);
     shape.setSize(sf::Vector2f(width, height));
-    setButtonInactive();
+	setButtonInactive();
 }
 
 Button::~Button()
@@ -20,23 +20,23 @@ Button::~Button()
 
 void Button::updateTexture()
 {
-    switch (buttonState)
-    {
-    case BTN_IDLE:
-        shape.setFillColor(idleColor);
-        break;
+	switch (buttonState)
+	{
+	case BTN_IDLE:
+		shape.setFillColor(idleColor);
+		break;
 
-    case BTN_HOVER:
-        shape.setFillColor(hoverColor);
-        break;
+	case BTN_HOVER:
+		shape.setFillColor(hoverColor);
+		break;
 
-    case BTN_ACTIVE:
-        shape.setFillColor(activeColor);
-    }
-
+	case BTN_ACTIVE:
+		shape.setFillColor(activeColor);
+	}
+	
     texture_.clear(sf::Color::Transparent);
-
-    texture_.draw(shape);
+	
+	texture_.draw(shape);
     texture_.draw(text);
     texture_.draw(sprite);
 
@@ -48,62 +48,62 @@ void Button::processEvent(const sf::Event &event)
     static bool pressed = false;
     auto is_inside = [&](int x, int y) -> bool
     {
-        sf::FloatRect bounds_in_window = getSprite().getGlobalBounds();
-        sf::Vector2f window_relative_pos = findWindowRelativePos();
-        bounds_in_window.left = window_relative_pos.x;
-        bounds_in_window.top = window_relative_pos.y;
-        return bounds_in_window.contains(x, y);
+		sf::FloatRect bounds_in_window = getSprite().getGlobalBounds();
+		sf::Vector2f window_relative_pos = findWindowRelativePos();
+		bounds_in_window.left = window_relative_pos.x;
+		bounds_in_window.top = window_relative_pos.y;
+		return bounds_in_window.contains(x, y);
     };
 
-    ButtonState state;
-    switch (event.type)
-    {
-    case sf::Event::MouseButtonPressed:
-        if (is_inside(event.mouseButton.x, event.mouseButton.y))
-        {
-            state = (event.mouseButton.button == sf::Mouse::Left ? BTN_ACTIVE : BTN_HOVER);
-        }
-        else
-        {
-            state = BTN_IDLE;
-        }
-        setPressedState(0);
-        break;
+	ButtonState state;
+	switch (event.type)
+	{
+	case sf::Event::MouseButtonPressed:
+		if (is_inside(event.mouseButton.x, event.mouseButton.y))
+		{
+			state = (event.mouseButton.button == sf::Mouse::Left ?
+					 BTN_ACTIVE : BTN_HOVER);
+		}
+		else
+		{
+			state = BTN_IDLE;
+		}
+	    setPressedState(0);
+		break;
 
-    case sf::Event::MouseButtonReleased:
-        if (is_inside(event.mouseButton.x, event.mouseButton.y))
-        {
-            setPressedState(1);
-            state = BTN_HOVER;
-        }
-        else
-        {
-            setPressedState(0);
-            state = BTN_IDLE;
-        }
-        break;
+	case sf::Event::MouseButtonReleased:
+		if (is_inside(event.mouseButton.x, event.mouseButton.y))
+		{
+		    setPressedState(1);
+			state = BTN_HOVER;
+		}
+		else
+		{
+		    setPressedState(0);
+			state = BTN_IDLE;
+		}
+		break;
 
-    case sf::Event::MouseMoved:
-        if (is_inside(event.mouseMove.x, event.mouseMove.y))
-        {
-            state = (getButtonState() == BTN_ACTIVE ? BTN_ACTIVE : BTN_HOVER);
-        }
-        else
-        {
-            state = BTN_IDLE;
-        }
-        break;
+	case sf::Event::MouseMoved:
+		if (is_inside(event.mouseMove.x, event.mouseMove.y))
+		{
+			state = (getButtonState() == BTN_ACTIVE ? BTN_ACTIVE : BTN_HOVER);
+		}
+		else
+		{
+			state = BTN_IDLE;
+		}
+		break;
 
-    default:
-        state = BTN_IDLE;
-        break;
-    }
-    setButtonState(state);
+	default:
+		break;
+	}
+	setButtonState(state);
 }
 
 sf::Vector2f Button::findWindowRelativePos() const
 {
-    return getPosition() + getContainer()->findWindowRelativePos();
+	return getPosition() + getContainer()->findWindowRelativePos();
 }
 
 void Button::centerVertical()
@@ -114,27 +114,27 @@ void Button::centerVertical()
 
 bool Button::isPressed() const
 {
-    return getButtonState() == BTN_ACTIVE;
+    return is_pressed_;
 }
 
 ButtonState Button::getButtonState() const
 {
-    return buttonState;
+	return buttonState;
 }
 
-const sf::String &Button::getString() const
+const sf::String& Button::getString() const
 {
     return text.getString();
 }
 
-const sf::Text &Button::getText() const
+const sf::Text& Button::getText() const
 {
-    return text;
+	return text;
 }
 
-const Component *Button::getContainer() const
+const Component* Button::getContainer() const
 {
-    return container_;
+	return container_;
 }
 
 void Button::wrapTextVertical()
@@ -195,36 +195,36 @@ void Button::setColor(sf::Color idle, sf::Color hover, sf::Color active)
 
 void Button::setPressedState(bool n_is_pressed)
 {
-    is_pressed_ = n_is_pressed;
+	is_pressed_ = n_is_pressed;
 }
 
 void Button::setButtonState(ButtonState n_state)
 {
-    if (buttonState == n_state)
-    {
-        return;
-    }
-
-    buttonState = n_state;
-    updateTexture();
+	if (buttonState == n_state)
+	{
+		return;
+	}
+	
+	buttonState = n_state;
+	updateTexture();
 }
 
 void Button::setButtonActive()
 {
-    setButtonState(BTN_ACTIVE);
+	setButtonState(BTN_ACTIVE);
 }
 
 void Button::setButtonInactive()
 {
-    setButtonState(BTN_IDLE);
+	setButtonState(BTN_IDLE);
 }
 
 void Button::setButtonHover()
 {
-    setButtonState(BTN_HOVER);
+	setButtonState(BTN_HOVER);
 }
 
 void Button::setContainer(const Component *n_container)
 {
-    container_ = n_container;
+	container_ = n_container;
 }

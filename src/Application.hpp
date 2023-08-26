@@ -26,7 +26,7 @@ private:
 
 	int window_width_, window_height_, window_style_;
 	sf::String window_title_;
-	std::vector<Frontend::Component *> components_;
+	std::vector<Frontend::Component*> components_;
 };
 
 #endif

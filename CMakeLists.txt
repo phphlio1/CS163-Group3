@@ -21,5 +21,5 @@ target_link_libraries(${PROJECT_NAME}
   sfml-graphics
   sfml-network
   sfml-window
-  # sfml-main
+  sfml-main
   sfml-system)
